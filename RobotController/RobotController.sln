@@ -1,0 +1,94 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{307B063C-7BC1-40FE-AA92-89AEA7CE9332}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wiringPi", "..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj", "{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobotLib", "..\RobotLib\RobotLib.vcxproj", "{B37F3067-2A62-4034-9068-352F6949466A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SensorLib", "SensorLib\SensorLib.vcxproj", "{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HumbleLogging", "..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj", "{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLiteCPP", "..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj", "{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLibrary", "..\Test\TestLibrary\TestLibrary.vcxproj", "{06360B29-0ED8-4FE6-AA4A-155948FB7A22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|VisualGDB = Debug|VisualGDB
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|VisualGDB = Release|VisualGDB
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Release|x64.ActiveCfg = Release|VisualGDB
+		{307B063C-7BC1-40FE-AA92-89AEA7CE9332}.Release|x86.ActiveCfg = Release|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|x64.ActiveCfg = Release|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|x86.ActiveCfg = Release|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Release|x64.ActiveCfg = Release|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Release|x86.ActiveCfg = Release|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|x64.ActiveCfg = Release|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|x86.ActiveCfg = Release|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|x64.ActiveCfg = Release|VisualGDB
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|x86.ActiveCfg = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x64.ActiveCfg = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x86.ActiveCfg = Release|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|x64.ActiveCfg = Release|VisualGDB
+		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|x86.ActiveCfg = Release|VisualGDB
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
+		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
+	EndGlobalSection
+EndGlobal

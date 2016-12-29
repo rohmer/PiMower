@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{48ed3ecb-9e03-4b8d-9891-f7f50b4079b8}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{7fc1c39a-6c39-4c14-8fa9-482e73b55162}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{fb9d2d4d-35f3-4b29-bfbd-68796fea27bb}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\LSM303">
+      <UniqueIdentifier>{f98ed763-f4db-48fe-8d67-4f7264f1694c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\LSM303">
+      <UniqueIdentifier>{3d1845fb-0355-47d1-9e3b-7b4921628c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Adafruit_GPS">
+      <UniqueIdentifier>{4f632ca7-ace8-4320-87e3-c7f811f79de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Adafruit_GPS">
+      <UniqueIdentifier>{65862533-c16c-4cde-959a-926d6fdbea3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\NMEAParser">
+      <UniqueIdentifier>{1712a0a9-944c-46ba-b237-b290c6975321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{380f2d22-4b78-4228-8594-3f384419badf}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source files\NMEAParser">
+      <UniqueIdentifier>{2d2a9944-1f81-48ad-aaa6-e0da016dfa2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\NMEAParser\Parsers">
+      <UniqueIdentifier>{e0194f82-7e78-4e13-b172-8fd008848f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\NMEAParser\Parsers">
+      <UniqueIdentifier>{5a336c31-4ca1-4476-aa6c-68b4dc7b3019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\ST7565">
+      <UniqueIdentifier>{a5bab1f5-7078-4661-8756-1e927afaa592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\ST7565">
+      <UniqueIdentifier>{c0a918df-ae5e-4ffd-a0c1-58b04462c2dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\PCA9685">
+      <UniqueIdentifier>{e28f03a3-f238-4c72-9eb0-2be08ffe9821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\TCS34725">
+      <UniqueIdentifier>{74d529a7-deff-4949-a29b-9304421e7108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\TCS34725">
+      <UniqueIdentifier>{778e7751-c7ac-4b29-abd2-084a3cff06e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\HCSR04">
+      <UniqueIdentifier>{55b3ccdd-2d14-48cc-acac-598d83f9ac17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\HCSR04">
+      <UniqueIdentifier>{133b14c6-9500-4bf7-8174-d7491b9c5592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\ArduCam">
+      <UniqueIdentifier>{ba691987-27a0-4493-9ee9-bd2d1445645c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\ArduCam">
+      <UniqueIdentifier>{fbcbc741-b71b-4e76-99be-8fccd6343937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\ArduCam\ArduCamDriver">
+      <UniqueIdentifier>{fd206269-0117-46f9-ab23-731f83761c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\ArduCam\ArduCamDriver">
+      <UniqueIdentifier>{c8a59509-a999-471e-93f5-3fcfc6aacb21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\ArduCam\GrassDetection">
+      <UniqueIdentifier>{8c3c5520-06cd-4d17-a91e-3d8d4434daf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\ArduCam\GrassDetection">
+      <UniqueIdentifier>{c9168bde-69d9-4ef8-8e35-57012f1cae84}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SensorBase.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="LSM303_Magnetometer.cpp">
+      <Filter>Source files\LSM303</Filter>
+    </ClCompile>
+    <ClCompile Include="LSM303_Accelerometer.cpp">
+      <Filter>Source files\LSM303</Filter>
+    </ClCompile>
+    <ClCompile Include="AdafruitGPS.cpp">
+      <Filter>Source files\Adafruit_GPS</Filter>
+    </ClCompile>
+    <ClCompile Include="NMEAParser.cpp">
+      <Filter>Source files\NMEAParser</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectParsers.cpp">
+      <Filter>Source files\NMEAParser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserGPRMC.cpp">
+      <Filter>Source files\NMEAParser\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserGPGGA.cpp">
+      <Filter>Source files\NMEAParser\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserGPGLL.cpp">
+      <Filter>Source files\NMEAParser\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ST7565.cpp">
+      <Filter>Source files\ST7565</Filter>
+    </ClCompile>
+    <ClCompile Include="PCA9685.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="HCSR04.cpp">
+      <Filter>Source files\HCSR04</Filter>
+    </ClCompile>
+    <ClCompile Include="TCS34725.cpp">
+      <Filter>Source files\TCS34725</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserGPVTG.cpp">
+      <Filter>Source files\NMEAParser\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserGPGSV.cpp">
+      <Filter>Source files\NMEAParser\Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ArduCam.cpp">
+      <Filter>Source files\ArduCam</Filter>
+    </ClCompile>
+    <ClCompile Include="ArduCamDriver\arducam_arch_raspberrypi.c">
+      <Filter>Source files\ArduCam\ArduCamDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="ArduCamDriver\arducamDriver.c">
+      <Filter>Source files\ArduCam\ArduCamDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassDetection.cpp">
+      <Filter>Source files\ArduCam\GrassDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorDetector.cpp">
+      <Filter>Source files\ArduCam\GrassDetection</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SensorLib.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="SensorBase.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="LSM303.h">
+      <Filter>Header files\LSM303</Filter>
+    </ClInclude>
+    <ClInclude Include="LSM303_Magnetometer.h">
+      <Filter>Header files\LSM303</Filter>
+    </ClInclude>
+    <ClInclude Include="LSM303_Accelerometer.h">
+      <Filter>Header files\LSM303</Filter>
+    </ClInclude>
+    <ClInclude Include="AdafruitGPS.h">
+      <Filter>Header files\Adafruit_GPS</Filter>
+    </ClInclude>
+    <ClInclude Include="AdafruitGPSConstants.h">
+      <Filter>Header files\Adafruit_GPS</Filter>
+    </ClInclude>
+    <ClInclude Include="NMEAParser.h">
+      <Filter>Header files\NMEAParser</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectParsers.h">
+      <Filter>Header files\NMEAParser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserGPRMC.h">
+      <Filter>Header files\NMEAParser\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserGPGGA.h">
+      <Filter>Header files\NMEAParser\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserBase.h">
+      <Filter>Header files\NMEAParser\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserGPGLL.h">
+      <Filter>Header files\NMEAParser\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceBase.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="ST7565.h">
+      <Filter>Header files\ST7565</Filter>
+    </ClInclude>
+    <ClInclude Include="5x7FontFull.h">
+      <Filter>Header files\ST7565</Filter>
+    </ClInclude>
+    <ClInclude Include="5x7FontNoGlyphs.h">
+      <Filter>Header files\ST7565</Filter>
+    </ClInclude>
+    <ClInclude Include="ST7565Defines.h">
+      <Filter>Header files\ST7565</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceLib.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="PCA9685.h">
+      <Filter>Header files\PCA9685</Filter>
+    </ClInclude>
+    <ClInclude Include="TCS34725.h">
+      <Filter>Header files\TCS34725</Filter>
+    </ClInclude>
+    <ClInclude Include="HCSR04.h">
+      <Filter>Header files\HCSR04</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserGPVTG.h">
+      <Filter>Header files\NMEAParser\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserGPGSV.h">
+      <Filter>Header files\NMEAParser\Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCam.h">
+      <Filter>Header files\ArduCam</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCamDriver\arducam_arch.h">
+      <Filter>Header files\ArduCam\ArduCamDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCamDriver\memorysaver.h">
+      <Filter>Header files\ArduCam\ArduCamDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCamDriver\ov2640_regs.h">
+      <Filter>Header files\ArduCam\ArduCamDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCamDriver\ov5642_regs.h">
+      <Filter>Header files\ArduCam\ArduCamDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCamDriver\arducamDriver.h">
+      <Filter>Header files\ArduCam\ArduCamDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassDetector.h">
+      <Filter>Header files\ArduCam\GrassDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorDetector.h">
+      <Filter>Header files\ArduCam\GrassDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorDetectionParams.h">
+      <Filter>Header files\ArduCam\GrassDetection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SensorLib-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="SensorLib-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+</Project>

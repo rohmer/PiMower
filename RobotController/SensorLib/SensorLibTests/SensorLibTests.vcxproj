@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B36240D8-0548-4ECE-B927-DDE991AB4A26}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <TestFrameworkPropertyListFile>$(ProjectDir)TestFramework.props</TestFrameworkPropertyListFile>
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <TestFrameworkPropertyListFile>$(ProjectDir)TestFramework.props</TestFrameworkPropertyListFile>
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <CPPLanguageStandard>CPP14</CPPLanguageStandard>
+      <AdditionalIncludeDirectories>../../../RobotLib;../../../3rdParty/SQLiteC++/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <CPPLanguageStandard>CPP14</CPPLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\Platforms\SysprogsTestHooks.cpp" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-death-test.cc" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-filepath.cc" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-port.cc" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-printers.cc" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-test-part.cc" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-typed-test.cc" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest.cc" />
+    <ClCompile Include="SensorLibTests.cpp" />
+    <ClCompile Include="SensorLibTestsTests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SensorLibTests-Debug.vgdbsettings" />
+    <None Include="SensorLibTests-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-death-test.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-message.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-param-test.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-printers.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-spi.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-test-part.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-typed-test.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest_pred_impl.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest_prod.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-death-test-internal.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-filepath.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-internal.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-linked_ptr.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-param-util-generated.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-param-util.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-port-arch.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-port.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-string.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-tuple.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-type-util.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\Platforms\SysprogsTestHooks.h" />
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-internal-inl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
+      <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\3rdParty\pigpio-master\pigpio\pigpio.vcxproj">
+      <Project>{5247a8fe-694e-46c6-8117-29ae7adae494}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
+      <Project>{6a967716-d419-4c6e-9b5c-c8a68a3af2d1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\RobotLib\RobotLib.vcxproj">
+      <Project>{b37f3067-2a62-4034-9068-352f6949466a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SensorLib.vcxproj">
+      <Project>{a17730ce-5fd1-4cb8-9b8d-5e9f076e7698}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

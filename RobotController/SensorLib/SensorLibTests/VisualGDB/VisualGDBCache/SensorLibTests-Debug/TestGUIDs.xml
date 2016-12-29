@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ArrayOfTestGUIDRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TestGUIDRecord>
+    <TestName>DemoTestGroup_SuccessfulTest1</TestName>
+    <GUID>4d6eb041-a108-44e9-aec2-3fcaff836f80</GUID>
+  </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>DemoTestGroup_SuccessfulTest2</TestName>
+    <GUID>6fcbd63b-15bc-43c2-b08a-2127c2ac8325</GUID>
+  </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>DemoTestGroup_FailingTest</TestName>
+    <GUID>69f2ea10-64cb-4129-afb5-d6dc05f913d3</GUID>
+  </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>Initialization_ScanI2CBus</TestName>
+    <GUID>84c1ad25-3e8f-4ca0-b30e-838d9f6d5bb3</GUID>
+  </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>Initialization_BaseInitializer</TestName>
+    <GUID>e9a448fd-d972-4f2b-8d2f-51e8d03555ed</GUID>
+  </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>Initialization_InitializeToSpecificPort</TestName>
+    <GUID>01bfcabd-9a62-4ade-b86f-fd881e1e4316</GUID>
+  </TestGUIDRecord>
+</ArrayOfTestGUIDRecord>

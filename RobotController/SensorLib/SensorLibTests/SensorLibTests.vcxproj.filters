@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{2f74962b-5fa9-4882-9d22-91c46176f793}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{849ce1fc-5600-4bd2-9e50-f988d4bc2487}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{f65d50ee-cef1-4ea1-b5bb-5954a9394b54}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{f2750b2d-c4c1-4b83-9b89-943bd81f90ca}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\Test Framework">
+      <UniqueIdentifier>{c6e9169f-9abf-4dd8-8f95-b664b8d02543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Test Framework">
+      <UniqueIdentifier>{dc566eb8-da25-48e9-8948-4fd0cbca9019}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SensorLibTests.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-death-test.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-filepath.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-port.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-printers.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-test-part.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-typed-test.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest.cc">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\Platforms\SysprogsTestHooks.cpp">
+      <Filter>Source files\Test Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorLibTestsTests.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SensorLibTests-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="SensorLibTests-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-death-test.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-message.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-param-test.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-printers.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-spi.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-test-part.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest-typed-test.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest_pred_impl.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\gtest_prod.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-death-test-internal.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-filepath.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-internal.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-linked_ptr.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-param-util-generated.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-param-util.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-port-arch.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-port.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-string.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-tuple.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\include\gtest\internal\gtest-type-util.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\src\gtest-internal-inl.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.googletest\Platforms\SysprogsTestHooks.h">
+      <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

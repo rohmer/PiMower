@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <GNUTargetType>DynamicLibrary</GNUTargetType>
+    <TestFrameworkPropertyListFile>$(ProjectDir)TestFramework.props</TestFrameworkPropertyListFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <GNUTargetType>DynamicLibrary</GNUTargetType>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <CPPLanguageStandard>CPP11</CPPLanguageStandard>
+      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>opencv_core;opencv_highgui;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <CPPLanguageStandard>CPP14</CPPLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AdafruitGPS.cpp" />
+    <ClCompile Include="ArduCam.cpp" />
+    <ClCompile Include="ArduCamDriver\arducamDriver.c" />
+    <ClCompile Include="ArduCamDriver\arducam_arch_raspberrypi.c" />
+    <ClCompile Include="ColorDetector.cpp" />
+    <ClCompile Include="GrassDetection.cpp" />
+    <ClCompile Include="HCSR04.cpp" />
+    <ClCompile Include="LSM303_Accelerometer.cpp" />
+    <ClCompile Include="LSM303_Magnetometer.cpp" />
+    <ClCompile Include="NMEAParser.cpp" />
+    <ClCompile Include="ObjectParsers.cpp" />
+    <ClCompile Include="ParserGPGGA.cpp" />
+    <ClCompile Include="ParserGPGLL.cpp" />
+    <ClCompile Include="ParserGPGSV.cpp" />
+    <ClCompile Include="ParserGPRMC.cpp" />
+    <ClCompile Include="ParserGPVTG.cpp" />
+    <ClCompile Include="PCA9685.cpp" />
+    <ClCompile Include="SensorBase.cpp" />
+    <ClCompile Include="ST7565.cpp" />
+    <ClCompile Include="TCS34725.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="5x7FontFull.h" />
+    <ClInclude Include="5x7FontNoGlyphs.h" />
+    <ClInclude Include="AdafruitGPS.h" />
+    <ClInclude Include="AdafruitGPSConstants.h" />
+    <ClInclude Include="ArduCam.h" />
+    <ClInclude Include="ArduCamDriver\arducamDriver.h" />
+    <ClInclude Include="ArduCamDriver\arducam_arch.h" />
+    <ClInclude Include="ArduCamDriver\memorysaver.h" />
+    <ClInclude Include="ArduCamDriver\ov2640_regs.h" />
+    <ClInclude Include="ArduCamDriver\ov5642_regs.h" />
+    <ClInclude Include="ColorDetectionParams.h" />
+    <ClInclude Include="ColorDetector.h" />
+    <ClInclude Include="DeviceBase.h" />
+    <ClInclude Include="DeviceLib.h" />
+    <ClInclude Include="GrassDetector.h" />
+    <ClInclude Include="HCSR04.h" />
+    <ClInclude Include="ObjectParsers.h" />
+    <ClInclude Include="ParserBase.h" />
+    <ClInclude Include="LSM303.h" />
+    <ClInclude Include="LSM303_Accelerometer.h" />
+    <ClInclude Include="LSM303_Magnetometer.h" />
+    <ClInclude Include="NMEAParser.h" />
+    <ClInclude Include="ParserGPGGA.h" />
+    <ClInclude Include="ParserGPGLL.h" />
+    <ClInclude Include="ParserGPGSV.h" />
+    <ClInclude Include="ParserGPRMC.h" />
+    <ClInclude Include="ParserGPVTG.h" />
+    <ClInclude Include="PCA9685.h" />
+    <ClInclude Include="SensorBase.h" />
+    <ClInclude Include="SensorLib.h" />
+    <ClInclude Include="ST7565.h" />
+    <ClInclude Include="ST7565Defines.h" />
+    <ClInclude Include="TCS34725.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SensorLib-Debug.vgdbsettings" />
+    <None Include="SensorLib-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
+      <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{6221630c-07d1-430e-91ef-845d744ce31d}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{58211c9c-3097-42d4-8031-47a75711cebb}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{1362a6a8-6d8e-4efa-9b7c-2e4002b6d6ce}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{d1a87ebe-d493-4fbe-93e0-813d54037fda}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Header files\DeviceManager">
+      <UniqueIdentifier>{da3bdb6b-4b72-4a99-8521-ac20ae9867f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\LocationManager">
+      <UniqueIdentifier>{b7112e1b-086a-4ca6-afb0-4ae3af8330a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Database">
+      <UniqueIdentifier>{67c29874-fc23-4251-ab6f-038bba7541fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\DeviceManager">
+      <UniqueIdentifier>{81dbf471-7a2a-4fef-b435-bcb3a3bc5c90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\LocationManager">
+      <UniqueIdentifier>{b11cd6cd-e2e3-4786-a04a-5803a49da929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Database">
+      <UniqueIdentifier>{2d9fe22a-63fc-46c9-bc37-c565ee5fec29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\MapLib">
+      <UniqueIdentifier>{fb0c643b-2ae7-4063-992c-a9b67dbf91c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\MapLib">
+      <UniqueIdentifier>{4a8d9bd3-805f-432b-8698-9332f6c8349a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\MapLib\Pathfinding">
+      <UniqueIdentifier>{685b08cb-e63d-4c9b-a5bf-919f80e56364}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\MapLib\Pathfinding">
+      <UniqueIdentifier>{7a58bebc-8d6b-4a90-8455-07c6684f3b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Robot">
+      <UniqueIdentifier>{4c773e5e-b893-4c1e-b89e-047f1ef01e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Robot">
+      <UniqueIdentifier>{5226daa0-e716-4693-901a-32d98907a73e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Robot\Behaviors">
+      <UniqueIdentifier>{e04a3b07-79d0-4323-99ce-de36bc30d922}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RobotLib.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceEntry.cpp">
+      <Filter>Source files\DeviceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceManager.cpp">
+      <Filter>Source files\DeviceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceRegistry.cpp">
+      <Filter>Source files\DeviceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="i2cscanner.cpp">
+      <Filter>Source files\DeviceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GPSManager.cpp">
+      <Filter>Source files\LocationManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Source files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorEvents.cpp">
+      <Filter>Source files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="MapNode.cpp">
+      <Filter>Source files\MapLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source files\MapLib</Filter>
+    </ClCompile>
+    <ClCompile Include="IntertialGuidence.cpp">
+      <Filter>Source files\LocationManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RobotLib.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceEntry.h">
+      <Filter>Header files\DeviceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceManager.h">
+      <Filter>Header files\DeviceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceRegistry.h">
+      <Filter>Header files\DeviceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GPSManager.h">
+      <Filter>Header files\LocationManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Header files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="SensorEvents.h">
+      <Filter>Header files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLibConstants.h">
+      <Filter>Header files\MapLib</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header files\MapLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MapNode.h">
+      <Filter>Header files\MapLib</Filter>
+    </ClInclude>
+    <ClInclude Include="InertialGuidence.h">
+      <Filter>Header files\LocationManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header files\MapLib\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotStatus.h">
+      <Filter>Header files\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="MowerState.h">
+      <Filter>Header files\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="StandBy.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RobotLib-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="RobotLib-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+</Project>

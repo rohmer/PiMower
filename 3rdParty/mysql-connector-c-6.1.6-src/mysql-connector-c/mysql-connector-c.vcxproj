@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D2426046-EBA9-4D31-BF7D-33781072AE8C}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\c++\4.9;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\arm-linux-gnueabihf\c++\4.9;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\c++\4.9\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0002\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0001\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\arm-linux-gnueabihf;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)mysql-connector-c-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\c++\4.9;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\arm-linux-gnueabihf\c++\4.9;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\c++\4.9\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0002\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0001\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include\arm-linux-gnueabihf;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.2.43\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)mysql-connector-c-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\client\get_password.c" />
+    <ClCompile Include="..\cmake\stack_direction.c" />
+    <ClCompile Include="..\dbug\dbug.c" />
+    <ClCompile Include="..\dbug\dbug_analyze.c" />
+    <ClCompile Include="..\dbug\example1.c" />
+    <ClCompile Include="..\dbug\example2.c" />
+    <ClCompile Include="..\dbug\example3.c" />
+    <ClCompile Include="..\dbug\factorial.c" />
+    <ClCompile Include="..\dbug\main.c" />
+    <ClCompile Include="..\dbug\my_main.c" />
+    <ClCompile Include="..\dbug\tests.c" />
+    <ClCompile Include="..\extra\comp_err.c" />
+    <ClCompile Include="..\extra\my_print_defaults.c" />
+    <ClCompile Include="..\extra\perror.c" />
+    <ClCompile Include="..\extra\resolveip.c" />
+    <ClCompile Include="..\extra\yassl\examples\client\client.cpp" />
+    <ClCompile Include="..\extra\yassl\examples\echoclient\echoclient.cpp" />
+    <ClCompile Include="..\extra\yassl\examples\echoserver\echoserver.cpp" />
+    <ClCompile Include="..\extra\yassl\examples\server\server.cpp" />
+    <ClCompile Include="..\extra\yassl\src\buffer.cpp" />
+    <ClCompile Include="..\extra\yassl\src\cert_wrapper.cpp" />
+    <ClCompile Include="..\extra\yassl\src\crypto_wrapper.cpp" />
+    <ClCompile Include="..\extra\yassl\src\dummy.cpp" />
+    <ClCompile Include="..\extra\yassl\src\handshake.cpp" />
+    <ClCompile Include="..\extra\yassl\src\lock.cpp" />
+    <ClCompile Include="..\extra\yassl\src\log.cpp" />
+    <ClCompile Include="..\extra\yassl\src\socket_wrapper.cpp" />
+    <ClCompile Include="..\extra\yassl\src\ssl.cpp" />
+    <ClCompile Include="..\extra\yassl\src\template_instnt.cpp" />
+    <ClCompile Include="..\extra\yassl\src\timer.cpp" />
+    <ClCompile Include="..\extra\yassl\src\yassl.cpp" />
+    <ClCompile Include="..\extra\yassl\src\yassl_error.cpp" />
+    <ClCompile Include="..\extra\yassl\src\yassl_imp.cpp" />
+    <ClCompile Include="..\extra\yassl\src\yassl_int.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\benchmark\benchmark.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\aes.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\aestables.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\algebra.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\arc4.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\asn.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\bftables.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\blowfish.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\coding.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\des.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\dh.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\dsa.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\file.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\hash.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\hc128.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\integer.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\md2.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\md4.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\md5.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\misc.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\rabbit.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\random.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\ripemd.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\rsa.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\sha.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\template_instnt.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\tftables.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\src\twofish.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\test\memory.cpp" />
+    <ClCompile Include="..\extra\yassl\taocrypt\test\test.cpp" />
+    <ClCompile Include="..\extra\yassl\testsuite\testsuite.cpp" />
+    <ClCompile Include="..\libmysql\authentication_win\common.cc" />
+    <ClCompile Include="..\libmysql\authentication_win\handshake.cc" />
+    <ClCompile Include="..\libmysql\authentication_win\handshake_client.cc" />
+    <ClCompile Include="..\libmysql\authentication_win\log_client.cc" />
+    <ClCompile Include="..\libmysql\authentication_win\plugin_client.cc" />
+    <ClCompile Include="..\libmysql\conf_to_src.c" />
+    <ClCompile Include="..\libmysql\errmsg.c" />
+    <ClCompile Include="..\libmysql\get_password.c" />
+    <ClCompile Include="..\libmysql\libmysql.c" />
+    <ClCompile Include="..\libmysql\mysql_trace.c" />
+    <ClCompile Include="..\libmysql\test_trace_plugin.cc" />
+    <ClCompile Include="..\mysys\array.c" />
+    <ClCompile Include="..\mysys\base64.c" />
+    <ClCompile Include="..\mysys\charset-def.c" />
+    <ClCompile Include="..\mysys\charset.c" />
+    <ClCompile Include="..\mysys\checksum.c" />
+    <ClCompile Include="..\mysys\errors.c" />
+    <ClCompile Include="..\mysys\hash.c" />
+    <ClCompile Include="..\mysys\kqueue_timers.c" />
+    <ClCompile Include="..\mysys\lf_alloc-pin.c" />
+    <ClCompile Include="..\mysys\lf_dynarray.c" />
+    <ClCompile Include="..\mysys\lf_hash.c" />
+    <ClCompile Include="..\mysys\list.c" />
+    <ClCompile Include="..\mysys\mf_arr_appstr.c" />
+    <ClCompile Include="..\mysys\mf_cache.c" />
+    <ClCompile Include="..\mysys\mf_dirname.c" />
+    <ClCompile Include="..\mysys\mf_fn_ext.c" />
+    <ClCompile Include="..\mysys\mf_format.c" />
+    <ClCompile Include="..\mysys\mf_getdate.c" />
+    <ClCompile Include="..\mysys\mf_iocache.c" />
+    <ClCompile Include="..\mysys\mf_iocache2.c" />
+    <ClCompile Include="..\mysys\mf_keycache.c" />
+    <ClCompile Include="..\mysys\mf_keycaches.c" />
+    <ClCompile Include="..\mysys\mf_loadpath.c" />
+    <ClCompile Include="..\mysys\mf_pack.c" />
+    <ClCompile Include="..\mysys\mf_path.c" />
+    <ClCompile Include="..\mysys\mf_qsort.c" />
+    <ClCompile Include="..\mysys\mf_qsort2.c" />
+    <ClCompile Include="..\mysys\mf_radix.c" />
+    <ClCompile Include="..\mysys\mf_same.c" />
+    <ClCompile Include="..\mysys\mf_soundex.c" />
+    <ClCompile Include="..\mysys\mf_tempfile.c" />
+    <ClCompile Include="..\mysys\mf_unixpath.c" />
+    <ClCompile Include="..\mysys\mf_wcomp.c" />
+    <ClCompile Include="..\mysys\mulalloc.c" />
+    <ClCompile Include="..\mysys\my_access.c" />
+    <ClCompile Include="..\mysys\my_alloc.c" />
+    <ClCompile Include="..\mysys\my_bit.c" />
+    <ClCompile Include="..\mysys\my_bitmap.c" />
+    <ClCompile Include="..\mysys\my_chmod.c" />
+    <ClCompile Include="..\mysys\my_chsize.c" />
+    <ClCompile Include="..\mysys\my_compare.c" />
+    <ClCompile Include="..\mysys\my_compress.c" />
+    <ClCompile Include="..\mysys\my_conio.c" />
+    <ClCompile Include="..\mysys\my_copy.c" />
+    <ClCompile Include="..\mysys\my_crc32.c" />
+    <ClCompile Include="..\mysys\my_create.c" />
+    <ClCompile Include="..\mysys\my_delete.c" />
+    <ClCompile Include="..\mysys\my_div.c" />
+    <ClCompile Include="..\mysys\my_error.c" />
+    <ClCompile Include="..\mysys\my_file.c" />
+    <ClCompile Include="..\mysys\my_fopen.c" />
+    <ClCompile Include="..\mysys\my_fstream.c" />
+    <ClCompile Include="..\mysys\my_gethwaddr.c" />
+    <ClCompile Include="..\mysys\my_getsystime.c" />
+    <ClCompile Include="..\mysys\my_getwd.c" />
+    <ClCompile Include="..\mysys\my_init.c" />
+    <ClCompile Include="..\mysys\my_largepage.c" />
+    <ClCompile Include="..\mysys\my_lib.c" />
+    <ClCompile Include="..\mysys\my_lock.c" />
+    <ClCompile Include="..\mysys\my_malloc.c" />
+    <ClCompile Include="..\mysys\my_memmem.c" />
+    <ClCompile Include="..\mysys\my_mess.c" />
+    <ClCompile Include="..\mysys\my_mkdir.c" />
+    <ClCompile Include="..\mysys\my_mmap.c" />
+    <ClCompile Include="..\mysys\my_once.c" />
+    <ClCompile Include="..\mysys\my_open.c" />
+    <ClCompile Include="..\mysys\my_pread.c" />
+    <ClCompile Include="..\mysys\my_rdtsc.c" />
+    <ClCompile Include="..\mysys\my_read.c" />
+    <ClCompile Include="..\mysys\my_redel.c" />
+    <ClCompile Include="..\mysys\my_rename.c" />
+    <ClCompile Include="..\mysys\my_seek.c" />
+    <ClCompile Include="..\mysys\my_static.c" />
+    <ClCompile Include="..\mysys\my_symlink.c" />
+    <ClCompile Include="..\mysys\my_symlink2.c" />
+    <ClCompile Include="..\mysys\my_sync.c" />
+    <ClCompile Include="..\mysys\my_syslog.c" />
+    <ClCompile Include="..\mysys\my_thr_init.c" />
+    <ClCompile Include="..\mysys\my_windac.c" />
+    <ClCompile Include="..\mysys\my_winerr.c" />
+    <ClCompile Include="..\mysys\my_winfile.c" />
+    <ClCompile Include="..\mysys\my_winthread.c" />
+    <ClCompile Include="..\mysys\my_write.c" />
+    <ClCompile Include="..\mysys\posix_timers.c" />
+    <ClCompile Include="..\mysys\psi_noop.c" />
+    <ClCompile Include="..\mysys\ptr_cmp.c" />
+    <ClCompile Include="..\mysys\queues.c" />
+    <ClCompile Include="..\mysys\stacktrace.c" />
+    <ClCompile Include="..\mysys\string.c" />
+    <ClCompile Include="..\mysys\testhash.c" />
+    <ClCompile Include="..\mysys\test_charset.c" />
+    <ClCompile Include="..\mysys\test_dir.c" />
+    <ClCompile Include="..\mysys\test_xml.c" />
+    <ClCompile Include="..\mysys\thr_cond.c" />
+    <ClCompile Include="..\mysys\thr_lock.c" />
+    <ClCompile Include="..\mysys\thr_mutex.c" />
+    <ClCompile Include="..\mysys\thr_rwlock.c" />
+    <ClCompile Include="..\mysys\tree.c" />
+    <ClCompile Include="..\mysys\typelib.c" />
+    <ClCompile Include="..\mysys\win_timers.c" />
+    <ClCompile Include="..\mysys_ssl\crypt_genhash_impl.cc" />
+    <ClCompile Include="..\mysys_ssl\mf_tempdir.cc" />
+    <ClCompile Include="..\mysys_ssl\my_aes.cc" />
+    <ClCompile Include="..\mysys_ssl\my_aes_openssl.cc" />
+    <ClCompile Include="..\mysys_ssl\my_aes_yassl.cc" />
+    <ClCompile Include="..\mysys_ssl\my_default.cc" />
+    <ClCompile Include="..\mysys_ssl\my_getopt.cc" />
+    <ClCompile Include="..\mysys_ssl\my_md5.cc" />
+    <ClCompile Include="..\mysys_ssl\my_murmur3.cc" />
+    <ClCompile Include="..\mysys_ssl\my_rnd.cc" />
+    <ClCompile Include="..\mysys_ssl\my_sha1.cc" />
+    <ClCompile Include="..\mysys_ssl\my_sha2.cc" />
+    <ClCompile Include="..\regex\debug.c" />
+    <ClCompile Include="..\regex\engine.c" />
+    <ClCompile Include="..\regex\main.c" />
+    <ClCompile Include="..\regex\regcomp.c" />
+    <ClCompile Include="..\regex\regerror.c" />
+    <ClCompile Include="..\regex\regexec.c" />
+    <ClCompile Include="..\regex\regexp.c" />
+    <ClCompile Include="..\regex\regfree.c" />
+    <ClCompile Include="..\regex\reginit.c" />
+    <ClCompile Include="..\regex\split.c" />
+    <ClCompile Include="..\sql-common\client.c" />
+    <ClCompile Include="..\sql-common\client_authentication.cc" />
+    <ClCompile Include="..\sql-common\client_plugin.c" />
+    <ClCompile Include="..\sql-common\my_time.c" />
+    <ClCompile Include="..\sql-common\my_user.c" />
+    <ClCompile Include="..\sql-common\pack.c" />
+    <ClCompile Include="..\sql-common\sql_string.cc" />
+    <ClCompile Include="..\sql\auth\password.c" />
+    <ClCompile Include="..\sql\net_serv.cc" />
+    <ClCompile Include="..\strings\bchange.c" />
+    <ClCompile Include="..\strings\conf_to_src.c" />
+    <ClCompile Include="..\strings\ctype-big5.c" />
+    <ClCompile Include="..\strings\ctype-bin.c" />
+    <ClCompile Include="..\strings\ctype-cp932.c" />
+    <ClCompile Include="..\strings\ctype-czech.c" />
+    <ClCompile Include="..\strings\ctype-eucjpms.c" />
+    <ClCompile Include="..\strings\ctype-euc_kr.c" />
+    <ClCompile Include="..\strings\ctype-extra.c" />
+    <ClCompile Include="..\strings\ctype-gb18030.c" />
+    <ClCompile Include="..\strings\ctype-gb2312.c" />
+    <ClCompile Include="..\strings\ctype-gbk.c" />
+    <ClCompile Include="..\strings\ctype-latin1.c" />
+    <ClCompile Include="..\strings\ctype-mb.c" />
+    <ClCompile Include="..\strings\ctype-simple.c" />
+    <ClCompile Include="..\strings\ctype-sjis.c" />
+    <ClCompile Include="..\strings\ctype-tis620.c" />
+    <ClCompile Include="..\strings\ctype-uca.c" />
+    <ClCompile Include="..\strings\ctype-ucs2.c" />
+    <ClCompile Include="..\strings\ctype-ujis.c" />
+    <ClCompile Include="..\strings\ctype-utf8.c" />
+    <ClCompile Include="..\strings\ctype-win1250ch.c" />
+    <ClCompile Include="..\strings\ctype.c" />
+    <ClCompile Include="..\strings\decimal.c" />
+    <ClCompile Include="..\strings\do_ctype.c" />
+    <ClCompile Include="..\strings\dtoa.c" />
+    <ClCompile Include="..\strings\dump_map.c" />
+    <ClCompile Include="..\strings\int2str.c" />
+    <ClCompile Include="..\strings\is_prefix.c" />
+    <ClCompile Include="..\strings\llstr.c" />
+    <ClCompile Include="..\strings\longlong2str.c" />
+    <ClCompile Include="..\strings\my_stpmov.c" />
+    <ClCompile Include="..\strings\my_stpnmov.c" />
+    <ClCompile Include="..\strings\my_strchr.c" />
+    <ClCompile Include="..\strings\my_strtoll10.c" />
+    <ClCompile Include="..\strings\my_vsnprintf.c" />
+    <ClCompile Include="..\strings\str2int.c" />
+    <ClCompile Include="..\strings\strappend.c" />
+    <ClCompile Include="..\strings\strcend.c" />
+    <ClCompile Include="..\strings\strcont.c" />
+    <ClCompile Include="..\strings\strend.c" />
+    <ClCompile Include="..\strings\strfill.c" />
+    <ClCompile Include="..\strings\strmake.c" />
+    <ClCompile Include="..\strings\strnlen.c" />
+    <ClCompile Include="..\strings\strxmov.c" />
+    <ClCompile Include="..\strings\strxnmov.c" />
+    <ClCompile Include="..\strings\str_alloc.c" />
+    <ClCompile Include="..\strings\uca-dump.c" />
+    <ClCompile Include="..\strings\uctypedump.c" />
+    <ClCompile Include="..\strings\utr11-dump.c" />
+    <ClCompile Include="..\strings\xml.c" />
+    <ClCompile Include="..\tests\mysql_client_fw.c" />
+    <ClCompile Include="..\tests\mysql_client_test.c" />
+    <ClCompile Include="..\vio\test-ssl.c" />
+    <ClCompile Include="..\vio\test-sslclient.c" />
+    <ClCompile Include="..\vio\test-sslserver.c" />
+    <ClCompile Include="..\vio\vio.c" />
+    <ClCompile Include="..\vio\viopipe.c" />
+    <ClCompile Include="..\vio\vioshm.c" />
+    <ClCompile Include="..\vio\viosocket.c" />
+    <ClCompile Include="..\vio\viossl.c" />
+    <ClCompile Include="..\vio\viosslfactories.c" />
+    <ClCompile Include="..\vio\viotest-ssl.c" />
+    <ClCompile Include="..\vio\viotest-sslconnect.cc" />
+    <ClCompile Include="..\vio\viotest.cc" />
+    <ClCompile Include="..\zlib\adler32.c" />
+    <ClCompile Include="..\zlib\compress.c" />
+    <ClCompile Include="..\zlib\crc32.c" />
+    <ClCompile Include="..\zlib\deflate.c" />
+    <ClCompile Include="..\zlib\gzio.c" />
+    <ClCompile Include="..\zlib\infback.c" />
+    <ClCompile Include="..\zlib\inffast.c" />
+    <ClCompile Include="..\zlib\inflate.c" />
+    <ClCompile Include="..\zlib\inftrees.c" />
+    <ClCompile Include="..\zlib\trees.c" />
+    <ClCompile Include="..\zlib\uncompr.c" />
+    <ClCompile Include="..\zlib\zutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\extra\yassl\include\buffer.hpp" />
+    <ClInclude Include="..\extra\yassl\include\cert_wrapper.hpp" />
+    <ClInclude Include="..\extra\yassl\include\crypto_wrapper.hpp" />
+    <ClInclude Include="..\extra\yassl\include\factory.hpp" />
+    <ClInclude Include="..\extra\yassl\include\handshake.hpp" />
+    <ClInclude Include="..\extra\yassl\include\lock.hpp" />
+    <ClInclude Include="..\extra\yassl\include\log.hpp" />
+    <ClInclude Include="..\extra\yassl\include\openssl\crypto.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\des.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\des_old.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\engine.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\err.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\evp.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\hmac.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\lhash.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\md4.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\md5.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\objects.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\opensslv.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\pem.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\pkcs12.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\prefix_crypto.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\prefix_ssl.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\rand.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\rsa.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\sha.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\ssl.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\transport_types.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\x509.h" />
+    <ClInclude Include="..\extra\yassl\include\openssl\x509v3.h" />
+    <ClInclude Include="..\extra\yassl\include\socket_wrapper.hpp" />
+    <ClInclude Include="..\extra\yassl\include\timer.hpp" />
+    <ClInclude Include="..\extra\yassl\include\yassl.hpp" />
+    <ClInclude Include="..\extra\yassl\include\yassl_error.hpp" />
+    <ClInclude Include="..\extra\yassl\include\yassl_imp.hpp" />
+    <ClInclude Include="..\extra\yassl\include\yassl_int.hpp" />
+    <ClInclude Include="..\extra\yassl\include\yassl_types.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\aes.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\algebra.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\arc4.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\asn.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\block.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\blowfish.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\coding.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\des.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\dh.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\dsa.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\error.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\file.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\hash.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\hc128.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\hmac.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\integer.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\kernelc.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\md2.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\md4.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\md5.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\misc.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\modarith.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\modes.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\pwdbased.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\rabbit.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\random.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\ripemd.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\rsa.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\runtime.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\sha.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\twofish.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\types.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\include\type_traits.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\algorithm.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\helpers.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\list.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\memory.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\memory_array.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\pair.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\stdexcept.hpp" />
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\vector.hpp" />
+    <ClInclude Include="..\extra\yassl\testsuite\test.hpp" />
+    <ClInclude Include="..\include\atomic\gcc_builtins.h" />
+    <ClInclude Include="..\include\atomic\generic-msvc.h" />
+    <ClInclude Include="..\include\atomic\solaris.h" />
+    <ClInclude Include="..\include\base64.h" />
+    <ClInclude Include="..\include\big_endian.h" />
+    <ClInclude Include="..\include\byte_order_generic.h" />
+    <ClInclude Include="..\include\byte_order_generic_x86.h" />
+    <ClInclude Include="..\include\crypt_genhash_impl.h" />
+    <ClInclude Include="..\include\decimal.h" />
+    <ClInclude Include="..\include\dur_prop.h" />
+    <ClInclude Include="..\include\errmsg.h" />
+    <ClInclude Include="..\include\hash.h" />
+    <ClInclude Include="..\include\heap.h" />
+    <ClInclude Include="..\include\keycache.h" />
+    <ClInclude Include="..\include\lf.h" />
+    <ClInclude Include="..\include\little_endian.h" />
+    <ClInclude Include="..\include\mutex_lock.h" />
+    <ClInclude Include="..\include\myisampack.h" />
+    <ClInclude Include="..\include\mysql.h" />
+    <ClInclude Include="..\include\mysql\client_authentication.h" />
+    <ClInclude Include="..\include\mysql\client_plugin.h" />
+    <ClInclude Include="..\include\mysql\get_password.h" />
+    <ClInclude Include="..\include\mysql\plugin_auth_common.h" />
+    <ClInclude Include="..\include\mysql\plugin_trace.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_file.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_idle.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_mdl.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_memory.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_ps.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_socket.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_sp.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_stage.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_statement.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_table.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_thread.h" />
+    <ClInclude Include="..\include\mysql\psi\mysql_transaction.h" />
+    <ClInclude Include="..\include\mysql\psi\psi.h" />
+    <ClInclude Include="..\include\mysql\psi\psi_abi_v0.h" />
+    <ClInclude Include="..\include\mysql\psi\psi_abi_v1.h" />
+    <ClInclude Include="..\include\mysql\psi\psi_abi_v2.h" />
+    <ClInclude Include="..\include\mysql\psi\psi_base.h" />
+    <ClInclude Include="..\include\mysql\psi\psi_memory.h" />
+    <ClInclude Include="..\include\mysql\service_mysql_alloc.h" />
+    <ClInclude Include="..\include\mysql\service_my_snprintf.h" />
+    <ClInclude Include="..\include\mysql_com.h" />
+    <ClInclude Include="..\include\mysql_com_server.h" />
+    <ClInclude Include="..\include\mysql_embed.h" />
+    <ClInclude Include="..\include\mysql_time.h" />
+    <ClInclude Include="..\include\mysys_err.h" />
+    <ClInclude Include="..\include\my_aes.h" />
+    <ClInclude Include="..\include\my_alloc.h" />
+    <ClInclude Include="..\include\my_atomic.h" />
+    <ClInclude Include="..\include\my_base.h" />
+    <ClInclude Include="..\include\my_bit.h" />
+    <ClInclude Include="..\include\my_bitmap.h" />
+    <ClInclude Include="..\include\my_byteorder.h" />
+    <ClInclude Include="..\include\my_check_opt.h" />
+    <ClInclude Include="..\include\my_compare.h" />
+    <ClInclude Include="..\include\my_compiler.h" />
+    <ClInclude Include="..\include\my_dbug.h" />
+    <ClInclude Include="..\include\my_default.h" />
+    <ClInclude Include="..\include\my_dir.h" />
+    <ClInclude Include="..\include\my_getopt.h" />
+    <ClInclude Include="..\include\my_global.h" />
+    <ClInclude Include="..\include\my_icp.h" />
+    <ClInclude Include="..\include\my_list.h" />
+    <ClInclude Include="..\include\my_md5.h" />
+    <ClInclude Include="..\include\my_murmur3.h" />
+    <ClInclude Include="..\include\my_pthread.h" />
+    <ClInclude Include="..\include\my_rdtsc.h" />
+    <ClInclude Include="..\include\my_rnd.h" />
+    <ClInclude Include="..\include\my_stacktrace.h" />
+    <ClInclude Include="..\include\my_sys.h" />
+    <ClInclude Include="..\include\my_thread_local.h" />
+    <ClInclude Include="..\include\my_time.h" />
+    <ClInclude Include="..\include\my_timer.h" />
+    <ClInclude Include="..\include\my_tree.h" />
+    <ClInclude Include="..\include\my_uctype.h" />
+    <ClInclude Include="..\include\my_xml.h" />
+    <ClInclude Include="..\include\m_ctype.h" />
+    <ClInclude Include="..\include\m_string.h" />
+    <ClInclude Include="..\include\nullable.h" />
+    <ClInclude Include="..\include\password.h" />
+    <ClInclude Include="..\include\prealloced_array.h" />
+    <ClInclude Include="..\include\probes_mysql.h" />
+    <ClInclude Include="..\include\probes_mysql_nodtrace.h" />
+    <ClInclude Include="..\include\queues.h" />
+    <ClInclude Include="..\include\sha1.h" />
+    <ClInclude Include="..\include\sha2.h" />
+    <ClInclude Include="..\include\sql_common.h" />
+    <ClInclude Include="..\include\sql_string.h" />
+    <ClInclude Include="..\include\sslopt-case.h" />
+    <ClInclude Include="..\include\sslopt-longopts.h" />
+    <ClInclude Include="..\include\sslopt-vars.h" />
+    <ClInclude Include="..\include\template_utils.h" />
+    <ClInclude Include="..\include\thr_cond.h" />
+    <ClInclude Include="..\include\thr_lock.h" />
+    <ClInclude Include="..\include\thr_mutex.h" />
+    <ClInclude Include="..\include\thr_rwlock.h" />
+    <ClInclude Include="..\include\typelib.h" />
+    <ClInclude Include="..\include\violite.h" />
+    <ClInclude Include="..\include\welcome_copyright_notice.h" />
+    <ClInclude Include="..\libmysql\authentication_win\common.h" />
+    <ClInclude Include="..\libmysql\authentication_win\handshake.h" />
+    <ClInclude Include="..\libmysql\client_settings.h" />
+    <ClInclude Include="..\libmysql\mysql_trace.h" />
+    <ClInclude Include="..\mysys\mysys_priv.h" />
+    <ClInclude Include="..\mysys\my_handler_errors.h" />
+    <ClInclude Include="..\mysys\my_static.h" />
+    <ClInclude Include="..\mysys_ssl\my_aes_impl.h" />
+    <ClInclude Include="..\mysys_ssl\my_default_priv.h" />
+    <ClInclude Include="..\regex\cclass.h" />
+    <ClInclude Include="..\regex\cname.h" />
+    <ClInclude Include="..\regex\my_regex.h" />
+    <ClInclude Include="..\regex\regex2.h" />
+    <ClInclude Include="..\regex\tests_include.h" />
+    <ClInclude Include="..\regex\utils.h" />
+    <ClInclude Include="..\strings\t_ctype.h" />
+    <ClInclude Include="..\vio\vio_priv.h" />
+    <ClInclude Include="..\zlib\crc32.h" />
+    <ClInclude Include="..\zlib\deflate.h" />
+    <ClInclude Include="..\zlib\inffast.h" />
+    <ClInclude Include="..\zlib\inffixed.h" />
+    <ClInclude Include="..\zlib\inflate.h" />
+    <ClInclude Include="..\zlib\inftrees.h" />
+    <ClInclude Include="..\zlib\trees.h" />
+    <ClInclude Include="..\zlib\zconf.h" />
+    <ClInclude Include="..\zlib\zlib.h" />
+    <ClInclude Include="..\zlib\zutil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mysql-connector-c-Debug.vgdbsettings" />
+    <None Include="mysql-connector-c-Release.vgdbsettings" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

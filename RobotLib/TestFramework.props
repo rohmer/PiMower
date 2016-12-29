@@ -1,0 +1,15 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<TestFrameworkPath Condition="'$(TestFrameworkPath)' == ''">C:\Users\rohme\AppData\Local\VisualGDB\TestFrameworks/com.sysprogs.unittest.CppUTest</TestFrameworkPath>
+		<TestFrameworkSubdirectory Condition="'$(TestFrameworkSubdirectory)' == ''">TestFramework</TestFrameworkSubdirectory>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>C:\Users\rohme\AppData\Local\VisualGDB\TestFrameworks/com.sysprogs.unittest.CppUTest/include;C:\Users\rohme\AppData\Local\VisualGDB\TestFrameworks/com.sysprogs.unittest.CppUTest/Platforms;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup>
+		<Link>
+		</Link>
+	</ItemDefinitionGroup>
+</Project>

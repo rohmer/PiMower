@@ -1,0 +1,14 @@
+#pragma once
+
+typedef enum map_block 
+{
+	BLOCK_UNKNOWN,
+	BLOCK_GRASS,
+	BLOCK_BUMP,
+	BLOCK_OPTICAL_AVOIDANCE,
+	BLOCK_RANGEFINDING_AVOIDANCE,
+	BLOCK_BASE_STATION
+} map_node_t;
+
+// DEFINES DIRECTORY/FILE SAVING MAP DATA
+#define MAP_FILE "/usr/local/Robot/map.xml"

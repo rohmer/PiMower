@@ -1,0 +1,1733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{2119a376-84ea-408c-b8bb-b63c303f4892}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{3bb653f4-244f-4967-a3d5-af7184f566fe}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{afa9acd4-283c-4e54-a2c0-9e31c2e599c8}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source files\client">
+      <UniqueIdentifier>{ae3978ca-986f-41c5-8d56-1e272d8555a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\client">
+      <UniqueIdentifier>{eb872d14-c8e5-4f82-af90-bddce7dd9fb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\cmake">
+      <UniqueIdentifier>{ac7bf02f-da98-4a8e-9b78-2c773c6f4967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\cmake">
+      <UniqueIdentifier>{63f86cc5-2dd7-429d-974a-564e5ae37d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\dbug">
+      <UniqueIdentifier>{b991ebea-35f5-4198-845d-2ad416c74438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\dbug">
+      <UniqueIdentifier>{59595439-034b-4f04-bc85-b8e0e137d9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra">
+      <UniqueIdentifier>{d4034fd9-35d8-4af4-ab0b-ab22490229d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra">
+      <UniqueIdentifier>{1c2ec5d3-7701-48e7-addf-7a6363e5129e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl">
+      <UniqueIdentifier>{384fc20c-b941-4269-936a-e15bd41df4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl">
+      <UniqueIdentifier>{9a946320-243c-43f4-9347-01b73f300d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\examples">
+      <UniqueIdentifier>{34b23165-b77f-4523-b82a-4e1709ce65f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\examples">
+      <UniqueIdentifier>{7f695a7d-4357-469b-a275-07fab82f83d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\examples\client">
+      <UniqueIdentifier>{5dff2e84-7106-41f2-93bc-d9a137a5f9fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\examples\client">
+      <UniqueIdentifier>{a902199c-ff60-4625-a597-9e7d83070d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\examples\echoclient">
+      <UniqueIdentifier>{2a91c8cc-98d9-49bd-9dbd-14b6dd28737c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\examples\echoclient">
+      <UniqueIdentifier>{f3b8fe2e-21f1-422f-8086-94cba4ecb521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\examples\echoserver">
+      <UniqueIdentifier>{3d9151a3-edf8-43ee-911c-dede7e94bd5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\examples\echoserver">
+      <UniqueIdentifier>{bb78a458-171a-4c8d-a5d1-3934a86090f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\examples\server">
+      <UniqueIdentifier>{f9c2da6d-629d-4361-971b-8db09b415530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\examples\server">
+      <UniqueIdentifier>{5b857b88-20c7-4b22-aacf-0b12f63ad2ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\include">
+      <UniqueIdentifier>{0a1a8f4e-0c24-4d98-ac87-f5d286cfbba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\include">
+      <UniqueIdentifier>{ae47166a-7bd1-475d-9319-1555cff35125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\include\openssl">
+      <UniqueIdentifier>{9ab9e81a-839f-4b08-9c8a-85184a4ee636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\include\openssl">
+      <UniqueIdentifier>{3bcda589-7716-4303-8cb4-8acd7e61bd05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\src">
+      <UniqueIdentifier>{8104852a-6d53-4d81-946e-6fd13af9436e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\src">
+      <UniqueIdentifier>{dd586941-e899-4aa3-9f5d-5822160cf4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\taocrypt">
+      <UniqueIdentifier>{a099624f-15ee-44ac-a462-2dafcdf124a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\taocrypt">
+      <UniqueIdentifier>{26d2a092-6e44-44be-972c-8b4ecce2886f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\taocrypt\benchmark">
+      <UniqueIdentifier>{88183074-b475-4df1-acd5-04b6cea32367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\taocrypt\benchmark">
+      <UniqueIdentifier>{0d2c1253-bd2f-4f1b-b7e9-ee4d7062bb4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\taocrypt\include">
+      <UniqueIdentifier>{042c0d6a-170a-4e4c-a099-5a74fc5ee938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\taocrypt\include">
+      <UniqueIdentifier>{402c9811-13ec-47c4-b92b-82b95160d6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\taocrypt\mySTL">
+      <UniqueIdentifier>{3ae82078-1970-4919-90e1-a900845bfa98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\taocrypt\mySTL">
+      <UniqueIdentifier>{5f6107e4-96af-4671-9615-d00434487b54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\taocrypt\src">
+      <UniqueIdentifier>{0f1780c1-fd25-4202-91eb-cc5bfd3cd5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\taocrypt\src">
+      <UniqueIdentifier>{617956c8-d82b-435a-add3-08680986f887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\taocrypt\test">
+      <UniqueIdentifier>{20186d5d-d752-4878-aa6d-264233879b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\taocrypt\test">
+      <UniqueIdentifier>{c9d7b144-cde7-490a-9941-efd4bf2e593d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\extra\yassl\testsuite">
+      <UniqueIdentifier>{9619cac7-7c05-4d20-bbea-2361302a8ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\extra\yassl\testsuite">
+      <UniqueIdentifier>{d61f1d1f-9eb2-4c29-82a0-cf11d8bc0cf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include">
+      <UniqueIdentifier>{cab452d7-2d5a-4154-bdcf-0c62be1e1bdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include">
+      <UniqueIdentifier>{6afb749a-d3a1-4d11-8f04-b5d1b1f9490b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\atomic">
+      <UniqueIdentifier>{46f47f0d-ee75-438b-bd6d-81d11f5a607e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\atomic">
+      <UniqueIdentifier>{8a82975f-8e8e-49ee-8dd0-4e0f7e636398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\mysql">
+      <UniqueIdentifier>{193bd93d-9ced-41ee-923f-a467f0e6ea21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\mysql">
+      <UniqueIdentifier>{0b62cfb9-ec79-401a-be07-fe2ea2b48159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\mysql\psi">
+      <UniqueIdentifier>{1782404b-d43b-4769-9e08-f2fb27090d73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\mysql\psi">
+      <UniqueIdentifier>{7ee95ebd-f1c2-4037-91b9-42d404ff2cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\libmysql">
+      <UniqueIdentifier>{9b2bc965-5afb-45e9-bd37-a60b309fdd3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\libmysql">
+      <UniqueIdentifier>{67f1af9c-dfab-42e2-89bb-31c28793465b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\libmysql\authentication_win">
+      <UniqueIdentifier>{96cf7423-16cd-4f6b-8223-a60f05b40ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\libmysql\authentication_win">
+      <UniqueIdentifier>{ba8e485b-644f-4055-98e5-73515df2afa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\mysys">
+      <UniqueIdentifier>{60c7b044-e919-4f0c-b160-b38c3ed7f6ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\mysys">
+      <UniqueIdentifier>{0d6e1a3d-463a-469d-a01a-0b807cb993f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\mysys_ssl">
+      <UniqueIdentifier>{454438d2-74fb-45d5-b648-e51e70be153d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\mysys_ssl">
+      <UniqueIdentifier>{073d4eeb-1d98-4535-bb04-270083aa958b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\regex">
+      <UniqueIdentifier>{3c603bc7-b82a-44f9-950c-380484487704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\regex">
+      <UniqueIdentifier>{cb94a2b1-73a6-4317-a9c9-c39d6db607fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\sql">
+      <UniqueIdentifier>{c79035c8-44a7-45fd-b0c8-7049f0e137a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\sql">
+      <UniqueIdentifier>{ab37b4ed-4465-4efe-babb-332dd724b20d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\sql\auth">
+      <UniqueIdentifier>{eefd3064-c7eb-4e94-a012-0eabaa33a92d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\sql\auth">
+      <UniqueIdentifier>{a3e9c08b-e98d-4ae4-adb2-a8f61e23bc61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\sql-common">
+      <UniqueIdentifier>{a02e1ab1-b0ac-4a72-864f-e08737277423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\sql-common">
+      <UniqueIdentifier>{099852f7-55b8-41bd-8eab-3784a5e74a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\strings">
+      <UniqueIdentifier>{fe9c8996-7137-4e6c-99e7-7823525047c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\strings">
+      <UniqueIdentifier>{0b26bca8-acae-4ebe-8185-09f585e590f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\tests">
+      <UniqueIdentifier>{62870610-4202-4c6e-8380-32b41c138ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\tests">
+      <UniqueIdentifier>{b5d37b1d-de8f-4b7f-b7cc-d8136824aae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\vio">
+      <UniqueIdentifier>{c9fa4563-9908-4591-80f1-62b2bcb21f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\vio">
+      <UniqueIdentifier>{523f31ac-3e34-4d32-8a0e-ae6206fd2e5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\zlib">
+      <UniqueIdentifier>{589d2f8d-d319-438f-9979-17202b576890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\zlib">
+      <UniqueIdentifier>{40d83bfb-b209-42c0-afba-6107464249c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{451254d2-cfb0-4034-bf3d-6f78aceb895e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{9657eae5-9e3a-4fcd-8fc4-61b573ea455e}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\client\get_password.c">
+      <Filter>Source files\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cmake\stack_direction.c">
+      <Filter>Source files\cmake</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\dbug.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\dbug_analyze.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\example1.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\example2.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\example3.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\factorial.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\main.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\my_main.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dbug\tests.c">
+      <Filter>Source files\dbug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\comp_err.c">
+      <Filter>Source files\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\my_print_defaults.c">
+      <Filter>Source files\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\perror.c">
+      <Filter>Source files\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\resolveip.c">
+      <Filter>Source files\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\examples\client\client.cpp">
+      <Filter>Source files\extra\yassl\examples\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\examples\echoclient\echoclient.cpp">
+      <Filter>Source files\extra\yassl\examples\echoclient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\examples\echoserver\echoserver.cpp">
+      <Filter>Source files\extra\yassl\examples\echoserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\examples\server\server.cpp">
+      <Filter>Source files\extra\yassl\examples\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\buffer.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\cert_wrapper.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\crypto_wrapper.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\dummy.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\handshake.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\lock.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\log.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\socket_wrapper.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\ssl.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\template_instnt.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\timer.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\yassl.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\yassl_error.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\yassl_imp.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\src\yassl_int.cpp">
+      <Filter>Source files\extra\yassl\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\benchmark\benchmark.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\benchmark</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\aes.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\aestables.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\algebra.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\arc4.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\asn.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\bftables.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\blowfish.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\coding.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\des.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\dh.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\dsa.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\file.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\hash.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\hc128.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\integer.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\md2.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\md4.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\md5.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\misc.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\rabbit.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\random.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\ripemd.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\rsa.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\sha.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\template_instnt.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\tftables.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\src\twofish.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\test\memory.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\taocrypt\test\test.cpp">
+      <Filter>Source files\extra\yassl\taocrypt\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\yassl\testsuite\testsuite.cpp">
+      <Filter>Source files\extra\yassl\testsuite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\conf_to_src.c">
+      <Filter>Source files\libmysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\errmsg.c">
+      <Filter>Source files\libmysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\get_password.c">
+      <Filter>Source files\libmysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\libmysql.c">
+      <Filter>Source files\libmysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\mysql_trace.c">
+      <Filter>Source files\libmysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\test_trace_plugin.cc">
+      <Filter>Source files\libmysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\authentication_win\common.cc">
+      <Filter>Source files\libmysql\authentication_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\authentication_win\handshake.cc">
+      <Filter>Source files\libmysql\authentication_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\authentication_win\handshake_client.cc">
+      <Filter>Source files\libmysql\authentication_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\authentication_win\log_client.cc">
+      <Filter>Source files\libmysql\authentication_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmysql\authentication_win\plugin_client.cc">
+      <Filter>Source files\libmysql\authentication_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\array.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\base64.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\charset-def.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\charset.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\checksum.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\errors.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\hash.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\kqueue_timers.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\lf_alloc-pin.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\lf_dynarray.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\lf_hash.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\list.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_arr_appstr.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_cache.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_dirname.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_fn_ext.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_format.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_getdate.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_iocache.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_iocache2.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_keycache.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_keycaches.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_loadpath.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_pack.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_path.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_qsort.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_qsort2.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_radix.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_same.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_soundex.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_tempfile.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_unixpath.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mf_wcomp.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\mulalloc.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_access.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_alloc.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_bit.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_bitmap.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_chmod.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_chsize.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_compare.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_compress.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_conio.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_copy.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_crc32.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_create.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_delete.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_div.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_error.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_file.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_fopen.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_fstream.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_gethwaddr.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_getsystime.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_getwd.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_init.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_largepage.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_lib.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_lock.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_malloc.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_memmem.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_mess.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_mkdir.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_mmap.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_once.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_open.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_pread.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_rdtsc.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_read.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_redel.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_rename.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_seek.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_static.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_symlink.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_symlink2.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_sync.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_syslog.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_thr_init.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_windac.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_winerr.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_winfile.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_winthread.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\my_write.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\posix_timers.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\psi_noop.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\ptr_cmp.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\queues.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\stacktrace.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\string.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\testhash.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\test_charset.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\test_dir.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\test_xml.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\thr_cond.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\thr_lock.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\thr_mutex.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\thr_rwlock.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\tree.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\typelib.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys\win_timers.c">
+      <Filter>Source files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\crypt_genhash_impl.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\mf_tempdir.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_aes.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_aes_openssl.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_aes_yassl.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_default.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_getopt.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_md5.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_murmur3.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_rnd.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_sha1.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mysys_ssl\my_sha2.cc">
+      <Filter>Source files\mysys_ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\debug.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\engine.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\main.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\regcomp.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\regerror.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\regexec.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\regexp.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\regfree.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\reginit.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regex\split.c">
+      <Filter>Source files\regex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql\net_serv.cc">
+      <Filter>Source files\sql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql\auth\password.c">
+      <Filter>Source files\sql\auth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\client.c">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\client_authentication.cc">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\client_plugin.c">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\my_time.c">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\my_user.c">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\pack.c">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sql-common\sql_string.cc">
+      <Filter>Source files\sql-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\bchange.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\conf_to_src.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-big5.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-bin.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-cp932.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-czech.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-eucjpms.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-euc_kr.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-extra.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-gb18030.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-gb2312.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-gbk.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-latin1.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-mb.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-simple.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-sjis.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-tis620.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-uca.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-ucs2.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-ujis.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-utf8.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype-win1250ch.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\ctype.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\decimal.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\do_ctype.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\dtoa.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\dump_map.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\int2str.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\is_prefix.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\llstr.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\longlong2str.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\my_stpmov.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\my_stpnmov.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\my_strchr.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\my_strtoll10.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\my_vsnprintf.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\str2int.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strappend.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strcend.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strcont.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strend.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strfill.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strmake.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strnlen.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strxmov.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\strxnmov.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\str_alloc.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\uca-dump.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\uctypedump.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\utr11-dump.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\strings\xml.c">
+      <Filter>Source files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\mysql_client_fw.c">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\mysql_client_test.c">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\test-ssl.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\test-sslclient.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\test-sslserver.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\vio.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viopipe.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\vioshm.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viosocket.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viossl.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viosslfactories.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viotest-ssl.c">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viotest-sslconnect.cc">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vio\viotest.cc">
+      <Filter>Source files\vio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\adler32.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\compress.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\crc32.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\deflate.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\gzio.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\infback.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\inffast.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\inflate.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\inftrees.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\trees.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\uncompr.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\zutil.c">
+      <Filter>Source files\zlib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\extra\yassl\include\buffer.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\cert_wrapper.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\crypto_wrapper.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\factory.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\handshake.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\lock.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\log.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\socket_wrapper.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\timer.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\yassl.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\yassl_error.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\yassl_imp.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\yassl_int.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\yassl_types.hpp">
+      <Filter>Header files\extra\yassl\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\crypto.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\des.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\des_old.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\engine.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\err.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\evp.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\hmac.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\lhash.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\md4.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\md5.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\objects.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\opensslv.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\pem.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\pkcs12.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\prefix_crypto.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\prefix_ssl.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\rand.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\rsa.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\sha.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\ssl.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\transport_types.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\x509.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\include\openssl\x509v3.h">
+      <Filter>Header files\extra\yassl\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\aes.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\algebra.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\arc4.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\asn.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\block.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\blowfish.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\coding.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\des.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\dh.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\dsa.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\error.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\file.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\hash.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\hc128.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\hmac.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\integer.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\kernelc.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\md2.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\md4.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\md5.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\misc.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\modarith.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\modes.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\pwdbased.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\rabbit.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\random.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\ripemd.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\rsa.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\runtime.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\sha.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\twofish.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\types.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\include\type_traits.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\algorithm.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\helpers.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\list.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\memory.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\memory_array.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\pair.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\stdexcept.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\taocrypt\mySTL\vector.hpp">
+      <Filter>Header files\extra\yassl\taocrypt\mySTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\yassl\testsuite\test.hpp">
+      <Filter>Header files\extra\yassl\testsuite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\base64.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\big_endian.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\byte_order_generic.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\byte_order_generic_x86.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\crypt_genhash_impl.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\decimal.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\dur_prop.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\errmsg.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\hash.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\heap.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\keycache.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\lf.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\little_endian.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mutex_lock.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\myisampack.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql_com.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql_com_server.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql_embed.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql_time.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysys_err.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_aes.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_alloc.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_atomic.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_base.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_bit.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_bitmap.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_byteorder.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_check_opt.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_compare.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_compiler.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_dbug.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_default.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_dir.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_getopt.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_global.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_icp.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_list.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_md5.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_murmur3.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_pthread.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_rdtsc.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_rnd.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_stacktrace.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_sys.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_thread_local.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_time.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_timer.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_tree.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_uctype.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\my_xml.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\m_ctype.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\m_string.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nullable.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\password.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\prealloced_array.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\probes_mysql.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\probes_mysql_nodtrace.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\queues.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sha1.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sha2.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sql_common.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sql_string.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sslopt-case.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sslopt-longopts.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sslopt-vars.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\template_utils.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\thr_cond.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\thr_lock.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\thr_mutex.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\thr_rwlock.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\typelib.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\violite.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\welcome_copyright_notice.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\atomic\gcc_builtins.h">
+      <Filter>Header files\include\atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\atomic\generic-msvc.h">
+      <Filter>Header files\include\atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\atomic\solaris.h">
+      <Filter>Header files\include\atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\client_authentication.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\client_plugin.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\get_password.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\plugin_auth_common.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\plugin_trace.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\service_mysql_alloc.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\service_my_snprintf.h">
+      <Filter>Header files\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_file.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_idle.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_mdl.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_memory.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_ps.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_socket.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_sp.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_stage.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_statement.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_table.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_thread.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\mysql_transaction.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\psi.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\psi_abi_v0.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\psi_abi_v1.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\psi_abi_v2.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\psi_base.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mysql\psi\psi_memory.h">
+      <Filter>Header files\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmysql\client_settings.h">
+      <Filter>Header files\libmysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmysql\mysql_trace.h">
+      <Filter>Header files\libmysql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmysql\authentication_win\common.h">
+      <Filter>Header files\libmysql\authentication_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmysql\authentication_win\handshake.h">
+      <Filter>Header files\libmysql\authentication_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mysys\mysys_priv.h">
+      <Filter>Header files\mysys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mysys\my_handler_errors.h">
+      <Filter>Header files\mysys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mysys\my_static.h">
+      <Filter>Header files\mysys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mysys_ssl\my_aes_impl.h">
+      <Filter>Header files\mysys_ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mysys_ssl\my_default_priv.h">
+      <Filter>Header files\mysys_ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regex\cclass.h">
+      <Filter>Header files\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regex\cname.h">
+      <Filter>Header files\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regex\my_regex.h">
+      <Filter>Header files\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regex\regex2.h">
+      <Filter>Header files\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regex\tests_include.h">
+      <Filter>Header files\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regex\utils.h">
+      <Filter>Header files\regex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\strings\t_ctype.h">
+      <Filter>Header files\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vio\vio_priv.h">
+      <Filter>Header files\vio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\crc32.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\deflate.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\inffast.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\inffixed.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\inflate.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\inftrees.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\trees.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\zconf.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\zlib.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\zutil.h">
+      <Filter>Header files\zlib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt">
+      <Filter>CMake files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mysql-connector-c-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="mysql-connector-c-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+</Project>

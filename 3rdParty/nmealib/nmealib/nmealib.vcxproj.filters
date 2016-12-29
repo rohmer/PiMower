@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{da660b83-5826-4a79-80c8-fa1d34ceee16}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{02ef8465-3f1a-4351-aa9f-b425adcb85e0}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{8e255167-55c4-4a3a-b304-7981eb13c9af}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{07b6ca24-8961-4104-941f-7bb3917d2d73}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nmealib-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="nmealib-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\context.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\generate.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\generator.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gmath.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\info.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\parse.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\parser.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sentence.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\time.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tok.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\nmea\config.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\context.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\generate.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\generator.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\gmath.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\info.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\nmea.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\parse.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\parser.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\sentence.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\time.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\tok.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nmea\units.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
