@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{837b1c59-c107-4397-9e77-a4a71cc87b36}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{52d0c2f9-dd32-4d52-b4e5-d9e8c35e7ad2}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{ea36ca72-bfb9-4f18-9fe8-dec15353fa1e}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{e6df1554-b83d-4649-927f-f81f82289552}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\RapidXML">
+      <UniqueIdentifier>{06c5e373-0029-41b6-9968-9cf092a3e213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\RapidXML">
+      <UniqueIdentifier>{d56fcb15-9006-42e9-974a-bc3339f01780}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RapidXML-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="RapidXML-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\rapidxml.hpp">
+      <Filter>Header files\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rapidxml_iterators.hpp">
+      <Filter>Header files\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rapidxml_print.hpp">
+      <Filter>Header files\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rapidxml_utils.hpp">
+      <Filter>Header files\RapidXML</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

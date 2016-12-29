@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{764d8642-bcf8-4ecb-9f03-f3f7b2689bba}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{2f610f1b-14cf-44f9-8741-b41cc0068494}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{a6a14215-3193-4ae3-930f-84783b8b265b}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{7fe6a4fb-c21a-4920-8319-37e716327727}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\SQLite">
+      <UniqueIdentifier>{76450d13-c776-4a0b-a1f4-3c7e2fb7dbca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\SQLite">
+      <UniqueIdentifier>{16c3627b-1c4c-490e-81f0-6e4f27d19042}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQLite-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="SQLite-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="..\Makefile">
+      <Filter>Source files\SQLite</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\README.txt">
+      <Filter>Source files\SQLite</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\shell.c">
+      <Filter>Source files\SQLite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sqlite3.c">
+      <Filter>Source files\SQLite</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\sqlite3.h">
+      <Filter>Header files\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sqlite3ext.h">
+      <Filter>Header files\SQLite</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

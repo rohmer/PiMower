@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <GNUTargetType>DynamicLibrary</GNUTargetType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <GNUTargetType>DynamicLibrary</GNUTargetType>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
+      <AdditionalIncludeDirectories>;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>pthread;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="wiringPi-Debug.vgdbsettings" />
+    <None Include="wiringPi-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ads1115.h" />
+    <ClInclude Include="drcSerial.h" />
+    <ClInclude Include="max31855.h" />
+    <ClInclude Include="max5322.h" />
+    <ClInclude Include="mcp23008.h" />
+    <ClInclude Include="mcp23016.h" />
+    <ClInclude Include="mcp23016reg.h" />
+    <ClInclude Include="mcp23017.h" />
+    <ClInclude Include="mcp23s08.h" />
+    <ClInclude Include="mcp23s17.h" />
+    <ClInclude Include="mcp23x08.h" />
+    <ClInclude Include="mcp23x0817.h" />
+    <ClInclude Include="mcp3002.h" />
+    <ClInclude Include="mcp3004.h" />
+    <ClInclude Include="mcp3422.h" />
+    <ClInclude Include="mcp4802.h" />
+    <ClInclude Include="pcf8574.h" />
+    <ClInclude Include="pcf8591.h" />
+    <ClInclude Include="sn3218.h" />
+    <ClInclude Include="softPwm.h" />
+    <ClInclude Include="softServo.h" />
+    <ClInclude Include="softTone.h" />
+    <ClInclude Include="sr595.h" />
+    <ClInclude Include="wiringPi.h" />
+    <ClInclude Include="wiringPiI2C.h" />
+    <ClInclude Include="wiringPiSPI.h" />
+    <ClInclude Include="wiringSerial.h" />
+    <ClInclude Include="wiringShift.h" />
+    <ClInclude Include="wpiExtensions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ads1115.c" />
+    <ClCompile Include="drcSerial.c" />
+    <ClCompile Include="max31855.c" />
+    <ClCompile Include="max5322.c" />
+    <ClCompile Include="mcp23008.c" />
+    <ClCompile Include="mcp23016.c" />
+    <ClCompile Include="mcp23017.c" />
+    <ClCompile Include="mcp23s08.c" />
+    <ClCompile Include="mcp23s17.c" />
+    <ClCompile Include="mcp3002.c" />
+    <ClCompile Include="mcp3004.c" />
+    <ClCompile Include="mcp3422.c" />
+    <ClCompile Include="mcp4802.c" />
+    <ClCompile Include="pcf8574.c" />
+    <ClCompile Include="pcf8591.c" />
+    <ClCompile Include="piHiPri.c" />
+    <ClCompile Include="piThread.c" />
+    <ClCompile Include="sn3218.c" />
+    <ClCompile Include="softPwm.c" />
+    <ClCompile Include="softServo.c" />
+    <ClCompile Include="softTone.c" />
+    <ClCompile Include="sr595.c" />
+    <ClCompile Include="wiringPi.c" />
+    <ClCompile Include="wiringPiI2C.c" />
+    <ClCompile Include="wiringPiSPI.c" />
+    <ClCompile Include="wiringSerial.c" />
+    <ClCompile Include="wiringShift.c" />
+    <ClCompile Include="wpiExtensions.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

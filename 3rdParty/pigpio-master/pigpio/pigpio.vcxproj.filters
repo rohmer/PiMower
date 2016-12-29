@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{350160e2-e99a-4a1c-b521-87eee90287f0}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{3642c46a-879e-46fb-8137-7f72d4a8e754}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{3f0afa45-9f4e-4047-a02e-e40477f46fad}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{f918e03b-f53b-4cc4-8a6f-0c77402f5880}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\pigpio-master">
+      <UniqueIdentifier>{b5d3055e-3686-4299-ae7a-92c6a1970b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\pigpio-master">
+      <UniqueIdentifier>{165415f1-a1a4-4d6a-b6fc-b896fdbb7997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\pigpio-master\util">
+      <UniqueIdentifier>{01a28e99-c731-4422-a51a-e2b6fae522f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\pigpio-master\util">
+      <UniqueIdentifier>{58eaf96e-9a6b-42b0-a3bd-8233366ab295}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pigpio-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="pigpio-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="..\Makefile">
+      <Filter>Source files\pigpio-master</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\command.c">
+      <Filter>Source files\pigpio-master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pig2vcd.c">
+      <Filter>Source files\pigpio-master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pigpio.c">
+      <Filter>Source files\pigpio-master</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\command.h">
+      <Filter>Header files\pigpio-master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pigpio.h">
+      <Filter>Header files\pigpio-master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pigpiod_if.h">
+      <Filter>Header files\pigpio-master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pigpiod_if2.h">
+      <Filter>Header files\pigpio-master</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
