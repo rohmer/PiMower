@@ -54,10 +54,12 @@
     <ClCompile Include="ArduCamDriver\arducamDriver.c" />
     <ClCompile Include="ArduCamDriver\arducam_arch_raspberrypi.c" />
     <ClCompile Include="ColorDetector.cpp" />
+    <ClCompile Include="GPIOLED.cpp" />
     <ClCompile Include="GrassDetection.cpp" />
     <ClCompile Include="HCSR04.cpp" />
     <ClCompile Include="LSM303_Accelerometer.cpp" />
     <ClCompile Include="LSM303_Magnetometer.cpp" />
+    <ClCompile Include="MAX72XXLEDDriver.cpp" />
     <ClCompile Include="NMEAParser.cpp" />
     <ClCompile Include="ObjectParsers.cpp" />
     <ClCompile Include="ParserGPGGA.cpp" />
@@ -85,8 +87,11 @@
     <ClInclude Include="ColorDetector.h" />
     <ClInclude Include="DeviceBase.h" />
     <ClInclude Include="DeviceLib.h" />
+    <ClInclude Include="GPIOLED.h" />
     <ClInclude Include="GrassDetector.h" />
     <ClInclude Include="HCSR04.h" />
+    <ClInclude Include="MAX72XXDefines.h" />
+    <ClInclude Include="MAX72XXLEDDriver.h" />
     <ClInclude Include="ObjectParsers.h" />
     <ClInclude Include="ParserBase.h" />
     <ClInclude Include="LSM303.h" />

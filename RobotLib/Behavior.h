@@ -10,12 +10,7 @@ class Behavior
 		std::string behaviorName;
 		bool enabled;
 		bool supressed;
-		Behavior(RobotLib *robotLib)
-		{
-			supressed = false;
-			enabled = true;
-			this->robotLib = robotLib;
-		}
+		Behavior(RobotLib *robotLib, std::string name);
 		virtual void enable(bool flag)
 		{
 			if (enabled == true)

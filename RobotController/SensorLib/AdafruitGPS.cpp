@@ -18,6 +18,8 @@ volatile bool inStandbyMode;
 AdafruitGPS::AdafruitGPS(RobotLib *rl) :
 	SensorBase(rl)
 {
+	nmeaParser = new NMEAParser(robotLib);
+
 	if (rl->getEmulator())
 	{
 		return;
@@ -29,6 +31,7 @@ AdafruitGPS::AdafruitGPS(RobotLib *rl) :
 AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate) :
 	SensorBase(rl)
 {
+	nmeaParser = new NMEAParser(robotLib);
 	if (rl->getEmulator())
 	{
 		return;
@@ -40,6 +43,7 @@ AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate) :
 AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate, gps_conn_t conType) :
 	SensorBase(rl)
 {
+	nmeaParser = new NMEAParser(robotLib);
 	if (rl->getEmulator())
 	{
 		return;
@@ -59,10 +63,7 @@ void AdafruitGPS::initialize(uint32_t baudRate, gps_conn_t conType)
 	receivedFlag = false;
 	paused = false;
 	serialFD = initSerial();
-		
-	
-	nmeaParser = new NMEAParser(robotLib);
-	
+			
 	// Turn on RMC (Recommended minimum) and GGA (fix data) including altitude
 	setRMCGGA();
 	sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // 1 Hz update rate	

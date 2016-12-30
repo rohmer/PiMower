@@ -23,7 +23,7 @@ class AdafruitGPS : public SensorBase
 		AdafruitGPS(RobotLib *rl, uint32_t baudRate);
 		AdafruitGPS(RobotLib *rl, uint32_t baudRate, gps_conn_t con_type);
 		static device_status_t getDeviceStatus(RobotLib *robotLib);
-		std::string getSensorName() override; 
+		std::string getSensorName() override;; 
 		bool getEvent(sensors_event_t*) override;		
 		bool inStandby();
 		~AdafruitGPS();

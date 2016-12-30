@@ -56,6 +56,9 @@
     <Filter Include="Header files\Robot\Behaviors">
       <UniqueIdentifier>{e04a3b07-79d0-4323-99ce-de36bc30d922}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\Robot\Behaviors">
+      <UniqueIdentifier>{582ed572-bc40-4e1d-bbc2-ff42b5035232}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotLib.cpp">
@@ -90,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="IntertialGuidence.cpp">
       <Filter>Source files\LocationManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior.cpp">
+      <Filter>Source files\Robot\Behaviors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +144,25 @@
     <ClInclude Include="Behavior.h">
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
-    <ClInclude Include="StandBy.h">
+    <ClInclude Include="StandByBehavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInteractionBehavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="DriveForwardBehavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="HitObstacleBehavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargingBehavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorBehavior.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="LowBatteryBehavior.h">
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
   </ItemGroup>

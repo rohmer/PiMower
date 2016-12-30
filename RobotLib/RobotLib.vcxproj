@@ -50,6 +50,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DeviceEntry.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
@@ -64,12 +65,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behavior.h" />
+    <ClInclude Include="ChargingBehavior.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="DeviceEntry.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DeviceRegistry.h" />
+    <ClInclude Include="DriveForwardBehavior.h" />
+    <ClInclude Include="ErrorBehavior.h" />
     <ClInclude Include="GPSManager.h" />
+    <ClInclude Include="HitObstacleBehavior.h" />
     <ClInclude Include="InertialGuidence.h" />
+    <ClInclude Include="LowBatteryBehavior.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapLibConstants.h" />
     <ClInclude Include="MapNode.h" />
@@ -78,7 +84,8 @@
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />
     <ClInclude Include="SensorEvents.h" />
-    <ClInclude Include="StandBy.h" />
+    <ClInclude Include="StandByBehavior.h" />
+    <ClInclude Include="UserInteractionBehavior.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings" />

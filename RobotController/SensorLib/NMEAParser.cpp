@@ -143,12 +143,22 @@ NMEAParser::~NMEAParser()
 {
 	parserMap_t::iterator p;
 	std::stringstream ss;
-	for (p = parsers.begin(); p != parsers.end(); p++)
+	try
 	{
-		ss.clear();
-		ss << "Destroying parser: " << p->second->getName();		
-		robotLib->Log(ss.str());
-		delete(p->second);
+		for (p = parsers.begin(); p != parsers.end(); p++)
+		{
+			if (p->second)
+			{
+				ss.clear();
+				ss << "Destroying parser: " << p->second->getName();		
+				robotLib->Log(ss.str());
+				delete(p->second);
+			}
+		} 
+	}
+	catch (std::exception &e)
+	{
 	}
 	parsers.clear();
+	
 }

@@ -20,6 +20,7 @@ class DeviceManager
 		~DeviceManager();
 		std::vector<DeviceEntry*> getByType(device_type_t deviceType);
 		std::vector<DeviceEntry*> getByCap(sensors_type_t capability);
+		DeviceEntry* getByName(std::string name);
 		static uint8_t getI2CFD(uint8_t dev);
 		static uint8_t getSerialFD(std::string dev, int baud);
 		static uint8_t getSPIFD(uint8_t dev, int speed);

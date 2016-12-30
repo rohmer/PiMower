@@ -80,6 +80,18 @@
     <Filter Include="Source files\ArduCam\GrassDetection">
       <UniqueIdentifier>{c9168bde-69d9-4ef8-8e35-57012f1cae84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\GPIOLED">
+      <UniqueIdentifier>{b925517b-ad07-400d-bd8b-553681f6d686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\GPIOLED">
+      <UniqueIdentifier>{d872a774-1257-41de-bb8e-c6a6837664a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\MAX72XXLEDDriver">
+      <UniqueIdentifier>{c665f747-2347-4930-b07c-88cf7b26ef06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\MAX72XXLEDDriver">
+      <UniqueIdentifier>{7295c90e-4980-42d9-8e18-a2156e1b8d54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -141,6 +153,12 @@
     </ClCompile>
     <ClCompile Include="ColorDetector.cpp">
       <Filter>Source files\ArduCam\GrassDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="GPIOLED.cpp">
+      <Filter>Source files\GPIOLED</Filter>
+    </ClCompile>
+    <ClCompile Include="MAX72XXLEDDriver.cpp">
+      <Filter>Source files\MAX72XXLEDDriver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +260,15 @@
     </ClInclude>
     <ClInclude Include="ColorDetectionParams.h">
       <Filter>Header files\ArduCam\GrassDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="GPIOLED.h">
+      <Filter>Header files\GPIOLED</Filter>
+    </ClInclude>
+    <ClInclude Include="MAX72XXLEDDriver.h">
+      <Filter>Header files\MAX72XXLEDDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="MAX72XXDefines.h">
+      <Filter>Header files\MAX72XXLEDDriver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -214,3 +214,6 @@ uint8_t HCSR04::getInputPin()
 {
 	return inputPin;
 }
+
+// Add to auto registry so the device manager can know about it
+AUTO_REGISTER_DEVICE(HCSR04);
