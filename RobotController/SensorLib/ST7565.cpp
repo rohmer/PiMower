@@ -3,7 +3,7 @@
 #include "../../3rdParty/wiringPi/wiringPi/wiringShift.h"
 
 ST7565::ST7565(RobotLib *robotLib)
-	: DeviceBase(robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	if (robotLib->getEmulator())
 		return;
@@ -12,7 +12,7 @@ ST7565::ST7565(RobotLib *robotLib)
 }
 
 ST7565::ST7565(RobotLib *robotLib, int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, bool fullfont) 
-	: DeviceBase(robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	if (robotLib->getEmulator())
 		return;

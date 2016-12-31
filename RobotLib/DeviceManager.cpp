@@ -128,19 +128,15 @@ DeviceEntry* DeviceManager::getByName(std::string name)
 	for (int i = 0; i < devices.size(); i++)
 	{
 		DeviceBase* db=devices[i]->getDevice();
-		SensorBase *sb = dynamic_cast<SensorBase*>(db);
-		if (sb)
-		{
-			if (sb->getSensorName() == name)
-			{
-				return devices[i];
-			}
-		}
-		else
+		try
 		{
 			if (db->getDeviceName() == name)
 				return devices[i];
 		}
+		catch (...)
+		{
+			
+		}		
 	}
 	return NULL;
 }

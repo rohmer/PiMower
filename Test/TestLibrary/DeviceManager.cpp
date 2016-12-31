@@ -75,7 +75,7 @@ TEST(DeviceManagerEnumerationTests, ArduCam)
 TEST(DeviceManagerEnumerationTests, HCSR04)
 {
 	DeviceEntry *de;
-	de = dmRobotLib->getDeviceManager()->getByName("HCSR04");
+	de = dmRobotLib->getDeviceManager()->getByName("HC-SR04");
 	if (de == NULL)
 	{
 		FAIL("Failed to enumerate HCSR04 in Device Manager");

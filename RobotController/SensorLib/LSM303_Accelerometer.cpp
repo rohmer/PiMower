@@ -138,7 +138,7 @@ sensors_type_t LSM303_Accelerometer::getSensorType()
 	return SENSOR_TYPE_ACCELEROMETER;
 }
 
-std::string  LSM303_Accelerometer::getSensorName()
+std::string  LSM303_Accelerometer::getDeviceName()
 {
 	return "LSM303 Accelerometer";
 }

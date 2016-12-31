@@ -1,7 +1,7 @@
 #include "MAX72XXLEDDriver.h"
 
 MAX72XXLEDDriver::MAX72XXLEDDriver(RobotLib *robotLib)
-	: DeviceBase(robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	initialized = false;
 	if (robotLib->getEmulator())
@@ -10,7 +10,7 @@ MAX72XXLEDDriver::MAX72XXLEDDriver(RobotLib *robotLib)
 }
 
 MAX72XXLEDDriver::MAX72XXLEDDriver(RobotLib *robotLib, int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, uint8_t spiChannel)
-	: DeviceBase(robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	shutdown = false;	
 	startDriverThread(this);

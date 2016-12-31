@@ -18,6 +18,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HumbleLogging", "..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj", "{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLibrary", "..\Test\TestLibrary\TestLibrary.vcxproj", "{06360B29-0ED8-4FE6-AA4A-155948FB7A22}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4} = {4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLiteCPP", "..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj", "{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}"
 EndProject

@@ -16,8 +16,6 @@ class SensorBase : public DeviceBase
 		SensorBase(RobotLib *robotLib);
 		virtual ~SensorBase()
 		{};
-		virtual std::string getSensorName()
-		{};
 		virtual std::string getDeviceDescription()	
 		{
 		}

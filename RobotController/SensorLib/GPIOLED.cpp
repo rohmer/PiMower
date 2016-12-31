@@ -1,6 +1,6 @@
 #include "GPIOLED.h"
 
-GPIOLED::GPIOLED(RobotLib *robotLib) : DeviceBase(robotLib)
+GPIOLED::GPIOLED(RobotLib *robotLib) : DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	initialized = false;
 	if (robotLib->getEmulator())
@@ -8,7 +8,7 @@ GPIOLED::GPIOLED(RobotLib *robotLib) : DeviceBase(robotLib)
 
 }
 
-GPIOLED::GPIOLED(RobotLib *robotLib, std::string ledName, uint8_t triggerPin) : DeviceBase(robotLib)
+GPIOLED::GPIOLED(RobotLib *robotLib, std::string ledName, uint8_t triggerPin) : DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	ledMapping.emplace(std::make_pair(ledName, triggerPin));
 	ledBehavior.emplace(std::make_pair(triggerPin, LED_BEHAVIOR_T::Off));

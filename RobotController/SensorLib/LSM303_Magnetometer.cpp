@@ -129,7 +129,7 @@ void LSM303_Magnetometer::setMagRate(lsm303MagRate rate)
 	wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_CRA_REG_M, reg_m);	
 }
 
-std::string LSM303_Magnetometer::getSensorName()
+std::string LSM303_Magnetometer::getDeviceName()
 {
 	return "LSM303 Magnetometer";
 }

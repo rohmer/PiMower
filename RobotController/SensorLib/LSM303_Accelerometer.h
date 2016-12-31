@@ -15,7 +15,7 @@ class LSM303_Accelerometer : public SensorBase
 public:
 	LSM303_Accelerometer(RobotLib *rl);
 	void enableAutoRange(bool enabled);
-	std::string getSensorName() override;
+	std::string getDeviceName() override;
 	bool getEvent(sensors_event_t*) override;
 	sensors_type_t getSensorType() override;
 	void getSensor(sensor_t *sensor);	

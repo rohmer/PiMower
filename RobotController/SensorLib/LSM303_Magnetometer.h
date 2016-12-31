@@ -17,7 +17,7 @@ class LSM303_Magnetometer : public SensorBase
 		void setMagGain(lsm303MagGain gain);
 		void enableAutoRange(bool enabled);
 		void setMagRate(lsm303MagRate rate);
-		std::string getSensorName() override;
+		std::string getDeviceName() override;
 		bool getEvent(sensors_event_t*) override;		
 		~LSM303_Magnetometer();
 		sensors_type_t getSensorType() override;

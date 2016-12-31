@@ -2,7 +2,7 @@
 #include "../../3rdParty/wiringPi/wiringPi/wiringPiI2C.h"
 
 SensorBase::SensorBase(RobotLib *robotLib)
-	: DeviceBase(robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::SENSOR)
 {
 }
 

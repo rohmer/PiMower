@@ -38,7 +38,7 @@
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>sqlite3;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
@@ -149,6 +149,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
       <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj">
+      <Project>{4cb2ee15-2afd-46f3-883a-12f5c35f35e4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
       <Project>{6a967716-d419-4c6e-9b5c-c8a68a3af2d1}</Project>

@@ -263,11 +263,6 @@ sensors_gps_t *AdafruitGPS::parse(char *nmea)
 	return nmeaParser->Parse(nmea);	
 }
 
-std::string AdafruitGPS::getSensorName()
-{
-	return "Adafruit GPS";
-}
-
 bool AdafruitGPS::getEvent(sensors_event_t *event)
 {
 	memset(event, 0, sizeof(sensors_event_t));

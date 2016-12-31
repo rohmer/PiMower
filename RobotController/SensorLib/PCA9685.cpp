@@ -6,7 +6,7 @@ bool PCA9685::initialized;
 uint8_t PCA9685::pca9685I2CAddr;
 
 PCA9685::PCA9685(RobotLib *robotLib) :
-	DeviceBase(robotLib)
+	DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	if (robotLib->getEmulator())
 	{
@@ -28,7 +28,7 @@ PCA9685::PCA9685(RobotLib *robotLib) :
 }
 
 PCA9685::PCA9685(RobotLib *robotLib, uint8_t i2caddress) :
-	DeviceBase(robotLib)
+	DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {	
 	initialized = false;
 	i2cfd = wiringPiI2CSetup(i2caddress);
