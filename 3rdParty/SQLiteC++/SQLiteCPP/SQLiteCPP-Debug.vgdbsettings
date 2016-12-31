@@ -10,9 +10,9 @@
       <Transport>None</Transport>
     </BuildHost>
     <DeploymentHost>
-      <HostName>127.0.0.1</HostName>
-      <Transport>SSH</Transport>
-      <UserName>root</UserName>
+      <HostName>PI</HostName>
+      <Transport>Alias</Transport>
+      <UserName />
     </DeploymentHost>
     <MainSourceTransferCommand>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>

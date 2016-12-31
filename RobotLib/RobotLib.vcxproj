@@ -95,9 +95,6 @@
     <ProjectReference Include="..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
       <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj">
-      <Project>{4cb2ee15-2afd-46f3-883a-12f5c35f35e4}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

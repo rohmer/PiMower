@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{307B063C-7BC1-40FE-AA92-89AEA7CE9332}"
 EndProject
@@ -12,9 +12,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SensorLib", "SensorLib\Sens
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HumbleLogging", "..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj", "{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLiteCPP", "..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj", "{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLibrary", "..\Test\TestLibrary\TestLibrary.vcxproj", "{06360B29-0ED8-4FE6-AA4A-155948FB7A22}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLiteCPP", "..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj", "{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,14 +66,6 @@ Global
 		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|VisualGDB.Build.0 = Release|VisualGDB
 		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|x64.ActiveCfg = Release|VisualGDB
 		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37}.Release|x86.ActiveCfg = Release|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|x64.ActiveCfg = Debug|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|x86.ActiveCfg = Debug|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.Build.0 = Release|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x64.ActiveCfg = Release|VisualGDB
-		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x86.ActiveCfg = Release|VisualGDB
 		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
 		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Debug|x64.ActiveCfg = Debug|VisualGDB
@@ -82,6 +74,14 @@ Global
 		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|VisualGDB.Build.0 = Release|VisualGDB
 		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|x64.ActiveCfg = Release|VisualGDB
 		{06360B29-0ED8-4FE6-AA4A-155948FB7A22}.Release|x86.ActiveCfg = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x64.ActiveCfg = Release|VisualGDB
+		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x86.ActiveCfg = Release|VisualGDB
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

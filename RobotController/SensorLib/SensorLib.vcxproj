@@ -33,7 +33,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <CPPLanguageStandard>CPP11</CPPLanguageStandard>
-      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;../../3rdParty/OpenCV/modules/calib3d/include;../../3rdParty/OpenCV/modules/core/include;../../3rdParty/OpenCV/modules/features2d/include;../../3rdParty/OpenCV/modules/flann/include;../../3rdParty/OpenCV/modules/highgui/include;../../3rdParty/OpenCV/modules/imgproc/include;../../3rdParty/OpenCV/modules/ml/include;../../3rdParty/OpenCV/modules/objdetect/include;../../3rdParty/OpenCV/modules/photo/include;../../3rdParty/OpenCV/modules/video/include;../../3rdParty/OpenCV/Debug;../../3rdParty/OpenCV/modules/imgcodecs/include;../../3rdParty/OpenCV/modules/videoio/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
