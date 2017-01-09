@@ -54,6 +54,8 @@
     <ClCompile Include="ArduCamDriver\arducamDriver.c" />
     <ClCompile Include="ArduCamDriver\arducam_arch_raspberrypi.c" />
     <ClCompile Include="ColorDetector.cpp" />
+    <ClCompile Include="DigoleLCD.cpp" />
+    <ClCompile Include="GPIOButton.cpp" />
     <ClCompile Include="GPIOLED.cpp" />
     <ClCompile Include="GrassDetection.cpp" />
     <ClCompile Include="HCSR04.cpp" />
@@ -83,6 +85,8 @@
     <ClInclude Include="ArduCamDriver\memorysaver.h" />
     <ClInclude Include="ArduCamDriver\ov2640_regs.h" />
     <ClInclude Include="ArduCamDriver\ov5642_regs.h" />
+    <ClInclude Include="DigoleLCD.h" />
+    <ClInclude Include="GPIOButton.h" />
     <ClInclude Include="ColorDetectionParams.h" />
     <ClInclude Include="ColorDetector.h" />
     <ClInclude Include="DeviceBase.h" />
@@ -92,6 +96,7 @@
     <ClInclude Include="HCSR04.h" />
     <ClInclude Include="MAX72XXDefines.h" />
     <ClInclude Include="MAX72XXLEDDriver.h" />
+    <ClInclude Include="MCP230XX.h" />
     <ClInclude Include="ObjectParsers.h" />
     <ClInclude Include="ParserBase.h" />
     <ClInclude Include="LSM303.h" />

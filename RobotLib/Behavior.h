@@ -1,35 +1,23 @@
 #pragma once
 #include "RobotLib.h"
-#include "RobotStatus.h"
-#include <string>
+#include <ctime>
+#include <sstream>
 
-// Abstract superclass for behaviors
-class Behavior
+class BehaviorBase
 {
 	public:
-		std::string behaviorName;
-		bool enabled;
-		bool supressed;
-		Behavior(RobotLib *robotLib, std::string name);
-		virtual void enable(bool flag)
-		{
-			if (enabled == true)
-			{
-				return;
-			}
-			enabled = flag;
-		}
-		virtual void surpress()
-		{
-			supressed = true;
-		}
-		virtual bool takeControl()
+		BehaviorBase(RobotLib *robotLib, std::string behaviorName);		
+		virtual ~BehaviorBase()
 		{
 		}
-		virtual void action()
-		{
-		}
+		
+		virtual void run() {};
+		virtual void startBehavior();
+		
+		std::string getBehaviorName();
 	
 	protected:
 		RobotLib* robotLib;
+		std::string behaviorName;
+		struct tm *behaviorStartTime;
 };

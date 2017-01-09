@@ -64,4 +64,12 @@
     <TestName>DeviceManagerEnumerationTests::LSM303Accel</TestName>
     <GUID>1d22cac9-dd20-4563-8c42-4815e5ac6888</GUID>
   </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>ST7565::InitTest</TestName>
+    <GUID>ccce731f-5673-48dd-8d85-52a719182a3f</GUID>
+  </TestGUIDRecord>
+  <TestGUIDRecord>
+    <TestName>ST7565::WriteText</TestName>
+    <GUID>328c1a83-9953-4f98-b94f-201236eed700</GUID>
+  </TestGUIDRecord>
 </ArrayOfTestGUIDRecord>

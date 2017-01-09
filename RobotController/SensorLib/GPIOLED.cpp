@@ -5,7 +5,8 @@ GPIOLED::GPIOLED(RobotLib *robotLib) : DeviceBase(robotLib, DEVICE_TYPE_T::DEVIC
 	initialized = false;
 	if (robotLib->getEmulator())
 		return;
-
+	shutdown = false;
+	pollingThread = std::thread(startDriverThread, this);	
 }
 
 GPIOLED::GPIOLED(RobotLib *robotLib, std::string ledName, uint8_t triggerPin) : DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
@@ -19,6 +20,7 @@ GPIOLED::GPIOLED(RobotLib *robotLib, std::string ledName, uint8_t triggerPin) : 
 		return;
 
 	pinMode(triggerPin, OUTPUT);
+	pollingThread = std::thread(startDriverThread, this);	
 }
 
 GPIOLED::~GPIOLED()

@@ -50,11 +50,11 @@ public:
 	void addLED(std::string ledName, uint8_t triggerPin, LED_BEHAVIOR_T behavior, uint8_t blinkIterval);
 			
 private:
-	void startDriverThread(GPIOLED *gpioLed);
+	static void startDriverThread(GPIOLED *gpioLed);
 	void driverThread();
 	uint8_t triggerPin;
 	bool initialized;
-	bool shutdown = false;
+	bool shutdown;
 	uint16_t pollingInterval;
 	std::thread pollingThread;		
 	std::map<std::string, uint8_t> ledMapping;

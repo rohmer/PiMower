@@ -24,6 +24,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLibrary", "..\Test\Test
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLiteCPP", "..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj", "{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "argtable", "..\3rdParty\argtable2-13\argtable\argtable.vcxproj", "{45A0148E-3F88-4098-AD1C-6A52EE93732A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobotDaemon", "..\RobotDaemon\RobotDaemon.vcxproj", "{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|VisualGDB = Debug|VisualGDB
@@ -90,6 +94,22 @@ Global
 		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|VisualGDB.Build.0 = Release|VisualGDB
 		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x64.ActiveCfg = Release|VisualGDB
 		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4}.Release|x86.ActiveCfg = Release|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|x64.ActiveCfg = Release|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|x86.ActiveCfg = Release|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|x64.ActiveCfg = Release|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|x86.ActiveCfg = Release|VisualGDB
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,5 +118,6 @@ Global
 		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
 		{1537D3C2-D03B-4BD5-A2F8-AB45F283AD37} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
 		{4CB2EE15-2AFD-46F3-883A-12F5C35F35E4} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A} = {307B063C-7BC1-40FE-AA92-89AEA7CE9332}
 	EndGlobalSection
 EndGlobal

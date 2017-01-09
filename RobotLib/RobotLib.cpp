@@ -30,6 +30,19 @@ void RobotLib::initLog()
 #endif			
 }
 
+void RobotLib::setLogLevel(int logLevel)
+{
+	humble::logging::Factory &fac = humble::logging::Factory::getInstance();	
+	if (logLevel == 0)
+		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::All));
+	if (logLevel == 1)
+		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Warn));
+	if (logLevel == 2)
+		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Error));
+	if (logLevel == 3)
+		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Fatal));
+}
+
 void RobotLib::Log(std::string message)
 {
 	HUMBLE_LOGGER(logger, "RobotLogger");
@@ -53,7 +66,7 @@ void RobotLib::LogException(std::exception &e)
 	std::stringstream ss;
 	ss << "Exception caught: " << e.what() << std::endl;
 	HUMBLE_LOGGER(logger, "RobotLogger");
-	HL_ERROR(logger, ss.str());
+	HL_FATAL(logger, ss.str());
 }
 
 bool RobotLib::checkEmulator()

@@ -1,11 +1,10 @@
 #include "Behavior.h"
 
-Behavior::Behavior(RobotLib *robotLib, std::string name)
+void BehaviorBase::startBehavior()
 {
-	{
-		supressed = false;
-		enabled = true;
-		this->behaviorName = name;
-		this->robotLib = robotLib;
-	}
+	time_t t = time(0);
+	behaviorStartTime = localtime(&t);
+	std::stringstream ss;
+	ss << "Starting behavior: " << behaviorName;
+	robotLib->Log(ss.str());
 }

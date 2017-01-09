@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{45A0148E-3F88-4098-AD1C-6A52EE93732A}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <GNUTargetType>StaticLibrary</GNUTargetType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <GNUTargetType>StaticLibrary</GNUTargetType>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="argtable-Debug.vgdbsettings" />
+    <None Include="argtable-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\argtable2.c" />
+    <ClCompile Include="..\src\arg_date.c" />
+    <ClCompile Include="..\src\arg_dbl.c" />
+    <ClCompile Include="..\src\arg_end.c" />
+    <ClCompile Include="..\src\arg_file.c" />
+    <ClCompile Include="..\src\arg_int.c" />
+    <ClCompile Include="..\src\arg_lit.c" />
+    <ClCompile Include="..\src\arg_rem.c" />
+    <ClCompile Include="..\src\arg_rex.c" />
+    <ClCompile Include="..\src\arg_str.c" />
+    <ClCompile Include="..\src\getopt.c" />
+    <ClCompile Include="..\src\getopt1.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\argtable2.h" />
+    <ClInclude Include="..\src\getopt.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

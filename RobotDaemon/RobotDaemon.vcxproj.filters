@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{bff98e63-90ff-48b3-b5ae-e055c066ec60}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{2fc228a6-0a9f-433d-9b84-82e2ef223561}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{f5d5bf46-eb50-4dc2-a676-fad65efe2280}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{0aa2c582-3871-4f74-9d21-7fc4b5e03572}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RobotDaemon.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RobotDaemon-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="RobotDaemon-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RobotDaemon.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

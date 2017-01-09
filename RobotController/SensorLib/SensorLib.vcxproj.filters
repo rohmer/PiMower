@@ -92,6 +92,18 @@
     <Filter Include="Header files\MAX72XXLEDDriver">
       <UniqueIdentifier>{7295c90e-4980-42d9-8e18-a2156e1b8d54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\GPIOButton">
+      <UniqueIdentifier>{d935e8f0-c838-43e1-bb00-c14408c47b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\GPIOButton">
+      <UniqueIdentifier>{feba6110-350d-4d06-a7b7-b0da091f0921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\DigoleLCD">
+      <UniqueIdentifier>{c821b12e-cc2f-4e25-9618-664d791ece0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\DigoleLCD">
+      <UniqueIdentifier>{b4861a25-0ab5-4f92-bac6-8206e3b07025}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -159,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="MAX72XXLEDDriver.cpp">
       <Filter>Source files\MAX72XXLEDDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="GPIOButton.cpp">
+      <Filter>Source files\GPIOButton</Filter>
+    </ClCompile>
+    <ClCompile Include="DigoleLCD.cpp">
+      <Filter>Source files\DigoleLCD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +287,15 @@
     </ClInclude>
     <ClInclude Include="MAX72XXDefines.h">
       <Filter>Header files\MAX72XXLEDDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="GPIOButton.h">
+      <Filter>Header files\GPIOButton</Filter>
+    </ClInclude>
+    <ClInclude Include="MCP230XX.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="DigoleLCD.h">
+      <Filter>Header files\DigoleLCD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

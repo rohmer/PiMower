@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{79b24614-6035-4efc-8eb3-b4ea81703e09}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{a5520d4c-4b94-46c6-9ec3-377d337345b4}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{4ec0b7ed-4165-4697-b5e7-555f816a942f}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{21c15949-dcb6-4f0c-8c93-46f90bedfe38}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\src">
+      <UniqueIdentifier>{36fd8491-63c2-4d25-9ec0-1db0fb393aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src">
+      <UniqueIdentifier>{ada871e9-463a-4fe9-852c-94c3e48f1759}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="argtable-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="argtable-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\argtable2.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_date.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_dbl.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_end.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_file.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_int.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_lit.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_rem.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_rex.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\arg_str.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\getopt.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\getopt1.c">
+      <Filter>Source files\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\src\CMakeLists.txt">
+      <Filter>Source files\src</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\argtable2.h">
+      <Filter>Header files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\getopt.h">
+      <Filter>Header files\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

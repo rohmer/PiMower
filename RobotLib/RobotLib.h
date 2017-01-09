@@ -39,6 +39,8 @@ class RobotLib
 		}
 		~RobotLib();
 	
+		void setLogLevel(int logLevel);
+	
 	private:
 		void initLog();
 		bool checkEmulator();

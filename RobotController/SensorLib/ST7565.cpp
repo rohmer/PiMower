@@ -390,37 +390,60 @@ void ST7565::clearDisplay()
 void ST7565::display()
 {
 	uint8_t col, maxcol, p;
-	for (p = 0; p < 8; p++)
-	{		
-		if (partialUpdateEnabled)	
-		{
-			if (yUpdateMin >= ((p + 1) * 8))
-			{
-				continue;
-			}
-			if (yUpdateMax < p * 8)
-			{
-				break;				
-			}
-		}
-		cmd(CMD_SET_PAGE | pagemap[p]);
-		
+
+	  /*
+	  Serial.print("Refresh ("); Serial.print(xUpdateMin, DEC); 
+	  Serial.print(", "); Serial.print(xUpdateMax, DEC);
+	  Serial.print(","); Serial.print(yUpdateMin, DEC); 
+	  Serial.print(", "); Serial.print(yUpdateMax, DEC); Serial.println(")");
+	  */
+
+	for (p = 0; p < 8; p++) {
+	  /*
+	    putstring("new page! ");
+	    uart_putw_dec(p);
+	    putstring_nl("");
+	*/
 		if (partialUpdateEnabled)
-		{
-			col = xUpdateMin;
-			maxcol = xUpdateMax;			
+		{			
+	    // check if this page is part of update
+			if (yUpdateMin >= ((p + 1) * 8)) {
+				continue;   // nope, skip it!
+			}
+			if (yUpdateMax < p * 8) {
+				break;
+			}
 		}
-		
+
+
+		cmd(CMD_SET_PAGE | pagemap[p]);
+
+
+		if (partialUpdateEnabled)
+		{			
+			col = xUpdateMin;
+			maxcol = xUpdateMax;
+		}
+		else
+		{
+			// start at the beginning of the row
+			col = 0;
+			maxcol = LCDWIDTH - 1;
+		}
+
 		cmd(CMD_SET_COLUMN_LOWER | ((col + ST7565_STARTBYTES) & 0xf));
 		cmd(CMD_SET_COLUMN_UPPER | (((col + ST7565_STARTBYTES) >> 4) & 0x0F));
 		cmd(CMD_RMW);
-		for (; col <= maxcol; col++)
-		{
+    
+		for (; col <= maxcol; col++) {
+		  //uart_putw_dec(col);
+		  //uart_putchar(' ');
 			data(st7565_buffer[(128*p) + col]);
 		}
 	}
+
 	if (partialUpdateEnabled)
-	{
+	{			
 		xUpdateMin = LCDWIDTH - 1;
 		xUpdateMax = 0;
 		yUpdateMin = LCDHEIGHT - 1;

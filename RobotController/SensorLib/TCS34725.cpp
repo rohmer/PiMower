@@ -14,11 +14,16 @@ TCS34725::TCS34725(RobotLib *robotLib)
 		initialized = true;
 		return;
 	}
-	initialized = false;
-	if(i2cfd>0)
+	try
 	{
-		tcs34725Avail = true;
+		i2cfd = DeviceManager::getI2CFD(TCS34725_ADDRESS);
 	}
+	catch (...)
+	{
+		robotLib->LogError("Could not initalize TCS34725");
+		initialized = false;
+	}
+
 	initialize();
 }
 

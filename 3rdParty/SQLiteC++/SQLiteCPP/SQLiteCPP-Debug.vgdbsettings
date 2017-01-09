@@ -35,7 +35,6 @@
       </FileMasks>
       <TransferNewFilesOnly>true</TransferNewFilesOnly>
       <IncludeSubdirectories>true</IncludeSubdirectories>
-      <SelectedDirectories />
       <DeleteDisappearedFiles>false</DeleteDisappearedFiles>
     </MainSourceTransferCommand>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
@@ -68,10 +67,7 @@
       </SourceDirMapping>
     </Toolchain>
     <ProjectFile>SQLiteCPP.vcxproj</ProjectFile>
-    <RemoteBuildEnvironment>
-      <Records />
-    </RemoteBuildEnvironment>
-    <ParallelJobCount>1</ParallelJobCount>
+    <ParallelJobCount>0</ParallelJobCount>
   </Build>
   <Debug xsi:type="com.visualgdb.debug.remote">
     <AdditionalStartupCommands />

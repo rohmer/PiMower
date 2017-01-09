@@ -40,7 +40,7 @@
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>sqlite3;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
@@ -51,6 +51,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Behavior.cpp" />
+    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DeviceEntry.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
@@ -60,32 +61,42 @@
     <ClCompile Include="IntertialGuidence.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapNode.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RobotLib.cpp" />
     <ClCompile Include="SensorEvents.cpp" />
+    <ClCompile Include="UICheckbox.cpp" />
+    <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="UIFont.cpp" />
+    <ClCompile Include="UILabel.cpp" />
+    <ClCompile Include="UIRadioGroup.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behavior.h" />
-    <ClInclude Include="ChargingBehavior.h" />
+    <ClInclude Include="Charging.h" />
+    <ClInclude Include="Configuration.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="DeviceEntry.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DeviceRegistry.h" />
-    <ClInclude Include="DriveForwardBehavior.h" />
-    <ClInclude Include="ErrorBehavior.h" />
     <ClInclude Include="GPSManager.h" />
-    <ClInclude Include="HitObstacleBehavior.h" />
     <ClInclude Include="InertialGuidence.h" />
-    <ClInclude Include="LowBatteryBehavior.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapLibConstants.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="MowerState.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />
     <ClInclude Include="SensorEvents.h" />
-    <ClInclude Include="StandByBehavior.h" />
-    <ClInclude Include="UserInteractionBehavior.h" />
+    <ClInclude Include="UICheckbox.h" />
+    <ClInclude Include="UIElement.h" />
+    <ClInclude Include="UIFont.h" />
+    <ClInclude Include="UILabel.h" />
+    <ClInclude Include="UIRadioGroup.h" />
+    <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings" />

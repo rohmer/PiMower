@@ -59,6 +59,30 @@
     <Filter Include="Source files\Robot\Behaviors">
       <UniqueIdentifier>{582ed572-bc40-4e1d-bbc2-ff42b5035232}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\Robot\Configuration">
+      <UniqueIdentifier>{1b9abbfe-d34c-4e6e-aebc-f297527968c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Robot\Configuration">
+      <UniqueIdentifier>{181b01f7-aa7d-43ce-b5b7-b932f41c7310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\UI">
+      <UniqueIdentifier>{50c48c7d-ea21-4378-812e-b56b540125de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\UI">
+      <UniqueIdentifier>{4dbbd32f-3340-469b-a8e3-789777d5ac35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\UI\Utilities">
+      <UniqueIdentifier>{23678937-042b-422a-b767-64ae65dc7649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\UI\Utilities">
+      <UniqueIdentifier>{7a46a78c-4bd4-4369-b91e-45c3789c22ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\UI\Elements">
+      <UniqueIdentifier>{439bc039-043c-46be-b88c-4573087a8da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\UI\Elements">
+      <UniqueIdentifier>{b68264af-57df-4f53-9b37-e1819bb8d3f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotLib.cpp">
@@ -94,8 +118,32 @@
     <ClCompile Include="IntertialGuidence.cpp">
       <Filter>Source files\LocationManager</Filter>
     </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>Source files\Robot\Configuration</Filter>
+    </ClCompile>
     <ClCompile Include="Behavior.cpp">
       <Filter>Source files\Robot\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source files\UI\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="UIFont.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UILabel.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UICheckbox.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRadioGroup.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Source files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,29 +189,38 @@
     <ClInclude Include="MowerState.h">
       <Filter>Header files\Robot</Filter>
     </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Header files\Robot\Configuration</Filter>
+    </ClInclude>
     <ClInclude Include="Behavior.h">
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
-    <ClInclude Include="StandByBehavior.h">
+    <ClInclude Include="Charging.h">
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
-    <ClInclude Include="UserInteractionBehavior.h">
-      <Filter>Header files\Robot\Behaviors</Filter>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header files\UI\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="DriveForwardBehavior.h">
-      <Filter>Header files\Robot\Behaviors</Filter>
+    <ClInclude Include="Point.h">
+      <Filter>Header files\UI\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="HitObstacleBehavior.h">
-      <Filter>Header files\Robot\Behaviors</Filter>
+    <ClInclude Include="UIElement.h">
+      <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="ChargingBehavior.h">
-      <Filter>Header files\Robot\Behaviors</Filter>
+    <ClInclude Include="UILabel.h">
+      <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorBehavior.h">
-      <Filter>Header files\Robot\Behaviors</Filter>
+    <ClInclude Include="UIFont.h">
+      <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="LowBatteryBehavior.h">
-      <Filter>Header files\Robot\Behaviors</Filter>
+    <ClInclude Include="UICheckbox.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRadioGroup.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Header files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

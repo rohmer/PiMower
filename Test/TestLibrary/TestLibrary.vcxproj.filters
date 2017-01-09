@@ -145,6 +145,9 @@
     <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.CppUTest\Platforms\Linux\UtestPlatform.cpp">
       <Filter>Source files\Test Framework</Filter>
     </ClCompile>
+    <ClCompile Include="ST7565Tests.cpp">
+      <Filter>Source files\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestLibrary-Debug.vgdbsettings">
@@ -307,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\TestFrameworks\com.sysprogs.unittest.CppUTest\include\CppUTestExt\OrderedTest.h">
       <Filter>Header files\Test Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="ST7565Tests.h">
+      <Filter>Header files\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
