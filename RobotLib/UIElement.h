@@ -13,14 +13,23 @@ class UIElement
 		void setClickable(bool value);
 		void setUpdateCycle(int msBetweenUpdate);
 		bool updateNeeded();		
+		void setElementArea(Rectangle newArea);
 	
 		virtual void update(DigoleLCD *lcdDriver)
 		{};
 		virtual Rectangle calcSize()
 		{};
-	
+		
 		void forceUpdate();
 		void enabled(bool value);
+		Rectangle getElementArea()
+		{
+			return elementArea;
+		}
+		int getUpdateCycle()
+		{
+			return updateCycle;
+		}
 	
 	protected:		
 		bool clickable;
@@ -28,7 +37,8 @@ class UIElement
 		Rectangle elementArea;
 		int updateCycle;
 		bool elementEnabled;
+		std::vector<bool> touchEvents;
 	
 	private:
-		std::chrono::system_clock::time_point updateTime;
+		std::chrono::system_clock::time_point updateTime;	
 };

@@ -19,9 +19,13 @@ void *WindowManager::windowManagerHelper(void *wm)
 	return (reinterpret_cast<WindowManager*>(wm)->windowManager());	
 }
 
+// Handles input (We need to sleep for a short period at the end, to check for input
+// but do a full length sleep before attempting reset
+
 void *WindowManager::windowManager(void)
 {	
 	int *x=0, *y=0;
+	int inputSleep = 0;
 	while (!shutdown)
 	{		
 		// Draw everything that needs to be drawn
@@ -34,20 +38,25 @@ void *WindowManager::windowManager(void)
 		}
 		
 		// Now get touch if any
-		Point touchPoint = lcdDriver->getTouchEvent();
-		if (touchPoint.x!=-1 && touchPoint.y!=-1)
-		{
-			// Route to proper control
-			for (int a = 0; a < uiElements.size(); a++)
+		while (inputSleep < refreshRate)
+		{			
+			Point touchPoint = lcdDriver->getTouchEvent();
+			if (touchPoint.x != -1 && touchPoint.y != -1)
 			{
-				if (uiElements[a]->pointTouches(touchPoint))
+				// Route to proper control
+				for (int a = 0; a < uiElements.size(); a++)
 				{
-					// It can only touch one point, as its 2d, so lets break out
-					a = uiElements.size();
+					if (uiElements[a]->pointTouches(touchPoint))
+					{
+						// It can only touch one point, as its 2d, so lets break out
+						a = uiElements.size();
+					}
 				}
 			}
+			msleep(25);
+			inputSleep += 25;
 		}
-		msleep(refreshRate);
+		inputSleep = 0;
 	}
 }
 

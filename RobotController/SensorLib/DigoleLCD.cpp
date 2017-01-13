@@ -30,7 +30,7 @@ void DigoleLCD::initialize(int width, int height)
 		initialized = false;
 		return;
 	}
-	
+	setRotation(eDrawRot::rot90);
 	lcdWidth = width;
 	lcdHeight = height;
 }
@@ -69,21 +69,26 @@ bool DigoleLCD::setRotation(eDrawRot rotation)
 		case(eDrawRot::rot0):
 			{
 				cmd = "SD0";
+				orientation = eOrientation::Portrait;					
 				break;
 			}
 		case(eDrawRot::rot90):
 			{
 				cmd = "SD1";
+				orientation = eOrientation::Landscape;					
+				
 				break;
 			}
 		case(eDrawRot::rot180):
 			{
 				cmd = "SD2";
+				orientation = eOrientation::Portrait;									
 				break;
 			}
 		case(eDrawRot::rot270):
 			{
 				cmd = "SD3";
+				orientation = eOrientation::Landscape;									
 				break;
 			}
 	}
@@ -891,5 +896,28 @@ Point DigoleLCD::getTouchEvent()
 	return Point(-1, -1);
 }
 
+bool DigoleLCD::setSleepMode()
+{
+		if (!writeCmd("DNALL"))
+			return false;
+		return true;	
+}
+
+bool DigoleLCD::backLightBrightness(uint8_t brightness)
+{
+	if (brightness > 100)
+		brightness = 100;
+	std::stringstream ss;
+	ss << "BL" << brightness;
+	if (!writeCmd(ss.str()))
+		return false;
+	return true;
+}
+
+DigoleLCD::eOrientation DigoleLCD::getOrientation()
+{
+	return orientation;	
+}
+		
 // Add to auto registry so the device manager can know about it
 AUTO_REGISTER_DEVICE(DigoleLCD);

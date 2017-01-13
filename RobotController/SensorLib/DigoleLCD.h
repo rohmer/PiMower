@@ -45,6 +45,12 @@ public:
 		Graphics
 	};
 	
+	enum eOrientation
+	{
+		Portrait,
+		Landscape
+	};
+	
 	DigoleLCD(RobotLib *robotLib);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr, int width, int height);
@@ -107,7 +113,10 @@ public:
 	bool printxyf(int x, int y, uint8_t font, std::string text);
 	bool calibrateTouchScreen();
 	Point getTouchEvent();
-		
+	bool setSleepMode();
+	bool backLightBrightness(uint8_t brightness);
+	eOrientation getOrientation();
+	
 private:
 	uint8_t i2cAddr, i2cfd;	
 	int lcdWidth, lcdHeight;	
@@ -118,5 +127,5 @@ private:
 	void delay(unsigned int len);
 	bool writeText(std::string text);
 	std::vector<int> fonts = { 0, 6, 10, 18, 51, 120, 123 };
-
+	eOrientation orientation = eOrientation::Landscape;
 };

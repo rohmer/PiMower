@@ -63,7 +63,7 @@ bool UIRadioGroup::pointTouches(Point pt)
 			// Is is already checked?
 			if (buttons[a].isChecked)
 			{
-				// We are done
+				// We are done				
 				return true;
 			}
 			// Clear all buttons
@@ -78,6 +78,7 @@ bool UIRadioGroup::pointTouches(Point pt)
 			// Force an update
 			forceUpdate();
 			// return
+			touchEvents.push_back(true);
 			return true;
 		}
 	}

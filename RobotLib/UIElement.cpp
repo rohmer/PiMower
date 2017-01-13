@@ -35,6 +35,11 @@ void UIElement::setUpdateCycle(int msBetweenUpdate)
 	updateCycle = msBetweenUpdate;
 }
 
+void UIElement::setElementArea(Rectangle newArea)
+{
+	elementArea = newArea;	
+}
+
 bool UIElement::updateNeeded()
 {
 	if (!elementEnabled)

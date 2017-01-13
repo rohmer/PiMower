@@ -9,3 +9,15 @@ bool Rectangle::contains(Point pt) const
 		return true;
 	return false;
 }
+
+void Rectangle::update()
+{
+	if (x1 < x2)
+		this->width = x2 - x1;
+	else
+		this->width = x1 - x2;
+	if (y1 < y2)
+		this->width = y2 - y1;
+	else
+		this->width = y1 - y2;
+}

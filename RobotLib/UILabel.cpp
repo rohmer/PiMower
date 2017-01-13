@@ -4,7 +4,7 @@ UILabel::UILabel(std::string text, Point location)
 	: UIElement(Point(location.x, location.y), false)
 	, font(UIFont::u8g_font_unifont)
 	, text(text)
-	, textColor(1)
+	, textColor(1)	
 {
 	// We dont need to calculate the box, since this isnt clicakble
 	setUpdateCycle(-1);	
@@ -15,11 +15,11 @@ UILabel::UILabel(std::string text, Point location, UIFont::eFontName font, bool 
 	, font(font)
 	, text(text)
 	, textColor(1)
-{
+{	
 	// Calculate the size if this is clickable
 	if (clickable)
 	{
-		elementArea = Rectangle(location.x, location.y, UIFont::getFontWidth(font)*text.size(), UIFont::getFontHeight(font));
+		elementArea = calcSize();
 	}
 	setUpdateCycle(-1);
 }
@@ -28,8 +28,8 @@ UILabel::UILabel(std::string text, Point location, UIFont::eFontName font, bool 
 	: UIElement(Point(location.x, location.y), clickable)
 	, font(font)
 	, text(text)
-	, textColor(textColor)
-{
+	, textColor(textColor)	
+{	
 	// Calculate the size if this is clickable
 	if (clickable)
 	{
@@ -50,4 +50,17 @@ void UILabel::update(DigoleLCD *lcdDriver)
 Rectangle UILabel::calcSize()
 {
 	return Rectangle(location.x, location.y, UIFont::getFontWidth(font)*text.size(), UIFont::getFontHeight(font));
+}
+
+bool UILabel::pointTouches(Point pt)
+{	
+	// If we cant click on it, we dont care
+	if (!clickable)
+		return false;
+	if (elementArea.contains(pt))
+	{
+		touchEvents.push_back(true);
+		return true;
+	}
+	return false;
 }

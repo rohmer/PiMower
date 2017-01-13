@@ -28,6 +28,7 @@ struct Rectangle
 		, height(0)
 	{
 	}
+	void update();
 	bool contains(Point pt) const;	
 	int x1, y1, x2, y2, width, height;	
 };

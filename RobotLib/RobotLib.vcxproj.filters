@@ -145,6 +145,21 @@
     <ClCompile Include="WindowManager.cpp">
       <Filter>Source files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UIWindow.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenu.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenuPage.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UITextEntry.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RobotLib.h">
@@ -221,6 +236,24 @@
     </ClInclude>
     <ClInclude Include="WindowManager.h">
       <Filter>Header files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWindow.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenu.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenuPage.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="NavigationIcons.h">
+      <Filter>Source files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITextEntry.h">
+      <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

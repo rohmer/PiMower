@@ -11,9 +11,10 @@ class UILabel : UIElement
 		UILabel(std::string text, Point location, UIFont::eFontName font, bool clickable, uint8_t textColor);
 		void update(DigoleLCD *lcdDriver) override;
 		Rectangle calcSize() override;
-	
+		bool pointTouches(Point pt) override;
+		
 	private:
 		UIFont::eFontName font = UIFont::u8g_font_unifont;
 		std::string text;
-		uint8_t textColor;
+		uint8_t textColor;		
 };

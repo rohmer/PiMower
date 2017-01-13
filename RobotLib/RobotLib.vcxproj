@@ -64,11 +64,16 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RobotLib.cpp" />
     <ClCompile Include="SensorEvents.cpp" />
+    <ClCompile Include="UITextEntry.cpp" />
+    <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UICheckbox.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIFont.cpp" />
     <ClCompile Include="UILabel.cpp" />
+    <ClCompile Include="UIMenu.cpp" />
+    <ClCompile Include="UIMenuPage.cpp" />
     <ClCompile Include="UIRadioGroup.cpp" />
+    <ClCompile Include="UIWindow.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,15 +90,21 @@
     <ClInclude Include="MapLibConstants.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="MowerState.h" />
+    <ClInclude Include="NavigationIcons.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />
     <ClInclude Include="SensorEvents.h" />
+    <ClInclude Include="UITextEntry.h" />
+    <ClInclude Include="UIButton.h" />
     <ClInclude Include="UICheckbox.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIFont.h" />
+    <ClInclude Include="UIMenu.h" />
+    <ClInclude Include="UIMenuPage.h" />
+    <ClInclude Include="UIWindow.h" />
     <ClInclude Include="UILabel.h" />
     <ClInclude Include="UIRadioGroup.h" />
     <ClInclude Include="WindowManager.h" />
