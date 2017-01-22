@@ -15,7 +15,7 @@ class Database
 	public:
 		Database(RobotLib &robotLib);		
 		static bool execSql(std::string sqlStmt);				
-		bool insertGPSEvent(sensors_gps event);
+		bool insertPositionEvent(sensors_event_t *event);
 			
 		static RobotLib *getRobotLib()
 		{

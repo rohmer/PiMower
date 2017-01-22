@@ -7,9 +7,9 @@
       <PathStyle>MinGWUnixSlash</PathStyle>
     </CustomSourceDirectories>
     <DeploymentHost>
-      <HostName>PI</HostName>
-      <Transport>Alias</Transport>
-      <UserName />
+      <HostName>192.168.2.43</HostName>
+      <Transport>SSH</Transport>
+      <UserName>root</UserName>
     </DeploymentHost>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
     <SkipBuildIfNoSourceFilesChanged>false</SkipBuildIfNoSourceFilesChanged>
@@ -40,11 +40,8 @@
         <PathStyle>MinGWUnixSlash</PathStyle>
       </SourceDirMapping>
     </Toolchain>
-    <ProjectFile>RobotDaemon.vcxproj</ProjectFile>
-    <RemoteBuildEnvironment>
-      <Records />
-    </RemoteBuildEnvironment>
-    <ParallelJobCount>1</ParallelJobCount>
+    <ProjectFile>UITest.vcxproj</ProjectFile>
+    <ParallelJobCount>0</ParallelJobCount>
   </Build>
   <Debug xsi:type="com.visualgdb.debug.remote">
     <AdditionalStartupCommands />
@@ -121,7 +118,6 @@
     <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
   </CustomShortcuts>
   <UserDefinedVariables />
-  <ImportedPropertySheets />
   <CodeSense>
     <Enabled>Unknown</Enabled>
     <ExtraSettings>

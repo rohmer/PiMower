@@ -259,7 +259,7 @@ bool TCS34725::getEvent(sensors_event_t *event)
 			return false;
 		}
 	}
-	memset(event, 0, sizeof(sensors_event_t));
+	//memset(event, 0, sizeof(sensors_event_t));
 	uint16_t r, g, b, c;
 	getRawData(&r, &g, &b, &c);
 	event->light = calculateLux(r, g, b);

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}</ProjectGuid>
+    <ProjectGuid>{E1849EF5-5C49-40FC-9F54-20CE9907214F}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -29,45 +29,45 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../RobotLib;../3rdParty/SQLiteC++/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/opencv-3.2.0/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/opencv-3.2.0/modules/core/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/opencv-3.2.0/modules/features2d/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/opencv-3.2.0/modules/highgui/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/opencv-3.2.0/modules/imgproc/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/opencv_contrib/modules/xfeatures2d/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/root/SQLiteCpp/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>opencv_core;opencv_highgui; opencv_imgproc;  opencv_features2d; opencv_xfeatures2d; opencv_imgcodecs;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>opencv_core; opencv_imgproc; opencv_imgcodecs;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="RobotDaemon.cpp" />
+    <ClCompile Include="GrassDetectionTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RobotDaemon-Debug.vgdbsettings" />
-    <None Include="RobotDaemon-Release.vgdbsettings" />
+    <None Include="GrassDetectionTests-Debug.vgdbsettings" />
+    <None Include="GrassDetectionTests-Release.vgdbsettings" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RobotDaemon.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\3rdParty\argtable2-13\argtable\argtable.vcxproj">
+    <ProjectReference Include="..\..\3rdParty\argtable2-13\argtable\argtable.vcxproj">
       <Project>{45a0148e-3f88-4098-ad1c-6a52ee93732a}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
+    <ProjectReference Include="..\..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
       <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj">
+    <ProjectReference Include="..\..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj">
       <Project>{4cb2ee15-2afd-46f3-883a-12f5c35f35e4}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
+    <ProjectReference Include="..\..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
       <Project>{6a967716-d419-4c6e-9b5c-c8a68a3af2d1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\RobotController\SensorLib\SensorLib.vcxproj">
-      <Project>{a17730ce-5fd1-4cb8-9b8d-5e9f076e7698}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\RobotLib\RobotLib.vcxproj">
+    <ProjectReference Include="..\..\RobotLib\RobotLib.vcxproj">
       <Project>{b37f3067-2a62-4034-9068-352f6949466a}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\SensorLib\SensorLib.vcxproj">
+      <Project>{a17730ce-5fd1-4cb8-9b8d-5e9f076e7698}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GrassDetectionTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

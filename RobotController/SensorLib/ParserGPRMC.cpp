@@ -8,7 +8,7 @@ ParserGPRMC::ParserGPRMC(RobotLib *robotLib)
 
 sensors_gps_t *ParserGPRMC::Parse(std::vector<std::string> tokens)
 {
-	memset(event, 0, sizeof(sensors_gps_t));
+	//memset(event, 0, sizeof(sensors_gps_t));
 	
 	event->messageType.push_back(nmea_msg_t::NMEA_GPRMC);
 	for (int a = 1; a < tokens.size(); a++)

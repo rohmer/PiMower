@@ -28,7 +28,7 @@ class AdafruitGPS : public SensorBase
 		~AdafruitGPS();
 		std::string getDeviceName() override
 		{
-			return "Adafruit GPS";
+			return "Adafruit_GPS";
 		}
 		sensors_type_t getSensorType() override
 		{

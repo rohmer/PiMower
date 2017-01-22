@@ -3,6 +3,8 @@
 #include <thread>
 #include <unistd.h>
 #include "Database.h"
+#include "../RobotController/SensorLib/LSM303_Magnetometer.h"
+#include "../RobotController/SensorLib/LSM303_Accelerometer.h"
 
 class GPSManager
 {
@@ -11,14 +13,16 @@ class GPSManager
 		void setPollingInterval(uint8_t pollingInterval);
 		void setPollingAverage(uint8_t pollingAverage);
 		~GPSManager();
-		sensors_gps_t getLocation();
+		sensors_event_t* getLocation();
 	
 	private:
 		void gpsThread();
 		static void startManagerThread(GPSManager *gpsMgr);
-	
+		sensors_event_t *latestLocation;
 		DeviceManager *deviceManager;
 		RobotLib *robotLib;
+		LSM303_Magnetometer *lsmMag;
+		LSM303_Accelerometer *lsmAccel;
 		std::thread gpsManagerThread;
 		Database *database;
 		uint8_t pollingInt, pollingAvg;	
@@ -26,5 +30,6 @@ class GPSManager
 		DeviceBase* gpsDevice;
 		bool initialized = false;
 		bool shutdown = false;
-			
+		bool magnetometerActive = false;	
+		bool accelerometerActive = false;
 };

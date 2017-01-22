@@ -7,5 +7,5 @@
 class SensorEvents
 {
 public:
-	static bool insertPosition(sensors_gps positionEvent);
+	static bool insertPositionEvent(sensors_event_t *positionEvent);
 };

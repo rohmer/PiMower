@@ -104,6 +104,9 @@
     <Filter Include="Source files\DigoleLCD">
       <UniqueIdentifier>{b4861a25-0ab5-4f92-bac6-8206e3b07025}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\PCA9685">
+      <UniqueIdentifier>{0f4f1edc-481d-40ef-9997-81cf7a0d46dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -136,9 +139,6 @@
     <ClCompile Include="ST7565.cpp">
       <Filter>Source files\ST7565</Filter>
     </ClCompile>
-    <ClCompile Include="PCA9685.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="HCSR04.cpp">
       <Filter>Source files\HCSR04</Filter>
     </ClCompile>
@@ -160,12 +160,6 @@
     <ClCompile Include="ArduCamDriver\arducamDriver.c">
       <Filter>Source files\ArduCam\ArduCamDriver</Filter>
     </ClCompile>
-    <ClCompile Include="GrassDetection.cpp">
-      <Filter>Source files\ArduCam\GrassDetection</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorDetector.cpp">
-      <Filter>Source files\ArduCam\GrassDetection</Filter>
-    </ClCompile>
     <ClCompile Include="GPIOLED.cpp">
       <Filter>Source files\GPIOLED</Filter>
     </ClCompile>
@@ -177,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="DigoleLCD.cpp">
       <Filter>Source files\DigoleLCD</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassDetection.cpp">
+      <Filter>Source files\ArduCam\GrassDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="PCA9685.cpp">
+      <Filter>Source files\PCA9685</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -270,15 +270,6 @@
     <ClInclude Include="ArduCamDriver\arducamDriver.h">
       <Filter>Header files\ArduCam\ArduCamDriver</Filter>
     </ClInclude>
-    <ClInclude Include="GrassDetector.h">
-      <Filter>Header files\ArduCam\GrassDetection</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorDetector.h">
-      <Filter>Header files\ArduCam\GrassDetection</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorDetectionParams.h">
-      <Filter>Header files\ArduCam\GrassDetection</Filter>
-    </ClInclude>
     <ClInclude Include="GPIOLED.h">
       <Filter>Header files\GPIOLED</Filter>
     </ClInclude>
@@ -296,6 +287,9 @@
     </ClInclude>
     <ClInclude Include="DigoleLCD.h">
       <Filter>Header files\DigoleLCD</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassDetection.h">
+      <Filter>Header files\ArduCam\GrassDetection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

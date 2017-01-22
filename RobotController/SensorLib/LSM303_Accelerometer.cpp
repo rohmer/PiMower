@@ -59,7 +59,7 @@ LSM303_Accelerometer::LSM303_Accelerometer(RobotLib* rl) :
 
 void LSM303_Accelerometer::getSensor(sensor_t *sensor)
 {
-	memset(sensor, 0, sizeof(sensor_t));
+//	memset(sensor, 0, sizeof(sensor_t));
 	strncpy(sensor->name, "LSM303_Accelerometer", sizeof(sensor->name)-1);
 	sensor->name[sizeof(sensor->name) - 1] = 0;
 	sensor->version = 1;
@@ -72,8 +72,8 @@ void LSM303_Accelerometer::getSensor(sensor_t *sensor)
 }
 
 bool LSM303_Accelerometer::getEvent(sensors_event_t* event)
-{
-	memset(event, 0, sizeof(sensors_event_t));
+{	
+	//memset(event, 0, sizeof(sensors_event_t));
 	
 	/* Read new data */
 	read();
@@ -140,7 +140,7 @@ sensors_type_t LSM303_Accelerometer::getSensorType()
 
 std::string  LSM303_Accelerometer::getDeviceName()
 {
-	return "LSM303 Accelerometer";
+	return "LSM303_Accelerometer";
 }
 
 void LSM303_Accelerometer::calibrate()

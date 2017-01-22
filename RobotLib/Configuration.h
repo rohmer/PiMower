@@ -20,15 +20,16 @@ typedef enum
 
 typedef enum 
 {
-	Unknown			= 0,
-	SonorProximity	= 1,	
-	Color			= 2,
-	Camera			= 3,
-	Gyroscope		= 4,
-	GPS				= 5,
-	Switch			= 6,
-	Accelerometer	= 7,
-	Moisture		= 8
+	Unknown				= 0,
+	SonorProximityGPIO	= 1,	
+	Color				= 2,
+	Camera				= 3,
+	Gyroscope			= 4,
+	GPS					= 5,
+	Switch				= 6,
+	Accelerometer		= 7,
+	Moisture			= 8,
+	SonorProximityI2C	= 9
 } sensor_type_t;
 
 struct pin_struct
@@ -57,4 +58,6 @@ class Configuration
 		std::vector<sensor_struct> sensors;
 		bool validConfig = false;
 		min_log_level_t minimumLoggingLevel;
+	
+		void initSensors();
 };

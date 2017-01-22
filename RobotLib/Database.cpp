@@ -45,7 +45,13 @@ bool Database::createPositionTable()
 		"HDOP, " \
 		"FixQuality INT, " \
 		"Satellites INT, " \
-		"Fix BOOLEAN)";		
+		"Fix BOOLEAN, " \
+		"Heading REAL, " \
+		"Pitch REAL, "\
+		"Roll REAL, "\
+		"AccelX REAL, " \
+		"AccelY REAL, "\
+		"AccelZ REAL)";		
 	
 	return execSql(sql);		
 }
@@ -65,9 +71,9 @@ bool Database::execSql(std::string sqlStmt)
 	}	
 }
 
-bool Database::insertGPSEvent(sensors_gps event)
+bool Database::insertPositionEvent(sensors_event_t *event)
 {
-	return SensorEvents::insertPosition(event);
+	return SensorEvents::insertPositionEvent(event);
 }
 
 Database::~Database()

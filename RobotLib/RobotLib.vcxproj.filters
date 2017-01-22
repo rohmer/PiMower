@@ -20,17 +20,11 @@
     <Filter Include="Header files\DeviceManager">
       <UniqueIdentifier>{da3bdb6b-4b72-4a99-8521-ac20ae9867f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\LocationManager">
-      <UniqueIdentifier>{b7112e1b-086a-4ca6-afb0-4ae3af8330a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header files\Database">
       <UniqueIdentifier>{67c29874-fc23-4251-ab6f-038bba7541fa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source files\DeviceManager">
       <UniqueIdentifier>{81dbf471-7a2a-4fef-b435-bcb3a3bc5c90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source files\LocationManager">
-      <UniqueIdentifier>{b11cd6cd-e2e3-4786-a04a-5803a49da929}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source files\Database">
       <UniqueIdentifier>{2d9fe22a-63fc-46c9-bc37-c565ee5fec29}</UniqueIdentifier>
@@ -82,6 +76,21 @@
     </Filter>
     <Filter Include="Source files\UI\Elements">
       <UniqueIdentifier>{b68264af-57df-4f53-9b37-e1819bb8d3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\LocationManager">
+      <UniqueIdentifier>{b7112e1b-086a-4ca6-afb0-4ae3af8330a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\LocationManager">
+      <UniqueIdentifier>{b11cd6cd-e2e3-4786-a04a-5803a49da929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Robot\SensorManager">
+      <UniqueIdentifier>{861969a2-ee7b-4366-a318-e105a954367c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Robot\MotionControl">
+      <UniqueIdentifier>{969c19df-0b65-4898-876f-55610695e4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\MotionControl">
+      <UniqueIdentifier>{968731cb-07ce-4d86-962a-89407b7765d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +168,12 @@
     </ClCompile>
     <ClCompile Include="UITextEntry.cpp">
       <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorController.cpp">
+      <Filter>Source files\MotionControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionController.cpp">
+      <Filter>Source files\MotionControl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +269,18 @@
     </ClInclude>
     <ClInclude Include="UITextEntry.h">
       <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="SensorManager.h">
+      <Filter>Header files\Robot\SensorManager</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorController.h">
+      <Filter>Header files\Robot\MotionControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionController.h">
+      <Filter>Header files\Robot\MotionControl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

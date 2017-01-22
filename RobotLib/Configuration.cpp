@@ -1,4 +1,5 @@
 #include "Configuration.h"
+#include "../RobotController/SensorLib/HCSR04.h"
 
 Configuration::Configuration(RobotLib *robotLib)
 {
@@ -64,7 +65,7 @@ bool Configuration::getConfig()
 		switch (sensorT)
 		{
 			case 1:
-				sensor.sensorType = sensor_type_t::SonorProximity;
+				sensor.sensorType = sensor_type_t::SonorProximityGPIO;
 				break;
 			case 2:
 				sensor.sensorType = sensor_type_t::Color;
@@ -120,6 +121,60 @@ bool Configuration::getConfig()
 			else
 				pin.sharedPin = false;
 			sensor.pins.emplace_back(pin);
+			sensors.push_back(sensor);
 		}				
+	}
+}
+
+void Configuration::initSensors()
+{
+	HCSR04 *gpioSonor = NULL;		
+	for (int a = 0; a < sensors.size(); a++)
+	{
+#if DEBUG
+		std::stringstream ss;
+		ss << "Trying to init: " << sensors[a].name;
+		robotLib->Log(ss.str());
+#endif				
+		switch (sensors[a].sensorType)
+		{
+			case(sensor_type_t::SonorProximityGPIO):
+			{
+				int triggerPin=-1, inputPin=-1;
+				for (int b = 0; b < sensors[a].pins.size(); b++)
+				{
+					if (sensors[a].pins[b].pinType == pin_type_t::triggerPin)
+						triggerPin = sensors[a].pins[b].pinNumber;
+					if (sensors[a].pins[b].pinType == pin_type_t::digitalInputPin)
+						inputPin = sensors[a].pins[b].pinNumber;
+				}
+				if (inputPin == -1 || triggerPin == -1)
+				{					
+					if (inputPin == -1)
+					{
+						robotLib->LogError("Sonor Proximity Sensor defined without a digital input pin, will not be used");
+					}
+					else
+					{					
+						robotLib->LogError("Sonor Proximity Sensor defined without a trigger pin, will not be used");
+					}
+				}
+				else
+				{
+					// Add the pin to polling
+					if (gpioSonor == NULL)
+					{						
+						gpioSonor = reinterpret_cast<HCSR04*>(robotLib->getDeviceManager()->getByName("HC-SR04"));
+						gpioSonor->setTriggerPin(triggerPin);
+						gpioSonor->addSensor(inputPin);
+					}
+				}
+			}
+		}
+	}
+	if (gpioSonor)
+	{
+		// We defined gpio Sonor, so lets start background polling
+		gpioSonor->setBackgroundPolling(true);
 	}
 }

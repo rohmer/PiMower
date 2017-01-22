@@ -28,6 +28,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "argtable", "..\3rdParty\arg
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobotDaemon", "..\RobotDaemon\RobotDaemon.vcxproj", "{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UITest", "..\RobotLib\UITest\UITest.vcxproj", "{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|VisualGDB = Debug|VisualGDB
@@ -110,6 +112,14 @@ Global
 		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|VisualGDB.Build.0 = Release|VisualGDB
 		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|x64.ActiveCfg = Release|VisualGDB
 		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|x86.ActiveCfg = Release|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|x64.ActiveCfg = Release|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|x86.ActiveCfg = Release|VisualGDB
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

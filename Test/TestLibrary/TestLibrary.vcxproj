@@ -31,14 +31,14 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;../../..;..;../../../../../Documents/GitHub/PiMower/RobotLib;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;../../..;..;../../../../../Documents/GitHub/PiMower/RobotLib;C:/Users/rohme/AppData/Local/VisualGDB/RemoteSourceCache/PI/0001/include;../../../../../Documents/GitHub/PiMower/3rdParty/RapidXML;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CPPLanguageStandard>CPP14</CPPLanguageStandard>
+      <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>opencv_core;opencv_highgui; opencv_imgproc;  opencv_xfeatures2d; opencv_imgcodecs; raspicam_cv;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
@@ -80,6 +80,7 @@
     <ClCompile Include="..\PathFinderTests.cpp" />
     <ClCompile Include="..\RobotLibTests.cpp" />
     <ClCompile Include="..\Test.cpp" />
+    <ClCompile Include="ArduCamTests.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="ST7565Tests.cpp" />
   </ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="..\PathFinderTests.h" />
     <ClInclude Include="..\RobotLibTests.h" />
     <ClInclude Include="..\TestBase.h" />
+    <ClInclude Include="ArduCamTests.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="ST7565Tests.h" />
   </ItemGroup>

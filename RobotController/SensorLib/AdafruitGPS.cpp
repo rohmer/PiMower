@@ -265,7 +265,7 @@ sensors_gps_t *AdafruitGPS::parse(char *nmea)
 
 bool AdafruitGPS::getEvent(sensors_event_t *event)
 {
-	memset(event, 0, sizeof(sensors_event_t));
+	//memset(event, 0, sizeof(sensors_event_t));
 	
 	std::vector<sensors_gps_t *> eventList;
 	bool eventComplete = false;

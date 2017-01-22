@@ -45,25 +45,26 @@ class PCA9685 : public DeviceBase
 		
 		static device_status_t getDeviceStatus(RobotLib *robotLib);		
 		void pca9685PWMFreq(float frequency);
-		static void pca9685FullOn(int fd, int pin, int tf);
-		static void pca9685FullOff(int fd, int pin, int tf);
-		static void pca9685PWMRead(int fd, int pin, int *on, int *off);
-		static void pca9685PWMWrite(int fd, int pin, int on, int off);
-		void pca9685PWMReset(int fd);
+		static void pca9685SetPin(int pin, int value);
+		static void pca9685FullOn(int pin, int tf);
+		static void pca9685FullOff(int pin, int tf);
+		static void pca9685PWMRead(int pin, int *on, int *off);
+		static void pca9685PWMWrite(int pin, int on, int off);
+		void pca9685PWMReset();
 		static uint8_t scanForPCA9685();
 	
 	private:
-		int i2cfd;
+		static int i2cfd;
 		static uint8_t pca9685I2CAddr;
 		bool pca9685Avail;		
 		void initialize();		
 		static int baseReg(int pin);
 		static bool initialized;
-	
+			
 		// wiringPi functions
-		static void pPwmWrite(struct wiringPiNodeStruct *node, int pin, int value);
-		static int pOffRead(struct wiringPiNodeStruct *node, int pin);
-		static int pOnRead(struct wiringPiNodeStruct *node, int pin);
-		static void pOnOffWrite(struct wiringPiNodeStruct *node, int pin, int value);
+		static void pPwmWrite(int pin, int value);
+		static int pOffRead(int pin);
+		static int pOnRead(int pin);
+		static void pOnOffWrite(int pin, int value);
 
 };

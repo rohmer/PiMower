@@ -1,5 +1,6 @@
 #pragma once
 #include "RobotLib.h"
+#include "States.h"
 #include <ctime>
 #include <sstream>
 
@@ -11,7 +12,7 @@ class BehaviorBase
 		{
 		}
 		
-		virtual void run() {};
+		virtual states_t run();
 		virtual void startBehavior();
 		
 		std::string getBehaviorName();

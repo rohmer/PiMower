@@ -16,6 +16,17 @@ GPSManager::GPSManager(RobotLib *robotLib)
 	}
 	gpsDevice = locDevices[0]->getDevice();	
 	gpsManagerThread=std::thread (startManagerThread,this);
+	lsmMag = reinterpret_cast<LSM303_Magnetometer *>(deviceManager->getByName("LSM303_Magnetometer"));
+	lsmAccel = reinterpret_cast<LSM303_Accelerometer *>(deviceManager->getByName("LSM303_Accelerometer"));
+	if (lsmMag)
+	{
+		magnetometerActive = true;
+	}
+	if (lsmAccel)
+	{
+		accelerometerActive = true;
+	}	
+	initialized = true;
 }
 
 void GPSManager::setPollingInterval(uint8_t pollingInterval)
@@ -31,14 +42,17 @@ void GPSManager::setPollingAverage(uint8_t pollingAverage)
 void GPSManager::gpsThread()
 {
 	robotLib->Log("Starting gpsThread()");
-	sensors_event_t *evt = new sensors_event_t();	
+	if (!latestLocation)
+	{
+		latestLocation = new sensors_event_t();
+	}
 	nmea_position latitude;
 	nmea_position longitude;
 	while (!shutdown)
 	{
-		if (gpsDevice->getEvent(evt))
+		if (gpsDevice->getEvent(latestLocation))
 		{
-			locationInfo.insert(locationInfo.begin(), evt->gps);
+			locationInfo.insert(locationInfo.begin(), latestLocation->gps);
 			while (locationInfo.size() > pollingAvg)
 				locationInfo.pop_back();
 		
@@ -69,21 +83,33 @@ void GPSManager::gpsThread()
 			locationInfo[0].altitude = altTotal;
 			locationInfo[0].latitude = latitude;
 			locationInfo[0].longitude = longitude;
+			latestLocation->gps = locationInfo[0];
 			
-			if (!robotLib->getDatabase()->insertGPSEvent(locationInfo[0]))
+			if (lsmAccel)
+			{
+				lsmAccel->getEvent(latestLocation);
+			}
+			if (lsmMag)
+			{
+				lsmMag->getEvent(latestLocation);
+			}
+			if (!robotLib->getDatabase()->insertPositionEvent(latestLocation))
 			{
 				robotLib->LogWarn("Failed to insert GPS Event");
-			}
+			}			
 		} 
 		sleep(pollingInt);
 	}
-	delete(evt);
+	delete(latestLocation);
 }
 
-sensors_gps_t GPSManager::getLocation()
+sensors_event_t* GPSManager::getLocation()
 {
 	if (locationInfo.size() > 0)
-		return locationInfo[0];
+	{
+		return latestLocation;	
+	}
+	return NULL;
 }
 
 void GPSManager::startManagerThread(GPSManager *gpsMgr)

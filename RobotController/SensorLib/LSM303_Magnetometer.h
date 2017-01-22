@@ -8,6 +8,7 @@
 #include <cstring>
 #include <thread>
 #include <chrono>
+#include <cmath>
 #include "../../RobotLib/DeviceRegistry.h"
 
 class LSM303_Magnetometer : public SensorBase
@@ -29,7 +30,7 @@ class LSM303_Magnetometer : public SensorBase
 			return device_type_t::DEVICETYPE_SENSOR;
 		}
 		static device_status_t getDeviceStatus(RobotLib *robotLib);
-	
+		
 	private:
 		void read();
 		static int i2cfd_Mag;		

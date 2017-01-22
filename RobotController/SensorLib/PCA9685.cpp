@@ -4,6 +4,7 @@
 
 bool PCA9685::initialized;
 uint8_t PCA9685::pca9685I2CAddr;
+int PCA9685::i2cfd = 0;
 
 PCA9685::PCA9685(RobotLib *robotLib) :
 	DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
@@ -50,13 +51,7 @@ PCA9685::PCA9685(RobotLib *robotLib, uint8_t i2caddress) :
 
 void PCA9685::initialize()
 {
-	// Create a node with 16 pins [0..15] + [16] for all
-	struct wiringPiNodeStruct *node = wiringPiNewNode(122, 15 + 1);
-	if (!node)
-	{
-		pca9685Avail = false;
-	}
-	
+	// Create a node with 16 pins [0..15] + [16] for all	
 	// Setup the chip enabling auto-increment of registers
 	int settings = wiringPiI2CReadReg8(i2cfd, PCA9685_MODE1) & 0x7F;
 	int autoInc = settings | 0x20;
@@ -67,11 +62,6 @@ void PCA9685::initialize()
 		return;
 	}			
 	pca9685PWMFreq(50);
-	node->fd			= i2cfd;
-	node->pwmWrite		= pPwmWrite;
-	node->digitalWrite	= pOnOffWrite;
-	node->digitalRead	= pOffRead;
-	node->analogRead	= pOnRead;
 	initialized = true;
 }
 
@@ -126,19 +116,19 @@ void PCA9685::pca9685PWMFreq(float frequency)
  * tf = true: full-on
  * tf = false: according to PWM
  */
-void PCA9685::pca9685FullOn(int fd, int pin, int tf)
+void PCA9685::pca9685FullOn(int pin, int tf)
 {
 	int reg = baseReg(pin) + 1;		// LEDX_ON_H
-	int state = wiringPiI2CReadReg8(fd, reg);
+	int state = wiringPiI2CReadReg8(i2cfd, reg);
 
 	// Set bit 4 to 1 or 0 accordingly
 	state = tf ? (state | 0x10) : (state & 0xEF);
 
-	wiringPiI2CWriteReg8(fd, reg, state);
+	wiringPiI2CWriteReg8(i2cfd, reg, state);
 
 	// For simplicity, we set full-off to 0 because it has priority over full-on
 	if (tf)
-		pca9685FullOff(fd, pin, 0);
+		pca9685FullOff(pin, 0);
 }
 
 /**
@@ -146,15 +136,15 @@ void PCA9685::pca9685FullOn(int fd, int pin, int tf)
  * tf = true: full-off
  * tf = false: according to PWM or full-on
  */
-void PCA9685::pca9685FullOff(int fd, int pin, int tf)
+void PCA9685::pca9685FullOff(int pin, int tf)
 {
 	int reg = baseReg(pin) + 3;		// LEDX_OFF_H
-	int state = wiringPiI2CReadReg8(fd, reg);
+	int state = wiringPiI2CReadReg8(i2cfd, reg);
 
 	// Set bit 4 to 1 or 0 accordingly
 	state = tf ? (state | 0x10) : (state & 0xEF);
 
-	wiringPiI2CWriteReg8(fd, reg, state);
+	wiringPiI2CWriteReg8(i2cfd, reg, state);
 }
 
 /**
@@ -168,23 +158,23 @@ int PCA9685::baseReg(int pin)
 /**
  * Set all leds back to default values (: fullOff = 1)
  */
-void PCA9685::pca9685PWMReset(int fd)
+void PCA9685::pca9685PWMReset()
 {
-	wiringPiI2CWriteReg16(fd, PCA9685_LEDALL_ON, 0x0);
-	wiringPiI2CWriteReg16(fd, PCA9685_LEDALL_ON + 2, 0x1000);
+	wiringPiI2CWriteReg16(i2cfd, PCA9685_LEDALL_ON, 0x0);
+	wiringPiI2CWriteReg16(i2cfd, PCA9685_LEDALL_ON + 2, 0x1000);
 }
 
 /**
  * Write on and off ticks manually to a pin
  * (Deactivates any full-on and full-off)
  */
-void PCA9685::pca9685PWMWrite(int fd, int pin, int on, int off)
+void PCA9685::pca9685PWMWrite(int pin, int on, int off)
 {
 	int reg = baseReg(pin);
 
 	// Write to on and off registers and mask the 12 lowest bits of data to overwrite full-on and off
-	wiringPiI2CWriteReg16(fd, reg, on  & 0x0FFF);
-	wiringPiI2CWriteReg16(fd, reg + 2, off & 0x0FFF);
+	wiringPiI2CWriteReg16(i2cfd, reg, on  & 0x0FFF);
+	wiringPiI2CWriteReg16(i2cfd, reg + 2, off & 0x0FFF);
 }
 
 /**
@@ -193,14 +183,14 @@ void PCA9685::pca9685PWMWrite(int fd, int pin, int on, int off)
  * To get full-on or off bit: mask with 0x1000
  * Note: ALL_LED pin will always return 0
  */
-void PCA9685::pca9685PWMRead(int fd, int pin, int *on, int *off)
+void PCA9685::pca9685PWMRead(int pin, int *on, int *off)
 {
 	int reg = baseReg(pin);
 
 	if (on)
-		*on  = wiringPiI2CReadReg16(fd, reg);
+		*on  = wiringPiI2CReadReg16(i2cfd, reg);
 	if (off)
-		*off = wiringPiI2CReadReg16(fd, reg + 2);
+		*off = wiringPiI2CReadReg16(i2cfd, reg + 2);
 }
 
 device_status_t PCA9685::getDeviceStatus(RobotLib *robotLib)
@@ -224,16 +214,14 @@ PCA9685::~PCA9685()
 {	
 }
 
-void PCA9685::pPwmWrite(struct wiringPiNodeStruct *node, int pin, int value)
+void PCA9685::pPwmWrite(int pin, int value)
 {
-	int fd = node->fd;
-	int ipin = pin - node->pinBase;
 	if (value >= 4096)
-		pca9685FullOn(fd, ipin, 1);
+		pca9685FullOn(pin, 1);
 	else if (value > 0)
-		pca9685PWMWrite(fd, ipin, 0, value);		// Deactivates full on and off byitself
+		pca9685PWMWrite(pin, 0, value);		// Deactivates full on and off byitself
 	else
-		pca9685FullOff(fd, ipin, 1);
+		pca9685FullOff(pin, 1);
 }
 
 /**
@@ -242,13 +230,10 @@ void PCA9685::pPwmWrite(struct wiringPiNodeStruct *node, int pin, int value)
  * To get full-off bit: mask with 0x1000
  * Note: ALL_LED pin will always return 0
  */
-int PCA9685::pOffRead(struct wiringPiNodeStruct *node, int pin)
-{
-	int fd   = node->fd;
-	int ipin = pin - node->pinBase;
-
+int PCA9685::pOffRead(int pin)
+{	
 	int off;
-	pca9685PWMRead(fd, ipin, 0, &off);
+	pca9685PWMRead(pin, 0, &off);
 	return off;
 }
 
@@ -258,12 +243,10 @@ int PCA9685::pOffRead(struct wiringPiNodeStruct *node, int pin)
  * To get full-on bit: mask with 0x1000
  * Note: ALL_LED pin will always return 0
  */
-int PCA9685::pOnRead(struct wiringPiNodeStruct *node, int pin)
+int PCA9685::pOnRead(int pin)
 {
-	int fd   = node->fd;
-	int ipin = pin - node->pinBase;
 	int on;
-	pca9685PWMRead(fd, ipin, &on, 0);
+	pca9685PWMRead(pin, &on, 0);
 	return on;
 }
 
@@ -272,15 +255,12 @@ int PCA9685::pOnRead(struct wiringPiNodeStruct *node, int pin)
  * If value is 0, full-off will be enabled
  * If value is not 0, full-on will be enabled
  */
-void PCA9685::pOnOffWrite(struct wiringPiNodeStruct *node, int pin, int value)
-{
-	int fd   = node->fd;
-	int ipin = pin - node->pinBase;
-
+void PCA9685::pOnOffWrite(int pin, int value)
+{	
 	if (value)
-		pca9685FullOn(fd, ipin, 1);
+		pca9685FullOn(pin, 1);
 	else
-		pca9685FullOff(fd, ipin, 1);
+		pca9685FullOff(pin, 1);
 }
 
 uint8_t PCA9685::scanForPCA9685()
@@ -309,6 +289,19 @@ uint8_t PCA9685::scanForPCA9685()
 		}
 	}
 	return -1;
+}
+
+// Sets pin without having to deal with on/off tick placement and properly handles
+// a zero value as completely off.  Optional invert parameter supports inverting
+// the pulse for sinking to ground.  Val should be a value from 0 to 4095 inclusive.
+void PCA9685::pca9685SetPin(int pin, int value)
+{	
+	if (value >= 4096)
+		pca9685FullOn(pin, 1);
+	else if (value > 0)
+		pca9685PWMWrite(pin, 0, value);		// Deactivates full on and off byitself
+	else
+		pca9685FullOff(pin, 1);
 }
 
 // Add to auto registry so the device manager can know about it

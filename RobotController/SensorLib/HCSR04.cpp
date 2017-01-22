@@ -55,6 +55,23 @@ HCSR04::HCSR04(RobotLib *robotLib,
 	}
 }
 
+void HCSR04::setBackgroundPolling(bool enabled)
+{
+	if (enabled && !backgroundPolling)
+	{
+		shutdown = false;
+		backgroundPolling = true;
+		pollingThread = std::thread(startPollingThread, this);
+		return;
+	}
+	if (!enabled)
+	{
+		backgroundPolling = false;
+		shutdown = true;
+		pollingThread.join();
+	}
+}
+
 HCSR04::~HCSR04()
 {
 	shutdown = true;

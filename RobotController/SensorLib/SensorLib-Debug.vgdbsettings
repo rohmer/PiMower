@@ -10,9 +10,9 @@
       <Transport>None</Transport>
     </BuildHost>
     <DeploymentHost>
-      <HostName>PI</HostName>
-      <Transport>Alias</Transport>
-      <UserName />
+      <HostName>192.168.2.43</HostName>
+      <Transport>SSH</Transport>
+      <UserName>root</UserName>
     </DeploymentHost>
     <MainSourceTransferCommand>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
@@ -35,6 +35,7 @@
       </FileMasks>
       <TransferNewFilesOnly>true</TransferNewFilesOnly>
       <IncludeSubdirectories>true</IncludeSubdirectories>
+      <SelectedDirectories />
       <DeleteDisappearedFiles>false</DeleteDisappearedFiles>
     </MainSourceTransferCommand>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
@@ -105,7 +106,7 @@
     </AdditionalGDBSettings>
     <LaunchGDBSettings xsi:type="GDBLaunchParametersNewInstance">
       <DebuggedProgram>$(TargetPath)</DebuggedProgram>
-      <GDBServerPort>1994</GDBServerPort>
+      <GDBServerPort>1991</GDBServerPort>
       <ProgramArguments />
     </LaunchGDBSettings>
     <GenerateCtrlBreakInsteadOfCtrlC>false</GenerateCtrlBreakInsteadOfCtrlC>
@@ -116,6 +117,7 @@
     <DeploymentMode>Always</DeploymentMode>
     <LdLibraryPath />
     <DeployWhenLaunchedWithoutDebugging>true</DeployWhenLaunchedWithoutDebugging>
+    <SuppressTTYCreation>false</SuppressTTYCreation>
   </Debug>
   <CustomBuild>
     <PreSyncActions />

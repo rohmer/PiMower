@@ -49,7 +49,8 @@ class HCSR04 : public SensorBase
 		uint8_t getInputPin();
 		void setMaxDistanceCM(uint16_t centimeters);
 		void setMaxDistanceInches(uint16_t inches);
-		
+		void setBackgroundPolling(bool enabled);			// Turns on or off background polling
+	
 	private:
 		void bgPollingThread();
 		static void startPollingThread(HCSR04 *hcsr04);

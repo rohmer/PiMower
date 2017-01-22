@@ -148,6 +148,9 @@
     <ClCompile Include="ST7565Tests.cpp">
       <Filter>Source files\Test</Filter>
     </ClCompile>
+    <ClCompile Include="ArduCamTests.cpp">
+      <Filter>Source files\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestLibrary-Debug.vgdbsettings">
@@ -312,6 +315,9 @@
       <Filter>Header files\Test Framework</Filter>
     </ClInclude>
     <ClInclude Include="ST7565Tests.h">
+      <Filter>Header files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduCamTests.h">
       <Filter>Header files\Test</Filter>
     </ClInclude>
   </ItemGroup>

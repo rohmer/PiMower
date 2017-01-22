@@ -15,6 +15,7 @@
 #include "../../RobotLib/Point.h"
 #include "DeviceBase.h"
 #include <vector>
+#include <iomanip>
 #include "../../3rdParty/wiringPi/wiringPi/wiringPiI2C.h"
 
 
@@ -54,6 +55,9 @@ public:
 	DigoleLCD(RobotLib *robotLib);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr, int width, int height);
+	void setup(uint8_t i2cAddr);
+	void setup(uint8_t i2cAddr, int width, int height);
+		
 	~DigoleLCD();	
 	device_type_t getDeviceType() override
 	{
@@ -97,6 +101,7 @@ public:
 	bool uploadUserFont(int lon, uint8_t *data, uint8_t sect);
 	bool clearScreen();
 	bool setDrawMode(eDrawMode mode);
+	bool setTextPos(int x, int y);
 	bool setTextPosBack();
 	bool setTextPosOffset(int xoffset, int yoffset);
 	bool setTextPosAbs(int x, int y);
@@ -104,6 +109,7 @@ public:
 	bool setPrintPos(int x, int y, ePosMode mode);
 	bool disableCursor();
 	bool enableCursor();
+	bool writeStringCP(int x, int y, std::string text);
 	bool writeString(int x, int y, std::string text);
 	bool drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap);
 	bool drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap, uint8_t c);
@@ -123,7 +129,7 @@ private:
 	bool initialized = false;
 	void initialize(int width, int height);
 	bool writeCmd(std::string command);
-	bool writeInt(int value);
+	std::string writeInt(int value);
 	void delay(unsigned int len);
 	bool writeText(std::string text);
 	std::vector<int> fonts = { 0, 6, 10, 18, 51, 120, 123 };

@@ -3,6 +3,7 @@
 DigoleLCD::DigoleLCD(RobotLib *robotLib)
 	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
+	robotLib->Log("Called single");
 	i2cAddr = 0x27;
 	initialize(320,240);
 }
@@ -10,12 +11,26 @@ DigoleLCD::DigoleLCD(RobotLib *robotLib)
 DigoleLCD::DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr)
 	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
+	robotLib->Log("Called double");
 	this->i2cAddr = i2cAddr;
 	initialize(320, 240);
 }
 
 DigoleLCD::DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr, int width, int height)
 	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
+{
+	robotLib->Log("Called triple");
+	this->i2cAddr = i2cAddr;
+	initialize(width, height);
+}
+
+void DigoleLCD::setup(uint8_t i2cAddr)
+{
+	this->i2cAddr = i2cAddr;
+	initialize(320, 240);
+}
+
+void DigoleLCD::setup(uint8_t i2cAddr, int width, int height)
 {
 	this->i2cAddr = i2cAddr;
 	initialize(width, height);
@@ -30,7 +45,7 @@ void DigoleLCD::initialize(int width, int height)
 		initialized = false;
 		return;
 	}
-	setRotation(eDrawRot::rot90);
+ 	setRotation(eDrawRot::rot90);
 	lcdWidth = width;
 	lcdHeight = height;
 }
@@ -53,11 +68,13 @@ bool DigoleLCD::writeCmd(std::string command)
 	{
 		if (wiringPiI2CWrite(i2cfd, command[a]) == -1)
 		{
-			robotLib->LogError("Error writing to I2C Bus");
+			std::stringstream ss;
+			ss << "Error writing to (" << i2cfd << ") on I2C bus";
+			robotLib->LogError(ss.str());
 			return false;
 		}			
 	}
-	
+	wiringPiI2CWrite(i2cfd, '\0');		
 	return true;
 }
 
@@ -91,7 +108,7 @@ bool DigoleLCD::setRotation(eDrawRot rotation)
 				orientation = eOrientation::Landscape;									
 				break;
 			}
-	}
+	}	
 	return writeCmd(cmd);	
 }
 
@@ -109,19 +126,16 @@ bool DigoleLCD::displayStartScreen(uint8_t screenNum)
 	return writeCmd(ss.str());
 }
 
-bool DigoleLCD::writeInt(int value)
+std::string DigoleLCD::writeInt(int value)
 {
 	std::stringstream ss;	
 	if (value > 255)
-	{
-		ss << 255;
-		if (!writeCmd(ss.str()))
-			return false;
-		ss.clear();
+	{		
+		ss << (char)255;
 		value -= 255;
 	}
-	ss << value;
-	return writeCmd(ss.str());
+	ss << (char)value;
+	return ss.str();
 }
 
 bool DigoleLCD::setColor(uint8_t color)
@@ -133,14 +147,12 @@ bool DigoleLCD::setColor(uint8_t color)
 
 bool DigoleLCD::setTrueColor(uint8_t r, uint8_t g, uint8_t b)
 {
-	if (!writeCmd("ESC"))
+	std::stringstream ss;
+	ss << "ESC" << writeInt(r) << writeInt(g) << writeInt(b);
+	if (!writeCmd(ss.str()))
+	{
 		return false;
-	if (!writeInt(r))
-		return false;
-	if (!writeInt(g))
-		return false;
-	if (!writeInt(b))
-		return false;
+	}
 	return true;
 }
 
@@ -172,18 +184,12 @@ bool DigoleLCD::drawBox(int x, int y, int width, int height)
 		return false;
 	}
 	
-	if (!writeCmd("FR"))
+	std::stringstream ss;
+	ss << "FR" << writeInt(x) << writeInt(y) << writeInt(x + width) << writeInt(y + height);	
+	if (!writeCmd(ss.str()))
 	{
 		return false;
 	}
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(x + width))
-		return false;
-	if (!writeInt(y + height))
-		return false;
 	return true;	
 }
 
@@ -214,17 +220,13 @@ bool DigoleLCD::drawFrame(int x, int y, int width, int height)
 		robotLib->LogError(ss.str());
 		return false;
 	}
+	std::stringstream ss;
+	ss << "DR" << writeInt(x) << writeInt(y) << writeInt(x + width) << writeInt(y + height);
+	if (!writeCmd(ss.str()))
+	{
+		return false;
+	}
 	
-	if (!writeCmd("DR"))
-		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(x + width))
-		return false;
-	if (!writeInt(y + height))
-		return false;
 	return true;
 }
 
@@ -308,16 +310,14 @@ bool DigoleLCD::drawCircle(int x, int y, int radius, bool filled)
 	std::string fStr = "0";
 	if (filled)
 		fStr = "1";
-	if (!writeCmd("CC"))
+	if (!writeCmd("CC"))		
 		return false;
-	if (!writeInt(x))
+	ss << "CC" << writeInt(x) << writeInt(y) << writeInt(radius) << fStr;
+	if (!writeCmd(ss.str()))
+	{
 		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(radius))
-		return false;
-	if (!writeCmd(fStr))
-		return false;		
+	}
+	
 	return true;
 }
 
@@ -348,15 +348,13 @@ bool DigoleLCD::setPixel(int x, int y, int color)
 		robotLib->LogError(ss.str());
 		return false;
 	}
-	if (!writeCmd("DP"))
+	std::stringstream ss;
+	ss << "DP" << writeInt(x) << writeInt(y) << writeInt(color);
+	if (!writeCmd(ss.str()))
+	{
 		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(color))
-		return false;
-	return true;
+	}
+return true;
 }
 
 bool DigoleLCD::drawLine(int x, int y, int x1, int y1)
@@ -412,16 +410,12 @@ bool DigoleLCD::drawLine(int x, int y, int x1, int y1)
 		robotLib->LogError(ss.str());
 		return false;
 	}
-	if (!writeCmd("LN"))
+	std::stringstream ss;
+	ss << "LN" << writeInt(x) << writeInt(y) << writeInt(x1) << writeInt(y1);
+	if (!writeCmd(ss.str()))
+	{
 		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(x1))
-		return false;
-	if (!writeInt(y1))
-		return false;
+	}
 	return true;
 }
 
@@ -452,11 +446,9 @@ bool DigoleLCD::drawLineTo(int x, int y)
 		robotLib->LogError(ss.str());
 		return false;
 	}
-	if (!writeCmd("LT"))
-		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
+	std::stringstream ss;
+	ss << "LT" << writeInt(x) << writeInt(y);
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;
 }
@@ -473,7 +465,7 @@ bool DigoleLCD::drawVLine(int x, int y, int height)
 
 bool DigoleLCD::nextTextLine()
 {
-	if (!writeInt(0))
+	if (!writeCmd("0"))
 		return false;
 	if (!writeCmd("TRT"))
 		return false;
@@ -482,27 +474,27 @@ bool DigoleLCD::nextTextLine()
 
 bool DigoleLCD::setFont(uint8_t font)
 {
-	if (!writeCmd("SF"))
-		return false;
-	if (!writeInt(font))
+	std::stringstream ss;
+	ss << "SF" << font;
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;
 }
 
 bool DigoleLCD::directCommand(uint8_t cmd)
 {
-	if (!writeCmd("MCD"))
-		return false;
-	if (!writeInt(cmd))
+	std::stringstream ss;
+	ss << "MCD" << cmd;
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;
 }
 
 bool DigoleLCD::directData(int data)
 {
-	if (!writeCmd("MCT"))
-		return false;
-	if (!writeInt(data))
+	std::stringstream ss;
+	ss << "MCT" << data;
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;
 }
@@ -530,43 +522,24 @@ bool DigoleLCD::moveArea(int x0, int y0, int x1, int y1, uint8_t xoffset, uint8_
 		return false;
 	}
 	
-	if (!writeCmd("MA"))
-	{
-		return false;
-	}
-	if(!writeInt(x0))
-	{
-		return false;
-	}
-	if (!writeInt(y0))	
-	{
-		return false;
-	}
-	if (!writeInt(x1))	
-	{
-		return false;
-	}
-	if (!writeInt(y1))	
-	{
-		return false;
-	}
-	if (!writeInt(xoffset))	
-	{
-		return false;
-	}
-	if (!writeInt(yoffset))	
+	std::stringstream ss;
+	ss << "MA" << writeInt(x0) << writeInt(y0) << writeInt(x1) << writeInt(y1) << writeInt(xoffset) << writeInt(yoffset);
+	if(!writeCmd(ss.str()))
 	{
 		return false;
 	}
 	return true;
 }
 
+//TODO: Fix this
 bool DigoleLCD::uploadStartScreen(int lon, uint8_t *data, int xdelay)
 {
+	/*
 	if (!writeCmd("SSS"))
 	{
 		return false;		
 	}
+	
 	if (!writeInt((uint8_t)(lon % 256)))
 	{
 		return false;		
@@ -580,35 +553,25 @@ bool DigoleLCD::uploadStartScreen(int lon, uint8_t *data, int xdelay)
 	{
 		delay(xdelay);
 		c =*(data+j);
-		if (!writeInt(c))
+		if (!writeCmd(c))
 		{
 			return false;
 		}		
 	}
+	*/
 	return true;
 }
 
+//TODO: Fix this
 bool DigoleLCD::uploadUserFont(int lon, uint8_t *data, uint8_t sect)
 {
+	/*
 	uint8_t c;
-	if (!writeCmd("SUF"))
-	{
-		return false;		
-	}
-	if (!writeInt(sect))
-	{
-		return false;		
-	}
-	if (!writeInt((uint8_t)(lon % 256)))
-	{
+	std::stringstream ss;
+	ss << "SUF" << writeInt(sect) << writeInt((uint8_t)lon % 256) << writeInt((uint8_t)(lon / 256));
+	if (!writeCmd(ss.str()))
 		return false;
-	}
-	
-	if (!writeInt((uint8_t)(lon / 256)))
-	{
-		return false;		
-	}
-	
+		
 	for (int j = 0; j < lon; j++)
 	{
 		if ((j % 32) == 0)
@@ -620,37 +583,18 @@ bool DigoleLCD::uploadUserFont(int lon, uint8_t *data, uint8_t sect)
 			delay(2);
 		}
 		c = *(data + j);
-		if (!writeInt(c))
+		if (!writeCmd(c))
 		{
 			return false;
 		}
 	}
+	*/
 	return true;
 }
 
 bool DigoleLCD::clearScreen()
 {
-	if (!writeCmd("C"))
-	{
-		return false;
-	}
-	if (!writeCmd("L"))
-	{
-		return false;
-	}
-	if (!writeInt(0))
-	{
-		return false;
-	}
-	if (!writeCmd("C"))
-	{
-		return false;
-	}
-	if (!writeCmd("L"))
-	{
-		return false;
-	}
-	if (!writeInt(0))
+	if (!writeCmd("CL"))
 	{
 		return false;
 	}
@@ -685,6 +629,13 @@ bool DigoleLCD::setDrawMode(eDrawMode mode)
 	return true;
 }
 
+bool DigoleLCD::setTextPos(int x, int y)
+{
+	std::stringstream ss;
+	ss << "TP" << writeInt(x) << writeInt(y);
+	return writeCmd(ss.str());
+}
+
 bool DigoleLCD::setTextPosBack()
 {
 	if (!writeCmd("ETB"))
@@ -694,55 +645,48 @@ bool DigoleLCD::setTextPosBack()
 
 bool DigoleLCD::setTextPosOffset(int xoffset, int yoffset)
 {
-	if (!writeCmd("ETC"))
-		return false;
 	std::stringstream s;
-	s << xoffset;
+	s << "ETP"<<writeInt(xoffset)<<writeInt(yoffset)<<"\n";
 	if (!writeCmd(s.str()))
-		return false;
-	s.clear();
-	s << yoffset;
-	if (!writeCmd(s.str()))
-		return false;
+		return false;	
+	writeCmd("\n");
 	return true;
 }
 
 bool DigoleLCD::setTextPosAbs(int x, int y)
 {
-	if (!writeCmd("ETP"))
-		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
+	std::stringstream ss;
+	ss << "ETP" << writeInt(x) << writeInt(y);
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;
 }
 
 bool DigoleLCD::setLinePattern(uint8_t pattern)
 {
-	if (!writeCmd("SLP"))
-		return false;
-	if (!writeInt(pattern))
+	std::stringstream ss;
+	ss << "SLP" << pattern;
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;	
 }
 
 bool DigoleLCD::setPrintPos(int x, int y, ePosMode mode)
 {
+	std::stringstream ss;
 	if (mode == ePosMode::Text)
 	{
-		if (!writeCmd("TP")) 
-			return false;
+		ss << "TP";		
 	}
 	else
 	{
-		if (!writeCmd("GP"))
-			return false;
+		ss << "GP";
 	}
-	if (!writeInt(x))
+	ss << writeInt(x) << writeInt(y);
+	if (!writeCmd(ss.str()))
+	{
 		return false;
-	if (!writeInt(y))
-		return false;
+	}
 	return true;
 }
 
@@ -762,13 +706,18 @@ bool DigoleLCD::enableCursor()
 
 bool DigoleLCD::writeText(std::string text)
 {
-	if (!writeCmd("TT"))
-		return false;
-	if (!writeCmd(text))
-		return false;
-	if (!writeInt(0))
+	std::stringstream ss;
+	ss << "TT" << text;
+	if (!writeCmd(ss.str()))
 		return false;
 	return true;
+}
+
+bool DigoleLCD::writeStringCP(int x, int y, std::string text)
+{
+	if (!setTextPos(x, y))
+		return false;
+	return writeText(text);		
 }
 
 bool DigoleLCD::writeString(int x, int y, std::string text)
@@ -780,9 +729,10 @@ bool DigoleLCD::writeString(int x, int y, std::string text)
 	return true;
 }
 
+//TODO:: Fix Bitmaps, figure out how to write the data section (Likely sans \0)
 bool DigoleLCD::drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap)
 {
-	uint8_t i = 0;
+	/*uint8_t i = 0;
 	int j;
 	if ((w & 7 != 0))
 		i = 1;
@@ -801,10 +751,12 @@ bool DigoleLCD::drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap)
 		if(!writeInt(*(bitmap + j)))
 			return false;
 	}
+	*/
 }
 
 bool DigoleLCD::drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap, uint8_t c)
 {
+	/*
 	uint8_t i = 0;
 	int j;
 	if (c != 0)
@@ -826,6 +778,7 @@ bool DigoleLCD::drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap, ui
 		if(!writeInt(*((bitmap + j))^c))
 			return false;
 	}
+	*/
 	return true;
 }
 
@@ -833,12 +786,7 @@ bool DigoleLCD::printxy(int x, int y, std::string text)
 {
 	if (!setPrintPos(x, y, ePosMode::Text))
 		return false;
-	if (!writeCmd("TT"))
-		return false;
-	if (!writeCmd(text))
-		return false;
-	if (!writeInt(0))
-		return false;
+	writeText(text);
 	return true;	
 }
 
@@ -846,12 +794,7 @@ bool DigoleLCD::printxy_abs(int x, int y, std::string text)
 {
 	if (!setTextPosAbs(x, y))
 		return false;
-	if (!writeCmd("TT"))
-		return false;
-	if (!writeCmd(text))
-		return false;
-	if (!writeInt(0))
-		return false;
+	writeText(text);
 	return true;	
 }
 

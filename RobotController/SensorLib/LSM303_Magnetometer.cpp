@@ -63,7 +63,7 @@ LSM303_Magnetometer::LSM303_Magnetometer(RobotLib* rl) :
 
 void LSM303_Magnetometer::getSensor(sensor_t *sensor)
 {
-	memset(sensor, 0, sizeof(sensor_t));
+	//memset(sensor, 0, sizeof(sensor_t));
 	strncpy(sensor->name, "LSM303_Magnetometer", sizeof(sensor->name) - 1);
 	sensor->name[sizeof(sensor->name) - 1] = 0;
 	sensor->version = 1;
@@ -131,7 +131,7 @@ void LSM303_Magnetometer::setMagRate(lsm303MagRate rate)
 
 std::string LSM303_Magnetometer::getDeviceName()
 {
-	return "LSM303 Magnetometer";
+	return "LSM303_Magnetometer";
 }
 
 bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
@@ -142,7 +142,7 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 		return (false);
 	}	
 	bool readingValid = false;
-	memset(event, 0, sizeof(sensors_event_t));
+	//memset(event, 0, sizeof(sensors_event_t));
 	while (!readingValid)
 	{
 		uint8_t reg_mg = wiringPiI2CReadReg8(i2cfd_Mag, LSM303_REGISTER_MAG_SR_REG_Mg);
@@ -242,8 +242,12 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 	event->magnetic.x = (float)raw.x / _lsm303Mag_Gauss_LSB_XY*SENSORS_GAUSS_TO_MICROTESLA;
 	event->magnetic.y = (float)raw.y / _lsm303Mag_Gauss_LSB_XY*SENSORS_GAUSS_TO_MICROTESLA;
 	event->magnetic.z = (float)raw.z / _lsm303Mag_Gauss_LSB_Z*SENSORS_GAUSS_TO_MICROTESLA;
-	
-	
+	event->gyro.x = (float)raw.x / _lsm303Mag_Gauss_LSB_XY*SENSORS_GAUSS_TO_MICROTESLA;
+	event->gyro.y = (float)raw.y / _lsm303Mag_Gauss_LSB_XY*SENSORS_GAUSS_TO_MICROTESLA;
+	event->gyro.z = (float)raw.z / _lsm303Mag_Gauss_LSB_Z*SENSORS_GAUSS_TO_MICROTESLA;
+	event->gyro.heading = (atan2(event->magnetic.y, event->magnetic.x) * 180) / 3.14159;
+	event->gyro.roll = (atan2(-1*event->magnetic.y, event->magnetic.z) * 180) / 3.14159;
+	event->gyro.pitch = (atan2(event->magnetic.x, sqrt(event->magnetic.y*event->magnetic.y + event->magnetic.z*event->magnetic.z)) * 180) / 3.14159;
 	return true;
 }
 

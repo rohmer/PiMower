@@ -172,6 +172,12 @@ typedef struct
 	image_format_t imageFormat;
 } sensors_image_t;
 
+typedef struct
+{
+	bool objectDetected;
+	float pctCertainty;
+} sensors_object_detection_t;
+
 /** struct sensor_event_s is used to provide a single sensor event in a common format. */
 typedef struct 
 {
@@ -199,7 +205,7 @@ typedef struct
     };
 	sensors_image_t image;				  /**< Image file information */
 	sensors_gps_t		gps;				  /**< location information */
-	
+	sensors_object_detection_t objectDetection;		/**< Object detection */		
 } sensors_event_t;
 
 /* Sensor details (40 bytes) */
