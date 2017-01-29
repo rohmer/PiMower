@@ -10,6 +10,9 @@
 class Database;
 class DeviceManager;
 
+// If running on a preempt kernel (Suggested) uncomment
+#define PREEMPT_RT
+
 // Defined if we are going to be running in test mode
 // This will have the various managers get simulated data
 #define SIMULATION

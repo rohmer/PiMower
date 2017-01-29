@@ -2,40 +2,91 @@
 #include "UIElement.h"
 #include "UIFont.h"
 #include <vector>
-#include <string>
 #include <map>
-#include "UIMenuPage.h"
+#include <string>
+#include <sstream>
 
-typedef struct
-{
-	std::string pageName;
-	UIFont::eFontName font;
-	uint8_t fontColor;
-	bool windowUseBorder;
-	uint8_t windowBorderColor;
-	bool windowStatusBar;
-	std::string windowStatusText;
-	uint8_t windowStatusBarBGColor;
-	uint8_t windowStatusBarTextColor;
-	uint8_t windowBGColor;
-	std::vector<menuItem_t> menuItems;
-} menuPage_t;
-
-class UIMenu : UIElement
+class UIMenu : public UIElement
 {
 public:
-	UIMenu(Rectangle location, std::vector<menuPage_t> pages);	
-	std::pair<int, int> getMenuResult();			// Returns an int from page, item
-	int currentPageIndex = 0;
-	Rectangle calcSize() override;
-	void update(DigoleLCD *lcdDriver) override;
-	bool pointTouches(Point pt) override;
-	~UIMenu()
+	enum MenuItemType
 	{
-	}
+		ReturnsValue,
+		PointerToPage
+	};
 	
+	struct MenuItem
+	{
+		MenuItem(uint8_t itemNumber, 
+			std::string itemText, 
+			MenuItemType itemType, 
+			int returnValue, 
+			int pageLink)
+		{
+			this->itemNumber = itemNumber;
+			this->itemText = itemText;
+			this->itemType = itemType;
+			this->returnValue = returnValue;
+			this->pageLink = pageLink;
+		}
+		uint8_t itemNumber;
+		std::string itemText;
+		MenuItemType itemType;
+		int returnValue;
+		int pageLink;
+	};
+	
+	struct MenuPage
+	{		
+		MenuPage()
+		{
+		}
+		MenuPage(std::string title)
+		{
+			this->title = title;
+			this->titleColor = DigoleLCD::WHITE;
+			this->titleFont = UIFont::defaultFont;
+			this->itemsFont = UIFont::defaultFont;
+			itemsColor = DigoleLCD::YELLOW;
+		}
+		MenuPage(std::string title, 
+			uint8_t titleColor, 
+			UIFont::eFontName titleFont, 
+			UIFont::eFontName itemsFont,
+			uint8_t itemsColor)
+		{
+			this->title = title;
+			this->titleColor = titleColor;
+			this->titleFont = titleFont;
+			this->itemsFont = itemsFont;
+			this->itemsColor = itemsColor;
+		}
+		std::string title;
+		uint8_t titleColor;
+		UIFont::eFontName titleFont;
+		UIFont::eFontName itemsFont;
+		uint8_t itemsColor;
+		std::vector<MenuItem> menuItems;						
+	};
+	
+	UIMenu(RobotLib *robotLib);
+	uint8_t createMenuPage(std::string title);
+	uint8_t createMenuPage(std::string title,
+		uint8_t titleColor,
+		UIFont::eFontName titleFont,
+		UIFont::eFontName itemsFont,
+		uint8_t itemsColor);
+	uint8_t addMenuOption(uint8_t menuPage,
+		std::string itemText, 
+		MenuItemType itemType, 
+		int returnValue = -1, 
+		int pageLink=-1);
+	bool checkMenu();
+	void update(DigoleLCD *lcd, RobotLib *robotLib);
+		
 private:
-	std::map<int, menuPage_t> pageData;
-	std::map<int, UIMenuPage*> pages;
-	int activePage = 0;	
+	RobotLib *robotLib;
+	std::map<uint8_t, MenuPage> menuPages;		// uint - page number, returned in createMenuPage
+	uint8_t pageCounter = 0, currentPage = 0, cpRow = 0;
+	std::map<int, Rectangle> touchPoints;
 };

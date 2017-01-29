@@ -18,6 +18,8 @@
 #include <iomanip>
 #include "../../3rdParty/wiringPi/wiringPi/wiringPiI2C.h"
 
+// Delay for uploading bitmaps
+#define BITMAP_DELAY    (800)
 
 /* Driver for Digole LCD */
 class DigoleLCD : public DeviceBase
@@ -52,6 +54,24 @@ public:
 		Landscape
 	};
 	
+	enum LCDColor
+	{
+		BLACK       = 0x00,
+		DARK_RED    = 0x40,
+		RED         = 0xA0,
+		LIGHT_RED	= 0xE0,
+		DARK_BLUE   = 0x02,
+		BLUE        = 0x03,
+		ORANGE      = 0xC4,
+		DARK_GREEN  = 0x08,
+		GREEN       = 0x10,
+		LIGHT_GREEN = 0x1C,
+		BROWN       = 0x44,
+		LIGHT_BLUE  = 0x1B,
+		YELLOW      = 0xD8,
+		WHITE       = 0xFF			
+	};
+	
 	DigoleLCD(RobotLib *robotLib);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr, int width, int height);
@@ -82,6 +102,7 @@ public:
 	bool displayStartScreen(uint8_t screenNum);
 	bool setColor(uint8_t color);
 	bool setTrueColor(uint8_t r, uint8_t g, uint8_t b);
+	bool setBackgroundColor(uint8_t color);
 	bool drawBox(int x, int y, int w, int h);
 	bool drawBoxFill(int x, int y, int w, int h);
 	bool drawFrame(int x, int y, int w, int h);
@@ -98,7 +119,7 @@ public:
 	bool directData(int data);
 	bool moveArea(int x0, int y0, int x1, int y1, uint8_t xoffset, uint8_t yoffset);
 	bool uploadStartScreen(int lon, uint8_t *data, int xdelay);
-	bool uploadUserFont(int lon, uint8_t *data, uint8_t sect);
+	bool uploadUserFont(int len, uint8_t *data, uint8_t sect);
 	bool clearScreen();
 	bool setDrawMode(eDrawMode mode);
 	bool setTextPos(int x, int y);
@@ -111,7 +132,8 @@ public:
 	bool enableCursor();
 	bool writeStringCP(int x, int y, std::string text);
 	bool writeString(int x, int y, std::string text);
-	bool drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap);
+	bool drawBitmap256(int x, int y, int w, int h, const uint8_t *bitmap);
+	bool drawBitmap256K(int x, int y, int w, int h, const uint8_t *bitmap);
 	bool drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap, uint8_t c);
 	bool printxy(int x, int y, std::string text);
 	bool printxy_abs(int x, int y, std::string text);
@@ -122,6 +144,15 @@ public:
 	bool setSleepMode();
 	bool backLightBrightness(uint8_t brightness);
 	eOrientation getOrientation();
+	uint8_t getWidth()
+	{
+		return lcdWidth;
+	}
+	
+	uint8_t getHeight()
+	{
+		return lcdHeight;
+	}
 	
 private:
 	uint8_t i2cAddr, i2cfd;	
@@ -129,6 +160,8 @@ private:
 	bool initialized = false;
 	void initialize(int width, int height);
 	bool writeCmd(std::string command);
+	bool writeStr(std::string string);
+	bool writeUint(uint8_t c);
 	std::string writeInt(int value);
 	void delay(unsigned int len);
 	bool writeText(std::string text);

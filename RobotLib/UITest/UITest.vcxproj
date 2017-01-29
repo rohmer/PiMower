@@ -31,7 +31,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
+      <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="UITest.cpp" />
@@ -56,6 +58,9 @@
     <ProjectReference Include="..\RobotLib.vcxproj">
       <Project>{b37f3067-2a62-4034-9068-352f6949466a}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="img256.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

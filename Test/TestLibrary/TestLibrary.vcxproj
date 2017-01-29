@@ -34,6 +34,7 @@
       <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;../../..;..;../../../../../Documents/GitHub/PiMower/RobotLib;C:/Users/rohme/AppData/Local/VisualGDB/RemoteSourceCache/PI/0001/include;../../../../../Documents/GitHub/PiMower/3rdParty/RapidXML;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
+      <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>

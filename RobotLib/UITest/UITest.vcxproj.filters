@@ -31,4 +31,9 @@
       <Filter>VisualGDB settings</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="img256.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

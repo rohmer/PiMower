@@ -1,66 +1,45 @@
 #include "UILabel.h"
 
-UILabel::UILabel(std::string text, Point location)
-	: UIElement(Point(location.x, location.y), false)
-	, font(UIFont::u8g_font_unifont)
-	, text(text)
-	, textColor(1)	
+UILabel::UILabel(Point position, std::string text)
+	: UIElement(position, false, false)
 {
-	// We dont need to calculate the box, since this isnt clicakble
-	setUpdateCycle(-1);	
+	labelFont = UIFont::defaultFont;
+	labelText = text;
+	textColor = DigoleLCD::WHITE;
+	textBGColor = DigoleLCD::BLACK;
+	setArea();
 }
 
-UILabel::UILabel(std::string text, Point location, UIFont::eFontName font, bool clickable) 
-	: UIElement(Point(location.x, location.y), clickable)
-	, font(font)
-	, text(text)
-	, textColor(1)
-{	
-	// Calculate the size if this is clickable
-	if (clickable)
-	{
-		elementArea = calcSize();
-	}
-	setUpdateCycle(-1);
-}
-	
-UILabel::UILabel(std::string text, Point location, UIFont::eFontName font, bool clickable, uint8_t textColor) 
-	: UIElement(Point(location.x, location.y), clickable)
-	, font(font)
-	, text(text)
-	, textColor(textColor)	
-{	
-	// Calculate the size if this is clickable
-	if (clickable)
-	{
-		elementArea = calcSize();
-	}
-	setUpdateCycle(-1);
-}
-
-void UILabel::update(DigoleLCD *lcdDriver) 
-{	
-	if (updateNeeded())
-	{
-		lcdDriver->setColor(textColor);
-		lcdDriver->printxyf_abs(location.x, location.y, UIFont::getFontNum(font), text);
-	}
-}
-
-Rectangle UILabel::calcSize()
+UILabel::UILabel(Point position, std::string text,UIFont::eFontName font, uint8_t textColor, uint8_t textBackgroundColor)
+	: UIElement(position, false, false)
 {
-	return Rectangle(location.x, location.y, UIFont::getFontWidth(font)*text.size(), UIFont::getFontHeight(font));
+	labelFont = font;
+	labelText = text;
+	textColor = textColor;
+	textBGColor = textBackgroundColor;
+	setArea();
 }
 
-bool UILabel::pointTouches(Point pt)
-{	
-	// If we cant click on it, we dont care
-	if (!clickable)
-		return false;
-	if (elementArea.contains(pt))
-	{
-		touchEvents.push_back(true);
-		return true;
-	}
-	return false;
+void UILabel::setArea()
+{
+	int width = labelText.length()*UIFont::getFontWidth(labelFont);
+	int height = labelText.length()*UIFont::getFontHeight(labelFont);
+	elementArea = Rectangle(position.x, position.y, position.x + width, position.y + width);
+}
+
+void UILabel::update(DigoleLCD *lcd, RobotLib *robotLib) 
+{		
+	std::stringstream ss;
+	ss << "Text Color: " << (int)textColor;
+	robotLib->Log(ss.str());
+	ss.clear();
+	ss << "BG Color: " << (int)textBGColor;
+	robotLib->Log(ss.str());
+	ss.clear();
+	ss << "Position: (" << position.x << ", "<< position.y<<")";	
+	robotLib->Log(ss.str());
+	robotLib->Log(labelText);
+	lcd->setColor(textColor);
+	lcd->setBackgroundColor(textBGColor);
+	lcd->printxy_abs(position.x, position.y, labelText);
 }

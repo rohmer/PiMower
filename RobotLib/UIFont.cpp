@@ -25,6 +25,9 @@ int UIFont::getFontNum(eFontName font)
 		case(eFontName::u8g_font_unifont):
 			return 0;
 			break;
+		case(eFontName::defaultFont):
+			return 0;
+			break;
 	}
 	return 0;
 }
@@ -52,7 +55,10 @@ int UIFont::getFontHeight(eFontName font)
 			return 46;
 			break;
 		case(eFontName::u8g_font_unifont):
-			return 16;
+			return 10;
+			break;
+		case(eFontName::defaultFont):
+			return 10;
 			break;
 	}
 	return 16;
@@ -81,6 +87,9 @@ int UIFont::getFontWidth(eFontName font)
 		return 41;
 		break;
 	case(eFontName::u8g_font_unifont):
+		return 16;
+		break;
+	case(eFontName::defaultFont):
 		return 16;
 		break;
 	}

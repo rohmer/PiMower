@@ -4,41 +4,43 @@
 #include "Rectangle.h"
 #include "../RobotController/SensorLib/DigoleLCD.h"
 
+enum eTextAlignment
+{
+	textLeft,
+	textRight
+};
+
 class UIElement
 {
 	public:
-		UIElement(Point location);
-		UIElement(Point location, bool clickable);
-		virtual bool pointTouches(Point pt);
-		void setClickable(bool value);
-		void setUpdateCycle(int msBetweenUpdate);
-		bool updateNeeded();		
-		void setElementArea(Rectangle newArea);
-	
-		virtual void update(DigoleLCD *lcdDriver)
-		{};
-		virtual Rectangle calcSize()
-		{};
-		
-		void forceUpdate();
-		void enabled(bool value);
-		Rectangle getElementArea()
+		UIElement(Point position, bool needsUpdate, bool uiTarget);		
+		bool ptInElement(Point pt);		
+		virtual void update(DigoleLCD *lcd, RobotLib *robotLib)
 		{
-			return elementArea;
-		}
-		int getUpdateCycle()
+			robotLib->Log("Calling base");
+		};				
+		bool updateRequired()
 		{
-			return updateCycle;
+			return needsUpdate;
 		}
-	
-	protected:		
-		bool clickable;
-		Point location;			
+		void setElementID(int elementID)
+		{
+			this->elementID = elementID;
+		}
+		int getElementID()
+		{
+			return this->elementID;
+		}
+		bool isUITarget()
+		{
+			return uiTarget;
+		}
+		virtual int processTouch(Point pt) {} 		// -1 if not touching a control, otherwise the control
+													// value;
+	protected:
+		virtual void setArea(){};		
+		int elementID;	
+		bool needsUpdate, uiTarget;
+		Point position;
 		Rectangle elementArea;
-		int updateCycle;
-		bool elementEnabled;
-		std::vector<bool> touchEvents;
-	
-	private:
-		std::chrono::system_clock::time_point updateTime;	
 };

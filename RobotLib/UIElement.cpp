@@ -1,70 +1,16 @@
 #include "UIElement.h"
 
-UIElement::UIElement(Point location)
-	: clickable(false)
-	, location(location)
-	, updateCycle(-1)
-	, elementArea(Rectangle(location.x, location.y,0,0))
+UIElement::UIElement(Point position, bool needsUpdate, bool uiTarget)
 {
-	updateTime = std::chrono::system_clock::now();
+	this->needsUpdate = needsUpdate;
+	this->uiTarget = uiTarget;
+	this->position = position;
+	elementArea = Rectangle(0, 0, 0, 0);
 }
 
-UIElement::UIElement(Point location, bool clickable)
-	: location(location)
-	, clickable(clickable)
-	, updateCycle(-1)
-	, elementArea(Rectangle(location.x, location.y, 0, 0))
-{	
-	updateTime = std::chrono::system_clock::now();
-}
-
-bool UIElement::pointTouches(Point pt)
+bool UIElement::ptInElement(Point pt)
 {
-	if (!clickable)
+	if (!uiTarget)
 		return false;
-	return elementArea.contains(pt);
-}
-
-void UIElement::setClickable(bool value)
-{
-	clickable = value;
-}
-
-void UIElement::setUpdateCycle(int msBetweenUpdate)
-{
-	updateCycle = msBetweenUpdate;
-}
-
-void UIElement::setElementArea(Rectangle newArea)
-{
-	elementArea = newArea;	
-}
-
-bool UIElement::updateNeeded()
-{
-	if (!elementEnabled)
-		return false;
-	if (std::chrono::system_clock::now() > updateTime)
-	{
-		if (updateCycle == -1)
-		{			
-			updateTime = std::chrono::system_clock::now() + std::chrono::hours(12);
-		}
-		else
-		{
-			updateTime = std::chrono::system_clock::now() + std::chrono::milliseconds(updateCycle);
-		}
-		return true;
-	}
-	return false;
-}
-
-void UIElement::forceUpdate()
-{
-	updateTime = std::chrono::system_clock::now();
-}
-
-void UIElement::enabled(bool value)
-{
-	elementEnabled = value;
+	return (elementArea.contains(pt));		
 }

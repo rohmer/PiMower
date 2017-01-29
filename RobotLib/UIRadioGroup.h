@@ -1,41 +1,46 @@
 #pragma once
-#pragma once
 #include "UIElement.h"
-#include "UIFont.h"
+#include <string>
 #include <vector>
+#include "UIFont.h"
+#include "ScreenManager.h"
 
-class UIRadioGroup : UIElement
+class UIRadioGroup : public UIElement
 {
-	public:
-		UIRadioGroup(Point location);
-		UIRadioGroup(Point location, bool rightTextAlign);
-		
-		bool pointTouches(Point pt) override;
-		void update(DigoleLCD *lcdDriver) override;
-		Rectangle calcSize() override;
-		void addButton(std::string text, int value, bool isChecked);
-		int getValue();
+public:	
+	enum GroupAlignment
+	{
+		Vertical,
+		Horizontal
+	};
 	
-	private:
-		struct radioButton
-		{
-			radioButton(int value, bool isChecked, std::string text)
-				: value(value)
-				, isChecked(isChecked)
-				, text(text)
-			{
-			}
-			int value;
-			bool isChecked;
-			std::string text;
-			Rectangle boundingBox;
-		};
-		
-		bool textRightAlign = true;
-		UIFont::eFontName font = UIFont::u8g_font_unifont;
+	UIRadioGroup(Point position);
+	UIRadioGroup(Point position, 
+		uint8_t radioColor, 
+		uint8_t textColor, 
+		UIFont::eFontName  font,
+		GroupAlignment alignment,
+		eTextAlignment textAlignment);
+	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
+	bool addRadioItem(std::string label, int value, bool isSelected);
+	
+private:
+	struct sRadioValue		
+	{
+		std::string label;
 		int value;
-		uint8_t textColor;
-		uint8_t checkColor;
-		std::vector<radioButton> buttons;		
-		uint8_t maxTextWidth = 0;
+		Point checkPoint;
+		Point textStart;
+		Rectangle touchPoint;
+		bool isSelected;
+	};
+	
+	void setArea();	
+	uint8_t radioColor = DigoleLCD::LIGHT_RED;
+	uint8_t textColor = DigoleLCD::WHITE;
+	UIFont::eFontName font = UIFont::defaultFont;
+	GroupAlignment alignment=GroupAlignment::Horizontal;
+	eTextAlignment textAlignment=eTextAlignment::textRight;
+	std::vector<sRadioValue> values;
 };
+	

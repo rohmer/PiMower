@@ -11,7 +11,8 @@ class UIFont
 			u8g_font_osr18,
 			u8g_font_gdr20,
 			u8g_font_osr35n,
-			u8g_font_unifont
+			u8g_font_unifont,
+			defaultFont
 		};
 	
 		static int getFontNum(eFontName font);

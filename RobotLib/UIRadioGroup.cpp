@@ -1,168 +1,127 @@
 #include "UIRadioGroup.h"
 
-UIRadioGroup::UIRadioGroup(Point location) 
-	: UIElement(location, true)
-	, textRightAlign(true)
-	, font(UIFont::u8g_font_unifont)
-	, value(-1)
-	, textColor(1)
-	, checkColor(35)
-{
-	// We have no items yet, so default to nothing
-	elementArea = Rectangle(0, 0, 0, 0);	
+UIRadioGroup::UIRadioGroup(Point position)
+	: UIElement(position, false, true)
+{		
 }
 
-UIRadioGroup::UIRadioGroup(Point location, bool rightTextAlign)
-	: UIElement(location, true)
-	, textRightAlign(rightTextAlign)
-	, font(UIFont::u8g_font_unifont)
-	, value(-1)
-	, textColor(1)
-	, checkColor(35)
+UIRadioGroup::UIRadioGroup(Point position,
+	uint8_t radioColor, 
+	uint8_t textColor, 
+	UIFont::eFontName font,
+	GroupAlignment alignment,
+	eTextAlignment textAlignment)
+	: UIElement(position, false, true)
 {
-	elementArea = Rectangle(0, 0, 0, 0);
+	this->radioColor = radioColor;
+	this->textColor = textColor;
+	this->font = font;
+	this->alignment = alignment;
+	this->textAlignment = textAlignment;
 }
 
-void UIRadioGroup::addButton(std::string text, int value, bool isChecked)
+void UIRadioGroup::setArea()
 {
-	// By default we have a button checked
-	if (buttons.size() == 0)
-	{		
-		isChecked = true;
-	}	
-	// If this is checked, no others can be
-	// Also set the maxTextWidth so we can later calculate bounding box
-	maxTextWidth = text.size();
-	for (int a = 0; a < buttons.size(); a++)
+	int checkSize = UIFont::getFontHeight(font);
+	if (UIFont::getFontWidth(font) < checkSize)
 	{
-		if(isChecked)
-			buttons[a].isChecked = false;			
-		if (buttons[a].text.size() > maxTextWidth)		
-			maxTextWidth = buttons[a].text.size();
+		checkSize = UIFont::getFontWidth(font);
 	}
-	// Finally set the value of the radioGroup;
-	if (isChecked)
+	if (alignment == GroupAlignment::Horizontal)
 	{
-		this->value = value;
-	}
-	buttons.push_back(radioButton(value, isChecked, text));
-	forceUpdate();	
-}
-
-bool UIRadioGroup::pointTouches(Point pt)
-{
-	// Check to see if the point is within this radio group
-	if (!elementArea.contains(pt))
-		return false;
-	
-	// Now we need to check to see if a radio button was clicked
-	for (int a = 0; a < buttons.size(); a++)
-	{
-		if (buttons[a].boundingBox.contains(pt))
+		int totalSize = 0;
+		for (int a = 0; a < values.size(); a++)
 		{
-			// Is is already checked?
-			if (buttons[a].isChecked)
-			{
-				// We are done				
-				return true;
-			}
-			// Clear all buttons
-			for (int b = 0; b < buttons.size(); b++)
-			{
-				buttons[b].isChecked = false;
-			}
-			// Its not checked, so check it
-			buttons[a].isChecked = true;
-			// Set the value of the control
-			this->value = buttons[a].value;
-			// Force an update
-			forceUpdate();
-			// return
-			touchEvents.push_back(true);
-			return true;
-		}
-	}
-	return false;
-}
-
-void UIRadioGroup::update(DigoleLCD *lcdDriver)
-{
-	if (buttons.size() == 0)
-	{
-		// Nothing to draw
-		return;
-	}
-	// First we need to figure out how big the whole bounding box for this control is 
-	// this allows us to short circuit figuring out what was touched in pointTouches if its 
-	// outside the control
-	elementArea = calcSize();
-	
-	for (int a = 0; a < buttons.size(); a++)
-	{
-		int y = location.y + ((UIFont::getFontHeight(font) + 2)*a);
-		// First draw the radio button
-		Rectangle boxRect;
-		int fontHeight = UIFont::getFontHeight(font);
-		int fontWidth = UIFont::getFontWidth(font);
-		if (fontHeight > fontWidth)
-		{
-			
-			boxRect.x1 = location.x;
-			boxRect.y1 = location.y + ((fontHeight - fontWidth) / 2);
-			boxRect.x2 = location.x + fontWidth;
-			boxRect.y2 = location.y + fontWidth;				
-		}
-		else
-		{
-			if (fontHeight < fontWidth)
-			{
-				boxRect.x1 = location.x + ((fontWidth - fontHeight) / 2);
-				boxRect.y1 = location.y;
-				boxRect.x2 = location.x + fontHeight;
-				boxRect.y2 = location.y + fontHeight;
-			}
+			if (textAlignment == eTextAlignment::textRight)
+			{				
+				int startX = position.x + totalSize;
+				int controlPtr = 0;
+				values[a].checkPoint = Point(startX, position.y);
+				controlPtr += checkSize * 2;
+				values[a].textStart = Point(startX + controlPtr, position.y+UIFont::getFontHeight(font));
+				controlPtr+= values[a].label.size()*(UIFont::getFontWidth(font)*.75);
+				values[a].touchPoint = Rectangle(startX, position.y, position.x + controlPtr, position.y + UIFont::getFontHeight(font));
+				totalSize += controlPtr;
+			} 
 			else
 			{
-				// width==height, we already have a box
-				boxRect.x1 = location.x;
-				boxRect.y1 = location.y;
-				boxRect.x2 = location.x + fontWidth;
-				boxRect.y2 = location.y + fontHeight;
+				int startX = position.x + totalSize;				
+				values[a].textStart = Point(position.x + totalSize, position.y);
+				totalSize += values[a].label.size()*UIFont::getFontWidth(font);
+				totalSize += checkSize;
+				values[a].checkPoint = Point(position.x + totalSize, position.y);
+				totalSize += UIFont::getFontWidth(font);
+				values[a].touchPoint = Rectangle(startX, position.y, position.x + totalSize, position.y + UIFont::getFontHeight(font));
 			}
 		}
-		lcdDriver->setColor(textColor);
-		int radius = boxRect.x2 - boxRect.x1;
-		lcdDriver->drawCircle(location.x, y, radius, false);
-		if (textRightAlign)
+	}
+	else
+	{
+		// Vertical Alignment
+		for (int a = 0; a < values.size(); a++)
 		{
-			lcdDriver->printxy_abs(location.x + fontWidth, y, buttons[a].text);
-			buttons[a].boundingBox = Rectangle(location.x - 1, y - 1, location.x + ((maxTextWidth + 1.5)*fontWidth), y + fontHeight + 1);
+			if (textAlignment == eTextAlignment::textRight)
+			{
+				values[a].checkPoint = Point(position.x, position.y + (a*UIFont::getFontHeight(font)*1.5));
+				values[a].textStart = Point(position.x + checkSize * 2, position.y + ((a + 1)*UIFont::getFontHeight(font) * 1.5)-2);
+			}
+			else
+			{				
+				values[a].textStart = Point(position.x, position.y + (a*UIFont::getFontHeight(font)*1.5)-2);
+				values[a].checkPoint = Point(position.x + checkSize + values[a].label.size()*UIFont::getFontWidth(font), position.y + ((a + 1)*UIFont::getFontHeight(font) * 1.5));
+			}
 		}
-		else
-		{
-			lcdDriver->printxy_abs(location.x - buttons[a].text.size() - 1, y, buttons[a].text);
-			buttons[a].boundingBox = Rectangle(location.x - buttons[a].text.size() - 1, y - 1, location.x + radius + 1, y + fontHeight + 1);
-		}
-		
-		// Draw the checkmark (Filled circle in radio button) if it is checked
-		if (buttons[a].isChecked)
-		{
-			lcdDriver->setColor(checkColor);
-			radius -= 2;
-			lcdDriver->drawCircle(location.x, y, radius, true);
-		}
-	}	
+	}
+	
+	// Make sure one is selected
+	bool itemSelected = false;
+	for (int a = 0; a < values.size(); a++)
+	{
+		if (values[a].value)
+			itemSelected = true;
+	}
+	if (!itemSelected)
+		values[0].value = true;
 }
 
-Rectangle UIRadioGroup::calcSize()
+void UIRadioGroup::update(DigoleLCD *lcd, RobotLib *robotLib)
 {
-	// So, our size is:
-	//		x = (maxTextWidth + 1.5) * font width
-	//		y = buttonCount * (fontHeight + 2)
-	elementArea = Rectangle(location.x, location.y, (maxTextWidth + 1.5)*UIFont::getFontWidth(font), buttons.size()*(UIFont::getFontHeight(font) + 2));	
+	int checkSize = UIFont::getFontHeight(font);
+	if (UIFont::getFontWidth(font) < checkSize)
+	{
+		checkSize = UIFont::getFontWidth(font)/2;
+	}
+	
+	for (int a = 0; a < values.size(); a++)
+	{
+		lcd->setColor(textColor);
+		// Draw box
+		lcd->drawBox(values[a].checkPoint.x, values[a].checkPoint.y, checkSize, checkSize);
+		lcd->printxy_abs(values[a].textStart.x, values[a].textStart.y, values[a].label);
+		if (values[a].isSelected)
+		{
+			lcd->setColor(radioColor);
+			lcd->setColor(radioColor);
+			lcd->drawBoxFill(values[a].checkPoint.x + 1, values[a].checkPoint.y + 1, checkSize - 2, checkSize - 2);
+		}		
+	}
 }
 
-int UIRadioGroup::getValue()
+bool UIRadioGroup::addRadioItem(std::string label, int value, bool isSelected)
 {
-	return this->value;
+	if (isSelected)
+	{
+		for (int a = 0; a < values.size(); a++)
+		{
+			values[a].isSelected = false;
+		}
+	}
+	sRadioValue radioValue;
+	radioValue.label = label;
+	radioValue.value = value;
+	radioValue.isSelected = isSelected;
+	
+	values.push_back(radioValue);
+	setArea();
+	return true;
 }

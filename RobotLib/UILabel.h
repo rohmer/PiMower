@@ -1,20 +1,25 @@
 #pragma once
 #include "UIElement.h"
-#include "../RobotController/SensorLib/DigoleLCD.h"
+#include <string>
 #include "UIFont.h"
 
-class UILabel : UIElement
+class UILabel : public UIElement
 {
-	public:
-		UILabel(std::string text, Point location);
-		UILabel(std::string text, Point location, UIFont::eFontName font, bool clickable);
-		UILabel(std::string text, Point location, UIFont::eFontName font, bool clickable, uint8_t textColor);
-		void update(DigoleLCD *lcdDriver) override;
-		Rectangle calcSize() override;
-		bool pointTouches(Point pt) override;
-		
-	private:
-		UIFont::eFontName font = UIFont::u8g_font_unifont;
-		std::string text;
-		uint8_t textColor;		
+public:
+	UILabel(Point position, std::string text);
+	UILabel(Point position, std::string text, UIFont::eFontName  font, uint8_t textColor, uint8_t textBackgroundColor);
+	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
+	int processTouch(Point pt) override
+	{
+		return -1;
+	}
+	
+protected:
+	void setArea() override;
+	
+	
+private:
+	std::string labelText;
+	UIFont::eFontName labelFont;
+	uint8_t textColor, textBGColor;
 };

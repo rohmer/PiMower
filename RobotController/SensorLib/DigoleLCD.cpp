@@ -38,6 +38,9 @@ void DigoleLCD::setup(uint8_t i2cAddr, int width, int height)
 
 void DigoleLCD::initialize(int width, int height)
 {
+	std::stringstream ss;
+	ss << "Initializing DigoleLCD (" << width << "," << height << ")";
+	robotLib->Log(ss.str());
 	i2cfd = DeviceManager::getI2CFD(i2cAddr);
 	if (i2cfd < 0)
 	{
@@ -46,6 +49,9 @@ void DigoleLCD::initialize(int width, int height)
 		return;
 	}
  	setRotation(eDrawRot::rot90);
+	setColor(LCDColor::WHITE);
+	setBackgroundColor(LCDColor::BLACK);	
+	clearScreen();
 	lcdWidth = width;
 	lcdHeight = height;
 }
@@ -62,50 +68,99 @@ void DigoleLCD::delay(unsigned int len)
 	nanosleep(&sleeper, &dummy);
 }
 
-bool DigoleLCD::writeCmd(std::string command)
+bool DigoleLCD::writeUint(uint8_t c)
 {
+	if(wiringPiI2CWrite(i2cfd,c)==-1)
+	{
+		std::stringstream ss;
+		ss << "Error writing to (" << i2cfd << ") on I2C bus";
+		robotLib->LogError(ss.str());
+		return false;
+	}
+	return true;
+}
+
+// Similar to writeCmd, but without the trailing \0
+bool DigoleLCD::writeStr(std::string command)
+{
+	for (int a = 0; a < command.size(); a++)
+	{
+		if (wiringPiI2CWrite(i2cfd, command[a]) == -1)	
+		{
+			std::stringstream ss;
+			ss << "Error writing to (" << i2cfd << ") on I2C bus, cmd: " << command;
+			robotLib->LogError(ss.str());
+			return false;
+		}
+	}
+	return true;
+}
+
+bool DigoleLCD::writeCmd(std::string command)
+{	
 	for (int a = 0; a < command.size(); a++)
 	{
 		if (wiringPiI2CWrite(i2cfd, command[a]) == -1)
 		{
 			std::stringstream ss;
-			ss << "Error writing to (" << i2cfd << ") on I2C bus";
+			ss << "Error writing to (" << i2cfd << ") on I2C bus, cmd: " <<command;
 			robotLib->LogError(ss.str());
 			return false;
 		}			
-	}
+	}	
 	wiringPiI2CWrite(i2cfd, '\0');		
+	delay(50);
 	return true;
 }
 
 bool DigoleLCD::setRotation(eDrawRot rotation)
 {
 	std::string cmd;
+	int tmp;
 	switch (rotation)
 	{		
 		case(eDrawRot::rot0):
 			{
 				cmd = "SD0";
-				orientation = eOrientation::Portrait;					
+				if (orientation == eOrientation::Portrait)
+				{					
+					lcdHeight = 240;
+					lcdWidth = 320;
+				}
+				orientation = eOrientation::Landscape;					
 				break;
 			}
 		case(eDrawRot::rot90):
 			{
 				cmd = "SD1";
-				orientation = eOrientation::Landscape;					
-				
+				if (orientation == eOrientation::Landscape)
+				{					
+					lcdHeight = 240;
+					lcdWidth = 320;				
+				}
+				orientation = eOrientation::Portrait;									
 				break;
 			}
 		case(eDrawRot::rot180):
 			{
 				cmd = "SD2";
-				orientation = eOrientation::Portrait;									
+				if (orientation == eOrientation::Portrait)
+				{					
+					lcdHeight = 320;
+					lcdWidth = 240;				
+				}				
+				orientation = eOrientation::Landscape;									
 				break;
 			}
 		case(eDrawRot::rot270):
 			{
 				cmd = "SD3";
-				orientation = eOrientation::Landscape;									
+				if (orientation == eOrientation::Landscape)
+				{					
+					lcdHeight = 240;
+					lcdWidth = 320;				
+				}				
+				orientation = eOrientation::Portrait;									
 				break;
 			}
 	}	
@@ -312,7 +367,12 @@ bool DigoleLCD::drawCircle(int x, int y, int radius, bool filled)
 		fStr = "1";
 	if (!writeCmd("CC"))		
 		return false;
+	
 	ss << "CC" << writeInt(x) << writeInt(y) << writeInt(radius) << fStr;
+	robotLib->Log(ss.str());
+	std::stringstream s;
+	s << "rad: " << radius << char(radius);
+	robotLib->Log(s.str());
 	if (!writeCmd(ss.str()))
 	{
 		return false;
@@ -359,57 +419,6 @@ return true;
 
 bool DigoleLCD::drawLine(int x, int y, int x1, int y1)
 {
-	if (x1 < 0)
-	{
-		robotLib->LogError("X1<0");
-		return false;
-	}
-	if (y1 < 0)
-	{
-		robotLib->LogError("Y1<0");
-		return false;
-	}
-	if (x1 > lcdWidth)
-	{
-		std::stringstream ss;
-		ss << x1 << " > lcdWidth: " << lcdWidth;
-		robotLib->LogError(ss.str());
-		return false;
-	}
-	
-	if (y1 > lcdHeight)
-	{
-		std::stringstream ss;
-		ss << y1 << " > lcdHeight: " << lcdHeight;
-		robotLib->LogError(ss.str());
-		return false;
-	}
-	
-	if (x < 0)
-	{
-		robotLib->LogError("X<0");
-		return false;
-	}
-	if (y < 0)
-	{
-		robotLib->LogError("Y<0");
-		return false;
-	}
-	if (x > lcdWidth)
-	{
-		std::stringstream ss;
-		ss << x << " > lcdWidth: " << lcdWidth;
-		robotLib->LogError(ss.str());
-		return false;
-	}
-	
-	if (y > lcdHeight)
-	{
-		std::stringstream ss;
-		ss << y << " > lcdHeight: " << lcdHeight;
-		robotLib->LogError(ss.str());
-		return false;
-	}
 	std::stringstream ss;
 	ss << "LN" << writeInt(x) << writeInt(y) << writeInt(x1) << writeInt(y1);
 	if (!writeCmd(ss.str()))
@@ -562,33 +571,46 @@ bool DigoleLCD::uploadStartScreen(int lon, uint8_t *data, int xdelay)
 	return true;
 }
 
-//TODO: Fix this
-bool DigoleLCD::uploadUserFont(int lon, uint8_t *data, uint8_t sect)
+bool DigoleLCD::uploadUserFont(int len, uint8_t *data, uint8_t sect)
 {
-	/*
-	uint8_t c;
-	std::stringstream ss;
-	ss << "SUF" << writeInt(sect) << writeInt((uint8_t)lon % 256) << writeInt((uint8_t)(lon / 256));
-	if (!writeCmd(ss.str()))
+	uint8_t u;
+	if (!writeStr("SUF"))
 		return false;
-		
-	for (int j = 0; j < lon; j++)
+	if (!writeUint(sect))
+		return false;
+	u = (len % 256);
+	if (!writeUint(u))
+		return false;
+	u = (len / 256);
+	if (!writeUint(u))
+		return false;
+	for (int a = 0; a < len; a++)
 	{
-		if ((j % 32) == 0)
+		if ((a % 32) == 0)
 		{
-			delay(10);
+			delay(BITMAP_DELAY);
 		}
-		else
-		{
-			delay(2);
-		}
-		c = *(data + j);
-		if (!writeCmd(c))
-		{
+		if (!writeUint(data[a]))
 			return false;
-		}
 	}
-	*/
+	return true;
+}
+
+bool DigoleLCD::drawBitmap256K(int x, int y, int w, int h, const uint8_t *bitmap)
+{
+	std::stringstream ss;
+	ss << "EDIM3" << writeInt(x) << writeInt(y) << writeInt(w) << writeInt(h);
+	if (!writeStr(ss.str()))
+		return false;
+	for (int a = 0; (a < h*w * 3); a++)
+	{
+		if ((a % 1024) == 0)		
+		{
+			delay(BITMAP_DELAY);
+		}
+		if (!writeUint(bitmap[a]))
+			return false;
+	}
 	return true;
 }
 
@@ -729,56 +751,40 @@ bool DigoleLCD::writeString(int x, int y, std::string text)
 	return true;
 }
 
-//TODO:: Fix Bitmaps, figure out how to write the data section (Likely sans \0)
-bool DigoleLCD::drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap)
+bool DigoleLCD::drawBitmap256(int x, int y, int w, int h, const uint8_t *bitmap)
 {
-	/*uint8_t i = 0;
 	int j;
-	if ((w & 7 != 0))
-		i = 1;
-	if (!writeCmd("DIM"))
+	std::stringstream ss;
+	ss << "EDIM1" << writeInt(x) << writeInt(y) << writeInt(w) << writeInt(h);
+	if (!writeStr(ss.str()))
 		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(w))
-		return false;
-	if (!writeInt(h))
-		return false;
-	for (j = 0; j < h * ((w >> 3) + i); j++)
+	for (j = 0; j < h*w; j++)
 	{
-		if(!writeInt(*(bitmap + j)))
+		if ((j % 1024) == 0)
+		{
+			delay(BITMAP_DELAY);
+		}
+		if (!writeUint(bitmap[j]))
 			return false;
 	}
-	*/
 }
 
 bool DigoleLCD::drawBitmap(int x, int y, int w, int h, const uint8_t *bitmap, uint8_t c)
-{
-	/*
-	uint8_t i = 0;
-	int j;
-	if (c != 0)
-		c = 0xff;
-	if ((w & 7 != 0))
-		i = 1;
-	if (!writeCmd("DIM"))
-		return false;
-	if (!writeInt(x))
-		return false;
-	if (!writeInt(y))
-		return false;
-	if (!writeInt(w))
-		return false;
-	if (!writeInt(h))
-		return false;
-	for (j = 0; j < h * ((w >> 3) + i); j++)
+{	
+	uint8_t i;
+	if ((w & 7) != 0)
 	{
-		if(!writeInt(*((bitmap + j))^c))
+		i = 1;
+	}
+	std::stringstream ss;
+	ss << "DIM" << writeInt(x) << writeInt(y) << writeInt(w) << writeInt(h);
+	if (!writeStr(ss.str()))
+		return false;
+	for (int a = 0; a < h *((w >> 3) + i); a++)
+	{
+		if (!writeUint(bitmap[a]))
 			return false;
 	}
-	*/
 	return true;
 }
 
@@ -820,20 +826,24 @@ bool DigoleLCD::calibrateTouchScreen()
 }
 
 Point DigoleLCD::getTouchEvent()
-{
-	if (!writeCmd("RPNXYI"))
+{		
+	if (!writeCmd("RPNXYC"))
 	{
 		return Point(-1,-1);
 	}
+	delay(50);	
 	int x, y;
 	int c = wiringPiI2CRead(i2cfd);
-	c <<= 8;
+	std::stringstream ss;
+	c <<= 8;	
 	c |= wiringPiI2CRead(i2cfd);
 	x = c;
 	c = wiringPiI2CRead(i2cfd);
-	c <<= 8;
+	c <<= 8;	
 	c |= wiringPiI2CRead(i2cfd);
 	y = c;
+	ss << x << "," << "y";
+	robotLib->Log(ss.str());
 	if (x > 0 && x<lcdWidth && y>0 && y < lcdHeight)
 		return Point(x, y);
 	return Point(-1, -1);
@@ -861,6 +871,13 @@ DigoleLCD::eOrientation DigoleLCD::getOrientation()
 {
 	return orientation;	
 }
-		
+
+bool DigoleLCD::setBackgroundColor(uint8_t color)
+{
+	std::stringstream ss;
+	ss << "BGC" << color;
+	return writeCmd(ss.str());
+}
+
 // Add to auto registry so the device manager can know about it
 AUTO_REGISTER_DEVICE(DigoleLCD);

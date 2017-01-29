@@ -36,6 +36,7 @@
       <CLanguageStandard>
       </CLanguageStandard>
       <CPPLanguageStandard>GNUPP14</CPPLanguageStandard>
+      <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
@@ -65,18 +66,16 @@
     <ClCompile Include="MotorController.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RobotLib.cpp" />
+    <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="SensorEvents.cpp" />
-    <ClCompile Include="UITextEntry.cpp" />
     <ClCompile Include="UIButton.cpp" />
-    <ClCompile Include="UICheckbox.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIFont.cpp" />
+    <ClCompile Include="UIInput.cpp" />
     <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UIMenu.cpp" />
-    <ClCompile Include="UIMenuPage.cpp" />
     <ClCompile Include="UIRadioGroup.cpp" />
-    <ClCompile Include="UIWindow.cpp" />
-    <ClCompile Include="WindowManager.cpp" />
+    <ClCompile Include="UIToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behavior.h" />
@@ -100,20 +99,19 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />
+    <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="SensorEvents.h" />
     <ClInclude Include="SensorManager.h" />
     <ClInclude Include="States.h" />
-    <ClInclude Include="UITextEntry.h" />
     <ClInclude Include="UIButton.h" />
-    <ClInclude Include="UICheckbox.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIFont.h" />
-    <ClInclude Include="UIMenu.h" />
-    <ClInclude Include="UIMenuPage.h" />
-    <ClInclude Include="UIWindow.h" />
+    <ClInclude Include="UIInput.h" />
+    <ClInclude Include="UIKeyboardIcons.h" />
     <ClInclude Include="UILabel.h" />
+    <ClInclude Include="UIMenu.h" />
     <ClInclude Include="UIRadioGroup.h" />
-    <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="UIToggle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings" />
@@ -123,6 +121,13 @@
     <ProjectReference Include="..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
       <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Icons\back-arrow_318-9335.jpg" />
+    <Image Include="Icons\Backspace.jpg" />
+    <Image Include="Icons\Shift.png" />
+    <Image Include="Icons\Space.png" />
+    <Image Include="Icons\Symbol.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

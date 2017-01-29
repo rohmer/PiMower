@@ -1,87 +1,52 @@
 #include "UIButton.h"
 
-UIButton::UIButton(Rectangle location, std::string buttonText)
-	: UIElement(Point(location.x1, location.y1))
-	, buttonColor(35)
-	, textColor(252)
-	, buttonText(buttonText)
-	, font(UIFont::u8g_font_unifont)	
-	, triggered(false)
-	, useButtonFrame(true)
-	, buttonFrameColor(1)
+UIButton::UIButton(Point position, std::string text)
+	: UIElement(position, false, true)
 {
-	elementArea = location;
-	setUpdateCycle(-1);
-	forceUpdate();
+	labelFont = UIFont::defaultFont;
+	labelText = text;
+	textColor = DigoleLCD::WHITE;
+	buttonColor = DigoleLCD::BLACK;
+	buttonFrameColor = DigoleLCD::WHITE;	
 }
 
-UIButton::UIButton(Rectangle location, std::string buttonText, UIFont::eFontName  font, uint8_t buttonColor, uint8_t textColor, bool useButtonFrame, uint8_t buttonFrameColor)
-	: UIElement(Point(location.x1, location.y1))
-	, buttonColor(buttonColor)
-	, textColor(textColor)
-	, buttonText(buttonText)
-	, font(font)	
-	, triggered(false)
-	, useButtonFrame(useButtonFrame)
-	, buttonFrameColor(buttonFrameColor)
+UIButton::UIButton(Point position, std::string text, UIFont::eFontName font, uint8_t textColor, uint8_t buttonColor, uint8_t buttonFrameColor, Rectangle buttonSize)
+	: UIElement(position, false, true)
 {
-	elementArea = location;
-	setUpdateCycle(-1);
-	forceUpdate();
+	labelFont = font;
+	labelText = text;
+	textColor = textColor;
+	this->buttonColor = buttonColor;
+	this->buttonFrameColor = buttonFrameColor;
+	elementArea = buttonSize;
 }
 
-Rectangle UIButton::calcSize()
+void UIButton::setArea()
 {
-	return elementArea;
+	int width = (labelText.length()*UIFont::getFontWidth(labelFont)+6)/2;
+	int height = UIFont::getFontHeight(labelFont)+6;
+	elementArea = Rectangle(position.x, position.y, position.x + width, position.y + height);	
+	elementArea.update();	
+	areaSet = true;
 }
 
-void UIButton::update(DigoleLCD *lcdDriver)
-{
-	if (!this->updateNeeded())
-		return;
-	Rectangle drawRect(elementArea.x1, elementArea.y1, elementArea.x2, elementArea.y2);
-	if (useButtonFrame)
-	{
-		lcdDriver->setColor(buttonFrameColor);
-		lcdDriver->drawBox(drawRect.x1, drawRect.y1, drawRect.width, drawRect.height);
-		drawRect.x1++;
-		drawRect.y1++;
-		drawRect.x2--;
-		drawRect.y2--;
-		drawRect.update();
-	}
-	
-	lcdDriver->setColor(buttonColor);
-	lcdDriver->drawBoxFill(drawRect.x1, drawRect.y1, drawRect.width, drawRect.height);
-	if (buttonText.size() > 0)
-	{		
-	// Now center the text in the button
-	// TODO: Assuming the the position for text is top left corner, maybe wrong
-		int centerX, centerY;
-		int fontHeight = UIFont::getFontHeight(font);
-		int fontWidth = UIFont::getFontWidth(font);
-		if (drawRect.x1 < drawRect.x2)
-			centerX = (drawRect.x2 - drawRect.x1) / 2;
-		else
-			centerX = (drawRect.x1 - drawRect.x2) / 2;
-		if (drawRect.x1 < drawRect.x2)
-			centerY = (drawRect.y2 - drawRect.y1) / 2 - (fontHeight / 2);
-		else
-			centerY = (drawRect.y1 - drawRect.y2) / 2 - (fontHeight / 2);
-		lcdDriver->setColor(textColor);
-
-		lcdDriver->printxy_abs(centerX - ((fontWidth*buttonText.size()) / 2), centerY, buttonText);
-	}	
+void UIButton::update(DigoleLCD *lcd, RobotLib *robotLib) 
+{		
+	if (!areaSet)
+		setArea();
+	lcd->setFont(labelFont);
+	// First draw frame
+	lcd->setColor(buttonFrameColor);
+	lcd->drawFrame(elementArea.x1, elementArea.y1, elementArea.width, elementArea.height);
+	lcd->setColor(textColor);
+	int textY = (elementArea.height / 2) + elementArea.y1+6;
+	int textX = elementArea.x1 + 3;
+	lcd->printxy_abs(textX, textY, labelText);
 }
 
-bool UIButton::pointTouches(Point pt)
+int UIButton::processTouch(Point pt)
 {
-	if (!clickable)
-		return false;
 	if (elementArea.contains(pt))
-	{		
-		touchEvents.push_back(true);
-		return true;
-	}
-	return false;
+		return 1;
+	return -1;
 }

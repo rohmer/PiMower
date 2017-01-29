@@ -92,6 +92,9 @@
     <Filter Include="Source files\MotionControl">
       <UniqueIdentifier>{968731cb-07ce-4d86-962a-89407b7765d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\UI\Graphics">
+      <UniqueIdentifier>{0064a34b-34dc-44b3-acc9-a553a696bf7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotLib.cpp">
@@ -139,34 +142,7 @@
     <ClCompile Include="UIFont.cpp">
       <Filter>Source files\UI\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="UILabel.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UICheckbox.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UIRadioGroup.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
     <ClCompile Include="UIElement.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
-      <Filter>Source files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UIWindow.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UIButton.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UIMenu.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UIMenuPage.cpp">
-      <Filter>Source files\UI\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UITextEntry.cpp">
       <Filter>Source files\UI\Elements</Filter>
     </ClCompile>
     <ClCompile Include="MotorController.cpp">
@@ -174,6 +150,27 @@
     </ClCompile>
     <ClCompile Include="MotionController.cpp">
       <Filter>Source files\MotionControl</Filter>
+    </ClCompile>
+    <ClCompile Include="UILabel.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenManager.cpp">
+      <Filter>Source files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenu.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIToggle.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRadioGroup.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIInput.cpp">
+      <Filter>Source files\UI\Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,38 +234,11 @@
     <ClInclude Include="UIElement.h">
       <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="UILabel.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
     <ClInclude Include="UIFont.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="UICheckbox.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="UIRadioGroup.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowManager.h">
-      <Filter>Header files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UIWindow.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="UIButton.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="UIMenu.h">
-      <Filter>Header files\UI\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="UIMenuPage.h">
       <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
     <ClInclude Include="NavigationIcons.h">
       <Filter>Source files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UITextEntry.h">
-      <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
     <ClInclude Include="SensorManager.h">
       <Filter>Header files\Robot\SensorManager</Filter>
@@ -282,6 +252,30 @@
     <ClInclude Include="MotionController.h">
       <Filter>Header files\Robot\MotionControl</Filter>
     </ClInclude>
+    <ClInclude Include="UILabel.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenManager.h">
+      <Filter>Header files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenu.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIToggle.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRadioGroup.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIInput.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIKeyboardIcons.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings">
@@ -290,5 +284,22 @@
     <None Include="RobotLib-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Icons\back-arrow_318-9335.jpg">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Backspace.jpg">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Shift.png">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Space.png">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Symbol.jpg">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
   </ItemGroup>
 </Project>

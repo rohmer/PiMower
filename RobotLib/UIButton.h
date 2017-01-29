@@ -1,23 +1,25 @@
 #pragma once
 #include "UIElement.h"
-#include "UIFont.h"
-#include <vector>
 #include <string>
+#include "UIFont.h"
 
-class UIButton : UIElement
+class UIButton : public UIElement
 {
-	public:
-		UIButton(Rectangle location, std::string buttonText);
-		UIButton(Rectangle location, std::string buttonText, UIFont::eFontName  font, 
-			uint8_t buttonColor, uint8_t textColor, bool useButtonFrame, uint8_t buttonFrameColor);
-		Rectangle calcSize();
-		void update(DigoleLCD *lcdDriver);
-		bool pointTouches(Point pt) override;
+public:
+	UIButton(Point position, std::string text);
+	UIButton(Point position, std::string text, UIFont::eFontName  font, uint8_t textColor, uint8_t buttonColor, uint8_t buttonFrameColor,
+		Rectangle buttonSize);
+	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
+	int processTouch(Point pt) override;
 	
-	private:
-		uint8_t buttonColor, textColor, buttonFrameColor;
-		std::string buttonText;
-		UIFont::eFontName font;
-		bool useButtonFrame;
-		bool triggered = false;
+protected:
+	void setArea() override;
+	
+	
+private:
+	bool areaSet = false;
+	std::string labelText;
+	UIFont::eFontName labelFont;
+	uint8_t textColor, buttonColor, buttonFrameColor;
 };
+
