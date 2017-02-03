@@ -39,7 +39,7 @@
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>opencv_core;opencv_highgui; opencv_imgproc;  opencv_xfeatures2d; opencv_imgcodecs; raspicam_cv;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>opencv_core;opencv_highgui; opencv_imgproc;  opencv_imgcodecs; raspicam_cv;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>

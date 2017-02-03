@@ -80,9 +80,10 @@ uint8_t DeviceManager::getSPIFD(uint8_t dev, int speed)
 
 // Iterate through all of the devices we have drivers for
 // and add them to the registry
+// TODO: This is kinda a mess, need to fix it
 void DeviceManager::initialize()
 {
-	DeviceRegistry& registry(DeviceRegistry::get());
+	/*DeviceRegistry& registry(DeviceRegistry::get());
 	for (DeviceRegistry::it it = registry.begin(); it != registry.end(); it++)
 	{
 		device_creator func = *it;
@@ -90,6 +91,7 @@ void DeviceManager::initialize()
 		DeviceEntry *de = new DeviceEntry(robotLib, _ptr);
 		devices.push_back(de);
 	}
+	*/
 }
 
 std::vector<DeviceEntry*> DeviceManager::getByType(device_type_t deviceType)

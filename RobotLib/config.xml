@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PiMowerConfig>
+  <Logging Level="DEBUG"/>
+  <Physical DriveWheelDiameter="10" DriveGearRatio="1.0" DriveMotorMaxRPM="24"/>
+  <Sensors>
+    <PWMController i2caddr="64">
+      <ControlChannels leftDriveChannel ="0" rightDriveChannel="1" bladeChannel="2"/>
+    </PWMController>
+    <BumperSensor GPIOPin="14" Location="FRONT"/>
+    <ArduinoHost i2caddress="68" ProximityTOllerance="1.0">
+      <Proximity triggerPin="12" echoPin="13" name="FrontSensor"/>
+    </ArduinoHost>
+  </Sensors>
+  <Speed>
+    <NormalOperation ForwardRPM="24" ReverseRPM="12" RotationRPM="6"/>
+    <ObjectDetection ForwardRPM="12" ReverseRPM="3"/>
+    <Acceleration Normal="2" Rotational="1"/>
+  </Speed>
+  <MotorEncoder leftPin="25" rightPin="30"/>
+</PiMowerConfig>

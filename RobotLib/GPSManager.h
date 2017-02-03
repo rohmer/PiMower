@@ -14,11 +14,12 @@ class GPSManager
 		void setPollingAverage(uint8_t pollingAverage);
 		~GPSManager();
 		sensors_event_t* getLocation();
+		int getHeading();
 	
 	private:
 		void gpsThread();
 		static void startManagerThread(GPSManager *gpsMgr);
-		sensors_event_t *latestLocation;
+		sensors_event_t *latestLocation, *headingEvt;
 		DeviceManager *deviceManager;
 		RobotLib *robotLib;
 		LSM303_Magnetometer *lsmMag;

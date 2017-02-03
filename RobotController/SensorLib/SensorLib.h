@@ -37,7 +37,8 @@ typedef enum sensors_type_t
 	SENSOR_TYPE_COLOR               = (17),
 	SENSOR_TYPE_GPS					= (18),
 	SENSOR_TYPE_IMAGING				= (19),
-	SENSOR_TYPE_LINEAR_DISTANCE	    = (20)
+	SENSOR_TYPE_LINEAR_DISTANCE	    = (20),
+	SENSOR_TYPE_COUNTER				= (21)
 } sensors_type_t;
 
 /** struct sensors_vec_s is used to return a vector in a common format. */

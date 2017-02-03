@@ -172,6 +172,9 @@
     <ClCompile Include="UIInput.cpp">
       <Filter>Source files\UI\Elements</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectProximityDetection.cpp">
+      <Filter>Source files\MotionControl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RobotLib.h">
@@ -276,6 +279,9 @@
     <ClInclude Include="UIKeyboardIcons.h">
       <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectProximityDetection.h">
+      <Filter>Header files\Robot\MotionControl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings">
@@ -301,5 +307,10 @@
     <Image Include="Icons\Symbol.jpg">
       <Filter>Header files\UI\Graphics</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="config.xml">
+      <Filter>Header files\Robot\Configuration</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

@@ -40,7 +40,7 @@
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>opencv_core;opencv_highgui; opencv_imgproc;  opencv_xfeatures2d; opencv_ximgproc; opencv_imgcodecs; raspicam_cv; raspicam;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>opencv_core;opencv_highgui; opencv_imgproc;  opencv_imgcodecs; raspicam_cv; raspicam;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
@@ -54,6 +54,7 @@
     <ClCompile Include="ArduCam.cpp" />
     <ClCompile Include="ArduCamDriver\arducamDriver.c" />
     <ClCompile Include="ArduCamDriver\arducam_arch_raspberrypi.c" />
+    <ClCompile Include="ArduinoSensorHost.cpp" />
     <ClCompile Include="DigoleLCD.cpp" />
     <ClCompile Include="GPIOButton.cpp" />
     <ClCompile Include="GPIOLED.cpp" />
@@ -61,6 +62,7 @@
     <ClCompile Include="HCSR04.cpp" />
     <ClCompile Include="LSM303_Accelerometer.cpp" />
     <ClCompile Include="LSM303_Magnetometer.cpp" />
+    <ClCompile Include="LS7366R.cpp" />
     <ClCompile Include="MAX72XXLEDDriver.cpp" />
     <ClCompile Include="NMEAParser.cpp" />
     <ClCompile Include="ObjectParsers.cpp" />
@@ -85,6 +87,7 @@
     <ClInclude Include="ArduCamDriver\memorysaver.h" />
     <ClInclude Include="ArduCamDriver\ov2640_regs.h" />
     <ClInclude Include="ArduCamDriver\ov5642_regs.h" />
+    <ClInclude Include="ArduinoSensorHost.h" />
     <ClInclude Include="DigoleLCD.h" />
     <ClInclude Include="GPIOButton.h" />
     <ClInclude Include="DeviceBase.h" />
@@ -92,6 +95,7 @@
     <ClInclude Include="GPIOLED.h" />
     <ClInclude Include="GrassDetection.h" />
     <ClInclude Include="HCSR04.h" />
+    <ClInclude Include="LS7366R.h" />
     <ClInclude Include="MAX72XXDefines.h" />
     <ClInclude Include="MAX72XXLEDDriver.h" />
     <ClInclude Include="MCP230XX.h" />

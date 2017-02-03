@@ -22,9 +22,10 @@ HCSR04::HCSR04(RobotLib *robotLib, uint8_t triggerPin, uint8_t inputPin)
 	this->triggerPin = triggerPin;
 	this->inputPin = inputPin;
 	pinMode(triggerPin, OUTPUT);
-	pinMode(inputPin, OUTPUT);
+	pinMode(inputPin, INPUT);
 	// Default to 400cm
 	setMaxDistanceCM(400);	
+	addSensor(inputPin);
 	shutdown = false;
 	initialized = true;
 }

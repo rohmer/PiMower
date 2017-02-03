@@ -64,6 +64,7 @@
     <ClCompile Include="MapNode.cpp" />
     <ClCompile Include="MotionController.cpp" />
     <ClCompile Include="MotorController.cpp" />
+    <ClCompile Include="ObjectProximityDetection.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RobotLib.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="MowerState.h" />
     <ClInclude Include="NavigationIcons.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="ObjectProximityDetection.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RobotLib.h" />
@@ -128,6 +130,12 @@
     <Image Include="Icons\Shift.png" />
     <Image Include="Icons\Space.png" />
     <Image Include="Icons\Symbol.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="config.xml">
+      <DeploymentContent>true</DeploymentContent>
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

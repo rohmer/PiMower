@@ -21,6 +21,7 @@ GPSManager::GPSManager(RobotLib *robotLib)
 	if (lsmMag)
 	{
 		magnetometerActive = true;
+		headingEvt = new sensors_event_t();
 	}
 	if (lsmAccel)
 	{
@@ -101,6 +102,14 @@ void GPSManager::gpsThread()
 		sleep(pollingInt);
 	}
 	delete(latestLocation);
+}
+
+int GPSManager::getHeading()
+{	
+	if (!magnetometerActive)
+		return -1;
+	lsmMag->getEvent(headingEvt);
+	return (round(headingEvt->gyro.heading));
 }
 
 sensors_event_t* GPSManager::getLocation()

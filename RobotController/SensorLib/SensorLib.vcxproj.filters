@@ -107,6 +107,18 @@
     <Filter Include="Source files\PCA9685">
       <UniqueIdentifier>{0f4f1edc-481d-40ef-9997-81cf7a0d46dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\LS7366R">
+      <UniqueIdentifier>{ba043c51-5f3c-471b-8cfd-8bc1624cfc3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\LSR7366R">
+      <UniqueIdentifier>{f3564cf1-5c7b-4df4-b663-a923bdf7a233}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\ArduinoSensorHost">
+      <UniqueIdentifier>{d02955fd-a981-4cb2-bbdd-178b57c4e64a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\ArduinoSensorHost">
+      <UniqueIdentifier>{7def20c5-c63a-4276-bb7e-da648bdc4c0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -177,6 +189,12 @@
     </ClCompile>
     <ClCompile Include="PCA9685.cpp">
       <Filter>Source files\PCA9685</Filter>
+    </ClCompile>
+    <ClCompile Include="LS7366R.cpp">
+      <Filter>Source files\LSR7366R</Filter>
+    </ClCompile>
+    <ClCompile Include="ArduinoSensorHost.cpp">
+      <Filter>Source files\ArduinoSensorHost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +308,12 @@
     </ClInclude>
     <ClInclude Include="GrassDetection.h">
       <Filter>Header files\ArduCam\GrassDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="LS7366R.h">
+      <Filter>Header files\LS7366R</Filter>
+    </ClInclude>
+    <ClInclude Include="ArduinoSensorHost.h">
+      <Filter>Header files\ArduinoSensorHost</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

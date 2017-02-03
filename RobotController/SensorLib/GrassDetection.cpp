@@ -138,7 +138,6 @@ void GrassDetection::getThreshold()
 		return;
 	}
 	cv::Mat input;
-	cv::Ptr<cv::Feature2D> f2d = cv::xfeatures2d::SIFT::create();	
 	std::vector<cv::KeyPoint> keypoints;	
 	cv::Mat descriptor,featuresUnclustered;
 	float lowestPct = 1;
