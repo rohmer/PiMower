@@ -25,6 +25,9 @@
     <ClCompile Include="Args.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="HTMLOutput.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="rcheckcfg-Debug.vgdbsettings">
@@ -36,6 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Args.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTMLOutput.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

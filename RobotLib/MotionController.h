@@ -1,7 +1,7 @@
 #pragma once
 #include "RobotLib.h"
 #include "GPSManager.h"
-#include "Configuration.h"
+#include "Config.h"
 #include "MotorController.h"
 #include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 #include "MotorController.h"
@@ -18,18 +18,18 @@ enum eMotionResult
 
 class MotionController
 {
-	MotionController(RobotLib *robotLib, Configuration *config);
+	MotionController(RobotLib *robotLib, Config *config);
 	~MotionController();
 	eMotionResult rotateToHeading(int heading);
 	eMotionResult travelDistance(int inchesToTravel, bool forward);
 	float inchesPerSecond();
 	
 private:
-	std::vector <bumperSensor_s> bumperSensors;
+	std::vector <sBumperSensor> bumperSensors;
 	void initialize();
 	GPSManager *gpsManager;
 	RobotLib *robotLib;
-	Configuration *config;
+	Config *config;
 	MotorController *motorController;
 	ObjectProximityDetection *proximityDet;
 	LS7366R *odometer;

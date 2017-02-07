@@ -3,7 +3,7 @@
 #include "../RobotController/SensorLib/ArduinoSensorHost.h"
 #include <time.h>
 #include <map>
-#include "Configuration.h"
+#include "Config.h"
 
 // ObjectProximityDetection:
 // Detects if an object is near, or is an object is getting closer (Moving towards
@@ -21,11 +21,11 @@ public:
 	};
 	
 	
-	ObjectProximityDetection(RobotLib *robotLib, Configuration *config);
+	ObjectProximityDetection(RobotLib *robotLib, Config *config);
 	std::pair<eObjectMotionResult, int> scanProximity();
 	std::pair<eObjectMotionResult, int> scanProximity(eSensorLocation dir);
 private:
-	Configuration *config;
+	Config *config;
 	struct sProximity
 	{
 		sProximitySensors sensor;

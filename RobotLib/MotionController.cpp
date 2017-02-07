@@ -1,11 +1,11 @@
 #include "MotionController.h"
 
-MotionController::MotionController(RobotLib *robotLib, Configuration *config)
+MotionController::MotionController(RobotLib *robotLib, Config *config)
 {
 	this->robotLib = robotLib;
 	this->config = config;
 	gpsManager = new GPSManager(this->robotLib);
-	pwmController_s pwmConfig = config->getPWMControllerConfig();
+	sPWMController pwmConfig = config->getPWMControllerConfig();
 	motorController = new MotorController(robotLib,
 		config,
 		pwmConfig.leftDriveChannel,
@@ -205,6 +205,8 @@ eMotionResult MotionController::travelDistance(int inchesToTravel,bool forward)
 		}
 		
 	}
+	// Store in DB the location info
+	gpsManager->getLocation();
 }
 
 float MotionController::inchesPerSecond()

@@ -1,6 +1,6 @@
 #pragma once
 #include "MowerState.h"
-#include "Map.h"
+#include "LawnMap.h"
 
 class MowerState
 {
@@ -15,5 +15,5 @@ class MowerState
 		
 		MOWER_PATTERN_T currentMowPattern;
 		MOWER_STATE_T currentMowerState;
-		Map *map;		
+		LawnMap *map;		
 };

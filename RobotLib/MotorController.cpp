@@ -1,7 +1,7 @@
 #include "MotorController.h"
 
 MotorController::MotorController(RobotLib *robotLib, 
-	Configuration *config,
+	Config *config,
 	uint8_t leftMotorChannel, 
 	uint8_t rightMotorChannel, 
 	uint8_t bladeChannel)

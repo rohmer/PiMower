@@ -1,6 +1,6 @@
-#include "Map.h"
+#include "LawnMap.h"
 
-Map::Map(RobotLib *robotLib)
+LawnMap::LawnMap(RobotLib *robotLib)
 {
 	this->robotLib = robotLib;
 	minXY = std::make_pair(0, 0);
@@ -9,9 +9,9 @@ Map::Map(RobotLib *robotLib)
 	mapModY = 0;
 }
 
-Map::~Map()
+LawnMap::~LawnMap()
 {
-	robotLib->Log("Destroying Map()");
+	robotLib->Log("Destroying LawnMap()");
 	std::map<std::pair<int, int>, MapNode *>::iterator it;
 	for (it = mapContents.begin(); it != mapContents.end(); it++)
 	{
@@ -19,18 +19,18 @@ Map::~Map()
 	}
 }
 
-int Map::getPathMap(int x, int y)
+int LawnMap::getPathMap(int x, int y)
 {
 	return (pathMap[x][y]);	
 }
 
-void Map::getExtents(std::pair<int, int> &minXY, std::pair<int, int> &maxXY)
+void LawnMap::getExtents(std::pair<int, int> &minXY, std::pair<int, int> &maxXY)
 {
 	minXY = this->minXY;
 	maxXY = this->maxXY;
 }
 
-void Map::setNode(int x, int y, map_node_t nodeType, std::pair<double, double> location)	
+void LawnMap::setNode(int x, int y, map_node_t nodeType, std::pair<double, double> location)	
 {
 	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ x, y });
 	MapNode *mapNode;
@@ -88,7 +88,7 @@ void Map::setNode(int x, int y, map_node_t nodeType, std::pair<double, double> l
 	}
 }
 
-int Map::getCartNodeWeight(int x, int y)
+int LawnMap::getCartNodeWeight(int x, int y)
 {
 	MapNode *node = getCartNode(x, y);
 	if (node)
@@ -101,7 +101,7 @@ int Map::getCartNodeWeight(int x, int y)
 	return map_node_t::BLOCK_UNKNOWN;
 }
 
-void Map::createPathMap()
+void LawnMap::createPathMap()
 {
 	int h = getHeight();
 	int w = getWidth();
@@ -120,17 +120,17 @@ void Map::createPathMap()
 	}
 }
 
-MapNode *Map::getCartNode(int x, int y)
+MapNode *LawnMap::getCartNode(int x, int y)
 {
 	return getNode(x + mapModX, y + mapModY);
 }
 
-std::vector<MapNode *> Map::getBaseStations()
+std::vector<MapNode *> LawnMap::getBaseStations()
 {
 	return baseStations;
 }
 
-MapNode* Map::getNode(int x, int y)
+MapNode* LawnMap::getNode(int x, int y)
 {
 	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ x, y });
 	if (it == mapContents.end())
@@ -140,12 +140,12 @@ MapNode* Map::getNode(int x, int y)
 	return it->second;
 }
 
-// Map format:
+// LawnMap format:
 // <map minX=int minY=int maxX=int maxY=int>
 //	<Node x=int, y=int, type=enum>
 // </map>
 
-bool Map::saveMap()
+bool LawnMap::saveMap()
 {
 	rapidxml::xml_document<> doc;
 	rapidxml::xml_node<>* decl = doc.allocate_node(rapidxml::node_declaration);
@@ -153,7 +153,7 @@ bool Map::saveMap()
 	decl->append_attribute(doc.allocate_attribute("encoding", "utf-8"));
 	doc.append_node(decl);
 
-	rapidxml::xml_node<>* root = doc.allocate_node(rapidxml::node_element, "Map");
+	rapidxml::xml_node<>* root = doc.allocate_node(rapidxml::node_element, "LawnMap");
 	root->append_attribute(doc.allocate_attribute("minX", std::to_string(minXY.first).c_str()));
 	root->append_attribute(doc.allocate_attribute("minY", std::to_string(minXY.second).c_str()));
 	root->append_attribute(doc.allocate_attribute("maxX", std::to_string(maxXY.first).c_str()));
@@ -187,13 +187,13 @@ bool Map::saveMap()
 	return true;
 }
 
-bool Map::loadMap()
+bool LawnMap::loadMap()
 {
 	
 }
 
 // Adjusts the map to be 0->x as opposed to 0,0 being center
-std::pair<int, int> Map::getPathCoord(MapNode *node)
+std::pair<int, int> LawnMap::getPathCoord(MapNode *node)
 {
 	int x=0;
 	int y=0;
@@ -213,26 +213,26 @@ std::pair<int, int> Map::getPathCoord(MapNode *node)
 	return retVal;
 }
 	
-int Map::getWidth()
+int LawnMap::getWidth()
 {
 	std::pair<int, int> min, max;
 	getExtents(min, max);
 	return max.first - min.first+1;
 }
 
-int Map::getHeight()
+int LawnMap::getHeight()
 {
 	std::pair<int, int> min, max;
 	getExtents(min, max);
 	return max.second - min.second+1;
 }
 
-void Map::setMapDirty(bool dirty)
+void LawnMap::setMapDirty(bool dirty)
 {
 	mapDirty = dirty;
 }
 
-bool Map::getMapDirty()
+bool LawnMap::getMapDirty()
 {
 	return mapDirty;
 }
@@ -243,7 +243,7 @@ bool operator<(const node & a, const node & b)
 	return a.getPriority() > b.getPriority();
 }
 
-std::vector<MapNode *> Map::findPath(std::pair<int, int> start, std::pair<int, int> end)
+std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<int, int> end)
 {
 	int i, j, x, y, xdx, ydy;
 	if (mapDirty)
@@ -386,7 +386,7 @@ std::vector<MapNode *> Map::findPath(std::pair<int, int> start, std::pair<int, i
 	return path;
 }
 
-std::vector<MapNode *> Map::getPathToClosestBase(std::pair<int, int> start)
+std::vector<MapNode *> LawnMap::getPathToClosestBase(std::pair<int, int> start)
 {
 	std::vector<MapNode *> path;
 	
@@ -399,7 +399,7 @@ std::vector<MapNode *> Map::getPathToClosestBase(std::pair<int, int> start)
 	return path;
 }
 
-void Map::clearMowedFlags()
+void LawnMap::clearMowedFlags()
 {
 	std::map<std::pair<int, int>, MapNode*>::iterator it;
 	for (it = mapContents.begin(); it != mapContents.end(); it++)

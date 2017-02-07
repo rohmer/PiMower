@@ -5,7 +5,7 @@ TEST_GROUP(PathfinderTests)
 	void setup()
 	{
 		pfRobotLib = new RobotLib();
-		mapObject = new Map(pfRobotLib);	
+		mapObject = new LawnMap(pfRobotLib);	
 	}
 	
 	void teardown()

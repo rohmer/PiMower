@@ -1,5 +1,4 @@
 #pragma once
-#include "RobotLib.h"
 #include <map>
 #include <vector>
 #include <algorithm>
@@ -7,12 +6,13 @@
 #include "MapNode.h"
 #include "MapLibConstants.h"
 #include "Node.h"
+#include "RobotLib.h"
 
-class Map
+class LawnMap
 {
 	public:
-		Map(RobotLib *robotLib);
-		~Map();
+		LawnMap(RobotLib *robotLib);
+		~LawnMap();
 		void setNode(int x, int y, map_node_t nodeType, std::pair<double, double>location);
 		MapNode *getNode(int x, int y);
 		bool saveMap();
@@ -26,8 +26,7 @@ class Map
 		void setMapDirty(bool dirty);
 		MapNode *getCartNode(int x, int y);
 		std::vector<MapNode *> findPath(std::pair<int, int> start, std::pair<int, int> end);
-		int getPathMap(int x, int y);
-		static Map *getMap();
+		int getPathMap(int x, int y);		
 		int getCartNodeWeight(int x, int y);
 		std::vector<MapNode *> getPathToClosestBase(std::pair<int, int> start);
 	
@@ -38,7 +37,7 @@ class Map
 		std::vector<MapNode *> baseStations;
 		bool mapDirty;
 		int mapModX, mapModY;
-		std::vector <std::vector <int>> pathMap,closedNodesMap, openNodesMap,dirMap;
+		std::vector <std::vector <int> > pathMap,closedNodesMap, openNodesMap,dirMap;
 		void createPathMap();
 		int dx[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 		int dy[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };

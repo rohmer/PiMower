@@ -12,7 +12,7 @@ class MotorController
 {
 public:
 	MotorController(RobotLib *robotLib, 
-		Configuration *config,
+		Config *config,
 		uint8_t leftMotorChannel, 
 		uint8_t rightMotorChannel, 
 		uint8_t bladeChannel);
@@ -24,7 +24,7 @@ public:
 	
 private:
 	RobotLib *robotLib;
-	Configuration *config;
+	Config *config;
 	uint8_t leftMotorChannel, rightMotorChannel, bladeChannel;
 	PCA9685 *pca9685;		
 	uint8_t leftMotorSpeed, rightMotorSpeed, bladeSpeed;	

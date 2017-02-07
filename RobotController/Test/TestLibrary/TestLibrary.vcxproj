@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;../../../..;../../../3rdParty/SQLiteC++/include;../../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9/debug;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CPPLanguageStandard>CPP14</CPPLanguageStandard>
     </ClCompile>

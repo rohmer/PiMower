@@ -1,6 +1,6 @@
 #include "ObjectProximityDetection.h"
 
-ObjectProximityDetection::ObjectProximityDetection(RobotLib *robotLib, Configuration *config)
+ObjectProximityDetection::ObjectProximityDetection(RobotLib *robotLib, Config *config)
 {
 	this->robotLib = robotLib;
 	this->config = config;

@@ -35,7 +35,7 @@
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>
       </CLanguageStandard>
-      <CPPLanguageStandard>GNUPP14</CPPLanguageStandard>
+      <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
       <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -52,7 +52,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Behavior.cpp" />
-    <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DeviceEntry.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
@@ -60,7 +60,7 @@
     <ClCompile Include="GPSManager.cpp" />
     <ClCompile Include="i2cscanner.cpp" />
     <ClCompile Include="IntertialGuidence.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="LawnMap.cpp" />
     <ClCompile Include="MapNode.cpp" />
     <ClCompile Include="MotionController.cpp" />
     <ClCompile Include="MotorController.cpp" />
@@ -81,14 +81,14 @@
   <ItemGroup>
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="Charging.h" />
-    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="DeviceEntry.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DeviceRegistry.h" />
     <ClInclude Include="GPSManager.h" />
     <ClInclude Include="InertialGuidence.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="LawnMap.h" />
     <ClInclude Include="MapLibConstants.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="MotionController.h" />

@@ -124,14 +124,8 @@
     <ClCompile Include="MapNode.cpp">
       <Filter>Source files\MapLib</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source files\MapLib</Filter>
-    </ClCompile>
     <ClCompile Include="IntertialGuidence.cpp">
       <Filter>Source files\LocationManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Configuration.cpp">
-      <Filter>Source files\Robot\Configuration</Filter>
     </ClCompile>
     <ClCompile Include="Behavior.cpp">
       <Filter>Source files\Robot\Behaviors</Filter>
@@ -175,6 +169,12 @@
     <ClCompile Include="ObjectProximityDetection.cpp">
       <Filter>Source files\MotionControl</Filter>
     </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source files\Robot\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="LawnMap.cpp">
+      <Filter>Source files\MapLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RobotLib.h">
@@ -201,9 +201,6 @@
     <ClInclude Include="MapLibConstants.h">
       <Filter>Header files\MapLib</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header files\MapLib</Filter>
-    </ClInclude>
     <ClInclude Include="MapNode.h">
       <Filter>Header files\MapLib</Filter>
     </ClInclude>
@@ -218,9 +215,6 @@
     </ClInclude>
     <ClInclude Include="MowerState.h">
       <Filter>Header files\Robot</Filter>
-    </ClInclude>
-    <ClInclude Include="Configuration.h">
-      <Filter>Header files\Robot\Configuration</Filter>
     </ClInclude>
     <ClInclude Include="Behavior.h">
       <Filter>Header files\Robot\Behaviors</Filter>
@@ -281,6 +275,12 @@
     </ClInclude>
     <ClInclude Include="ObjectProximityDetection.h">
       <Filter>Header files\Robot\MotionControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header files\Robot\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="LawnMap.h">
+      <Filter>Header files\MapLib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,11 @@
 #include "../3rdParty/RapidXML/rapidxml_print.hpp"
 #include "Database.h"
 #include "DeviceManager.h"
+#include "LawnMap.h"
+
 class Database;
 class DeviceManager;
+class LawnMap;
 
 // If running on a preempt kernel (Suggested) uncomment
 #define PREEMPT_RT
@@ -41,7 +44,8 @@ class RobotLib
 			return emulator;
 		}
 		~RobotLib();
-	
+		
+		LawnMap *getMap();	
 		void setLogLevel(int logLevel);
 	
 	private:
@@ -50,4 +54,5 @@ class RobotLib
 		Database *database;
 		DeviceManager *deviceManager;		
 		bool emulator;
-};
+		LawnMap *mapObject;
+};	

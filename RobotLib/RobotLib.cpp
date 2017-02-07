@@ -16,11 +16,14 @@ RobotLib::~RobotLib()
 {
 	delete(database);
 	delete(deviceManager);
+	if (mapObject)
+		delete(mapObject);
 }
 
 void RobotLib::initLog()
 {
 	humble::logging::Factory &fac = humble::logging::Factory::getInstance();
+	fac.setDefaultFormatter(new humble::logging::PatternFormatter("[%lls] %date -> %m\n"));
 	fac.registerAppender(new humble::logging::ConsoleAppender());
 	fac.registerAppender(new humble::logging::RollingFileAppender("Robot.log", false, 2, 20 * 1024 * 1024));
 #ifdef DEBUG
@@ -107,4 +110,13 @@ bool RobotLib::checkEmulator()
 	}
 	fclose(cpufd);
 	return false;
+}
+
+LawnMap *RobotLib::getMap()
+{
+	if (mapObject == NULL)
+	{
+		mapObject = new LawnMap(this);
+	}
+	return mapObject;
 }
