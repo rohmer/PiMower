@@ -7,13 +7,17 @@
 class BehaviorBase
 {
 	public:
-		BehaviorBase(RobotLib *robotLib, std::string behaviorName);		
+		BehaviorBase(RobotLib *robotLib, std::string behaviorName)
+		{
+			this->robotLib = robotLib;
+			this->behaviorName = behaviorName;
+		};		
+	
 		virtual ~BehaviorBase()
 		{
 		}
 		
-		virtual states_t run();
-		virtual void startBehavior();
+		virtual uint8_t run();		
 		
 		std::string getBehaviorName();
 	

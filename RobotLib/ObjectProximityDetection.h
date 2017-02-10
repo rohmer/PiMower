@@ -20,10 +20,15 @@ public:
 		OBJECT_CLOSING    = 3		
 	};
 	
+	struct sProximityResult
+	{
+		eObjectMotionResult motionResult;
+		eSensorLocation direction;
+	};
 	
 	ObjectProximityDetection(RobotLib *robotLib, Config *config);
-	std::pair<eObjectMotionResult, int> scanProximity();
-	std::pair<eObjectMotionResult, int> scanProximity(eSensorLocation dir);
+	std::pair<sProximityResult, int> scanProximity();
+	std::pair<sProximityResult, int> scanProximity(eSensorLocation dir);
 private:
 	Config *config;
 	struct sProximity

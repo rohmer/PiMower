@@ -1,4 +1,6 @@
 #include "LS7366R.h"
+#include "../../3rdParty/wiringPi/wiringPi/wiringPiSPI.h"
+#include "../../3rdParty/wiringPi/wiringPi/wiringPi.h"
 
 LS7366R::LS7366R(RobotLib *robotLib)
 	: SensorBase(robotLib)

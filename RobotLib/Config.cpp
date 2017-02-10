@@ -145,7 +145,7 @@ bool Config::readPhysical(rapidxml::xml_node<> *physicalNode)
 bool Config::readEncoder(rapidxml::xml_node<> *encoderNode)
 {
 	leftEncoderPin = -1;
-	rightEncoderPin = -1;
+	rightEncoderPin = -1;	
 	if (encoderNode->first_attribute("leftPin", 0, false))
 	{
 		leftEncoderPin = std::atoi(encoderNode->first_attribute("leftPin", 0, false)->value());

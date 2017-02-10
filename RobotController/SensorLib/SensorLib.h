@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "ArduCamDriver/arducamDriver.h"
+#include "../../RobotLib/guid.h"
 
 #define SENSORS_GRAVITY_EARTH             (9.80665F)              /**< Earth's gravity in m/s^2 */
 #define SENSORS_GRAVITY_MOON              (1.6F)                  /**< The moon's gravity in m/s^2 */
@@ -206,7 +207,7 @@ typedef struct
     };
 	sensors_image_t image;				  /**< Image file information */
 	sensors_gps_t		gps;				  /**< location information */
-	sensors_object_detection_t objectDetection;		/**< Object detection */		
+	sensors_object_detection_t objectDetection;		/**< Object detection */	
 } sensors_event_t;
 
 /* Sensor details (40 bytes) */

@@ -30,7 +30,8 @@ void Database::initDB()
 bool Database::createPositionTable()
 {
 	std::string sql = "CREATE TABLE position("	\
-		"timestamp INTEGER PRIMARY KEY NOT NULL," \
+		"sessionID CHAR(36) PRIMARY KEY NOT NULL," \
+		"timestamp INTEGER NOT NULL," \
 		"LAT_Degrees REAL," \
 		"LAT_Minutes REAL," \
 		"LONG_Degrees REAL," \
@@ -73,7 +74,8 @@ bool Database::execSql(std::string sqlStmt)
 
 bool Database::insertPositionEvent(sensors_event_t *event)
 {
-	return SensorEvents::insertPositionEvent(event);
+	Guid sessionID = robotLib->getSessionID();
+	return SensorEvents::insertPositionEvent(sessionID, event);
 }
 
 Database::~Database()

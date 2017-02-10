@@ -1,7 +1,8 @@
 #include "RobotLib.h"
 
 RobotLib::RobotLib()
-{	 	
+{	
+	config = getConfig();
 	initLog();
 	emulator = checkEmulator();
 	if (emulator)
@@ -12,12 +13,22 @@ RobotLib::RobotLib()
 	deviceManager = new DeviceManager(*this);
 }
 
+Config *RobotLib::getConfig()
+{
+	if (config == NULL)
+	{
+		config = new Config(this);
+		config->getConfig();
+	}
+	return config;
+}
+
 RobotLib::~RobotLib()
 {
 	delete(database);
 	delete(deviceManager);
 	if (mapObject)
-		delete(mapObject);
+		delete(mapObject);	
 }
 
 void RobotLib::initLog()
@@ -25,12 +36,25 @@ void RobotLib::initLog()
 	humble::logging::Factory &fac = humble::logging::Factory::getInstance();
 	fac.setDefaultFormatter(new humble::logging::PatternFormatter("[%lls] %date -> %m\n"));
 	fac.registerAppender(new humble::logging::ConsoleAppender());
+	switch (config->getLogLevel())
+	{
+		case min_log_level_t::Debug:
+			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::All));	
+			break;
+		case min_log_level_t::Warn:
+			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Warn));	
+			break;
+		case min_log_level_t::Critical:
+			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Error));	
+			break;
+		case min_log_level_t::Exception:
+			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Fatal));	
+			break;		
+	}
 	fac.registerAppender(new humble::logging::RollingFileAppender("Robot.log", false, 2, 20 * 1024 * 1024));
 #ifdef DEBUG
 	fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::All));
-#else
-	fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Warn));
-#endif			
+#endif	
 }
 
 void RobotLib::setLogLevel(int logLevel)
@@ -119,4 +143,19 @@ LawnMap *RobotLib::getMap()
 		mapObject = new LawnMap(this);
 	}
 	return mapObject;
+}
+
+MotorController *RobotLib::getMotorController()
+{
+	if (motorController == NULL)
+	{
+		motorController = new MotorController(this, config);
+	}
+	return motorController;
+}
+
+void RobotLib::setSessionID()
+{
+	GuidGenerator guidGen;
+	this->sessionGuid=guidGen.newGuid();
 }

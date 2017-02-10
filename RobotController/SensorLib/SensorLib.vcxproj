@@ -33,7 +33,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <CPPLanguageStandard>CPP11</CPPLanguageStandard>
-      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;../../3rdParty/OpenCV/modules/calib3d/include;../../3rdParty/OpenCV/modules/core/include;../../3rdParty/OpenCV/modules/features2d/include;../../3rdParty/OpenCV/modules/flann/include;../../3rdParty/OpenCV/modules/highgui/include;../../3rdParty/OpenCV/modules/imgproc/include;../../3rdParty/OpenCV/modules/ml/include;../../3rdParty/OpenCV/modules/objdetect/include;../../3rdParty/OpenCV/modules/photo/include;../../3rdParty/OpenCV/modules/video/include;../../3rdParty/OpenCV/Debug;../../3rdParty/OpenCV/modules/imgcodecs/include;../../3rdParty/OpenCV/modules/videoio/include;../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;../../3rdParty/OpenCV/include;../../3rdParty/raspicam-0.1.4/include;../../3rdParty/raspicam-0.1.4/dependencies/v0.1.4/interface;../../3rdParty/raspicam-0.1.4/include/raspicam;../../3rdParty/raspicam-0.1.4/dependencies/v0.1.4;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -60,6 +60,7 @@
     <ClCompile Include="GPIOLED.cpp" />
     <ClCompile Include="GrassDetection.cpp" />
     <ClCompile Include="HCSR04.cpp" />
+    <ClCompile Include="INA219.cpp" />
     <ClCompile Include="LSM303_Accelerometer.cpp" />
     <ClCompile Include="LSM303_Magnetometer.cpp" />
     <ClCompile Include="LS7366R.cpp" />
@@ -72,6 +73,7 @@
     <ClCompile Include="ParserGPRMC.cpp" />
     <ClCompile Include="ParserGPVTG.cpp" />
     <ClCompile Include="PCA9685.cpp" />
+    <ClCompile Include="PiCamera.cpp" />
     <ClCompile Include="SensorBase.cpp" />
     <ClCompile Include="ST7565.cpp" />
     <ClCompile Include="TCS34725.cpp" />
@@ -95,6 +97,7 @@
     <ClInclude Include="GPIOLED.h" />
     <ClInclude Include="GrassDetection.h" />
     <ClInclude Include="HCSR04.h" />
+    <ClInclude Include="INA219.h" />
     <ClInclude Include="LS7366R.h" />
     <ClInclude Include="MAX72XXDefines.h" />
     <ClInclude Include="MAX72XXLEDDriver.h" />
@@ -111,6 +114,7 @@
     <ClInclude Include="ParserGPRMC.h" />
     <ClInclude Include="ParserGPVTG.h" />
     <ClInclude Include="PCA9685.h" />
+    <ClInclude Include="PiCamera.h" />
     <ClInclude Include="SensorBase.h" />
     <ClInclude Include="SensorLib.h" />
     <ClInclude Include="ST7565.h" />

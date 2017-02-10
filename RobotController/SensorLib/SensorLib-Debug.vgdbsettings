@@ -150,6 +150,9 @@
         <SearchInProjectDir>true</SearchInProjectDir>
         <SearchInSourceDirs>true</SearchInSourceDirs>
         <SearchInIncludeSubdirs>true</SearchInIncludeSubdirs>
+        <ExtraSearchDirs>
+          <string>C:\Users\rohme\Source\Repos\PiMower\3rdParty</string>
+        </ExtraSearchDirs>
         <IgnoredDirs />
         <IgnoredHeaders />
       </DiscoverySettings>

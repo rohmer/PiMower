@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;../3rdParty/SQLiteC++/include;../3rdParty/RapidXML;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../3rdParty/SQLiteC++/include;../3rdParty/RapidXML;../3rdParty/OpenCV/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>
       </CLanguageStandard>
@@ -41,7 +41,7 @@
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>uuid;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
@@ -52,12 +52,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Behavior.cpp" />
+    <ClCompile Include="Charging.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DeviceEntry.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="DeviceRegistry.cpp" />
+    <ClCompile Include="FusedMotionSensor.cpp" />
     <ClCompile Include="GPSManager.cpp" />
+    <ClCompile Include="guid.cpp" />
     <ClCompile Include="i2cscanner.cpp" />
     <ClCompile Include="IntertialGuidence.cpp" />
     <ClCompile Include="LawnMap.cpp" />
@@ -79,6 +82,7 @@
     <ClCompile Include="UIToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BatteryIcons.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="Charging.h" />
     <ClInclude Include="Config.h" />
@@ -87,10 +91,12 @@
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DeviceRegistry.h" />
     <ClInclude Include="GPSManager.h" />
+    <ClInclude Include="guid.h" />
     <ClInclude Include="InertialGuidence.h" />
     <ClInclude Include="LawnMap.h" />
     <ClInclude Include="MapLibConstants.h" />
     <ClInclude Include="MapNode.h" />
+    <ClInclude Include="FusedMotionSensor.h" />
     <ClInclude Include="MotionController.h" />
     <ClInclude Include="MotorController.h" />
     <ClInclude Include="MowerState.h" />
@@ -127,6 +133,13 @@
   <ItemGroup>
     <Image Include="Icons\back-arrow_318-9335.jpg" />
     <Image Include="Icons\Backspace.jpg" />
+    <Image Include="Icons\Battery100pct.gif" />
+    <Image Include="Icons\Battery15pct.gif" />
+    <Image Include="Icons\Battery30pct.gif" />
+    <Image Include="Icons\Battery45pct.gif" />
+    <Image Include="Icons\Battery60pct.gif" />
+    <Image Include="Icons\Battery85%.gif" />
+    <Image Include="Icons\BatteryEmpty.gif" />
     <Image Include="Icons\Shift.png" />
     <Image Include="Icons\Space.png" />
     <Image Include="Icons\Symbol.jpg" />

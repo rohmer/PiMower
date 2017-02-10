@@ -30,7 +30,7 @@ class PCA9685 : public DeviceBase
 		~PCA9685();
 		device_type_t getDeviceType() override
 		{
-			return device_type_t::DEVICETYPE_OUTPUT;
+			return DEVICETYPE_OUTPUT;
 		}
 	
 		std::string getDeviceName() override

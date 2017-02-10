@@ -8,10 +8,15 @@
 #include "Database.h"
 #include "DeviceManager.h"
 #include "LawnMap.h"
+#include "Config.h"
+#include "MotorController.h"
+#include "guid.h"
 
 class Database;
 class DeviceManager;
 class LawnMap;
+class Config;
+class MotorController;
 
 // If running on a preempt kernel (Suggested) uncomment
 #define PREEMPT_RT
@@ -47,6 +52,13 @@ class RobotLib
 		
 		LawnMap *getMap();	
 		void setLogLevel(int logLevel);
+		Config *getConfig();
+		MotorController *getMotorController();
+		void setSessionID();
+		Guid getSessionID()
+		{
+			return sessionGuid;
+		}
 	
 	private:
 		void initLog();
@@ -55,4 +67,7 @@ class RobotLib
 		DeviceManager *deviceManager;		
 		bool emulator;
 		LawnMap *mapObject;
+		Config *config = NULL;
+		MotorController *motorController=NULL;
+		Guid sessionGuid;
 };	

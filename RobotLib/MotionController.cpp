@@ -1,17 +1,14 @@
 #include "MotionController.h"
 
+// TODO: Add mapping to this
 MotionController::MotionController(RobotLib *robotLib, Config *config)
 {
 	this->robotLib = robotLib;
 	this->config = config;
 	gpsManager = new GPSManager(this->robotLib);
 	sPWMController pwmConfig = config->getPWMControllerConfig();
-	motorController = new MotorController(robotLib,
-		config,
-		pwmConfig.leftDriveChannel,
-		pwmConfig.rightDriveChannel,
-		pwmConfig.bladeChannel);
-	proximityDet = new ObjectProximityDetection(robotLib, config);
+	motorController = robotLib->getMotorController();
+	fmSensor = new FusedMotionSensor(robotLib);
 	initialize();
 }
 
@@ -111,26 +108,24 @@ eMotionResult MotionController::rotateToHeading(int heading)
 				}	
 			}
 		}
-		for (int a = 0; a < bumperSensors.size(); a++)
+		fmsResult sensorResult = fmSensor->getCurrentState();
+		if (sensorResult.result == fmsResultType::HARD_RESULT)
 		{
-			if (digitalRead(bumperSensors[a].gpioPin) == HIGH)
+			std::stringstream ss;
+			ss << "Collision detected on: ";
+			if (sensorResult.location == eSensorLocation::FRONT)
+			{					
+				ss << " Front Bumper";
+				robotLib->Log(ss.str());
+				motorController->SetSpeed(0, 0);
+				return eMotionResult::BUMPER_FRONT;
+			}
+			else
 			{
-				std::stringstream ss;
-				ss << "Collision detected on: ";
-				if (bumperSensors[a].location == eSensorLocation::FRONT)
-				{					
-					ss << " Front Bumper";
-					robotLib->Log(ss.str());
-					motorController->SetSpeed(0, 0);
-					return eMotionResult::BUMPER_FRONT;
-				}
-				else
-				{
-					ss << " Rear Bumper";
-					robotLib->Log(ss.str());
-					motorController->SetSpeed(0, 0);
-					return eMotionResult::BUMPER_BACK;
-				}
+				ss << " Rear Bumper";
+				robotLib->Log(ss.str());
+				motorController->SetSpeed(0, 0);
+				return eMotionResult::BUMPER_BACK;
 			}
 		}
 		delay(10);		
@@ -177,33 +172,49 @@ eMotionResult MotionController::travelDistance(int inchesToTravel,bool forward)
 			if (currentRPM > rpm)
 				currentRPM = rpm;
 		}
-		if (forward)
-			motorController->SetSpeed(currentRPM, currentRPM);
-		else
-			motorController->SetSpeed(currentRPM*-1, currentRPM*-1);
-		for (int a = 0; a < bumperSensors.size(); a++)
+		fmsResult sensorResult = fmSensor->getCurrentState();
+		if (sensorResult.location == eSensorLocation::FRONT && forward)
 		{
-			if (digitalRead(bumperSensors[a].gpioPin) == HIGH)
+			if (sensorResult.result == fmsResultType::HARD_RESULT)
+				return eMotionResult::BUMPER_FRONT;
+			if (sensorResult.result == fmsResultType::OBJECT_DETECTED)
 			{
-				std::stringstream ss;
-				ss << "Collision detected on: ";
-				if (bumperSensors[a].location == eSensorLocation::FRONT)
-				{					
-					ss << " Front Bumper";
-					robotLib->Log(ss.str());
-					motorController->SetSpeed(0, 0);
-					return eMotionResult::BUMPER_FRONT;
-				}
-				else
+				// We have to set our target RPM, and our actual RPM
+				if (currentRPM > config->getObjDetForwardRPM())
 				{
-					ss << " Rear Bumper";
-					robotLib->Log(ss.str());
-					motorController->SetSpeed(0, 0);
+					currentRPM = rpm;
+				}	
+				rpm = config->getObjDetForwardRPM();									
+			}
+			if (sensorResult.result == fmsResultType::CLEAR)
+			{
+				rpm = config->getForwardRPM();				
+			}
+		}
+		else
+		{
+			if (sensorResult.location == eSensorLocation::BACK && !forward)
+			{
+				if (sensorResult.result == fmsResultType::HARD_RESULT)
 					return eMotionResult::BUMPER_BACK;
+				if (sensorResult.result == fmsResultType::OBJECT_DETECTED)
+				{
+					if (currentRPM > config->getObjDetReverseRPM())
+					{
+						currentRPM = config->getObjDetReverseRPM();
+					}
+					rpm = config->getObjDetReverseRPM();
+				}
+				if (sensorResult.result == fmsResultType::CLEAR)
+				{
+					rpm = config->getReverseRPM();				
 				}
 			}
 		}
-		
+		if(forward)
+			motorController->SetSpeed(currentRPM, currentRPM);
+		else
+			motorController->SetSpeed(currentRPM*-1, currentRPM*-1);				
 	}
 	// Store in DB the location info
 	gpsManager->getLocation();

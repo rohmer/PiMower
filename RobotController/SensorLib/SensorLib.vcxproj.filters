@@ -119,6 +119,18 @@
     <Filter Include="Header files\ArduinoSensorHost">
       <UniqueIdentifier>{7def20c5-c63a-4276-bb7e-da648bdc4c0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\PiCamera">
+      <UniqueIdentifier>{f8ccdd1f-d7c5-46a9-bc56-ddb37a059f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\PiCamera">
+      <UniqueIdentifier>{4d55c37b-a25a-4913-80ed-d00f0f9745e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\INA219">
+      <UniqueIdentifier>{be770fc7-8d82-49c8-be60-c26465b13bca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\INA219">
+      <UniqueIdentifier>{823767cd-0944-4c19-9de3-2b5ec5f1a06f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -195,6 +207,12 @@
     </ClCompile>
     <ClCompile Include="ArduinoSensorHost.cpp">
       <Filter>Source files\ArduinoSensorHost</Filter>
+    </ClCompile>
+    <ClCompile Include="PiCamera.cpp">
+      <Filter>Source files\PiCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="INA219.cpp">
+      <Filter>Source files\INA219</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +332,12 @@
     </ClInclude>
     <ClInclude Include="ArduinoSensorHost.h">
       <Filter>Header files\ArduinoSensorHost</Filter>
+    </ClInclude>
+    <ClInclude Include="PiCamera.h">
+      <Filter>Header files\PiCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="INA219.h">
+      <Filter>Header files\INA219</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

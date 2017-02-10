@@ -6,9 +6,6 @@
 #include <cmath>
 #include "DeviceBase.h"
 #include "SensorBase.h"
-#include "../../RobotLib/DeviceRegistry.h"
-#include "../../3rdParty/wiringPi/wiringPi/wiringPi.h"
-#include "../../3rdParty/wiringPi/wiringPi/wiringPiSPI.h"
 
 class LS7366R : public SensorBase
 {

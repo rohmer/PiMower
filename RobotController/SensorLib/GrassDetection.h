@@ -15,7 +15,6 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/core/persistence.hpp>
-#include <opencv2/xfeatures2d/nonfree.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 
 #define TRAINING_DIR "/usr/local/Robot/Detection"

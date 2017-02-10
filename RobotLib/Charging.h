@@ -3,11 +3,12 @@
 
 class Charging : BehaviorBase
 {
-	public:
-		Charging(RobotLib* robotLib, std::string behaviorName);
-		~Charging() override
-		{
-		}
+public:
+	Charging(RobotLib* robotLib);
+	~Charging() override
+	{
+	}
 	
+	uint8_t run() override;
 };
 	

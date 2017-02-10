@@ -1,16 +1,22 @@
 #pragma once
-#include "Config.h"
-#include "RobotLib.h"
 #include <algorithm>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include "../RobotDaemon/RobotDaemon.h"
+#include "RobotLib.h"
 
 // Holds the configuration items for the robot
 
 #define CONFIG_FILE "/usr/local/Robot/config.xml"
+
+typedef enum min_log_level
+{
+	Debug,
+	Warn,
+	Critical,
+	Exception		
+} min_log_level_t;
 
 struct sSpeedConfig
 {
@@ -101,6 +107,7 @@ public:
 	{
 		return std::make_pair(leftEncoderPin, rightEncoderPin);
 	}
+		
 	float getDriveWheelDiameter()
 	{
 		return driveWheelDiameter;
@@ -135,7 +142,7 @@ private:
 	sPWMController pwmController;	
 	RobotLib *robotLib;	
 	bool validConfig = false;
-	uint8_t leftEncoderPin, rightEncoderPin;
+	uint8_t leftEncoderPin, rightEncoderPin;	
 	min_log_level_t minimumLoggingLevel;
 	float driveWheelDiameter, driveGearRatio;
 	unsigned int driveMotorMaxRPM;

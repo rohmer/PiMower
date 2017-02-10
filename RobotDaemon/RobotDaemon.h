@@ -8,15 +8,8 @@
 #include <signal.h>
 #include "../RobotLib/RobotLib.h"
 #include "../3rdParty/argtable2-13/src/argtable2.h"
+#include "../RobotLib/Config.h"
 
-typedef enum
-{
-	Debug,
-	Warn,
-	Critical,
-	Exception		
-} min_log_level_t;
-	
 class RobotDaemon
 {
 	public:

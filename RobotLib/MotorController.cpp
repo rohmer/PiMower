@@ -1,22 +1,34 @@
 #include "MotorController.h"
 
 MotorController::MotorController(RobotLib *robotLib, 
-	Config *config,
-	uint8_t leftMotorChannel, 
-	uint8_t rightMotorChannel, 
-	uint8_t bladeChannel)
+	Config *config)	
 {
 	this->robotLib = robotLib;
 	this->config = config;
-	this->leftMotorChannel = leftMotorChannel;
-	this->rightMotorChannel = rightMotorChannel;
-	this->bladeChannel = bladeChannel;
+	this->leftMotorChannel = config->getPWMControllerConfig().leftDriveChannel;;
+	this->rightMotorChannel = config->getPWMControllerConfig().rightDriveChannel;
+	this->bladeChannel = config->getPWMControllerConfig().bladeChannel;
 	pca9685 = reinterpret_cast<PCA9685 *>(robotLib->getDeviceManager()->getByName("PCA9685"));	
 	pca9685->pca9685PWMFreq(PCAFREQ);	
 	AllStop();
 	leftMotorSpeed = 0;
 	rightMotorSpeed = 0; 
 	bladeSpeed = 0;
+}
+
+eTravelDirection MotorController::currentMotion()
+{
+	if (leftMotorSpeed == 0 && rightMotorSpeed == 0)	
+		return eTravelDirection::STOPPED;
+	if (leftMotorSpeed == rightMotorSpeed && leftMotorSpeed > 0)
+		return eTravelDirection::FORWARD;
+	if (leftMotorSpeed == rightMotorSpeed && leftMotorSpeed < 0)
+		return eTravelDirection::BACKWARD;
+	if (leftMotorSpeed > 0 && leftMotorSpeed > rightMotorSpeed)
+		return eTravelDirection::RIGHT_TURN;
+	if (rightMotorSpeed > 0 && leftMotorSpeed < rightMotorSpeed)
+		return eTravelDirection::LEFT_TURN;
+	return eTravelDirection::STOPPED;
 }
 
 void MotorController::SetSpeed(int leftMotorSpeedPct, int rightMotorSpeedPct, int bladeSpeedPct)

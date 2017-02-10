@@ -19,12 +19,14 @@ ObjectProximityDetection::ObjectProximityDetection(RobotLib *robotLib, Config *c
 // Return is if the object is moving and closer or further
 // second is the raw distance in inches
 // This returns the values for the CLOSEST object
-std::pair<ObjectProximityDetection::eObjectMotionResult,int> ObjectProximityDetection::scanProximity()
+std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetection::scanProximity()
 {
 	std::vector<ArduinoSensorHost::sSensorReturn> sensorValues=arduinoHost->getSensorValues();
 	std::map<uint8_t, sProximity>::iterator it;
 	int shortestDistanceInches = 9999;
-	eObjectMotionResult result=eObjectMotionResult::NO_OBJECT;
+	sProximityResult result;
+	result.motionResult = NO_OBJECT;
+	
 	for (int a = 0; a < sensorValues.size(); a++)
 	{
 		it = proximitySensors.find(sensorValues[a].proximityValue.echoPin);
@@ -44,7 +46,8 @@ std::pair<ObjectProximityDetection::eObjectMotionResult,int> ObjectProximityDete
 					int inches = round(sensorValues[a].proximityValue.rawRange / 146);
 					if (inches < shortestDistanceInches)
 					{
-						result = analyzeMotion(sensor, sensorValues[a]);
+						result.motionResult = analyzeMotion(sensor, sensorValues[a]);
+						result.direction = sensor.sensor.location;
 					}					
 				}
 				sensor.lastCheck = sensorValues[a].proximityValue.pingTime;
@@ -59,12 +62,14 @@ std::pair<ObjectProximityDetection::eObjectMotionResult,int> ObjectProximityDete
 // Return is if the object is moving and closer or further
 // second is the raw distance in inches
 // This returns the values for the CLOSEST object
-std::pair<ObjectProximityDetection::eObjectMotionResult, int> ObjectProximityDetection::scanProximity(eSensorLocation dir)
+std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetection::scanProximity(eSensorLocation dir)
 {
 	std::vector<ArduinoSensorHost::sSensorReturn> sensorValues = arduinoHost->getSensorValues();
 	std::map<uint8_t, sProximity>::iterator it;
 	int shortestDistanceInches = 9999;
-	eObjectMotionResult result = eObjectMotionResult::NO_OBJECT;
+	sProximityResult result;
+	result.motionResult = NO_OBJECT;
+	
 	for (int a = 0; a < sensorValues.size(); a++)
 	{
 		it = proximitySensors.find(sensorValues[a].proximityValue.echoPin);
@@ -86,7 +91,8 @@ std::pair<ObjectProximityDetection::eObjectMotionResult, int> ObjectProximityDet
 						int inches = round(sensorValues[a].proximityValue.rawRange / 146);
 						if (inches < shortestDistanceInches)
 						{
-							result = analyzeMotion(sensor, sensorValues[a]);
+							result.motionResult = analyzeMotion(sensor, sensorValues[a]);
+							result.direction = sensor.sensor.location;
 						}					
 					}
 				}

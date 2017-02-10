@@ -95,6 +95,18 @@
     <Filter Include="Header files\UI\Graphics">
       <UniqueIdentifier>{0064a34b-34dc-44b3-acc9-a553a696bf7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\Utils">
+      <UniqueIdentifier>{063d085d-9145-4cd1-b9c2-ab0670fc1ba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Utils">
+      <UniqueIdentifier>{27fd5511-3a42-4896-863a-d4fee55d7c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\UI\Pages">
+      <UniqueIdentifier>{bdd0dc41-22a3-438a-8bc6-3491c558ed92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\UI\Pages">
+      <UniqueIdentifier>{9e354f5a-5e15-425c-b5e1-244b4e414a77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotLib.cpp">
@@ -175,6 +187,15 @@
     <ClCompile Include="LawnMap.cpp">
       <Filter>Source files\MapLib</Filter>
     </ClCompile>
+    <ClCompile Include="FusedMotionSensor.cpp">
+      <Filter>Source files\MotionControl</Filter>
+    </ClCompile>
+    <ClCompile Include="guid.cpp">
+      <Filter>Source files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Charging.cpp">
+      <Filter>Source files\Robot\Behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RobotLib.h">
@@ -234,9 +255,6 @@
     <ClInclude Include="UIFont.h">
       <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="NavigationIcons.h">
-      <Filter>Source files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="SensorManager.h">
       <Filter>Header files\Robot\SensorManager</Filter>
     </ClInclude>
@@ -282,6 +300,18 @@
     <ClInclude Include="LawnMap.h">
       <Filter>Header files\MapLib</Filter>
     </ClInclude>
+    <ClInclude Include="FusedMotionSensor.h">
+      <Filter>Header files\Robot\MotionControl</Filter>
+    </ClInclude>
+    <ClInclude Include="guid.h">
+      <Filter>Header files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="NavigationIcons.h">
+      <Filter>Header files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BatteryIcons.h">
+      <Filter>Header files\UI\Pages</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings">
@@ -305,6 +335,27 @@
       <Filter>Header files\UI\Graphics</Filter>
     </Image>
     <Image Include="Icons\Symbol.jpg">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Battery15pct.gif">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Battery30pct.gif">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Battery45pct.gif">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Battery60pct.gif">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Battery85%.gif">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\Battery100pct.gif">
+      <Filter>Header files\UI\Graphics</Filter>
+    </Image>
+    <Image Include="Icons\BatteryEmpty.gif">
       <Filter>Header files\UI\Graphics</Filter>
     </Image>
   </ItemGroup>

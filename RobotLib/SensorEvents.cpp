@@ -1,13 +1,14 @@
 #include "SensorEvents.h"
 
-bool SensorEvents::insertPositionEvent(sensors_event_t *positionEvent)
+bool SensorEvents::insertPositionEvent(Guid sessionID, sensors_event_t *positionEvent)
 {	
 	std::stringstream sql;
 	time_t rawTime;
 	time(&rawTime);
 	struct tm * t = localtime(&rawTime);
 	time_t timeSinceEpoch = mktime(t);
-	sql << "INSERT INTO POSITION VALUES(" << timeSinceEpoch <<
+	sql << "INSERT INTO POSITION VALUES(" << sessionID << 
+		"," << timeSinceEpoch <<
 		"," << positionEvent->gps.latitude.degrees <<
 		"," << positionEvent->gps.latitude.minutes <<
 		"," << positionEvent->gps.longitude.degrees <<
