@@ -23,6 +23,8 @@ void Database::initDB()
 			createScheduleTable();
 		if (!db.tableExists("State"))
 			createStateTable();
+		if (!db.tableExists("LawnMap"))
+			createMapTable();
 
 	}
 	catch (std::exception &e)
@@ -31,6 +33,16 @@ void Database::initDB()
 	}
 	
 	robotLib->Log("Database Initialized");
+}
+
+bool Database::createMapTable()
+{
+	std::string sql = "CREATE TABLE LawnMap("\
+		"X INT NOT NULL, "\
+		"Y INT NOT NULL, "\
+		"Blocking BOOLEAN, " \
+		"Contents INT)";
+	return execSql(sql);
 }
 
 bool Database::createStateTable()

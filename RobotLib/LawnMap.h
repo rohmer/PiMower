@@ -29,6 +29,7 @@ class LawnMap
 		int getPathMap(int x, int y);		
 		int getCartNodeWeight(int x, int y);
 		std::vector<MapNode *> getPathToClosestBase(std::pair<int, int> start);
+		void storeMapNode(MapNode *node);
 	
 	private:
 		RobotLib *robotLib;

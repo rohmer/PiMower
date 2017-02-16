@@ -26,6 +26,7 @@ private:
 	static bool createConfigTable();
 	static bool createScheduleTable();
 	static bool createStateTable();
+	static bool createMapTable();
 	
 	static RobotLib *robotLib;
 	static bool initialized;		

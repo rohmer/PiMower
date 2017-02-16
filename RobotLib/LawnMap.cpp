@@ -140,6 +140,26 @@ MapNode* LawnMap::getNode(int x, int y)
 	return it->second;
 }
 
+void LawnMap::storeMapNode(MapNode *mapNode)
+{
+	SQLite::Database db(DB_LOCATION,
+		SQLite::OPEN_READWRITE);
+	SQLite::Statement stmt(db, "UPDATE LawnMap SET Blocking=?, Contents=? WHERE X=? AND Y=?");
+	stmt.bind(1, mapNode->isBlocking());
+	stmt.bind(2, mapNode->blockContents());
+	stmt.bind(3, mapNode->getGridCoord().first);
+	stmt.bind(4, mapNode->getGridCoord().second);
+	if (stmt.exec() == 0)
+	{
+		SQLite::Statement insert(db, "INSERT INTO LawnMap(?,?,?,?)");
+		stmt.bind(1, mapNode->getGridCoord().first);
+		stmt.bind(2, mapNode->getGridCoord().second);
+		stmt.bind(3, mapNode->isBlocking());
+		stmt.bind(4, mapNode->blockContents());
+		insert.exec();
+	}
+}
+
 // LawnMap format:
 // <map minX=int minY=int maxX=int maxY=int>
 //	<Node x=int, y=int, type=enum>
@@ -161,6 +181,7 @@ bool LawnMap::saveMap()
 	doc.append_node(root);
 	for (std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.begin(); it != mapContents.end(); it++)
 	{
+		storeMapNode(it->second);
 		rapidxml::xml_node<>* node = doc.allocate_node(rapidxml::node_element, "Node");
 		node->append_attribute(doc.allocate_attribute("x", std::to_string(it->first.first).c_str()));
 		node->append_attribute(doc.allocate_attribute("y", std::to_string(it->first.second).c_str()));
