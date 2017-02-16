@@ -52,6 +52,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Behavior.cpp" />
+    <ClCompile Include="BehaviorManager.cpp" />
     <ClCompile Include="Charging.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Database.cpp" />
@@ -62,28 +63,36 @@
     <ClCompile Include="GPSManager.cpp" />
     <ClCompile Include="guid.cpp" />
     <ClCompile Include="i2cscanner.cpp" />
+    <ClCompile Include="Idle.cpp" />
+    <ClCompile Include="IdlePage.cpp" />
     <ClCompile Include="IntertialGuidence.cpp" />
     <ClCompile Include="LawnMap.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MapNode.cpp" />
     <ClCompile Include="MotionController.cpp" />
     <ClCompile Include="MotorController.cpp" />
     <ClCompile Include="ObjectProximityDetection.cpp" />
+    <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RobotLib.cpp" />
+    <ClCompile Include="Scheduler.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="SensorEvents.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIFont.cpp" />
+    <ClCompile Include="UIGraphic.cpp" />
     <ClCompile Include="UIInput.cpp" />
     <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UIMenu.cpp" />
     <ClCompile Include="UIRadioGroup.cpp" />
     <ClCompile Include="UIToggle.cpp" />
+    <ClCompile Include="UITouchArea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BatteryIcons.h" />
     <ClInclude Include="Behavior.h" />
+    <ClInclude Include="BehaviorManager.h" />
     <ClInclude Include="Charging.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Database.h" />
@@ -92,8 +101,11 @@
     <ClInclude Include="DeviceRegistry.h" />
     <ClInclude Include="GPSManager.h" />
     <ClInclude Include="guid.h" />
+    <ClInclude Include="Idle.h" />
+    <ClInclude Include="IdlePage.h" />
     <ClInclude Include="InertialGuidence.h" />
     <ClInclude Include="LawnMap.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MapLibConstants.h" />
     <ClInclude Include="MapNode.h" />
     <ClInclude Include="FusedMotionSensor.h" />
@@ -103,23 +115,26 @@
     <ClInclude Include="NavigationIcons.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="ObjectProximityDetection.h" />
+    <ClInclude Include="PageManager.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />
+    <ClInclude Include="Scheduler.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="SensorEvents.h" />
-    <ClInclude Include="SensorManager.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIFont.h" />
+    <ClInclude Include="UIGraphic.h" />
     <ClInclude Include="UIInput.h" />
     <ClInclude Include="UIKeyboardIcons.h" />
     <ClInclude Include="UILabel.h" />
     <ClInclude Include="UIMenu.h" />
     <ClInclude Include="UIRadioGroup.h" />
     <ClInclude Include="UIToggle.h" />
+    <ClInclude Include="UITouchArea.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings" />

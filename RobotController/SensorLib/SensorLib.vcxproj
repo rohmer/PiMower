@@ -55,6 +55,7 @@
     <ClCompile Include="ArduCamDriver\arducamDriver.c" />
     <ClCompile Include="ArduCamDriver\arducam_arch_raspberrypi.c" />
     <ClCompile Include="ArduinoSensorHost.cpp" />
+    <ClCompile Include="BQ34Z100G1.cpp" />
     <ClCompile Include="DigoleLCD.cpp" />
     <ClCompile Include="GPIOButton.cpp" />
     <ClCompile Include="GPIOLED.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="ArduCamDriver\ov2640_regs.h" />
     <ClInclude Include="ArduCamDriver\ov5642_regs.h" />
     <ClInclude Include="ArduinoSensorHost.h" />
+    <ClInclude Include="BQ34Z100G1.h" />
     <ClInclude Include="DigoleLCD.h" />
     <ClInclude Include="GPIOButton.h" />
     <ClInclude Include="DeviceBase.h" />
@@ -115,6 +117,7 @@
     <ClInclude Include="ParserGPVTG.h" />
     <ClInclude Include="PCA9685.h" />
     <ClInclude Include="PiCamera.h" />
+    <ClInclude Include="RA8875.h" />
     <ClInclude Include="SensorBase.h" />
     <ClInclude Include="SensorLib.h" />
     <ClInclude Include="ST7565.h" />

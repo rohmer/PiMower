@@ -33,6 +33,12 @@ DeviceManager::~DeviceManager()
 	
 }
 
+DeviceBase* DeviceManager::addDevice(DeviceBase *device)
+{	
+	DeviceEntry *de = new DeviceEntry(robotLib, device);
+	devices.push_back(de);	
+}
+
 uint8_t DeviceManager::getSerialFD(std::string dev,int baud)
 {
 	std::map<std::string, uint8_t>::iterator it = serialfd.find(dev);

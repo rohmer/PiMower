@@ -9,7 +9,7 @@ RobotLib::RobotLib()
 	{
 		Log("Running on QEMU emulator");
 	}
-	database = new Database(*this);	
+	database = new Database(this);	
 	deviceManager = new DeviceManager(*this);
 }
 

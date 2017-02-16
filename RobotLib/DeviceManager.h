@@ -5,6 +5,7 @@
 #include "../RobotController/SensorLib/DeviceLib.h"
 #include "../RobotController/SensorLib/SensorLib.h"
 #include "DeviceEntry.h"
+#include "../RobotController/SensorLib/DeviceBase.h"
 #include <memory>
 #include <stdio.h>
 #include <unistd.h>
@@ -24,7 +25,8 @@ class DeviceManager
 		static uint8_t getI2CFD(uint8_t dev);
 		static uint8_t getSerialFD(std::string dev, int baud);
 		static uint8_t getSPIFD(uint8_t dev, int speed);
-	
+		DeviceBase *addDevice(DeviceBase* device);
+		
 	private:
 		std::vector<DeviceEntry*> devices;	
 		RobotLib *robotLib;

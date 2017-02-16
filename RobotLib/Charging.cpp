@@ -1,17 +1,32 @@
 #include "Charging.h"
 
-Charging::Charging(RobotLib *robotLib)
-	: BehaviorBase(robotLib, "Charging")
+Charging::Charging(RobotLib *robotLib, Scheduler *scheduler)
+	: Behavior(robotLib, "Charging")
 {
-	
+	this->scheduler = scheduler;
+	currentSensor = (INA219 *)robotLib->getDeviceManager()->getByName("INA219");
+	batterySensor = (BQ34Z100G1*)robotLib->getDeviceManager()->getByName("BQ34Z100G1");
 }
 
-// Charging has only one exit point, that we start mowing
-// Mowing = return val 1
-// TODO: Create the UI stuff to update during all of the different
-//		 behaviors
-uint8_t Charging::run()
+Charging::~Charging()
 {
+	delete(scheduler);
+}
+
+// Charging has only three exit points, idle or charging, or ready 
+// Idle = return val 1
+// Ready = 2
+// Otherwise - stay 0, meaning our behavior doesnt change
+uint8_t Charging::run()
+{	
 	
-	return 1;
+	if (currentSensor->getBusVoltage_V() > 1)	
+	{
+		if (batterySensor->getPctRemaining() >= 99)
+		{
+			return 2;
+		}
+		return 0;
+	}
+	return 1;	
 }

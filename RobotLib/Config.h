@@ -5,6 +5,8 @@
 #include <fstream>
 #include <iostream>
 #include "RobotLib.h"
+#include "Database.h"
+#include "../3rdParty/SQLiteC++/include/SQLiteCpp/Statement.h"
 
 // Holds the configuration items for the robot
 
@@ -136,6 +138,10 @@ public:
 	{
 		return minimumLoggingLevel;
 	}
+	uint8_t getMinimumBatteryPct()
+	{
+		return batteryChargePercentage;
+	}
 	
 private:
 	sSpeedConfig normalOperationSpeed, objectDetectionSpeed;
@@ -154,12 +160,17 @@ private:
 	bool readSpeed(rapidxml::xml_node<> *speedNode);
 	rapidxml::xml_node<> *createSpeedNode(rapidxml::xml_node<> *rootNode, rapidxml::xml_document<> &doc);
 	void readLogLevel(rapidxml::xml_node<> *rootNode);
-	bool readEncoder(rapidxml::xml_node<> *encoderNode);
-	
+	bool readEncoder(rapidxml::xml_node<> *encoderNode);	
 	bool readPhysical(rapidxml::xml_node<> *rootNode);	
 	void writeConfiguration(rapidxml::xml_node<> *rootNode, 
 		rapidxml::xml_document<> &doc,
 		std::string cfgFile);		
+	uint8_t getBatChargePct();
+	
+	void writeConfigDB();
+	bool readConfigDB();
+	
+	uint8_t batteryChargePercentage;
 	std::vector<sBumperSensor> bumperSensors;
 	sArduinoHost arduinoHost;
 };

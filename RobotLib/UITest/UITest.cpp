@@ -10,6 +10,7 @@
 #include "../UIRadioGroup.h"
 #include "../UIInput.h"
 #include "img256.h"
+#include "../PageManager.h"
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -20,6 +21,8 @@ int main(int argc, char *argv[])
     //sleep(50);
 	
 	ScreenManager *screenManager = new ScreenManager(robotLib,lcd);
+	PageManager *pageManager = new PageManager();
+	screenManager->addElement(pageManager);
 	/*UIMenu *uiMenu = new UIMenu(robotLib);
 	int pg1 = uiMenu->createMenuPage("Page 1");	
 	int pg2 =  uiMenu->createMenuPage("Page 2");

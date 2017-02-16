@@ -83,14 +83,8 @@
     <Filter Include="Source files\LocationManager">
       <UniqueIdentifier>{b11cd6cd-e2e3-4786-a04a-5803a49da929}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\Robot\SensorManager">
-      <UniqueIdentifier>{861969a2-ee7b-4366-a318-e105a954367c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header files\Robot\MotionControl">
       <UniqueIdentifier>{969c19df-0b65-4898-876f-55610695e4b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source files\MotionControl">
-      <UniqueIdentifier>{968731cb-07ce-4d86-962a-89407b7765d5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header files\UI\Graphics">
       <UniqueIdentifier>{0064a34b-34dc-44b3-acc9-a553a696bf7d}</UniqueIdentifier>
@@ -106,6 +100,15 @@
     </Filter>
     <Filter Include="Header files\UI\Pages">
       <UniqueIdentifier>{9e354f5a-5e15-425c-b5e1-244b4e414a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Robot\Scheduler">
+      <UniqueIdentifier>{a345b1ab-b281-4c29-9686-31f3f84dc51a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Robot\MotionControl">
+      <UniqueIdentifier>{968731cb-07ce-4d86-962a-89407b7765d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Robot\Scheduler">
+      <UniqueIdentifier>{7151e890-88fc-4a60-8683-0c9973984318}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -152,10 +155,10 @@
       <Filter>Source files\UI\Elements</Filter>
     </ClCompile>
     <ClCompile Include="MotorController.cpp">
-      <Filter>Source files\MotionControl</Filter>
+      <Filter>Source files\Robot\MotionControl</Filter>
     </ClCompile>
     <ClCompile Include="MotionController.cpp">
-      <Filter>Source files\MotionControl</Filter>
+      <Filter>Source files\Robot\MotionControl</Filter>
     </ClCompile>
     <ClCompile Include="UILabel.cpp">
       <Filter>Source files\UI\Elements</Filter>
@@ -179,7 +182,7 @@
       <Filter>Source files\UI\Elements</Filter>
     </ClCompile>
     <ClCompile Include="ObjectProximityDetection.cpp">
-      <Filter>Source files\MotionControl</Filter>
+      <Filter>Source files\Robot\MotionControl</Filter>
     </ClCompile>
     <ClCompile Include="Config.cpp">
       <Filter>Source files\Robot\Configuration</Filter>
@@ -188,12 +191,36 @@
       <Filter>Source files\MapLib</Filter>
     </ClCompile>
     <ClCompile Include="FusedMotionSensor.cpp">
-      <Filter>Source files\MotionControl</Filter>
+      <Filter>Source files\Robot\MotionControl</Filter>
     </ClCompile>
     <ClCompile Include="guid.cpp">
       <Filter>Source files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Charging.cpp">
+      <Filter>Source files\Robot\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="UIGraphic.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UITouchArea.cpp">
+      <Filter>Source files\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="IdlePage.cpp">
+      <Filter>Source files\UI\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="PageManager.cpp">
+      <Filter>Source files\UI\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source files\UI\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheduler.cpp">
+      <Filter>Source files\Robot\Scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorManager.cpp">
+      <Filter>Source files\Robot\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
       <Filter>Source files\Robot\Behaviors</Filter>
     </ClCompile>
   </ItemGroup>
@@ -255,9 +282,6 @@
     <ClInclude Include="UIFont.h">
       <Filter>Header files\UI\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="SensorManager.h">
-      <Filter>Header files\Robot\SensorManager</Filter>
-    </ClInclude>
     <ClInclude Include="States.h">
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
@@ -311,6 +335,30 @@
     </ClInclude>
     <ClInclude Include="BatteryIcons.h">
       <Filter>Header files\UI\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="UIGraphic.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UITouchArea.h">
+      <Filter>Header files\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="PageManager.h">
+      <Filter>Header files\UI\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="IdlePage.h">
+      <Filter>Header files\UI\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header files\UI\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheduler.h">
+      <Filter>Header files\Robot\Scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorManager.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Idle.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

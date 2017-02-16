@@ -19,6 +19,20 @@ class ScreenManager
 		int addElement(UIElement *element);
 		void start();
 		void setDirty(UIElement *element);
+		DigoleLCD *getLCD() const
+		{
+			return lcd;
+		}
+	// Returns -1 if no item is touched
+	// If an item is returned, this is automatically reset to -1
+		int getItemTouched()
+		{
+			if (lastTouched == -1)
+				return -1;
+			int itemId = lastTouched;
+			lastTouched = -1;
+			return itemId;
+		}
 	
 	private:	
 		DigoleLCD *lcd;
@@ -34,5 +48,6 @@ class ScreenManager
 	
 		int msleep(unsigned long milisec);
 		void screenDriver();
+		int lastTouched = -1;
 };
 

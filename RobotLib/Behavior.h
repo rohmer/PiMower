@@ -4,25 +4,29 @@
 #include <ctime>
 #include <sstream>
 
-class BehaviorBase
+class Behavior
 {
-	public:
-		BehaviorBase(RobotLib *robotLib, std::string behaviorName)
-		{
-			this->robotLib = robotLib;
-			this->behaviorName = behaviorName;
-		};		
+public:
+	Behavior(RobotLib *robotLib, std::string behaviorName)
+	{
+		this->robotLib = robotLib;
+		this->behaviorName = behaviorName;
+	}
+	;		
 	
-		virtual ~BehaviorBase()
-		{
-		}
+	virtual ~Behavior()
+	{
+	}
 		
-		virtual uint8_t run();		
+	virtual uint8_t run()
+	{
+	}
 		
-		std::string getBehaviorName();
 	
-	protected:
-		RobotLib* robotLib;
-		std::string behaviorName;
-		struct tm *behaviorStartTime;
+	std::string getBehaviorName();
+	
+protected:
+	RobotLib* robotLib;
+	std::string behaviorName;
+	struct tm *behaviorStartTime;
 };

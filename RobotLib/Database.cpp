@@ -2,9 +2,9 @@
 RobotLib *Database::robotLib;
 bool Database::initialized;	
 
-Database::Database(RobotLib &robotLib)
+Database::Database(RobotLib *robotLib)
 {
-	this->robotLib = &robotLib;
+	this->robotLib = robotLib;
 	initialized = false;
 	initDB();
 }
@@ -15,8 +15,15 @@ void Database::initDB()
 	{
 		SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
 		// Check for all our tables
-		if (!db.tableExists("POSITION"))
+		if (!db.tableExists("Position"))
 			createPositionTable();
+		if (!db.tableExists("Config"))
+			createConfigTable();
+		if (!db.tableExists("Schedule"))
+			createScheduleTable();
+		if (!db.tableExists("State"))
+			createStateTable();
+
 	}
 	catch (std::exception &e)
 	{
@@ -26,10 +33,66 @@ void Database::initDB()
 	robotLib->Log("Database Initialized");
 }
 
+bool Database::createStateTable()
+{
+	std::string sql = "CREATE TABLE State("\
+		"sessionID CHAR(36) PRIMARY KEY NOT NULL,"\
+		"State INT,"\
+		"Timestamp DATETIME)";
+	return execSql(sql);
+}
+
+bool Database::createScheduleTable()
+{
+	std::string sql = "CREATE TABLE Schedule("\
+		"DayOfWeek INT," \
+		"StartHour INT," \
+		"StartMinute INT," \
+		"EndHour INT, "\
+		"EndMinute INT, " \
+		"MowingSessions INT)";
+	return execSql(sql);
+}
+
+bool Database::createConfigTable()
+{
+	std::string sql = "CREATE TABLE Config(" \
+		"LogLevel INT," \
+		"DriveWheelDiameter REAL, "\
+		"DriveGearRatio REAL, " \
+		"DriveMotorMaxRPM INT, " \
+		"PWMI2C INT, " \
+		"LeftDriveChanel INT, " \
+		"RightDriveChannel INT, " \
+		"BladeChannel INT, " \
+		"ArduinoHostI2C INT, " \
+		"ProximityTollerance REAL, " \
+		"NormalOperationRPM INT, " \
+		"NormalReverseRPM INT, " \
+		"NormalRotationalRPM INT, " \
+		"ObjectForwardRPM INT, " \
+		"ObjectReverseRPM INT, " \
+		"AccelNormal INT, " \
+		"AccelRotational INT, " \
+		"EncoderLeft INT, " \
+		"EncoderRight INT, " \
+		"BatteryPctToStartCharge INT)";
+		
+	if (!execSql(sql))
+		return false;
+	
+	sql = "CREATE TABLE Sensors(" \
+		"SensorType INT, " \
+		"TriggerPin INT, " \
+		"EchoPin INT, " \
+		"Location CHAR(5), " \
+		"Name CHAR(32))";
+	return execSql(sql);	
+}
 
 bool Database::createPositionTable()
 {
-	std::string sql = "CREATE TABLE position("	\
+	std::string sql = "CREATE TABLE Position("	\
 		"sessionID CHAR(36) PRIMARY KEY NOT NULL," \
 		"timestamp INTEGER NOT NULL," \
 		"LAT_Degrees REAL," \

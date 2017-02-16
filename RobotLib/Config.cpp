@@ -1,7 +1,7 @@
 #include "Config.h"
 
 Config::Config(RobotLib *robotLib)
-{
+{	
 	this->robotLib = robotLib;
 #ifdef DEBUG
 	minimumLoggingLevel = min_log_level_t::Debug;
@@ -12,101 +12,104 @@ Config::Config(RobotLib *robotLib)
 }
 
 bool Config::getConfig()
-{
+{	
 	return getConfig(CONFIG_FILE);
 }
 
 bool Config::getConfig(std::string cfgFile)
 {
+	Database db(robotLib);
 	bool writeConfig = false;
+	if (!readConfigDB())	
+	{		
+		std::ifstream configFile(cfgFile);
+		if (!configFile.good())
+		{
+			robotLib->LogError("Configuration file does not exist.");
+			writeConfig = true;
+		}
 	
-	std::ifstream configFile(cfgFile);
-	if (!configFile.good())
-	{
-		robotLib->LogError("Configuration file does not exist.");
-		writeConfig = true;
+		rapidxml::xml_document<> doc;
+		std::vector<char> buffer((std::istreambuf_iterator<char>(configFile)), std::istreambuf_iterator<char>());
+		buffer.push_back('\0');
+		doc.parse<0>(&buffer[0]);
+	
+		rapidxml::xml_node<> *rootNode = doc.first_node("PiMowerConfig", 0, false);
+		if (!rootNode)
+		{
+			robotLib->LogError("Configuration file does not have a root node of PiMowerConfig");
+			return false;
+		}
+		rootNode = doc.first_node("PiMowerConfig");
+	
+		// Now go thru and parse each of the sub-nodes
+		rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
+	
+		if (!sensorNode)
+		{
+			robotLib->LogError("Configuration missing Sensor node, which is required");
+			return false;
+		}
+	
+		if (!readSensors(sensorNode))
+		{
+			robotLib->Log("Fatal error in sensor node, exiting");
+			return false;
+		}	
+	
+		rapidxml::xml_node<> *speedNode = rootNode->first_node("Speed", 0, false);
+		if (!speedNode)
+		{
+			robotLib->LogWarn("Speed Node missing, will recreate");
+			rootNode = createSpeedNode(rootNode, doc);
+			writeConfiguration(rootNode, doc, cfgFile);
+		}
+		if (!readSpeed(speedNode))
+		{
+			robotLib->LogError("Fatal error in speed node, exiting");
+			return false;
+		}
+	
+		rapidxml::xml_node<> *encoder = rootNode->first_node("MotorEncoder", 0, false);
+		if (!encoder)
+		{
+			robotLib->LogError("Fatal error, MotorEncoder node not set in config, exiting");
+			return false;
+		}
+	
+		if (!readEncoder(encoder))
+		{
+			robotLib->Log("Fatal error in MotorEncoder node, exiting");
+			return false;
+		}
+	
+		rapidxml::xml_node<> *physical = rootNode->first_node("Physical", 0, false);
+		if (!physical)
+		{
+			robotLib->LogError("Fatal error, Physical node not set in config, exiting");
+			return false;
+		}
+	
+		if (!readPhysical(physical))
+		{
+			robotLib->Log("Fatal error in Physical node, exiting");
+			return false;
+		}
+	
+		rapidxml::xml_node<> *logNode = rootNode->first_node("Logging", 0, false);
+		if (!logNode)
+		{
+			minimumLoggingLevel = min_log_level_t::Critical;
+			#ifdef DEBUG
+			minimumLoggingLevel = Debug;
+			#endif		
+		}
+		else
+		{
+			readLogLevel(logNode);	
+		}
+		writeConfigDB();
 	}
-	
-	rapidxml::xml_document<> doc;
-	std::vector<char> buffer((std::istreambuf_iterator<char>(configFile)), std::istreambuf_iterator<char>());
-	buffer.push_back('\0');
-	doc.parse<0>(&buffer[0]);
-	
-	rapidxml::xml_node<> *rootNode = doc.first_node("PiMowerConfig",0,false);
-	if (!rootNode)
-	{
-		robotLib->LogError("Configuration file does not have a root node of PiMowerConfig");
-		return false;
-	}
-	rootNode = doc.first_node("PiMowerConfig");
-	
-	// Now go thru and parse each of the sub-nodes
-	rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
-	
-	if (!sensorNode)
-	{
-		robotLib->LogError("Configuration missing Sensor node, which is required");
-		return false;
-	}
-	
-	if (!readSensors(sensorNode))
-	{
-		robotLib->Log("Fatal error in sensor node, exiting");
-		return false;
-	}	
-	
-	rapidxml::xml_node<> *speedNode = rootNode->first_node("Speed", 0, false);
-	if (!speedNode)
-	{
-		robotLib->LogWarn("Speed Node missing, will recreate");
-		rootNode=createSpeedNode(rootNode,doc);
-		writeConfiguration(rootNode, doc, cfgFile);
-	}
-	if (!readSpeed(speedNode))
-	{
-		robotLib->LogError("Fatal error in speed node, exiting");
-		return false;
-	}
-	
-	rapidxml::xml_node<> *encoder = rootNode->first_node("MotorEncoder", 0, false);
-	if (!encoder)
-	{
-		robotLib->LogError("Fatal error, MotorEncoder node not set in config, exiting");
-		return false;
-	}
-	
-	if (!readEncoder(encoder))
-	{
-		robotLib->Log("Fatal error in MotorEncoder node, exiting");
-		return false;
-	}
-	
-	rapidxml::xml_node<> *physical = rootNode->first_node("Physical", 0, false);
-	if (!physical)
-	{
-		robotLib->LogError("Fatal error, Physical node not set in config, exiting");
-		return false;
-	}
-	
-	if (!readPhysical(physical))
-	{
-		robotLib->Log("Fatal error in Physical node, exiting");
-		return false;
-	}
-	
-	rapidxml::xml_node<> *logNode = rootNode->first_node("Logging", 0, false);
-	if (!logNode)
-	{
-		minimumLoggingLevel = min_log_level_t::Critical;
-#ifdef DEBUG
-		minimumLoggingLevel = Debug;
-#endif		
-	}
-	else
-	{
-		readLogLevel(logNode);	
-	}
-	
 	return true;
 }
 
@@ -139,6 +142,16 @@ bool Config::readPhysical(rapidxml::xml_node<> *physicalNode)
 		robotLib->LogError("Physical node missing required DriveMotorMaxRPM setting");
 		return false;
 	}		
+	if (physicalNode->first_attribute("BatteryChargePercentage", 0, false))
+	{
+		batteryChargePercentage = std::atof(physicalNode->first_attribute("BatteryChargePercentage", 0, false)->value());
+	}
+	else
+	{
+		robotLib->LogError("Physical node missing required BatteryChargePercentage setting");
+		return false;
+	}
+	
 	return true;
 }
 
@@ -339,7 +352,190 @@ void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 		return;
 	}
 	fs << xmlString;
-	fs.close();
+	fs.close();	
+}
+
+bool Config::readConfigDB()
+{
+	// First get sensors
+	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
+	SQLite::Statement query(db, "SELECT * FROM sensors");
+	bumperSensors.clear();
+	std::vector<sProximitySensors> pSensors;
+	while (query.executeStep())
+	{
+		int sensorType = query.getColumn(0).getInt();
+		if (sensorType == 0)
+		{
+			// Bumper
+			sBumperSensor bSensor;
+			bSensor.gpioPin = query.getColumn(1).getInt();
+			std::string loc = query.getColumn(3).getString();
+			std::transform(loc.begin(), loc.end(), loc.begin(), ::toupper);
+			if (loc == "FRONT")
+			{
+				bSensor.location = eSensorLocation::FRONT;
+			}
+			if (loc == "BACK")
+			{
+				bSensor.location = eSensorLocation::BACK;
+			}
+			if (loc == "LEFT")
+			{
+				bSensor.location = eSensorLocation::LEFT;
+			}
+			if (loc == "RIGHT")
+			{
+				bSensor.location = eSensorLocation::RIGHT;
+			}
+			bumperSensors.push_back(bSensor);
+		}
+		else
+		if (sensorType == 1)
+		{
+			//Proximity
+			sProximitySensors pSensor; 
+			pSensor.triggerPin = query.getColumn(1).getInt();
+			pSensor.echoPin = query.getColumn(2).getInt();
+			std::string loc = query.getColumn(3).getString();
+			std::transform(loc.begin(), loc.end(), loc.begin(),::toupper);
+			if (loc == "FRONT")
+			{
+				pSensor.location = eSensorLocation::FRONT;
+			}
+			if (loc == "BACK")
+			{
+				pSensor.location = eSensorLocation::BACK;
+			}
+			if (loc == "LEFT")
+			{
+				pSensor.location = eSensorLocation::LEFT;
+			}
+			if (loc == "RIGHT")
+			{
+				pSensor.location = eSensorLocation::RIGHT;
+			}
+			pSensor.name = query.getColumn(4).getString();
+			pSensors.push_back(pSensor);
+		}
+	}
+	SQLite::Statement cQuery(db, "SELECT * FROM config");
+	bool readConfig = false;
+	while (cQuery.executeStep())
+	{
+		readConfig = true;
+		int ll = cQuery.getColumn(0).getInt();
+		if (ll == 0)			
+			minimumLoggingLevel = min_log_level_t::Debug;
+		else
+		if (ll == 1)
+			minimumLoggingLevel = min_log_level_t::Warn;
+		else
+		if (ll == 2)
+			minimumLoggingLevel = min_log_level_t::Critical;
+		else
+		if (ll == 3)
+			minimumLoggingLevel = min_log_level_t::Exception;
+		else
+		{
+			std::stringstream ss;
+			ss << "Unknown logging level: " << ll << ", defaulting to Critical";
+			robotLib->Log(ss.str());
+			minimumLoggingLevel = min_log_level_t::Critical;
+		}
+		driveWheelDiameter = cQuery.getColumn(1).getDouble();
+		driveGearRatio = cQuery.getColumn(2).getDouble();
+		driveMotorMaxRPM = cQuery.getColumn(3).getInt();
+		sPWMController pwmController;
+		pwmController.i2cChannel = cQuery.getColumn(4).getInt();
+		pwmController.leftDriveChannel = cQuery.getColumn(5).getInt();
+		pwmController.rightDriveChannel = cQuery.getColumn(6).getInt();
+		pwmController.bladeChannel = cQuery.getColumn(7).getInt();
+		this->pwmController = pwmController;
+		sArduinoHost aHost;
+		aHost.i2caddr = cQuery.getColumn(8).getInt();
+		aHost.proximitySensors = pSensors;
+		aHost.proximityTollerance = cQuery.getColumn(9).getDouble();
+		sSpeedConfig sConfig;
+		sConfig.forwardRPM = cQuery.getColumn(10).getInt();
+		sConfig.reverseRPM = cQuery.getColumn(11).getInt();
+		sConfig.rotationRPM = cQuery.getColumn(12).getInt();
+		normalOperationSpeed = sConfig;
+		sConfig.forwardRPM = cQuery.getColumn(13).getInt();
+		sConfig.reverseRPM = cQuery.getColumn(14).getInt();
+		objectDetectionSpeed = sConfig;
+		normalAcceleration = cQuery.getColumn(15).getInt();
+		rotationalAcceleration = cQuery.getColumn(16).getInt();
+		leftEncoderPin = cQuery.getColumn(17).getInt();
+		rightEncoderPin = cQuery.getColumn(18).getInt();		
+		batteryChargePercentage = cQuery.getColumn(19).getInt();		
+	}	
+	return readConfig;
+}
+
+void Config::writeConfigDB()
+{
+	// First clear tables
+	Database::execSql("DELETE FROM sensors");
+	Database::execSql("DELETE FROM config");
+	
+	// Add the sensors
+	for (int a = 0; a < bumperSensors.size(); a++)
+	{
+		std::stringstream ss;
+		ss << "INSERT INTO sensors VALUES(0," << bumperSensors[a].gpioPin << ",0,\"" << bumperSensors[a].location << "\",\"\")";
+		if (!Database::execSql(ss.str()))
+			robotLib->LogError("Error inserting bumperSensor into database");		
+	}
+	for (int a = 0; a < arduinoHost.proximitySensors.size(); a++)
+	{
+		std::stringstream ss;
+		ss << "INSERT INTO sensors VALUES(1," << arduinoHost.proximitySensors[a].triggerPin << "," << arduinoHost.proximitySensors[a].echoPin << ", \"" << arduinoHost.proximitySensors[a].location << "\",\"" << arduinoHost.proximitySensors[a].name<<"\")";
+		if (!Database::execSql(ss.str()))
+			robotLib->LogError("Error inserting bumperSensor into database");			
+	}
+	
+	std::stringstream ss;
+	int intLogLevel;
+	switch (minimumLoggingLevel)
+	{
+	case Debug:
+		intLogLevel = 0;
+		break;
+	case Warn:
+		intLogLevel = 1;
+		break;
+	case Critical:
+		intLogLevel = 2;
+		break;
+	case Exception:
+		intLogLevel = 3;
+		break;
+	}
+	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
+	SQLite::Statement s(db, "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	s.bind(1, intLogLevel);
+	s.bind(2, driveWheelDiameter);
+	s.bind(3, driveGearRatio);
+	s.bind(4, driveMotorMaxRPM);
+	s.bind(5, pwmController.i2cChannel);
+	s.bind(6, pwmController.leftDriveChannel);
+	s.bind(7, pwmController.rightDriveChannel);
+	s.bind(8, pwmController.bladeChannel);
+	s.bind(9, arduinoHost.i2caddr);
+	s.bind(10, arduinoHost.proximityTollerance);
+	s.bind(11, normalOperationSpeed.forwardRPM);
+	s.bind(12, normalOperationSpeed.reverseRPM);
+	s.bind(13, normalOperationSpeed.rotationRPM);
+	s.bind(14, objectDetectionSpeed.forwardRPM);
+	s.bind(15, objectDetectionSpeed.reverseRPM);
+	s.bind(16, normalAcceleration);
+	s.bind(17, rotationalAcceleration);
+	s.bind(18, leftEncoderPin);
+	s.bind(19,rightEncoderPin);
+	s.bind(20, batteryChargePercentage);
+
+	s.exec();
 }
 
 rapidxml::xml_node<> *Config::createSpeedNode(rapidxml::xml_node<> *rootNode, rapidxml::xml_document<> &doc)

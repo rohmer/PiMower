@@ -131,6 +131,18 @@
     <Filter Include="Source files\INA219">
       <UniqueIdentifier>{823767cd-0944-4c19-9de3-2b5ec5f1a06f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\BQ34Z100G1">
+      <UniqueIdentifier>{2d9eb1d4-7ca8-461d-bccd-1d352facd39e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RA8875">
+      <UniqueIdentifier>{a085591e-ccbc-407e-ba29-78eedf6ea86a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\RA8875">
+      <UniqueIdentifier>{375f033b-7c6b-4186-81e8-748afc35cf4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\BQ34Z100-G1">
+      <UniqueIdentifier>{a74c2ed3-4ae2-437f-9764-407e8fa351fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -213,6 +225,9 @@
     </ClCompile>
     <ClCompile Include="INA219.cpp">
       <Filter>Source files\INA219</Filter>
+    </ClCompile>
+    <ClCompile Include="BQ34Z100G1.cpp">
+      <Filter>Source files\BQ34Z100G1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +353,12 @@
     </ClInclude>
     <ClInclude Include="INA219.h">
       <Filter>Header files\INA219</Filter>
+    </ClInclude>
+    <ClInclude Include="BQ34Z100G1.h">
+      <Filter>Header files\BQ34Z100-G1</Filter>
+    </ClInclude>
+    <ClInclude Include="RA8875.h">
+      <Filter>RA8875</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
