@@ -40,6 +40,8 @@ bool Database::createMapTable()
 	std::string sql = "CREATE TABLE LawnMap("\
 		"X INT NOT NULL, "\
 		"Y INT NOT NULL, "\
+		"Latitude FLOAT, "\
+		"Longitude FLOAT, " \
 		"Blocking BOOLEAN, " \
 		"Contents INT)";
 	return execSql(sql);

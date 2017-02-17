@@ -140,22 +140,50 @@ MapNode* LawnMap::getNode(int x, int y)
 	return it->second;
 }
 
+MapNode *LawnMap::loadMapNode(std::pair<int, int> coord)
+{
+	SQLite::Database db(DB_LOCATION,
+		SQLite::OPEN_READONLY);
+	SQLite::Statement stmt(db, "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap WHERE X=? AND Y=?");
+	stmt.bind(1, coord.first);
+	stmt.bind(2, coord.second);
+	while (stmt.executeStep())
+	{
+		int x = stmt.getColumn(0).getInt();
+		int y = stmt.getColumn(1).getInt();
+		int b = stmt.getColumn(2).getInt();
+		double lat = stmt.getColumn(3).getDouble();
+		double lon = stmt.getColumn(4).getDouble();
+		bool blocking=true;
+		if (b == 0)
+			blocking = false;
+		int contents = stmt.getColumn(5).getInt();
+		MapNode *returnVal = new MapNode(std::make_pair(x, y), static_cast<map_node_t>(contents), std::make_pair(lat, lon));
+		return returnVal;
+	}
+	return NULL;
+}
+
 void LawnMap::storeMapNode(MapNode *mapNode)
 {
 	SQLite::Database db(DB_LOCATION,
 		SQLite::OPEN_READWRITE);
-	SQLite::Statement stmt(db, "UPDATE LawnMap SET Blocking=?, Contents=? WHERE X=? AND Y=?");
+	SQLite::Statement stmt(db, "UPDATE LawnMap SET Blocking=?, Contents=?, Latitude=?, Longitude=? WHERE X=? AND Y=?");
 	stmt.bind(1, mapNode->isBlocking());
 	stmt.bind(2, mapNode->blockContents());
-	stmt.bind(3, mapNode->getGridCoord().first);
-	stmt.bind(4, mapNode->getGridCoord().second);
+	stmt.bind(3, mapNode->getLocation().first);
+	stmt.bind(4, mapNode->getLocation().second);	
+	stmt.bind(5, mapNode->getGridCoord().first);
+	stmt.bind(6, mapNode->getGridCoord().second);
 	if (stmt.exec() == 0)
 	{
-		SQLite::Statement insert(db, "INSERT INTO LawnMap(?,?,?,?)");
+		SQLite::Statement insert(db, "INSERT INTO LawnMap(?,?,?,?,?,?)");
 		stmt.bind(1, mapNode->getGridCoord().first);
 		stmt.bind(2, mapNode->getGridCoord().second);
-		stmt.bind(3, mapNode->isBlocking());
-		stmt.bind(4, mapNode->blockContents());
+		stmt.bind(3, mapNode->getLocation().first);
+		stmt.bind(4, mapNode->getLocation().second);		
+		stmt.bind(5, mapNode->isBlocking());
+		stmt.bind(6, mapNode->blockContents());
 		insert.exec();
 	}
 }
@@ -210,7 +238,29 @@ bool LawnMap::saveMap()
 
 bool LawnMap::loadMap()
 {
-	
+	std::map<std::pair<int, int>, MapNode *>::iterator it;
+	for (it = mapContents.begin(); it != mapContents.end(); it++)
+	{
+		delete(it->second);
+	}
+	mapContents.clear();
+	SQLite::Database db(DB_LOCATION,
+		SQLite::OPEN_READONLY);
+	SQLite::Statement stmt(db, "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap");	
+	while (stmt.executeStep())
+	{
+		int x = stmt.getColumn(0).getInt();
+		int y = stmt.getColumn(1).getInt();
+		int b = stmt.getColumn(2).getInt();
+		double lat = stmt.getColumn(3).getDouble();
+		double lon = stmt.getColumn(4).getDouble();
+		bool blocking = true;
+		if (b == 0)
+			blocking = false;
+		int contents = stmt.getColumn(5).getInt();
+		MapNode *mNode = new MapNode(std::make_pair(x, y), static_cast<map_node_t>(contents), std::make_pair(lat, lon));
+		mapContents.emplace(std::make_pair(x, y), mNode);
+	}
 }
 
 // Adjusts the map to be 0->x as opposed to 0,0 being center

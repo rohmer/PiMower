@@ -135,6 +135,7 @@
     <ClInclude Include="UIRadioGroup.h" />
     <ClInclude Include="UIToggle.h" />
     <ClInclude Include="UITouchArea.h" />
+    <ClInclude Include="Undocking.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings" />

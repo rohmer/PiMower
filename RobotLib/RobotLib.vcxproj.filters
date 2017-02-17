@@ -360,6 +360,9 @@
     <ClInclude Include="Idle.h">
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
+    <ClInclude Include="Undocking.h">
+      <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLib-Debug.vgdbsettings">
