@@ -73,6 +73,7 @@
     <ClCompile Include="MotorController.cpp" />
     <ClCompile Include="ObjectProximityDetection.cpp" />
     <ClCompile Include="PageManager.cpp" />
+    <ClCompile Include="PositionalMath.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RobotLib.cpp" />
     <ClCompile Include="Scheduler.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="UIRadioGroup.cpp" />
     <ClCompile Include="UIToggle.cpp" />
     <ClCompile Include="UITouchArea.cpp" />
+    <ClCompile Include="Undocking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BatteryIcons.h" />
@@ -117,6 +119,7 @@
     <ClInclude Include="ObjectProximityDetection.h" />
     <ClInclude Include="PageManager.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="PositionalMath.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />

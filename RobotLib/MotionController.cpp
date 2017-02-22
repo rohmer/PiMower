@@ -1,10 +1,12 @@
 #include "MotionController.h"
+#include "Point.h"
+#include "PositionalMath.h"
 
 // TODO: Add mapping to this
-MotionController::MotionController(RobotLib *robotLib, Config *config)
+MotionController::MotionController(RobotLib *robotLib)
 {
 	this->robotLib = robotLib;
-	this->config = config;
+	this->config = robotLib->getConfig();
 	gpsManager = new GPSManager(this->robotLib);
 	sPWMController pwmConfig = config->getPWMControllerConfig();
 	motorController = robotLib->getMotorController();
@@ -36,11 +38,30 @@ void MotionController::initialize()
 	
 	std::pair<uint8_t, uint8_t> encoderPins = config->getMotorEncoderPins();	
 	odometer = new LS7366R(robotLib, encoderPins.first, encoderPins.second);
+	float wheelDiameter = config->getDriveWheelDiameter();
+	float driveRatio = config->getDriveGearRatio();
+	// So, now we find out how far each rotation of the motor translates to
+	// linear travel
+	// which is circumferance*driveRatio
+	distancePerWheelRotation = wheelDiameter * 2 * 3.14159265*driveRatio;
+
+}
+
+void MotionController::allStop()
+{
+	motorController->AllStop();
+}
+
+void MotionController::motionStop()
+{
+	motorController->SetSpeed(0, 0);
 }
 
 eMotionResult MotionController::rotateToHeading(int heading)
 {
 	motorController->SetSpeed(0, 0);
+	Point originalPoint = Point(robotLib->getCurrentXLoc(), robotLib->getCurrentYLoc());
+	
 	int currentHeading = gpsManager->getHeading();
 	if (currentHeading == -1)
 	{
@@ -117,7 +138,8 @@ eMotionResult MotionController::rotateToHeading(int heading)
 			{					
 				ss << " Front Bumper";
 				robotLib->Log(ss.str());
-				motorController->SetSpeed(0, 0);
+				motorController->SetSpeed(0, 0);				
+				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));				
 				return eMotionResult::BUMPER_FRONT;
 			}
 			else
@@ -125,6 +147,7 @@ eMotionResult MotionController::rotateToHeading(int heading)
 				ss << " Rear Bumper";
 				robotLib->Log(ss.str());
 				motorController->SetSpeed(0, 0);
+				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));								
 				return eMotionResult::BUMPER_BACK;
 			}
 		}
@@ -138,86 +161,139 @@ eMotionResult MotionController::rotateToHeading(int heading)
 	gpsManager->getLocation();
 }
 
-eMotionResult MotionController::travelDistance(int inchesToTravel,bool forward)
-{
+eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward, bool cutting)
+{	
 	// First find the odometer
 	std::pair<long, long> initialOdVal = odometer->readCounters();
-	// Need to add physical charistics node to config (Mainly the size of the tire)
-	// to figure out what the travel distance will be.
+	Point originalPoint = Point(robotLib->getCurrentXLoc(), robotLib->getCurrentYLoc());
+	Point originalPointAbs = Point(originalPoint.x*config->getMapScale() + (config->getMapScale() * 0.5), 
+		originalPoint.y*config->getMapScale() + (config->getMapScale() * 0.5));
 	
-	float wheelDiameter = config->getDriveWheelDiameter();
-	float driveRatio = config->getDriveGearRatio();
-	
-	// So, now we find out how far each rotation of the motor translates to
-	// linear travel
-	// which is circumferance*driveRatio
-	int distancePerRotation = wheelDiameter * 2 * 3.14159265*driveRatio;
-	
-	int revolutionsToTravel = std::round((float)inchesToTravel / distancePerRotation);
-	
+	int revolutionsToTravel = std::round((float)inchesToTravel / distancePerWheelRotation)*config->getEncoderTicksPerRevolution();
+	// We will check the map every time we travel 12 inches to see if we are in a different
+	// map sector (Defined as 3x3 feet)
 	// RevolutionsToTravel represents how many turns of the motors we need
+	
+	int heading = gpsManager->getHeading();
+	
 	int rpm;
 	if (forward)
 		rpm = config->getForwardRPM();
 	else
-		rpm = config->getReverseRPM();
+		rpm = (-1)*config->getReverseRPM();
 	int acceleration = config->getNormalAcceleation();
-	int currentRPM = 0;
 	long currentOdVal = initialOdVal.first;
+	location = gpsManager->getLocation();
+	int initialRPM = 0;
+	int rpmCounter = 0;
+	// If we are going in reverse our heading is 180 degrees opposite
+	if (!forward)
+	{
+		heading += 180;
+		if (heading >= 360)
+			heading -= 360;
+	}
+	// Now travel loop
+	// TODO: Find out the # encoder ticks per full wheel rotation
 	while (currentOdVal < (initialOdVal.first + revolutionsToTravel))
 	{
-		if (currentRPM < rpm)
-		{
-			currentRPM += rpm / acceleration;
-			if (currentRPM > rpm)
-				currentRPM = rpm;
-		}
+		currentOdVal=odometer->readCounters().first;
+			
+		float distanceTraveled = (currentOdVal - initialOdVal.first)*distancePerWheelRotation/config->getEncoderTicksPerRevolution();
 		fmsResult sensorResult = fmSensor->getCurrentState();
-		if (sensorResult.location == eSensorLocation::FRONT && forward)
+		
+		// First a hard result, i.e. bumper
+		if (sensorResult.result == fmsResultType::HARD_RESULT)
 		{
-			if (sensorResult.result == fmsResultType::HARD_RESULT)
-				return eMotionResult::BUMPER_FRONT;
-			if (sensorResult.result == fmsResultType::OBJECT_DETECTED)
+			// Stop
+			motorController->SetSpeed(0, 0);
+			location=gpsManager->getLocation();
+			Point currentPoint = getCurrentMapLocation(originalPoint, heading, distanceTraveled);
+			robotLib->getMap()->setNode(currentPoint.x, currentPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));
+			if (sensorResult.location == eSensorLocation::BACK)
+				return eMotionResult::BUMPER_BACK;
+			return eMotionResult::BUMPER_FRONT;
+			
+		}
+		
+		// Now an object detected result
+		if (sensorResult.result == fmsResultType::OBJECT_DETECTED)
+		{
+			// Set the RPM based on direction
+			if (forward)
+				rpm = config->getObjDetForwardRPM();
+			else
+				rpm = config->getObjDetReverseRPM();
+			rpmCounter = 0;
+		}
+		
+		// We found a non-grass section
+		if (sensorResult.result == fmsResultType::NOT_GRASS)
+		{
+			// First mark map
+			Point currentPoint = getCurrentMapLocation(originalPoint, heading, distanceTraveled);
+			robotLib->getMap()->setNode(currentPoint.x, currentPoint.y, map_node_t::BLOCK_NOT_GRASS, PositionalMath::decPointFromPos(location));
+			// Now if we are cutting, stop and return value
+			// TODO: Might want to stop blade
+			if (cutting)
 			{
-				// We have to set our target RPM, and our actual RPM
-				if (currentRPM > config->getObjDetForwardRPM())
-				{
-					currentRPM = rpm;
-				}	
-				rpm = config->getObjDetForwardRPM();									
+				motorController->SetSpeed(0, 0);
+				return eMotionResult::NON_GRASS;
 			}
-			if (sensorResult.result == fmsResultType::CLEAR)
-			{
-				rpm = config->getForwardRPM();				
+			// Otherwise we are traveling and traveling over non-grass is ok
+		}
+		if (sensorResult.result == fmsResultType::CLEAR)
+		{
+			// Mark map
+			Point currentPoint = getCurrentMapLocation(originalPoint, heading, distanceTraveled);
+			robotLib->getMap()->setNode(currentPoint.x, currentPoint.y, map_node_t::BLOCK_NOT_GRASS, PositionalMath::decPointFromPos(location));			
+			if (forward)
+			{				
+				rpm = config->getForwardRPM();
+				initialRPM = motorController->currentDriveMotorRPM().first;
+			}
+			else
+			{				
+				rpm = config->getReverseRPM();
+				initialRPM = motorController->currentDriveMotorRPM().first;
 			}
 		}
-		else
+		
+		// Now set RPM based on acceleration (And maybe deceleration)
+		if (rpm > motorController->currentDriveMotorRPM().first)
 		{
-			if (sensorResult.location == eSensorLocation::BACK && !forward)
-			{
-				if (sensorResult.result == fmsResultType::HARD_RESULT)
-					return eMotionResult::BUMPER_BACK;
-				if (sensorResult.result == fmsResultType::OBJECT_DETECTED)
-				{
-					if (currentRPM > config->getObjDetReverseRPM())
-					{
-						currentRPM = config->getObjDetReverseRPM();
-					}
-					rpm = config->getObjDetReverseRPM();
-				}
-				if (sensorResult.result == fmsResultType::CLEAR)
-				{
-					rpm = config->getReverseRPM();				
-				}
-			}
+			int rpmIncrease = (rpm - initialRPM) / acceleration;
+			int setRPM = initialRPM + acceleration*rpmCounter;
+			rpmCounter++;
+			if (setRPM > rpm)
+				setRPM = rpm;
+			motorController->SetSpeed(setRPM, setRPM);
 		}
-		if(forward)
-			motorController->SetSpeed(currentRPM, currentRPM);
-		else
-			motorController->SetSpeed(currentRPM*-1, currentRPM*-1);				
-	}
-	// Store in DB the location info
-	gpsManager->getLocation();
+		delay(50);
+	}	
+	// we got there! :)
+	// Stop
+	motorController->SetSpeed(0, 0);
+	return eMotionResult::SUCCESS;
+}
+
+Point MotionController::getCurrentMapLocation(Point initialPoint, int heading, float distanceTraveledInches)
+{
+	Point pt = PositionalMath::getPointByAngleDist(initialPoint, heading, distanceTraveledInches);
+	// That gave us # of inches we traveled from the original point, now we need to 
+	// convert that to map squares
+	int mapSqInch=config->getMapScale();
+	if (pt.x < (mapSqInch / 2)) 
+		pt.x = 0;
+	else
+		pt.x = trunc((pt.y - mapSqInch / 2) / mapSqInch) + 1;
+	if (pt.y < (mapSqInch / 2)) 
+		pt.y = 0;
+	else
+		pt.y = trunc((pt.y - mapSqInch / 2) / mapSqInch) + 1;
+	pt.x += initialPoint.x;
+	pt.y += initialPoint.y;
+	return pt;
 }
 
 float MotionController::inchesPerSecond()

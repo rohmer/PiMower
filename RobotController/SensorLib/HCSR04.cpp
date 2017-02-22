@@ -115,7 +115,7 @@ void HCSR04::pollDevice()
 		delay(10);
 		digitalWrite(triggerPin, 0);
 	
-		long now = micros();
+		/*long now = micros();
 		volatile long startTime = 0, endTime = 0;
 		while (digitalRead(inputPin) == 0 && micros() - now < maxDistance && !shutdown)
 		{
@@ -126,8 +126,8 @@ void HCSR04::pollDevice()
 			
 			endTime = micros();
 		}
-	
-		long travelTimeUsec = endTime - startTime;
+		*/
+		long travelTimeUsec = 0; // = endTime - startTime;
 		if (travelTimeUsec != 0)
 		{
 			sensorResult[a] = 10000*((travelTimeUsec / 1000000.0) * 340.29) / 2;		

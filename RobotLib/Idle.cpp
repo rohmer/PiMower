@@ -5,8 +5,8 @@
 // 1. Someone does something on the UI (This will manually set the state machine)
 // 2. The battery drains to the batteryChargePct, in which case it will seek the dock
 
-Idle::Idle(RobotLib *robotLib)
-	: Behavior(robotLib, "Idle")
+Idle::Idle(RobotLib *robotLib, GPSManager *gpsManager, MotionController *motionController)
+	: Behavior(robotLib, gpsManager, motionController, "Idle")
 {	
 	batterySensor = (BQ34Z100G1 *)robotLib->getDeviceManager()->getByName("BQ34Z100-G1");		
 }

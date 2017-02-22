@@ -7,6 +7,7 @@
 #include "MapLibConstants.h"
 #include "Node.h"
 #include "RobotLib.h"
+#include "../RobotController/SensorLib/SensorLib.h"
 
 class LawnMap
 {

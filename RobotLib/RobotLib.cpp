@@ -1,4 +1,5 @@
 #include "RobotLib.h"
+Guid RobotLib::sessionGuid;
 
 RobotLib::RobotLib()
 {	
@@ -9,8 +10,13 @@ RobotLib::RobotLib()
 	{
 		Log("Running on QEMU emulator");
 	}
-	database = new Database(this);	
 	deviceManager = new DeviceManager(*this);
+	dbLoggerThread = std::thread(startLogDBThread,this);
+}
+
+void RobotLib::startLogDBThread(RobotLib *robotLib)
+{
+	robotLib->dbLogger();
 }
 
 Config *RobotLib::getConfig()
@@ -24,8 +30,8 @@ Config *RobotLib::getConfig()
 }
 
 RobotLib::~RobotLib()
-{
-	delete(database);
+{	
+	shutdown = true;
 	delete(deviceManager);
 	if (mapObject)
 		delete(mapObject);	
@@ -70,22 +76,95 @@ void RobotLib::setLogLevel(int logLevel)
 		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Fatal));
 }
 
+void RobotLib::logDB(std::string message, int severity)
+{
+	std::stringstream sql;
+	time_t t = time(0);
+	struct tm *now = localtime(&t);
+	std::stringstream timeStr;
+	int year = now->tm_year + 1900;
+	int mon = now->tm_mon + 1;
+	int day = now->tm_mday + 1;
+	timeStr << year << "-" << mon << "-" << day << " " << now->tm_hour << ":" << now->tm_min << ":" << now->tm_sec;
+	dbLogMsg msg;
+	msg.timeStr = timeStr.str();
+	msg.severity = severity;
+	msg.msg = message;
+	{
+		std::unique_lock<std::mutex> lock(this->logMutex);
+		logMessages.push_front(msg);
+	}
+}
+
+void RobotLib::dbLogger()
+{
+	SQLite::Database *dbHandle = Database::getInstance().getDBHandle();
+	SQLite::Statement stmt(*dbHandle, "INSERT INTO Log VALUES(?,?,?)");
+	// DO TIME BASED DELETION
+	SQLite::Statement pruneStmt(*dbHandle, "DELETE FROM Log WHERE timestamp <= date('now','-? hour'");
+	pruneStmt.bind(config->getMessagedDBRetention());
+	long clearPoint = config->getMessagedDBRetention() / 50;
+	long clearCounter = 0;
+	while (!shutdown && logMessages.size() > 0)
+	{
+		while(logMessages.size()>0)
+		{
+			dbLogMsg msg;
+			{	
+				std::unique_lock<std::mutex> lock(this->logMutex);
+				this->logCondition.wait(lock, [=]{return !this->logMessages.empty();});
+				msg = logMessages.back();				
+				logMessages.pop_back();
+			}
+			stmt.clearBindings();
+			stmt.bind(1, msg.timeStr);
+			stmt.bind(2, msg.msg);
+			stmt.bind(3, msg.severity);
+			try
+			{
+				if (!stmt.exec())
+					LogError("Failed to insert event into database");
+			}
+			catch (std::exception &e)
+			{
+				std::stringstream ss;
+				ss << "Exception caught: " << e.what() << std::endl;
+				LogError(ss.str());
+			}
+		}		
+		// If we are shutting down, push these as fast as we can
+		// Also dont prune
+		if (!shutdown)
+		{			
+			clearCounter++;
+			if (clearCounter > clearPoint)
+			{
+				clearCounter = 0;
+				pruneStmt.exec();				
+			}
+			delay(1000);
+		}
+	}
+}
 void RobotLib::Log(std::string message)
 {
-	HUMBLE_LOGGER(logger, "RobotLogger");
+	HUMBLE_LOGGER(logger, "RobotLogger");	
 	HL_TRACE(logger, message);		
+	logDB(message, 0);
 }
 
 void RobotLib::LogWarn(std::string message)
 {
 	HUMBLE_LOGGER(logger, "RobotLogger");
 	HUMBLE_LOG(logger, message, humble::logging::LogLevel::Warn);		
+	logDB(message, 1);
 }
 
 void RobotLib::LogError(std::string message)
 {
 	HUMBLE_LOGGER(logger, "RobotLogger");
 	HL_ERROR(logger, message);		
+	logDB(message, 2);
 }
 
 void RobotLib::LogException(std::exception &e)
@@ -94,6 +173,7 @@ void RobotLib::LogException(std::exception &e)
 	ss << "Exception caught: " << e.what() << std::endl;
 	HUMBLE_LOGGER(logger, "RobotLogger");
 	HL_FATAL(logger, ss.str());
+	logDB(ss.str(), 3);
 }
 
 bool RobotLib::checkEmulator()

@@ -14,20 +14,34 @@ class RobotLib;
 class Database
 {
 public:
-	Database(RobotLib *robotLib);		
-	static bool execSql(std::string sqlStmt);				
-	bool insertPositionEvent(sensors_event_t *event);
+	static Database& getInstance()
+	{
+		static Database instance;
+		return instance;
+	}		
+	bool execSql(std::string sqlStmt);				
+	bool insertPositionEvent(sensors_event_t *event);	
+	SQLite::Database *getDBHandle()
+	{
+		return dbHandle;
+	}
 	
 	~Database();
 	
 private:
-	static void initDB();
-	static bool createPositionTable();
-	static bool createConfigTable();
-	static bool createScheduleTable();
-	static bool createStateTable();
-	static bool createMapTable();
+	Database();	
 	
-	static RobotLib *robotLib;
-	static bool initialized;		
+	void initDB();
+	bool createPositionTable();
+	bool createConfigTable();
+	bool createScheduleTable();
+	bool createStateTable();
+	bool createMapTable();
+	bool createLogTable();
+		
+	SQLite::Database *dbHandle = NULL;
+	
+public:
+	Database(Database const&)		= delete;
+	void operator=(Database const&)	= delete;
 };

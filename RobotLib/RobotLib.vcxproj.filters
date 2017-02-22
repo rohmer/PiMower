@@ -223,6 +223,12 @@
     <ClCompile Include="Idle.cpp">
       <Filter>Source files\Robot\Behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="Undocking.cpp">
+      <Filter>Source files\Robot\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionalMath.cpp">
+      <Filter>Source files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RobotLib.h">
@@ -271,9 +277,6 @@
       <Filter>Header files\Robot\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="Rectangle.h">
-      <Filter>Header files\UI\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Point.h">
       <Filter>Header files\UI\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="UIElement.h">
@@ -362,6 +365,12 @@
     </ClInclude>
     <ClInclude Include="Undocking.h">
       <Filter>Header files\Robot\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionalMath.h">
+      <Filter>Header files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header files\UI\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

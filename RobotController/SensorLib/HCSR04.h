@@ -9,7 +9,7 @@
 #include "../../RobotLib/DeviceRegistry.h"
 #include "SensorBase.h"
 #include <vector>
-#include "wiringPi.h"
+#include "../../3rdParty/wiringPi/wiringPi/wiringPi.h"
 
 /* Driver for HC-SR04 Ultrasonic Range Finder */
 class HCSR04 : public SensorBase

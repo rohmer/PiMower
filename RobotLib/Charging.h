@@ -4,10 +4,10 @@
 #include "../RobotController/SensorLib/INA219.h"
 #include "../RobotController/SensorLib/BQ34Z100G1.h"
 
-class Charging : Behavior
+class Charging : public Behavior
 {
 public:
-	Charging(RobotLib* robotLib, Scheduler *scheduler);
+	Charging(RobotLib* robotLib, GPSManager *gpsManager, MotionController *motionController,Scheduler *scheduler);
 	~Charging() override;
 	
 	uint8_t run() override;

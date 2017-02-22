@@ -7,11 +7,21 @@ BehaviorManager::BehaviorManager(RobotLib *robotLib)
 	// Set current state to charging
 	currentState = STATE_CHARGING;
 	
+	// Create MotionController
+	motionController = new MotionController(robotLib);
+	
+	// Create GPSManager
+	gpsManager = new GPSManager(robotLib);
 	// Create our scheudler
 	scheduler = new Scheduler(robotLib);
 	// Precreate all of the behaviors
-	Behavior *charging = (Behavior *)new Charging(robotLib,scheduler);
+	Behavior *charging = static_cast<Behavior *>(new Charging(robotLib,gpsManager,motionController,scheduler));
 	behaviors.emplace(STATE_CHARGING, charging);
+	Behavior *undocking = static_cast<Behavior *>(new Undocking(robotLib, gpsManager, motionController));
+	behaviors.emplace(STATE_UNDOCKING, charging);
+	Behavior *idle = static_cast<Behavior *>(new Idle(robotLib, gpsManager, motionController));
+	behaviors.emplace(STATE_IDLE, charging);
+	
 #ifdef DEBUG
 	for (std::map<states_t, Behavior *>::iterator it = behaviors.begin(); it != behaviors.end(); it++)
 	{
@@ -98,6 +108,6 @@ void BehaviorManager::behaviorLoop()
 			}
 			if (behaviors[STATE_CHARGING]->run() == 0)
 				stateChange(STATE_CHARGING);
-		}
+		}				
 	}
 }

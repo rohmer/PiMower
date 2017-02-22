@@ -33,7 +33,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <CPPLanguageStandard>CPP11</CPPLanguageStandard>
-      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;../../3rdParty/OpenCV/include;../../3rdParty/raspicam-0.1.4/include;../../3rdParty/raspicam-0.1.4/dependencies/v0.1.4/interface;../../3rdParty/raspicam-0.1.4/include/raspicam;../../3rdParty/raspicam-0.1.4/dependencies/v0.1.4;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rdParty/humblelogging-master/include;../../3rdParty/nmealib/include;../../3rdParty/SQLiteC++/include;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/include/c++/4.9;.;ArduCamDriver;../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include;../../3rdParty/RapidXML;../../3rdParty/OpenCV/include;../../3rdParty/raspicam-0.1.4/include;../../3rdParty/raspicam-0.1.4/dependencies/v0.1.4/interface;../../3rdParty/raspicam-0.1.4/include/raspicam;../../3rdParty/raspicam-0.1.4/dependencies/v0.1.4;RA8875/_settings;RA8875/Adafruit-GFX-Library-master;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -75,6 +75,9 @@
     <ClCompile Include="ParserGPVTG.cpp" />
     <ClCompile Include="PCA9685.cpp" />
     <ClCompile Include="PiCamera.cpp" />
+    <ClCompile Include="RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.cpp" />
+    <ClCompile Include="RA8875\Adafruit-GFX-Library-master\glcdfont.c" />
+    <ClCompile Include="RA8875\Adafruit_RA8875.cpp" />
     <ClCompile Include="SensorBase.cpp" />
     <ClCompile Include="ST7565.cpp" />
     <ClCompile Include="TCS34725.cpp" />
@@ -117,7 +120,9 @@
     <ClInclude Include="ParserGPVTG.h" />
     <ClInclude Include="PCA9685.h" />
     <ClInclude Include="PiCamera.h" />
-    <ClInclude Include="RA8875.h" />
+    <ClInclude Include="RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.h" />
+    <ClInclude Include="RA8875\Adafruit-GFX-Library-master\gfxfont.h" />
+    <ClInclude Include="RA8875\Adafruit_RA8875.h" />
     <ClInclude Include="SensorBase.h" />
     <ClInclude Include="SensorLib.h" />
     <ClInclude Include="ST7565.h" />

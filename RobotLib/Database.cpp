@@ -1,11 +1,7 @@
 #include "Database.h"
-RobotLib *Database::robotLib;
-bool Database::initialized;	
 
-Database::Database(RobotLib *robotLib)
+Database::Database()
 {
-	this->robotLib = robotLib;
-	initialized = false;
 	initDB();
 }
 
@@ -13,26 +9,38 @@ void Database::initDB()
 {
 	try
 	{
-		SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
+		dbHandle = new SQLite::Database(DB_LOCATION, SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
 		// Check for all our tables
-		if (!db.tableExists("Position"))
+		if (!dbHandle->tableExists("Position"))
 			createPositionTable();
-		if (!db.tableExists("Config"))
+		if (!dbHandle->tableExists("Config"))
 			createConfigTable();
-		if (!db.tableExists("Schedule"))
+		if (!dbHandle->tableExists("Schedule"))
 			createScheduleTable();
-		if (!db.tableExists("State"))
+		if (!dbHandle->tableExists("State"))
 			createStateTable();
-		if (!db.tableExists("LawnMap"))
+		if (!dbHandle->tableExists("LawnMap"))
 			createMapTable();
+		if (!dbHandle->tableExists("Log"))
+			createLogTable();
 
 	}
 	catch (std::exception &e)
 	{
-		robotLib->LogException(e);
-	}
-	
-	robotLib->Log("Database Initialized");
+		std::stringstream ss;
+		ss << "Exception caught: " << e.what() << std::endl;
+		HUMBLE_LOGGER(logger, "RobotLogger");
+		HL_FATAL(logger, ss.str());
+	}	
+}
+
+bool Database::createLogTable()
+{
+	std::string sql = "CREATE TABLE Log("\
+		"timestamp DATETIME NOT NULL, "\
+		"severity INT NOT NULL, "\
+		"message TEXT)";
+	return execSql(sql);
 }
 
 bool Database::createMapTable()
@@ -90,7 +98,10 @@ bool Database::createConfigTable()
 		"AccelRotational INT, " \
 		"EncoderLeft INT, " \
 		"EncoderRight INT, " \
-		"BatteryPctToStartCharge INT)";
+		"BatteryPctToStartCharge INT, " \
+		"MapScale INT, "\
+		"EncoderTicksPerRevolution INT," \
+		"ErrorLEDPin INT)";
 		
 	if (!execSql(sql))
 		return false;
@@ -138,23 +149,25 @@ bool Database::execSql(std::string sqlStmt)
 {
 	try
 	{
-		SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
-		db.exec(sqlStmt);
+		dbHandle->exec(sqlStmt);
 		return true;
 	}
 	catch (std::exception &e)
 	{
-		robotLib->LogException(e);
+		std::stringstream ss;
+		ss << "Exception caught: " << e.what() << std::endl;
+		HUMBLE_LOGGER(logger, "RobotLogger");
+		HL_FATAL(logger, ss.str());
 		return false;
 	}	
 }
 
 bool Database::insertPositionEvent(sensors_event_t *event)
 {
-	Guid sessionID = robotLib->getSessionID();
+	Guid sessionID = RobotLib::getSessionID();
 	return SensorEvents::insertPositionEvent(sessionID, event);
 }
 
 Database::~Database()
-{	
+{		
 }

@@ -1,4 +1,5 @@
 #include "Config.h"
+#include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 
 Config::Config(RobotLib *robotLib)
 {	
@@ -9,6 +10,13 @@ Config::Config(RobotLib *robotLib)
 	minimumLoggingLevel = min_log_level_t::Warn;
 #endif
 	validConfig = getConfig();
+	if (errorLEDPin <= 0)
+	{
+		validConfig = false;
+		robotLib->LogError("An error pin must be set for the \"InError\" LED");
+		return;
+	}
+	pinMode(errorLEDPin, OUTPUT);
 }
 
 bool Config::getConfig()
@@ -18,7 +26,6 @@ bool Config::getConfig()
 
 bool Config::getConfig(std::string cfgFile)
 {
-	Database db(robotLib);
 	bool writeConfig = false;
 	if (!readConfigDB())	
 	{		
@@ -42,6 +49,16 @@ bool Config::getConfig(std::string cfgFile)
 		}
 		rootNode = doc.first_node("PiMowerConfig");
 	
+		if (rootNode->first_attribute("ErrorLEDPin", 0, false))
+		{
+			errorLEDPin = atoi(rootNode->first_attribute("ErrorLEDPin", 0, false)->value());
+		}
+		
+		if (rootNode->first_attribute("DBLogRetentionHours", 0, false))
+		{
+			messagesToKeepInDB = atoi(rootNode->first_attribute("DBLogRetentionHours", 0, false)->value());
+		}
+		
 		// Now go thru and parse each of the sub-nodes
 		rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
 	
@@ -151,6 +168,10 @@ bool Config::readPhysical(rapidxml::xml_node<> *physicalNode)
 		robotLib->LogError("Physical node missing required BatteryChargePercentage setting");
 		return false;
 	}
+	if (physicalNode->first_attribute("MapScale", 0, false))
+	{
+		mapScale = std::atoi(physicalNode->first_attribute("MapScale", 0, false)->value());
+	}
 	
 	return true;
 }
@@ -187,6 +208,17 @@ bool Config::readEncoder(rapidxml::xml_node<> *encoderNode)
 		robotLib->LogError("rightPin has an invalid value, must be 0<x<=52");
 		return false;
 	}
+	
+	if (encoderNode->first_attribute("TicksPerRevolution", 0, false))
+	{
+		encoderTicksPerRevolution = std::atoi(encoderNode->first_attribute("TicksPerRevolution", 0, false)->value());
+	}
+	else
+	{
+		robotLib->LogError("MotorEncoder missing required TicksPerRevolution setting");
+		return false;
+	}
+	
 	return true;
 }
 
@@ -358,8 +390,8 @@ void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 bool Config::readConfigDB()
 {
 	// First get sensors
-	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
-	SQLite::Statement query(db, "SELECT * FROM sensors");
+		
+	SQLite::Statement query(*Database::getInstance().getDBHandle(), "SELECT * FROM sensors");
 	bumperSensors.clear();
 	std::vector<sProximitySensors> pSensors;
 	while (query.executeStep())
@@ -419,7 +451,7 @@ bool Config::readConfigDB()
 			pSensors.push_back(pSensor);
 		}
 	}
-	SQLite::Statement cQuery(db, "SELECT * FROM config");
+	SQLite::Statement cQuery(*Database::getInstance().getDBHandle(), "SELECT * FROM config");
 	bool readConfig = false;
 	while (cQuery.executeStep())
 	{
@@ -469,6 +501,9 @@ bool Config::readConfigDB()
 		leftEncoderPin = cQuery.getColumn(17).getInt();
 		rightEncoderPin = cQuery.getColumn(18).getInt();		
 		batteryChargePercentage = cQuery.getColumn(19).getInt();		
+		mapScale = cQuery.getColumn(20).getInt();		
+		encoderTicksPerRevolution = cQuery.getColumn(21).getInt();
+		errorLEDPin = cQuery.getColumn(22).getInt();
 	}	
 	return readConfig;
 }
@@ -476,22 +511,22 @@ bool Config::readConfigDB()
 void Config::writeConfigDB()
 {
 	// First clear tables
-	Database::execSql("DELETE FROM sensors");
-	Database::execSql("DELETE FROM config");
+	Database::getInstance().execSql("DELETE FROM sensors");
+	Database::getInstance().execSql("DELETE FROM config");
 	
 	// Add the sensors
 	for (int a = 0; a < bumperSensors.size(); a++)
 	{
 		std::stringstream ss;
 		ss << "INSERT INTO sensors VALUES(0," << bumperSensors[a].gpioPin << ",0,\"" << bumperSensors[a].location << "\",\"\")";
-		if (!Database::execSql(ss.str()))
+		if (!Database::getInstance().execSql(ss.str()))
 			robotLib->LogError("Error inserting bumperSensor into database");		
 	}
 	for (int a = 0; a < arduinoHost.proximitySensors.size(); a++)
 	{
 		std::stringstream ss;
 		ss << "INSERT INTO sensors VALUES(1," << arduinoHost.proximitySensors[a].triggerPin << "," << arduinoHost.proximitySensors[a].echoPin << ", \"" << arduinoHost.proximitySensors[a].location << "\",\"" << arduinoHost.proximitySensors[a].name<<"\")";
-		if (!Database::execSql(ss.str()))
+		if (!Database::getInstance().execSql(ss.str()))
 			robotLib->LogError("Error inserting bumperSensor into database");			
 	}
 	
@@ -511,9 +546,8 @@ void Config::writeConfigDB()
 	case Exception:
 		intLogLevel = 3;
 		break;
-	}
-	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
-	SQLite::Statement s(db, "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	}	
+	SQLite::Statement s(*Database::getInstance().getDBHandle(), "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 	s.bind(1, intLogLevel);
 	s.bind(2, driveWheelDiameter);
 	s.bind(3, driveGearRatio);
@@ -534,7 +568,9 @@ void Config::writeConfigDB()
 	s.bind(18, leftEncoderPin);
 	s.bind(19,rightEncoderPin);
 	s.bind(20, batteryChargePercentage);
-
+	s.bind(21, mapScale);
+	s.bind(22, encoderTicksPerRevolution);
+	s.bind(23, errorLEDPin);
 	s.exec();
 }
 

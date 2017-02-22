@@ -94,7 +94,7 @@ void GPSManager::gpsThread()
 			{
 				lsmMag->getEvent(latestLocation);
 			}
-			if (!robotLib->getDatabase()->insertPositionEvent(latestLocation))
+			if (!Database::getInstance().insertPositionEvent(latestLocation))
 			{
 				robotLib->LogWarn("Failed to insert GPS Event");
 			}			

@@ -143,7 +143,23 @@ public:
 		return batteryChargePercentage;
 	}
 	
+	unsigned int getMapScale()
+	{
+		return mapScale;
+	}
+	
+	unsigned int getEncoderTicksPerRevolution()
+	{
+		return encoderTicksPerRevolution;
+	}
+	
+	unsigned long getMessagedDBRetention()
+	{
+		return messagesToKeepInDB;
+	}
+	
 private:
+	unsigned int mapScale;
 	sSpeedConfig normalOperationSpeed, objectDetectionSpeed;
 	sPWMController pwmController;	
 	RobotLib *robotLib;	
@@ -170,6 +186,10 @@ private:
 	void writeConfigDB();
 	bool readConfigDB();
 	
+	unsigned long messagesToKeepInDB = 10000;
+	
+	unsigned int errorLEDPin=-1;
+	unsigned int encoderTicksPerRevolution;
 	uint8_t batteryChargePercentage;
 	std::vector<sBumperSensor> bumperSensors;
 	sArduinoHost arduinoHost;

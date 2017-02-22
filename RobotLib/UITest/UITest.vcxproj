@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rdParty/SQLiteC++/include;../../RobotController/SensorLib/RA8875/Adafruit-GFX-Library-master;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
       <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

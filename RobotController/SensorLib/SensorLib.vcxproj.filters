@@ -143,6 +143,15 @@
     <Filter Include="Header files\BQ34Z100-G1">
       <UniqueIdentifier>{a74c2ed3-4ae2-437f-9764-407e8fa351fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RA8875\Fonts">
+      <UniqueIdentifier>{a72ddd01-1e86-4ff4-a2ff-a1becb3aa224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\RA8875\Fonts">
+      <UniqueIdentifier>{643b1a92-81ee-46f7-b3d8-74683221a27f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\RA8875\Adafruit_GFX">
+      <UniqueIdentifier>{4e367547-6fe3-48a4-8c6e-f779a47a750c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -228,6 +237,15 @@
     </ClCompile>
     <ClCompile Include="BQ34Z100G1.cpp">
       <Filter>Source files\BQ34Z100G1</Filter>
+    </ClCompile>
+    <ClCompile Include="RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.cpp">
+      <Filter>Source files\RA8875\Adafruit_GFX</Filter>
+    </ClCompile>
+    <ClCompile Include="RA8875\Adafruit-GFX-Library-master\glcdfont.c">
+      <Filter>Source files\RA8875\Adafruit_GFX</Filter>
+    </ClCompile>
+    <ClCompile Include="RA8875\Adafruit_RA8875.cpp">
+      <Filter>Source files\RA8875\Adafruit_GFX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,7 +375,13 @@
     <ClInclude Include="BQ34Z100G1.h">
       <Filter>Header files\BQ34Z100-G1</Filter>
     </ClInclude>
-    <ClInclude Include="RA8875.h">
+    <ClInclude Include="RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.h">
+      <Filter>RA8875</Filter>
+    </ClInclude>
+    <ClInclude Include="RA8875\Adafruit-GFX-Library-master\gfxfont.h">
+      <Filter>RA8875</Filter>
+    </ClInclude>
+    <ClInclude Include="RA8875\Adafruit_RA8875.h">
       <Filter>RA8875</Filter>
     </ClInclude>
   </ItemGroup>

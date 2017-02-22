@@ -3,13 +3,19 @@
 #include "States.h"
 #include <ctime>
 #include <sstream>
+#include "MotionController.h"
 
 class Behavior
 {
 public:
-	Behavior(RobotLib *robotLib, std::string behaviorName)
+	Behavior(RobotLib *robotLib, 
+		GPSManager *gpsManager, 
+		MotionController *motionController, 
+		std::string behaviorName)
 	{
 		this->robotLib = robotLib;
+		this->gpsManager = gpsManager;
+		this->motionController = motionController;
 		this->behaviorName = behaviorName;
 	}
 	;		
@@ -27,6 +33,8 @@ public:
 	
 protected:
 	RobotLib* robotLib;
+	GPSManager *gpsManager;
 	std::string behaviorName;
+	MotionController *motionController;
 	struct tm *behaviorStartTime;
 };

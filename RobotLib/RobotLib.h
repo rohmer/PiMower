@@ -3,8 +3,13 @@
 #include <time.h>
 #include <sys/time.h>
 #include <stdint.h>
+#include <deque>
+#include <mutex>
+#include <condition_variable>
+#include <thread>
 #include "../3rdParty/humblelogging-master/include/humblelogging/api.h"
 #include "../3rdParty/RapidXML/rapidxml_print.hpp"
+#include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 #include "Database.h"
 #include "DeviceManager.h"
 #include "LawnMap.h"
@@ -12,11 +17,11 @@
 #include "MotorController.h"
 #include "guid.h"
 
-class Database;
 class DeviceManager;
 class LawnMap;
 class Config;
 class MotorController;
+class GPSManager;
 
 // If running on a preempt kernel (Suggested) uncomment
 #define PREEMPT_RT
@@ -29,45 +34,78 @@ class MotorController;
 // Includes things like the logger
 class RobotLib
 {
-	public:		
-		RobotLib();
-		void Log(std::string message);
-		void LogWarn(std::string message);
-		void LogError(std::string message);	
-		void LogException(std::exception &e);
+public:		
+	RobotLib();
+	void Log(std::string message);
+	void LogWarn(std::string message);
+	void LogError(std::string message);	
+	void LogException(std::exception &e);
+	void LogBehaviorError(std::string message, std::string fromBehavior);
 	
-		DeviceManager* getDeviceManager()
-		{
-			return deviceManager;
-		}
-		Database * getDatabase()
-		{
-			return database;
-		}
-		bool getEmulator()
-		{
-			return emulator;
-		}
-		~RobotLib();
+	DeviceManager* getDeviceManager()
+	{
+		return deviceManager;
+	}
+	bool getEmulator()
+	{
+		return emulator;
+	}
+	~RobotLib();
 		
-		LawnMap *getMap();	
-		void setLogLevel(int logLevel);
-		Config *getConfig();
-		MotorController *getMotorController();
-		void setSessionID();
-		Guid getSessionID()
-		{
-			return sessionGuid;
-		}
+	LawnMap *getMap();	
+	void setLogLevel(int logLevel);
+	Config *getConfig();
+	MotorController *getMotorController();
+	void setSessionID();
+	static Guid getSessionID()
+	{
+		return sessionGuid;
+	}
+	GPSManager *getGPSManager();	
+	int getCurrentXLoc()
+	{
+		return currentLocation.first;
+	}
+	int getCurrentYLoc()
+	{
+		return currentLocation.second;
+	}
+	void setCurrentXLoc(int loc)
+	{
+		currentLocation.first = loc;
+	}
+	void setCurrentYLoc(int loc)
+	{
+		currentLocation.second = loc;
+	}
 	
-	private:
-		void initLog();
-		bool checkEmulator();
-		Database *database;
-		DeviceManager *deviceManager;		
-		bool emulator;
-		LawnMap *mapObject;
-		Config *config = NULL;
-		MotorController *motorController=NULL;
-		Guid sessionGuid;
-};	
+	void setError(std::string errorMessage, std::string fromBehavior);
+	void clearError();
+		
+private:	
+	struct dbLogMsg
+	{
+		std::string timeStr;
+		std::string msg;
+		int severity;		
+	};
+	
+	static void startLogDBThread(RobotLib *robotLib);
+	
+	void logDB(std::string message, int severity);
+	void initLog();
+	bool checkEmulator();
+	DeviceManager *deviceManager;		
+	bool emulator;
+	LawnMap *mapObject;
+	Config *config = NULL;
+	MotorController *motorController = NULL;
+	static Guid sessionGuid;
+	std::thread dbLoggerThread;
+	void dbLogger();
+	bool shutdown = false;
+	std::pair <int, int> currentLocation;
+	std::deque<dbLogMsg> logMessages;
+	std::mutex logMutex;
+	std::condition_variable logCondition;
+};

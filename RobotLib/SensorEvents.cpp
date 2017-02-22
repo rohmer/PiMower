@@ -31,7 +31,7 @@ bool SensorEvents::insertPositionEvent(Guid sessionID, sensors_event_t *position
 		"," << positionEvent->gyro.y << 
 		"," << positionEvent->gyro.z << ")";
 	
-	return Database::execSql(sql.str());
+	return Database::getInstance().execSql(sql.str());
 }	
 		
 		
