@@ -87,7 +87,8 @@ private:
 	{
 		std::string timeStr;
 		std::string msg;
-		int severity;		
+		int severity;
+		std::string sessionID;
 	};
 	
 	static void startLogDBThread(RobotLib *robotLib);

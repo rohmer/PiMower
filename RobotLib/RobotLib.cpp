@@ -90,6 +90,9 @@ void RobotLib::logDB(std::string message, int severity)
 	msg.timeStr = timeStr.str();
 	msg.severity = severity;
 	msg.msg = message;
+	std::stringstream ss;
+	ss << getSessionID();
+	msg.sessionID = ss.str();
 	{
 		std::unique_lock<std::mutex> lock(this->logMutex);
 		logMessages.push_front(msg);
@@ -98,12 +101,9 @@ void RobotLib::logDB(std::string message, int severity)
 
 void RobotLib::dbLogger()
 {
-	SQLite::Database *dbHandle = Database::getInstance().getDBHandle();
-	SQLite::Statement stmt(*dbHandle, "INSERT INTO Log VALUES(?,?,?)");
-	// DO TIME BASED DELETION
-	SQLite::Statement pruneStmt(*dbHandle, "DELETE FROM Log WHERE timestamp <= date('now','-? hour'");
-	pruneStmt.bind(config->getMessagedDBRetention());
-	long clearPoint = config->getMessagedDBRetention() / 50;
+	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
+	SQLite::Statement stmt(db, "INSERT INTO Log VALUES(?,?,?,?)");
+	long clearPoint = 300; // clear every 5 minutes
 	long clearCounter = 0;
 	while (!shutdown && logMessages.size() > 0)
 	{
@@ -120,10 +120,16 @@ void RobotLib::dbLogger()
 			stmt.bind(1, msg.timeStr);
 			stmt.bind(2, msg.msg);
 			stmt.bind(3, msg.severity);
+			stmt.bind(4, msg.sessionID);
 			try
 			{
-				if (!stmt.exec())
-					LogError("Failed to insert event into database");
+				{
+					std::unique_lock<std::mutex> lock(Database::dbMutex);
+		
+					if (!stmt.exec())
+						LogError("Failed to insert event into database");
+					stmt.reset();
+				}
 			}
 			catch (std::exception &e)
 			{
@@ -137,10 +143,20 @@ void RobotLib::dbLogger()
 		if (!shutdown)
 		{			
 			clearCounter++;
-			if (clearCounter > clearPoint)
+			if (clearCounter > clearPoint)				
 			{
+				// DO TIME BASED DELETION
+				std::stringstream ss;
+				ss << "DELETE FROM Log WHERE timestamp <= date('now','-" << config->getMessagedDBRetention() << " hours')";
+				Log(ss.str());
+				SQLite::Statement pruneStmt(db, ss.str());
+	
 				clearCounter = 0;
-				pruneStmt.exec();				
+				{
+					std::unique_lock<std::mutex> lock(Database::dbMutex);
+					pruneStmt.exec();	
+					pruneStmt.reset();
+				}
 			}
 			delay(1000);
 		}

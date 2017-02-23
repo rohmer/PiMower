@@ -16,6 +16,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+
 	RobotLib *robotLib = new RobotLib();
 	Adafruit_RA8875 tft(10, 11);
 	tft.begin(RA8875sizes::RA8875_800x480);

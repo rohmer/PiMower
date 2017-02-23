@@ -6,6 +6,7 @@
 #include "../3rdParty/SQLiteC++/include/SQLiteCpp/Database.h"
 #include "SensorEvents.h"
 #include <stdarg.h>
+#include <mutex>
 
 #define DB_LOCATION "/usr/local/Robot/robot.db"
 
@@ -25,6 +26,7 @@ public:
 	{
 		return dbHandle;
 	}
+	static std::mutex dbMutex;
 	
 	~Database();
 	

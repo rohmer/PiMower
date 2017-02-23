@@ -186,7 +186,7 @@ private:
 	void writeConfigDB();
 	bool readConfigDB();
 	
-	unsigned long messagesToKeepInDB = 10000;
+	unsigned long messagesToKeepInDB = 168;
 	
 	unsigned int errorLEDPin=-1;
 	unsigned int encoderTicksPerRevolution;

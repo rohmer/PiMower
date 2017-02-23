@@ -1,4 +1,5 @@
 #include "Database.h"
+std::mutex Database::dbMutex;
 
 Database::Database()
 {
@@ -39,7 +40,8 @@ bool Database::createLogTable()
 	std::string sql = "CREATE TABLE Log("\
 		"timestamp DATETIME NOT NULL, "\
 		"severity INT NOT NULL, "\
-		"message TEXT)";
+		"message TEXT, "\
+		"sessionID CHAR(36))";
 	return execSql(sql);
 }
 
@@ -147,19 +149,22 @@ bool Database::createPositionTable()
 
 bool Database::execSql(std::string sqlStmt)
 {
-	try
 	{
-		dbHandle->exec(sqlStmt);
-		return true;
+		std::unique_lock<std::mutex> lock(this->dbMutex);
+		try
+		{
+			dbHandle->exec(sqlStmt);
+			return true;
+		}
+		catch (std::exception &e)
+		{
+			std::stringstream ss;
+			ss << "Exception caught: " << e.what() << std::endl;
+			HUMBLE_LOGGER(logger, "RobotLogger");
+			HL_FATAL(logger, ss.str());
+			return false;
+		}	
 	}
-	catch (std::exception &e)
-	{
-		std::stringstream ss;
-		ss << "Exception caught: " << e.what() << std::endl;
-		HUMBLE_LOGGER(logger, "RobotLogger");
-		HL_FATAL(logger, ss.str());
-		return false;
-	}	
 }
 
 bool Database::insertPositionEvent(sensors_event_t *event)
