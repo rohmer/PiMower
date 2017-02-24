@@ -22,6 +22,12 @@
     <ClCompile Include="UITest.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\RobotController\SensorLib\RA8875\Adafruit_RA8875.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RobotController\SensorLib\RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="UITest-Debug.vgdbsettings">
@@ -34,6 +40,12 @@
   <ItemGroup>
     <ClInclude Include="img256.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RobotController\SensorLib\RA8875\Adafruit_RA8875.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RobotController\SensorLib\RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.h">
+      <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

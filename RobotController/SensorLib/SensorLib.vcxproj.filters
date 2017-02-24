@@ -375,15 +375,6 @@
     <ClInclude Include="BQ34Z100G1.h">
       <Filter>Header files\BQ34Z100-G1</Filter>
     </ClInclude>
-    <ClInclude Include="RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.h">
-      <Filter>RA8875</Filter>
-    </ClInclude>
-    <ClInclude Include="RA8875\Adafruit-GFX-Library-master\gfxfont.h">
-      <Filter>RA8875</Filter>
-    </ClInclude>
-    <ClInclude Include="RA8875\Adafruit_RA8875.h">
-      <Filter>RA8875</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SensorLib-Debug.vgdbsettings">

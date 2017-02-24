@@ -1,4 +1,5 @@
 #include "LawnMap.h"
+#include "Point.h"
 
 LawnMap::LawnMap(RobotLib *robotLib)
 {
@@ -477,4 +478,86 @@ void LawnMap::clearMowedFlags()
 	{
 		it->second->setMowedFlag(false);
 	}
+}
+
+// Finds the closest node to the current node, using a spiral path outwards
+MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_node_t nodeType)
+{
+	std::pair<int, int> minXY;
+	std::pair<int, int> maxXY;
+	getExtents(minXY, maxXY);
+	int minX = minXY.first;
+	int maxX = maxXY.first;
+	int minY = minXY.second;
+	int maxY = maxXY.second;
+			
+	int spiralSize = 0;
+	Point startingPoint(currentLocation.first, currentLocation.second);
+	
+	while((spiralSize<(maxX-minX)) && (spiralSize<(maxY-minY)))
+	{
+		for (int dir = 0; dir <= 3; dir++)	
+		{
+			if (dir == 0)		// DOWN
+			{
+				int x = currentLocation.first + spiralSize;
+				int y = currentLocation.first - spiralSize;
+				if (y < minY)
+					y = minY;
+				if (x > maxX)
+					x = maxX;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					if (getNode(x, y + a)->blockContents() == nodeType)
+						return getNode(x, y + a);
+				}
+			}
+			if (dir == 1)		// LEFT
+			{
+				int x = currentLocation.first + spiralSize;
+				int y = currentLocation.first + spiralSize;
+				if (y > maxY)
+					y = maxY;
+				if (x > maxX)
+					x = maxX;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					if (getNode(x-a, y)->blockContents() == nodeType)
+						return getNode(x-a, y);
+				}
+			}
+			if (dir == 2)		// UP
+			{
+				int x = currentLocation.first - spiralSize;
+				int y = currentLocation.first + spiralSize;
+				if (y > maxY)
+					y = maxY;
+				if (x < minY)
+					x = minY;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					if (getNode(x, y-a)->blockContents() == nodeType)
+						return getNode(x, y-a);
+				}
+			}
+			if (dir == 3)		// RIGHT
+			{
+				int x = currentLocation.first - spiralSize;
+				int y = currentLocation.first - spiralSize;
+				if (y < minY)
+					y = minY;
+				if (x < minY)
+					x = minY;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					if (getNode(x+a, y)->blockContents() == nodeType)
+						return getNode(x + a, y);
+				}
+			}			
+		}
+		spiralSize++;
+	}
+	
+	// We did not find one on the map
+	return NULL;
 }

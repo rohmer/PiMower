@@ -28,7 +28,7 @@
 #ifndef PLATFORMSPECIFICFUNCTIONS_H_
 #define PLATFORMSPECIFICFUNCTIONS_H_
 
-#include "TestOutput.h"
+#include "CppUTest/TestOutput.h"
 TestOutput::WorkingEnvironment PlatformSpecificGetWorkingEnvironment();
 
 class TestPlugin;
@@ -41,6 +41,6 @@ extern int (*PlatformSpecificWaitPid)(int pid, int* status, int options);
  *
  */
 
-#include "PlatformSpecificFunctions_c.h"
+#include "CppUTest/PlatformSpecificFunctions_c.h"
 
 #endif

@@ -24,10 +24,9 @@
     v1.0 - First release
 */
 /**************************************************************************/
-#include "../../3rdParty/wiringPi/wiringPi/wiringPi.h"
-#include "../../3rdParty/wiringPi/wiringPi/wiringPiSPI.h"
+#include "wiringPi.h"
+#include "wiringPiSPI.h"
 #include "Adafruit_RA8875.h"
-#include "../../../3rdParty/wiringPi/wiringPi/wiringPiSPI.h"
 
 #if defined (ARDUINO_ARCH_ARC32)
   uint32_t spi_speed = 12000000;
@@ -91,7 +90,7 @@ bool Adafruit_RA8875::begin(enum RA8875sizes s) {
     return false;
   }
 
-  /*pinMode(_cs, OUTPUT);
+  pinMode(_cs, OUTPUT);
   digitalWrite(_cs, HIGH);
   pinMode(_rst, OUTPUT);
     
@@ -99,7 +98,7 @@ bool Adafruit_RA8875::begin(enum RA8875sizes s) {
   delay(100);
   digitalWrite(_rst, HIGH);
   delay(100);
-  */
+  
   spifd = wiringPiSPISetup(0, 2000000);
 	  
     
@@ -118,10 +117,10 @@ bool Adafruit_RA8875::begin(enum RA8875sizes s) {
 
     uint8_t x = readReg(0);
 //    Serial.print("x = 0x"); Serial.println(x,HEX);
-    if (x != 0x75) {
+/*    if (x != 0x75) {
         return false;
     }
-
+*/
   initialize();
 
 #ifdef SPI_HAS_TRANSACTION

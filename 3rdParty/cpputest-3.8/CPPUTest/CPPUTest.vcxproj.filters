@@ -1,0 +1,1100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{1ce47492-995e-45ad-9f07-7e790767530a}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{1d143752-0aa7-4293-8c89-ef19618fb870}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{6f23d7f9-f1c8-4bfd-8434-69be51620eae}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source files\examples">
+      <UniqueIdentifier>{7867f947-d6b4-46ed-83b7-26c64174689f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\examples">
+      <UniqueIdentifier>{bbc13eb2-67f3-4978-968a-4e5b93e13906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\examples\AllTests">
+      <UniqueIdentifier>{51a6bba9-14be-4021-961a-34110a5ff554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\examples\AllTests">
+      <UniqueIdentifier>{c8cbf898-8291-4e5a-b09b-2751f00d3309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\examples\ApplicationLib">
+      <UniqueIdentifier>{f4f8fe0a-0942-4542-8681-8c04123a3eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\examples\ApplicationLib">
+      <UniqueIdentifier>{3eccd89c-3237-4157-9adc-5d5b3114b206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\generated">
+      <UniqueIdentifier>{6da4621a-af70-4b9b-8559-d100b9b54dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\generated">
+      <UniqueIdentifier>{791dcb22-2c7e-4ad0-a877-90a6c34e578a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include">
+      <UniqueIdentifier>{69d32126-b47d-4e17-bdcd-aa5c4203a878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include">
+      <UniqueIdentifier>{ec2e2005-ba34-4df2-8f78-02cbf98c52e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\CppUTest">
+      <UniqueIdentifier>{a2f75f13-9ebb-408f-acbb-600d06d17a1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\CppUTest">
+      <UniqueIdentifier>{72ace4c0-9548-4024-9aa0-6264899236f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\CppUTestExt">
+      <UniqueIdentifier>{4c008c4f-065a-42ca-ae05-7bc94a2a64ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\CppUTestExt">
+      <UniqueIdentifier>{6edebd73-a554-4602-839b-e4cf2b25dd00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\Platforms">
+      <UniqueIdentifier>{c01bc6f3-7cfb-42e5-b47b-68aa04497893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\Platforms">
+      <UniqueIdentifier>{2c8c1457-2075-44ba-a334-a71610ce2101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\include\Platforms\c2000">
+      <UniqueIdentifier>{59345dee-88b7-435d-b839-4353bb54d1a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\include\Platforms\c2000">
+      <UniqueIdentifier>{732b1a9e-5288-4ee0-baab-e542a4065b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms">
+      <UniqueIdentifier>{92bd7e91-3f98-4e8d-b0e3-949dfe0f5586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms">
+      <UniqueIdentifier>{a8de356d-0418-4ca6-aaa9-e3d4b359016a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms\CCStudio">
+      <UniqueIdentifier>{3a8e0041-91b8-4484-b15c-d6753e0cd691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms\CCStudio">
+      <UniqueIdentifier>{7c4b16b5-205b-4526-8c79-20946a994724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms\CCStudio\tests">
+      <UniqueIdentifier>{fc02d0a3-90fd-4f1a-8d42-d8b1ed258f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms\CCStudio\tests">
+      <UniqueIdentifier>{592b5cff-29e4-48d2-9ebc-e67793aed48c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms\CCStudio\tests\CppUTest">
+      <UniqueIdentifier>{888eb8a4-4c28-4cb2-a85e-5242e72c32fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms\CCStudio\tests\CppUTest">
+      <UniqueIdentifier>{8e62ce11-d80a-4792-9ae6-e8ce43594e0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms\CCStudio\tests\CppUTestExt">
+      <UniqueIdentifier>{ccdcf909-ad2e-48aa-a342-cdccb9612a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms\CCStudio\tests\CppUTestExt">
+      <UniqueIdentifier>{e5c61395-0da6-4ff0-ad0c-d5a780b24164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms\iar">
+      <UniqueIdentifier>{b6ebc731-1008-420d-9b96-4a9fe9b6c456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms\iar">
+      <UniqueIdentifier>{0d26e81a-8c9f-4099-8b4a-101e1c1d6c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms\iar\tests">
+      <UniqueIdentifier>{475c2b23-ef89-4ad3-9afa-7902af793cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms\iar\tests">
+      <UniqueIdentifier>{5d9b2c4d-397f-44e8-8e08-d9cd8536fdce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples">
+      <UniqueIdentifier>{4a922fdb-cec3-43ce-9f9b-351fda4e04bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples">
+      <UniqueIdentifier>{66a869c0-7bab-4a79-8e51-7d882c9435f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc">
+      <UniqueIdentifier>{c464412a-c606-415e-af34-764aeba4d3b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc">
+      <UniqueIdentifier>{a190f951-eac4-4b44-8056-491c9f8e2971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\AT91SAM7A3">
+      <UniqueIdentifier>{0529912a-ce6c-4e21-94ed-9887db8ca0f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\AT91SAM7A3">
+      <UniqueIdentifier>{00d8877c-6258-45f1-848a-9ed92286b81a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\AT91SAM7A3\tests">
+      <UniqueIdentifier>{240e4866-c932-48d7-a265-06de47a82389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\AT91SAM7A3\tests">
+      <UniqueIdentifier>{84c19366-9424-4b96-9c4b-6c4b2049ab67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\LPC1768">
+      <UniqueIdentifier>{a000207a-43e1-489a-9b39-1376b623ab2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\LPC1768">
+      <UniqueIdentifier>{6aa972bb-6f7a-4fec-98a4-cf557534d83a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\LPC1768\tests">
+      <UniqueIdentifier>{a5faefa8-4e13-4f6e-aaf6-1be5d66b1d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\LPC1768\tests">
+      <UniqueIdentifier>{8fc56b60-526b-46ec-9112-ca5a1cf70658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\LPC1833">
+      <UniqueIdentifier>{2484a290-894a-4989-944a-eef8e4951e45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\LPC1833">
+      <UniqueIdentifier>{44852414-5b6f-40ac-ba88-b97b67e7a2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\LPC1833\src">
+      <UniqueIdentifier>{6893d19b-a63b-457c-8c72-a0d6331110d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\LPC1833\src">
+      <UniqueIdentifier>{3a74d172-6f47-4128-8c42-1991d2aa9213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\platforms_examples\armcc\LPC1833\tests">
+      <UniqueIdentifier>{bf87eae1-516f-4ace-b4b4-11c368a121f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\platforms_examples\armcc\LPC1833\tests">
+      <UniqueIdentifier>{ed72b124-4c05-4fa1-9d8f-0563f55b2c75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts">
+      <UniqueIdentifier>{b13954bb-10a1-43b7-9440-7b74d68caf3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts">
+      <UniqueIdentifier>{c3adf0f2-431c-44ee-b8cb-e265a85b887d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates">
+      <UniqueIdentifier>{c8584bc2-d161-48be-9313-5b8bc7f3c290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates">
+      <UniqueIdentifier>{4fb8cd15-08d6-4f4a-a06f-fad7ab828547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate">
+      <UniqueIdentifier>{79dfd183-3b2c-4c7b-b53a-249649a47f48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate">
+      <UniqueIdentifier>{fcbc76dc-a0cd-4c2d-855c-21118d566e9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate\include">
+      <UniqueIdentifier>{762c46c2-6f3f-4ea4-a4a1-69a0422c10b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate\include">
+      <UniqueIdentifier>{19ca221e-4bfc-419e-ae2c-b06d628f04ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate\include\util">
+      <UniqueIdentifier>{be6e3be4-27ed-4529-ab8d-9094556dcf28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate\include\util">
+      <UniqueIdentifier>{fc3bade6-e59b-4f29-9c2f-10f877accd5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate\src">
+      <UniqueIdentifier>{ca18ba80-dc7d-4a63-90f3-53dec5ddd3be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate\src">
+      <UniqueIdentifier>{59ff8a4b-47b9-49c5-9110-32567d61328c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate\src\util">
+      <UniqueIdentifier>{60b30761-b261-4a8c-b4f6-c354293ad758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate\src\util">
+      <UniqueIdentifier>{0b7bd593-b22f-453b-8b9b-278231cc9eae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate\tests">
+      <UniqueIdentifier>{9a0ea95a-5e1f-4d88-8ab0-c3c9fc55b446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate\tests">
+      <UniqueIdentifier>{b604718e-dfa4-4464-b50a-b1795bfe618a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\CppUnitTemplates\ProjectTemplate\tests\util">
+      <UniqueIdentifier>{be0ffff5-b516-42e4-bbed-b9e695b96776}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\CppUnitTemplates\ProjectTemplate\tests\util">
+      <UniqueIdentifier>{ff336702-326e-489f-b52a-49d28d2e12dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates">
+      <UniqueIdentifier>{d8c3c283-8d51-4945-bcc2-9c04f7d837e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates">
+      <UniqueIdentifier>{a30ee43d-449c-4158-b448-3d4c7113a55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate">
+      <UniqueIdentifier>{d081db01-e765-420c-a808-912c5418cb77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate">
+      <UniqueIdentifier>{45e0ced0-5101-4460-b5f8-2986fcd5b04a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate\include">
+      <UniqueIdentifier>{05bf688e-05b4-4e91-bc6c-08d066560fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate\include">
+      <UniqueIdentifier>{d6d82121-6553-4d58-beec-ca7263336942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate\include\util">
+      <UniqueIdentifier>{be3f62e8-3926-4684-825b-71cc492a8c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate\include\util">
+      <UniqueIdentifier>{9b3521d5-bd68-4b44-b6a1-6ac1c8448726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate\src">
+      <UniqueIdentifier>{62bf692c-50f8-4421-80c8-b66f807c4429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate\src">
+      <UniqueIdentifier>{ca9a4b49-6e2d-4ce9-a9b0-6cee2c968346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate\src\util">
+      <UniqueIdentifier>{33fe1c99-d024-4efe-a5db-83a3d77acb9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate\src\util">
+      <UniqueIdentifier>{548a1725-b242-4192-aedf-1181d00c6632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate\tests">
+      <UniqueIdentifier>{2ccbeb49-203e-4a0c-b7f1-6ccc99ff00e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate\tests">
+      <UniqueIdentifier>{44ad1ec1-b5b9-470c-b023-dc7e4a814504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\templates\ProjectTemplate\tests\util">
+      <UniqueIdentifier>{3a69c070-e9d8-4bbc-8c22-41f0f8debb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\templates\ProjectTemplate\tests\util">
+      <UniqueIdentifier>{5a05e228-05d1-4ec6-bd5d-72bf837b41c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\scripts\UnityTemplates">
+      <UniqueIdentifier>{f307e1e6-7d62-47e0-8143-53f270d6f850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\scripts\UnityTemplates">
+      <UniqueIdentifier>{4df286d1-e69d-4d72-9cbc-9eb475d27191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src">
+      <UniqueIdentifier>{38248789-2d73-4ced-9473-2c6a5e516c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src">
+      <UniqueIdentifier>{4a790f51-8ffc-4603-8e14-eb457217c8cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\CppUTest">
+      <UniqueIdentifier>{af1d54f0-a12f-44c2-9329-4cd1ed40267a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\CppUTest">
+      <UniqueIdentifier>{b24374ac-8217-4100-ab87-b778163964c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\CppUTestExt">
+      <UniqueIdentifier>{d4cc3368-21db-40da-8130-df2a82c3ede9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\CppUTestExt">
+      <UniqueIdentifier>{886d45e8-e64d-4483-9aca-b766ef001ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms">
+      <UniqueIdentifier>{86945056-8bcf-4c75-9242-d445c11f242a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms">
+      <UniqueIdentifier>{1f219469-31d4-421b-925a-3bf3e939bb7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\armcc">
+      <UniqueIdentifier>{50f3770d-db6d-46e8-bc97-5b17cc7e5f7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\armcc">
+      <UniqueIdentifier>{6554848c-b17d-4729-a755-a72a74df84b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\C2000">
+      <UniqueIdentifier>{f007cc57-6f29-4f60-b4fa-9e19bcc1c4e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\C2000">
+      <UniqueIdentifier>{5e5e2816-85fd-480d-b8e5-442e0f1048fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\Dos">
+      <UniqueIdentifier>{d672641b-5ba4-433f-a776-c2654dcb3ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\Dos">
+      <UniqueIdentifier>{ee8dbadc-35f1-403d-b49a-6bef9f643302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\Gcc">
+      <UniqueIdentifier>{c37c5690-ab9b-43dd-8767-f32028bd128d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\Gcc">
+      <UniqueIdentifier>{97457604-d204-4032-91bd-402940dcbd8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\GccNoStdC">
+      <UniqueIdentifier>{8d59891a-d860-4e62-b1dc-8f036d8af885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\GccNoStdC">
+      <UniqueIdentifier>{fde3573f-52d2-453b-914d-93f62e773488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\Iar">
+      <UniqueIdentifier>{0b81b3d4-1dee-4ff7-85ec-536647fdcb71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\Iar">
+      <UniqueIdentifier>{3fa51433-3188-4b08-9907-e6a74939088d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\Keil">
+      <UniqueIdentifier>{9695bc40-6644-46a1-8365-f49bec5bc8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\Keil">
+      <UniqueIdentifier>{b779f592-7a9b-455d-b626-8b580a4d2a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\Symbian">
+      <UniqueIdentifier>{5f59b032-ace3-435a-8078-4422a523f332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\Symbian">
+      <UniqueIdentifier>{515c3828-cbb4-4e15-a875-774921637b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\src\Platforms\VisualCpp">
+      <UniqueIdentifier>{922bf4f7-3f60-477e-ba95-7d2dc5741fc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\src\Platforms\VisualCpp">
+      <UniqueIdentifier>{1324438e-d425-4b12-b0c0-b0d4967cb05f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\tests">
+      <UniqueIdentifier>{169a9ee4-0ee8-4801-b84e-66a7f7f6e34e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\tests">
+      <UniqueIdentifier>{b60659ff-7e04-4ad1-ab0b-208401ef4f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\tests\CppUTestExt">
+      <UniqueIdentifier>{d6e73d68-b818-4cbe-b7c2-87047e0e033e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\tests\CppUTestExt">
+      <UniqueIdentifier>{d947386e-8ef6-4b14-9053-86ecd325d52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{e87f2a9d-943f-4f85-9023-f28ddb5ead39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{6306d34c-5458-4ead-a122-3c33abf28301}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\examples\AllTests\AllTests.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\AllTests\CircularBufferTest.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\AllTests\EventDispatcherTest.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\AllTests\FEDemoTest.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\AllTests\HelloTest.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\AllTests\MockDocumentationTest.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\AllTests\PrinterTest.cpp">
+      <Filter>Source files\examples\AllTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\ApplicationLib\CircularBuffer.cpp">
+      <Filter>Source files\examples\ApplicationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\ApplicationLib\EventDispatcher.cpp">
+      <Filter>Source files\examples\ApplicationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\ApplicationLib\hello.c">
+      <Filter>Source files\examples\ApplicationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\examples\ApplicationLib\Printer.cpp">
+      <Filter>Source files\examples\ApplicationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms\CCStudio\tests\CppUTest\AllTestsForTarget.cpp">
+      <Filter>Source files\platforms\CCStudio\tests\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms\CCStudio\tests\CppUTestExt\AllTestsForTarget.cpp">
+      <Filter>Source files\platforms\CCStudio\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms\iar\tests\AllTests.cpp">
+      <Filter>Source files\platforms\iar\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms_examples\armcc\AT91SAM7A3\tests\main.cpp">
+      <Filter>Source files\platforms_examples\armcc\AT91SAM7A3\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms_examples\armcc\LPC1768\tests\main.cpp">
+      <Filter>Source files\platforms_examples\armcc\LPC1768\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms_examples\armcc\LPC1833\src\dummy.c">
+      <Filter>Source files\platforms_examples\armcc\LPC1833\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms_examples\armcc\LPC1833\tests\main.cpp">
+      <Filter>Source files\platforms_examples\armcc\LPC1833\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platforms_examples\armcc\LPC1833\tests\test1.cpp">
+      <Filter>Source files\platforms_examples\armcc\LPC1833\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassName.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameC.c">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCMultipleInstance.c">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCMultipleInstanceTest.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCPolymorphic.c">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCTest.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameTest.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\InterfaceCTest.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\InterfaceTest.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\MockClassNameC.c">
+      <Filter>Source files\scripts\CppUnitTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ProjectTemplate\src\util\ProjectBuildTime.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates\ProjectTemplate\src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ProjectTemplate\tests\AllTests.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates\ProjectTemplate\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\CppUnitTemplates\ProjectTemplate\tests\util\ProjectBuildTimeTest.cpp">
+      <Filter>Source files\scripts\CppUnitTemplates\ProjectTemplate\tests\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassName.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameC.c">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameCIoDriver.c">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameCIoDriverTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameCMultipleInstance.c">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameCMultipleInstanceTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameCPolymorphic.c">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameCTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ClassNameTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\FunctionNameC.c">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\FunctionNameCTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\InterfaceCTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\InterfaceTest.cpp">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\MockClassNameC.c">
+      <Filter>Source files\scripts\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ProjectTemplate\src\util\ProjectBuildTime.cpp">
+      <Filter>Source files\scripts\templates\ProjectTemplate\src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ProjectTemplate\tests\AllTests.cpp">
+      <Filter>Source files\scripts\templates\ProjectTemplate\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\templates\ProjectTemplate\tests\util\ProjectBuildTimeTest.cpp">
+      <Filter>Source files\scripts\templates\ProjectTemplate\tests\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\UnityTemplates\ClassNameCIoDriverTest.cpp">
+      <Filter>Source files\scripts\UnityTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\UnityTemplates\ClassNameCMultipleInstanceTest.cpp">
+      <Filter>Source files\scripts\UnityTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\UnityTemplates\ClassNameCTest.cpp">
+      <Filter>Source files\scripts\UnityTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\UnityTemplates\FunctionNameCTest.cpp">
+      <Filter>Source files\scripts\UnityTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scripts\UnityTemplates\InterfaceCTest.cpp">
+      <Filter>Source files\scripts\UnityTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\CommandLineArguments.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\CommandLineTestRunner.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\JUnitTestOutput.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\MemoryLeakDetector.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\MemoryLeakWarningPlugin.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\SimpleMutex.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\SimpleString.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TeamCityTestOutput.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestFailure.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestFilter.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestHarness_c.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestMemoryAllocator.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestOutput.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestPlugin.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestRegistry.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestResult.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\TestTestingFixture.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTest\Utest.cpp">
+      <Filter>Source files\src\CppUTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\CodeMemoryReportFormatter.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\IEEE754ExceptionsPlugin.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MemoryReportAllocator.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MemoryReporterPlugin.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MemoryReportFormatter.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockActualCall.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockExpectedCall.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockExpectedCallsList.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockFailure.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockNamedValue.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockSupport.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockSupportPlugin.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\MockSupport_c.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CppUTestExt\OrderedTest.cpp">
+      <Filter>Source files\src\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\armcc\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\armcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\C2000\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\C2000</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\Dos\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\Dos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\Gcc\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\Gcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\GccNoStdC\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\GccNoStdC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\Iar\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\Iar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\Keil\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\Keil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\Symbian\SymbianMemoryLeakWarning.cpp">
+      <Filter>Source files\src\Platforms\Symbian</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\Symbian\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\Symbian</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platforms\VisualCpp\UtestPlatform.cpp">
+      <Filter>Source files\src\Platforms\VisualCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\AllocationInCFile.c">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\AllocationInCppFile.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\AllocLetTestFree.c">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\AllocLetTestFreeTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\AllTests.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CheatSheetTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CommandLineArgumentsTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CommandLineTestRunnerTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\JUnitOutputTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\MemoryLeakDetectorTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\MemoryLeakWarningTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\MemoryOperatorOverloadTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\PluginTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\PreprocessorTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\SetPluginTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\SimpleMutexTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\SimpleStringTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TeamCityOutputTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestFailureNaNTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestFailureTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestFilterTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestHarness_cTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestHarness_cTestCFile.c">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestInstallerTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestMemoryAllocatorTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestOutputTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestRegistryTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestResultTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestUTestMacro.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\TestUTestStringMacro.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\UtestPlatformTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\UtestTest.cpp">
+      <Filter>Source files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\AllTests.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\CodeMemoryReporterTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\ExpectedFunctionsListTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\GMockTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\GTest1Test.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\GTest2ConvertorTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\IEEE754PluginTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\IEEE754PluginTest_c.c">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MemoryReportAllocatorTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MemoryReporterPluginTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MemoryReportFormatterTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockActualCallTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockCallTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockCheatSheetTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockComparatorCopierTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockExpectedCallTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockFailureReporterForTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockFailureTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockHierarchyTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockNamedValueTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockParameterTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockPluginTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockReturnValueTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockStrictOrderTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockSupportTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockSupport_cTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\MockSupport_cTestCFile.c">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CppUTestExt\OrderedTestTest.cpp">
+      <Filter>Source files\tests\CppUTestExt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\examples\AllTests\AllTests.h">
+      <Filter>Header files\examples\AllTests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\examples\AllTests\MockPrinter.h">
+      <Filter>Header files\examples\AllTests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\examples\ApplicationLib\CircularBuffer.h">
+      <Filter>Header files\examples\ApplicationLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\examples\ApplicationLib\EventDispatcher.h">
+      <Filter>Header files\examples\ApplicationLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\examples\ApplicationLib\ExamplesNewOverrides.h">
+      <Filter>Header files\examples\ApplicationLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\examples\ApplicationLib\hello.h">
+      <Filter>Header files\examples\ApplicationLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\examples\ApplicationLib\Printer.h">
+      <Filter>Header files\examples\ApplicationLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\generated\CppUTestGeneratedConfig.h">
+      <Filter>Header files\generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\CommandLineArguments.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\CommandLineTestRunner.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\CppUTestConfig.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\CppUTestGeneratedConfig.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\JUnitTestOutput.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\MemoryLeakDetector.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\MemoryLeakDetectorMallocMacros.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\MemoryLeakDetectorNewMacros.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\MemoryLeakWarningPlugin.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\PlatformSpecificFunctions.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\PlatformSpecificFunctions_c.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\SimpleMutex.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\SimpleString.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\StandardCLibrary.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TeamCityTestOutput.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestFailure.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestFilter.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestHarness.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestHarness_c.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestMemoryAllocator.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestOutput.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestPlugin.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestRegistry.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestResult.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\TestTestingFixture.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\Utest.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTest\UtestMacros.h">
+      <Filter>Header files\include\CppUTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\CodeMemoryReportFormatter.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\GMock.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\GTest.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\GTestConvertor.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\IEEE754ExceptionsPlugin.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MemoryReportAllocator.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MemoryReporterPlugin.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MemoryReportFormatter.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockActualCall.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockCheckedActualCall.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockCheckedExpectedCall.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockExpectedCall.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockExpectedCallsList.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockFailure.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockNamedValue.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockSupport.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockSupportPlugin.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\MockSupport_c.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CppUTestExt\OrderedTest.h">
+      <Filter>Header files\include\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Platforms\c2000\stdint.h">
+      <Filter>Header files\include\Platforms\c2000</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platforms\iar\tests\AllTests.h">
+      <Filter>Header files\platforms\iar\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassName.h">
+      <Filter>Header files\scripts\CppUnitTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassNameC.h">
+      <Filter>Header files\scripts\CppUnitTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassNameCMultipleInstance.h">
+      <Filter>Header files\scripts\CppUnitTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassNameCPolymorphic.h">
+      <Filter>Header files\scripts\CppUnitTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\MockClassName.h">
+      <Filter>Header files\scripts\CppUnitTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\MockClassNameC.h">
+      <Filter>Header files\scripts\CppUnitTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\CppUnitTemplates\ProjectTemplate\include\util\ProjectBuildTime.h">
+      <Filter>Header files\scripts\CppUnitTemplates\ProjectTemplate\include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\ClassName.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\ClassNameC.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\ClassNameCIoDriver.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\ClassNameCMultipleInstance.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\ClassNameCPolymorphic.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\FunctionNameC.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\MockClassName.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\MockClassNameC.h">
+      <Filter>Header files\scripts\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\templates\ProjectTemplate\include\util\ProjectBuildTime.h">
+      <Filter>Header files\scripts\templates\ProjectTemplate\include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\AllocationInCFile.h">
+      <Filter>Header files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\AllocationInCppFile.h">
+      <Filter>Header files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\AllocLetTestFree.h">
+      <Filter>Header files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\AllTests.h">
+      <Filter>Header files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\CppUTestExt\IEEE754PluginTest_c.h">
+      <Filter>Header files\tests\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\CppUTestExt\MockFailureReporterForTest.h">
+      <Filter>Header files\tests\CppUTestExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\CppUTestExt\MockSupport_cTestCFile.h">
+      <Filter>Header files\tests\CppUTestExt</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt">
+      <Filter>CMake files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\toolchain-Debug.cmake">
+      <Filter>CMake files</Filter>
+    </None>
+    <None Include="CPPUTest-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="..\toolchain-Release.cmake">
+      <Filter>CMake files</Filter>
+    </None>
+    <None Include="CPPUTest-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+</Project>

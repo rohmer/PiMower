@@ -36,6 +36,8 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\RobotController\SensorLib\RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.cpp" />
+    <ClCompile Include="..\..\RobotController\SensorLib\RA8875\Adafruit_RA8875.cpp" />
     <ClCompile Include="UITest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,24 +45,14 @@
     <None Include="UITest-Release.vgdbsettings" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
-      <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\3rdParty\SQLiteC++\SQLiteCPP\SQLiteCPP.vcxproj">
-      <Project>{4cb2ee15-2afd-46f3-883a-12f5c35f35e4}</Project>
-    </ProjectReference>
+    <ClInclude Include="..\..\RobotController\SensorLib\RA8875\Adafruit-GFX-Library-master\Adafruit_GFX.h" />
+    <ClInclude Include="..\..\RobotController\SensorLib\RA8875\Adafruit_RA8875.h" />
+    <ClInclude Include="img256.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
       <Project>{6a967716-d419-4c6e-9b5c-c8a68a3af2d1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\RobotController\SensorLib\SensorLib.vcxproj">
-      <Project>{a17730ce-5fd1-4cb8-9b8d-5e9f076e7698}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\RobotLib.vcxproj">
-      <Project>{b37f3067-2a62-4034-9068-352f6949466a}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="img256.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

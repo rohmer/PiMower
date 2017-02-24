@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{87b6e485-11ca-4b79-9c0a-eee5807f90d9}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{ae4bc134-12be-448d-929d-d8f3a783486f}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{06d550ff-fa54-48a4-a1ed-d54795f2f5af}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{373f471b-65a3-4948-9e0a-b0e7ea44b1f5}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Header files\MapTests">
+      <UniqueIdentifier>{6958ff10-0429-4f62-969a-7c2feee94f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\MapTests">
+      <UniqueIdentifier>{3913ad8c-ab0c-42fb-8bd9-a3647cffbd86}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestSuite.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTests.cpp">
+      <Filter>Source files\MapTests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestSuite-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="TestSuite-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllTests.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Maps.h">
+      <Filter>Header files\MapTests</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTests.h">
+      <Filter>Header files\MapTests</Filter>
+    </ClInclude>
+    <ClInclude Include="TestCommon.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

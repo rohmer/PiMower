@@ -32,6 +32,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <CPPLanguageStandard>CPP14</CPPLanguageStandard>
+      <AdditionalIncludeDirectories>../../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/lib/modules/4.4.34+/build/include;../../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/lib/modules/4.4.34+/build/include/linux;../../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/opt/arminarm/arm-none-eabi/include;../../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/opt/arminarm/arm-none-eabi/include/c++/4.8.2;../../../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/opt/arminarm/arm-none-eabi/include/c++/4.8.2/arm-none-eabi;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">

@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D0DE493B-2749-498B-B72C-4DEDE34FF623}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeIncludeSearchPath>c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9;c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9\backward;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include-fixed;c:\sysgcc\raspberry\arm-linux-gnueabihf\include;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include\arm-linux-gnueabihf;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)CPPUTest-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeIncludeSearchPath>c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9;c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9\backward;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include-fixed;c:\sysgcc\raspberry\arm-linux-gnueabihf\include;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include\arm-linux-gnueabihf;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)CPPUTest-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\examples\AllTests\AllTests.cpp" />
+    <ClCompile Include="..\examples\AllTests\CircularBufferTest.cpp" />
+    <ClCompile Include="..\examples\AllTests\EventDispatcherTest.cpp" />
+    <ClCompile Include="..\examples\AllTests\FEDemoTest.cpp" />
+    <ClCompile Include="..\examples\AllTests\HelloTest.cpp" />
+    <ClCompile Include="..\examples\AllTests\MockDocumentationTest.cpp" />
+    <ClCompile Include="..\examples\AllTests\PrinterTest.cpp" />
+    <ClCompile Include="..\examples\ApplicationLib\CircularBuffer.cpp" />
+    <ClCompile Include="..\examples\ApplicationLib\EventDispatcher.cpp" />
+    <ClCompile Include="..\examples\ApplicationLib\hello.c" />
+    <ClCompile Include="..\examples\ApplicationLib\Printer.cpp" />
+    <ClCompile Include="..\platforms\CCStudio\tests\CppUTestExt\AllTestsForTarget.cpp" />
+    <ClCompile Include="..\platforms\CCStudio\tests\CppUTest\AllTestsForTarget.cpp" />
+    <ClCompile Include="..\platforms\iar\tests\AllTests.cpp" />
+    <ClCompile Include="..\platforms_examples\armcc\AT91SAM7A3\tests\main.cpp" />
+    <ClCompile Include="..\platforms_examples\armcc\LPC1768\tests\main.cpp" />
+    <ClCompile Include="..\platforms_examples\armcc\LPC1833\src\dummy.c" />
+    <ClCompile Include="..\platforms_examples\armcc\LPC1833\tests\main.cpp" />
+    <ClCompile Include="..\platforms_examples\armcc\LPC1833\tests\test1.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassName.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameC.c" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCMultipleInstance.c" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCMultipleInstanceTest.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCPolymorphic.c" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameCTest.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ClassNameTest.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\InterfaceCTest.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\InterfaceTest.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\MockClassNameC.c" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ProjectTemplate\src\util\ProjectBuildTime.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ProjectTemplate\tests\AllTests.cpp" />
+    <ClCompile Include="..\scripts\CppUnitTemplates\ProjectTemplate\tests\util\ProjectBuildTimeTest.cpp" />
+    <ClCompile Include="..\scripts\templates\ClassName.cpp" />
+    <ClCompile Include="..\scripts\templates\ClassNameC.c" />
+    <ClCompile Include="..\scripts\templates\ClassNameCIoDriver.c" />
+    <ClCompile Include="..\scripts\templates\ClassNameCIoDriverTest.cpp" />
+    <ClCompile Include="..\scripts\templates\ClassNameCMultipleInstance.c" />
+    <ClCompile Include="..\scripts\templates\ClassNameCMultipleInstanceTest.cpp" />
+    <ClCompile Include="..\scripts\templates\ClassNameCPolymorphic.c" />
+    <ClCompile Include="..\scripts\templates\ClassNameCTest.cpp" />
+    <ClCompile Include="..\scripts\templates\ClassNameTest.cpp" />
+    <ClCompile Include="..\scripts\templates\FunctionNameC.c" />
+    <ClCompile Include="..\scripts\templates\FunctionNameCTest.cpp" />
+    <ClCompile Include="..\scripts\templates\InterfaceCTest.cpp" />
+    <ClCompile Include="..\scripts\templates\InterfaceTest.cpp" />
+    <ClCompile Include="..\scripts\templates\MockClassNameC.c" />
+    <ClCompile Include="..\scripts\templates\ProjectTemplate\src\util\ProjectBuildTime.cpp" />
+    <ClCompile Include="..\scripts\templates\ProjectTemplate\tests\AllTests.cpp" />
+    <ClCompile Include="..\scripts\templates\ProjectTemplate\tests\util\ProjectBuildTimeTest.cpp" />
+    <ClCompile Include="..\scripts\UnityTemplates\ClassNameCIoDriverTest.cpp" />
+    <ClCompile Include="..\scripts\UnityTemplates\ClassNameCMultipleInstanceTest.cpp" />
+    <ClCompile Include="..\scripts\UnityTemplates\ClassNameCTest.cpp" />
+    <ClCompile Include="..\scripts\UnityTemplates\FunctionNameCTest.cpp" />
+    <ClCompile Include="..\scripts\UnityTemplates\InterfaceCTest.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\CodeMemoryReportFormatter.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\IEEE754ExceptionsPlugin.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MemoryReportAllocator.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MemoryReporterPlugin.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MemoryReportFormatter.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockActualCall.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockExpectedCall.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockExpectedCallsList.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockFailure.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockNamedValue.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockSupport.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockSupportPlugin.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\MockSupport_c.cpp" />
+    <ClCompile Include="..\src\CppUTestExt\OrderedTest.cpp" />
+    <ClCompile Include="..\src\CppUTest\CommandLineArguments.cpp" />
+    <ClCompile Include="..\src\CppUTest\CommandLineTestRunner.cpp" />
+    <ClCompile Include="..\src\CppUTest\JUnitTestOutput.cpp" />
+    <ClCompile Include="..\src\CppUTest\MemoryLeakDetector.cpp" />
+    <ClCompile Include="..\src\CppUTest\MemoryLeakWarningPlugin.cpp" />
+    <ClCompile Include="..\src\CppUTest\SimpleMutex.cpp" />
+    <ClCompile Include="..\src\CppUTest\SimpleString.cpp" />
+    <ClCompile Include="..\src\CppUTest\TeamCityTestOutput.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestFailure.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestFilter.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestHarness_c.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestMemoryAllocator.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestOutput.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestPlugin.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestRegistry.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestResult.cpp" />
+    <ClCompile Include="..\src\CppUTest\TestTestingFixture.cpp" />
+    <ClCompile Include="..\src\CppUTest\Utest.cpp" />
+    <ClCompile Include="..\src\Platforms\armcc\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\C2000\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\Dos\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\GccNoStdC\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\Gcc\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\Iar\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\Keil\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\Symbian\SymbianMemoryLeakWarning.cpp" />
+    <ClCompile Include="..\src\Platforms\Symbian\UtestPlatform.cpp" />
+    <ClCompile Include="..\src\Platforms\VisualCpp\UtestPlatform.cpp" />
+    <ClCompile Include="..\tests\AllocationInCFile.c" />
+    <ClCompile Include="..\tests\AllocationInCppFile.cpp" />
+    <ClCompile Include="..\tests\AllocLetTestFree.c" />
+    <ClCompile Include="..\tests\AllocLetTestFreeTest.cpp" />
+    <ClCompile Include="..\tests\AllTests.cpp" />
+    <ClCompile Include="..\tests\CheatSheetTest.cpp" />
+    <ClCompile Include="..\tests\CommandLineArgumentsTest.cpp" />
+    <ClCompile Include="..\tests\CommandLineTestRunnerTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\AllTests.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\CodeMemoryReporterTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\ExpectedFunctionsListTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\GMockTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\GTest1Test.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\GTest2ConvertorTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\IEEE754PluginTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\IEEE754PluginTest_c.c" />
+    <ClCompile Include="..\tests\CppUTestExt\MemoryReportAllocatorTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MemoryReporterPluginTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MemoryReportFormatterTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockActualCallTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockCallTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockCheatSheetTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockComparatorCopierTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockExpectedCallTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockFailureReporterForTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockFailureTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockHierarchyTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockNamedValueTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockParameterTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockPluginTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockReturnValueTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockStrictOrderTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockSupportTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockSupport_cTest.cpp" />
+    <ClCompile Include="..\tests\CppUTestExt\MockSupport_cTestCFile.c" />
+    <ClCompile Include="..\tests\CppUTestExt\OrderedTestTest.cpp" />
+    <ClCompile Include="..\tests\JUnitOutputTest.cpp" />
+    <ClCompile Include="..\tests\MemoryLeakDetectorTest.cpp" />
+    <ClCompile Include="..\tests\MemoryLeakWarningTest.cpp" />
+    <ClCompile Include="..\tests\MemoryOperatorOverloadTest.cpp" />
+    <ClCompile Include="..\tests\PluginTest.cpp" />
+    <ClCompile Include="..\tests\PreprocessorTest.cpp" />
+    <ClCompile Include="..\tests\SetPluginTest.cpp" />
+    <ClCompile Include="..\tests\SimpleMutexTest.cpp" />
+    <ClCompile Include="..\tests\SimpleStringTest.cpp" />
+    <ClCompile Include="..\tests\TeamCityOutputTest.cpp" />
+    <ClCompile Include="..\tests\TestFailureNaNTest.cpp" />
+    <ClCompile Include="..\tests\TestFailureTest.cpp" />
+    <ClCompile Include="..\tests\TestFilterTest.cpp" />
+    <ClCompile Include="..\tests\TestHarness_cTest.cpp" />
+    <ClCompile Include="..\tests\TestHarness_cTestCFile.c" />
+    <ClCompile Include="..\tests\TestInstallerTest.cpp" />
+    <ClCompile Include="..\tests\TestMemoryAllocatorTest.cpp" />
+    <ClCompile Include="..\tests\TestOutputTest.cpp" />
+    <ClCompile Include="..\tests\TestRegistryTest.cpp" />
+    <ClCompile Include="..\tests\TestResultTest.cpp" />
+    <ClCompile Include="..\tests\TestUTestMacro.cpp" />
+    <ClCompile Include="..\tests\TestUTestStringMacro.cpp" />
+    <ClCompile Include="..\tests\UtestPlatformTest.cpp" />
+    <ClCompile Include="..\tests\UtestTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\examples\AllTests\AllTests.h" />
+    <ClInclude Include="..\examples\AllTests\MockPrinter.h" />
+    <ClInclude Include="..\examples\ApplicationLib\CircularBuffer.h" />
+    <ClInclude Include="..\examples\ApplicationLib\EventDispatcher.h" />
+    <ClInclude Include="..\examples\ApplicationLib\ExamplesNewOverrides.h" />
+    <ClInclude Include="..\examples\ApplicationLib\hello.h" />
+    <ClInclude Include="..\examples\ApplicationLib\Printer.h" />
+    <ClInclude Include="..\generated\CppUTestGeneratedConfig.h" />
+    <ClInclude Include="..\include\CppUTestExt\CodeMemoryReportFormatter.h" />
+    <ClInclude Include="..\include\CppUTestExt\GMock.h" />
+    <ClInclude Include="..\include\CppUTestExt\GTest.h" />
+    <ClInclude Include="..\include\CppUTestExt\GTestConvertor.h" />
+    <ClInclude Include="..\include\CppUTestExt\IEEE754ExceptionsPlugin.h" />
+    <ClInclude Include="..\include\CppUTestExt\MemoryReportAllocator.h" />
+    <ClInclude Include="..\include\CppUTestExt\MemoryReporterPlugin.h" />
+    <ClInclude Include="..\include\CppUTestExt\MemoryReportFormatter.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockActualCall.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockCheckedActualCall.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockCheckedExpectedCall.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockExpectedCall.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockExpectedCallsList.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockFailure.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockNamedValue.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockSupport.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockSupportPlugin.h" />
+    <ClInclude Include="..\include\CppUTestExt\MockSupport_c.h" />
+    <ClInclude Include="..\include\CppUTestExt\OrderedTest.h" />
+    <ClInclude Include="..\include\CppUTest\CommandLineArguments.h" />
+    <ClInclude Include="..\include\CppUTest\CommandLineTestRunner.h" />
+    <ClInclude Include="..\include\CppUTest\CppUTestConfig.h" />
+    <ClInclude Include="..\include\CppUTest\CppUTestGeneratedConfig.h" />
+    <ClInclude Include="..\include\CppUTest\JUnitTestOutput.h" />
+    <ClInclude Include="..\include\CppUTest\MemoryLeakDetector.h" />
+    <ClInclude Include="..\include\CppUTest\MemoryLeakDetectorMallocMacros.h" />
+    <ClInclude Include="..\include\CppUTest\MemoryLeakDetectorNewMacros.h" />
+    <ClInclude Include="..\include\CppUTest\MemoryLeakWarningPlugin.h" />
+    <ClInclude Include="..\include\CppUTest\PlatformSpecificFunctions.h" />
+    <ClInclude Include="..\include\CppUTest\PlatformSpecificFunctions_c.h" />
+    <ClInclude Include="..\include\CppUTest\SimpleMutex.h" />
+    <ClInclude Include="..\include\CppUTest\SimpleString.h" />
+    <ClInclude Include="..\include\CppUTest\StandardCLibrary.h" />
+    <ClInclude Include="..\include\CppUTest\TeamCityTestOutput.h" />
+    <ClInclude Include="..\include\CppUTest\TestFailure.h" />
+    <ClInclude Include="..\include\CppUTest\TestFilter.h" />
+    <ClInclude Include="..\include\CppUTest\TestHarness.h" />
+    <ClInclude Include="..\include\CppUTest\TestHarness_c.h" />
+    <ClInclude Include="..\include\CppUTest\TestMemoryAllocator.h" />
+    <ClInclude Include="..\include\CppUTest\TestOutput.h" />
+    <ClInclude Include="..\include\CppUTest\TestPlugin.h" />
+    <ClInclude Include="..\include\CppUTest\TestRegistry.h" />
+    <ClInclude Include="..\include\CppUTest\TestResult.h" />
+    <ClInclude Include="..\include\CppUTest\TestTestingFixture.h" />
+    <ClInclude Include="..\include\CppUTest\Utest.h" />
+    <ClInclude Include="..\include\CppUTest\UtestMacros.h" />
+    <ClInclude Include="..\include\Platforms\c2000\stdint.h" />
+    <ClInclude Include="..\platforms\iar\tests\AllTests.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassName.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassNameC.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassNameCMultipleInstance.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\ClassNameCPolymorphic.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\MockClassName.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\MockClassNameC.h" />
+    <ClInclude Include="..\scripts\CppUnitTemplates\ProjectTemplate\include\util\ProjectBuildTime.h" />
+    <ClInclude Include="..\scripts\templates\ClassName.h" />
+    <ClInclude Include="..\scripts\templates\ClassNameC.h" />
+    <ClInclude Include="..\scripts\templates\ClassNameCIoDriver.h" />
+    <ClInclude Include="..\scripts\templates\ClassNameCMultipleInstance.h" />
+    <ClInclude Include="..\scripts\templates\ClassNameCPolymorphic.h" />
+    <ClInclude Include="..\scripts\templates\FunctionNameC.h" />
+    <ClInclude Include="..\scripts\templates\MockClassName.h" />
+    <ClInclude Include="..\scripts\templates\MockClassNameC.h" />
+    <ClInclude Include="..\scripts\templates\ProjectTemplate\include\util\ProjectBuildTime.h" />
+    <ClInclude Include="..\tests\AllocationInCFile.h" />
+    <ClInclude Include="..\tests\AllocationInCppFile.h" />
+    <ClInclude Include="..\tests\AllocLetTestFree.h" />
+    <ClInclude Include="..\tests\AllTests.h" />
+    <ClInclude Include="..\tests\CppUTestExt\IEEE754PluginTest_c.h" />
+    <ClInclude Include="..\tests\CppUTestExt\MockFailureReporterForTest.h" />
+    <ClInclude Include="..\tests\CppUTestExt\MockSupport_cTestCFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\toolchain-Debug.cmake" />
+    <None Include="..\toolchain-Release.cmake" />
+    <None Include="CPPUTest-Debug.vgdbsettings" />
+    <None Include="CPPUTest-Release.vgdbsettings" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

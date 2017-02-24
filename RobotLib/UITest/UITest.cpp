@@ -1,23 +1,10 @@
 #include <iostream>
-#include "../RobotLib.h"
-#include "../../RobotController/SensorLib/DigoleLCD.h"
-#include "../UIFont.h"
-#include "../ScreenManager.h"
-#include "../UILabel.h"
-#include "../UIButton.h"
-#include "../UIMenu.h"
-#include "../UIToggle.h"
-#include "../UIRadioGroup.h"
-#include "../UIInput.h"
-#include "img256.h"
-#include "../PageManager.h"
 #include "../../RobotController/SensorLib/RA8875/Adafruit_RA8875.h"
+#include "wiringPi.h"
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-
-	RobotLib *robotLib = new RobotLib();
 	Adafruit_RA8875 tft(10, 11);
 	tft.begin(RA8875sizes::RA8875_800x480);
 	for (uint8_t i = 255; i != 0; i -= 5) 

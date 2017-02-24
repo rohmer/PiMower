@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{1c11a69f-5b0c-4365-ba84-dd317484aba7}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{0e218b86-a517-4c42-98ce-a5eb8658334a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{236f06a3-0f6f-46f9-a561-77bc5a45a804}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{11c6084d-1234-4c90-a577-81028cf7150e}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\RobotLib">
+      <UniqueIdentifier>{3d76188e-c116-48ca-abca-8f08d99d89d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\RobotLib">
+      <UniqueIdentifier>{6eee4fcf-492e-4293-a51c-b828970bc0f1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestSuite.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTests.cpp">
+      <Filter>Source files\RobotLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestSuite-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MapTests.h">
+      <Filter>Header files\RobotLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AllTests.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Maps.h">
+      <Filter>Header files\RobotLib</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSuite.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

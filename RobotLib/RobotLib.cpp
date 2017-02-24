@@ -12,6 +12,9 @@ RobotLib::RobotLib()
 	}
 	deviceManager = new DeviceManager(*this);
 	dbLoggerThread = std::thread(startLogDBThread,this);
+	// Set error pin and clear it
+	pinMode(config->getErrorStatusPin(), OUTPUT);
+	digitalWrite(config->getErrorStatusPin(), LOW);
 }
 
 void RobotLib::startLogDBThread(RobotLib *robotLib)
@@ -32,6 +35,7 @@ Config *RobotLib::getConfig()
 RobotLib::~RobotLib()
 {	
 	shutdown = true;
+	dbLoggerThread.join();
 	delete(deviceManager);
 	if (mapObject)
 		delete(mapObject);	
@@ -143,14 +147,14 @@ void RobotLib::dbLogger()
 		if (!shutdown)
 		{			
 			clearCounter++;
+			// DO TIME BASED DELETION
+			std::stringstream ss;
+			ss << "DELETE FROM Log WHERE timestamp <= date('now','-" << config->getMessagedDBRetention() << " minutes')";
+			Log(ss.str());
+			SQLite::Statement pruneStmt(db, ss.str());
+	
 			if (clearCounter > clearPoint)				
 			{
-				// DO TIME BASED DELETION
-				std::stringstream ss;
-				ss << "DELETE FROM Log WHERE timestamp <= date('now','-" << config->getMessagedDBRetention() << " hours')";
-				Log(ss.str());
-				SQLite::Statement pruneStmt(db, ss.str());
-	
 				clearCounter = 0;
 				{
 					std::unique_lock<std::mutex> lock(Database::dbMutex);

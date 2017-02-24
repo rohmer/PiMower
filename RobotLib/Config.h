@@ -158,6 +158,11 @@ public:
 		return messagesToKeepInDB;
 	}
 	
+	unsigned int getErrorStatusPin()
+	{
+		return errorLEDPin;
+	}
+	
 private:
 	unsigned int mapScale;
 	sSpeedConfig normalOperationSpeed, objectDetectionSpeed;
