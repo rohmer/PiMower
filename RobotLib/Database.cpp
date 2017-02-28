@@ -10,19 +10,20 @@ void Database::initDB()
 {
 	try
 	{
-		dbHandle = new SQLite::Database(DB_LOCATION, SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
+		Poco::Data::SQLite::Connector::registerConnector();
+		Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
 		// Check for all our tables
-		if (!dbHandle->tableExists("Position"))
+		if (!tableExists("Position"))
 			createPositionTable();
-		if (!dbHandle->tableExists("Config"))
+		if (!tableExists("Config"))
 			createConfigTable();
-		if (!dbHandle->tableExists("Schedule"))
+		if (!tableExists("Schedule"))
 			createScheduleTable();
-		if (!dbHandle->tableExists("State"))
+		if (!tableExists("State"))
 			createStateTable();
-		if (!dbHandle->tableExists("LawnMap"))
+		if (!tableExists("LawnMap"))
 			createMapTable();
-		if (!dbHandle->tableExists("Log"))
+		if (!tableExists("Log"))
 			createLogTable();
 
 	}
@@ -30,9 +31,19 @@ void Database::initDB()
 	{
 		std::stringstream ss;
 		ss << "Exception caught: " << e.what() << std::endl;
-		HUMBLE_LOGGER(logger, "RobotLogger");
-		HL_FATAL(logger, ss.str());
+		Poco::Logger &logger = Poco::Logger::get("RobotLib");
+		logger.fatal(ss.str());		
 	}	
+}
+
+bool Database::tableExists(std::string tableName)
+{
+	Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
+	Poco::Data::Statement select(dbSession);
+	select << "SELECT * FROM sqlite_master WHERE name=? and type='table'", Poco::Data::use(tableName);
+	while (!select.done())
+		return true;
+	return false;
 }
 
 bool Database::createLogTable()
@@ -150,18 +161,22 @@ bool Database::createPositionTable()
 bool Database::execSql(std::string sqlStmt)
 {
 	{
+#ifdef DEBUG
+		std::cout << sqlStmt;
+#endif 
 		std::unique_lock<std::mutex> lock(this->dbMutex);
 		try
 		{
-			dbHandle->exec(sqlStmt);
+			Poco::Data::Session session("SQLite", DB_LOCATION);
+			session << sqlStmt;
 			return true;
 		}
 		catch (std::exception &e)
 		{
 			std::stringstream ss;
 			ss << "Exception caught: " << e.what() << std::endl;
-			HUMBLE_LOGGER(logger, "RobotLogger");
-			HL_FATAL(logger, ss.str());
+			Poco::Logger &logger = Poco::Logger::get("RobotLib");
+			logger.fatal(ss.str());		
 			return false;
 		}	
 	}
@@ -176,3 +191,4 @@ bool Database::insertPositionEvent(sensors_event_t *event)
 Database::~Database()
 {		
 }
+

@@ -37,8 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifndef RaspiCam_CV_H
 #define RaspiCam_CV_H
-#include "../../3rdParty/OpenCV/include/opencv2/opencv.hpp"
-#include "../../3rdParty/OpenCV/include/opencv/highgui.h"
+#include "../../OpenCV/include/opencv2/opencv.hpp"
+#include "../../OpenCV/include/opencv/highgui.h"
 namespace raspicam {
 
     namespace _private{

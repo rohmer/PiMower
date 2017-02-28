@@ -1,12 +1,15 @@
 #pragma once
 #include "RobotLib.h"
-#include "../3rdParty/SQLite/sqlite3.h"
 #include <sstream>
 #include <string>
-#include "../3rdParty/SQLiteC++/include/SQLiteCpp/Database.h"
 #include "SensorEvents.h"
-#include <stdarg.h>
+#include <cstdarg>
 #include <mutex>
+
+#include <iostream>
+#include <Poco/Logger.h>
+#include <Poco/Data/Session.h>
+#include <Poco/Data/SQLite/Connector.h>
 
 #define DB_LOCATION "/usr/local/Robot/robot.db"
 
@@ -22,10 +25,6 @@ public:
 	}		
 	bool execSql(std::string sqlStmt);				
 	bool insertPositionEvent(sensors_event_t *event);	
-	SQLite::Database *getDBHandle()
-	{
-		return dbHandle;
-	}
 	static std::mutex dbMutex;
 	
 	~Database();
@@ -41,7 +40,7 @@ private:
 	bool createMapTable();
 	bool createLogTable();
 		
-	SQLite::Database *dbHandle = NULL;
+	bool tableExists(std::string tableName);
 	
 public:
 	Database(Database const&)		= delete;

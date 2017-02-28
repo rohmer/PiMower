@@ -24,6 +24,14 @@
     <GNUConfigurationType>Debug</GNUConfigurationType>
     <Toolchain>C:\SysGCC\raspberry</Toolchain>
     <GNUTargetType>DynamicLibrary</GNUTargetType>
+    <ConfigurationType>Makefile</ConfigurationType>
+    <NMakeOutput>$(ProjectDir)RobotLib-Debug.vgdbsettings</NMakeOutput>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeIncludeSearchPath>../..;c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9;c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9\backward;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include-fixed;c:\sysgcc\raspberry\arm-linux-gnueabihf\include;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include\arm-linux-gnueabihf;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include;../3rdParty/OpenCV/include;$(LOCALAPPDATA)\VisualGDB\TestFrameworks/com.sysprogs.unittest.CppUTest/include;$(LOCALAPPDATA)\VisualGDB\TestFrameworks/com.sysprogs.unittest.CppUTest/Platforms;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <Toolchain>C:\SysGCC\raspberry</Toolchain>
@@ -31,17 +39,18 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;../3rdParty/SQLiteC++/include;../3rdParty/RapidXML;../3rdParty/OpenCV/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../3rdParty/RapidXML;../3rdParty/OpenCV/include;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>
       </CLanguageStandard>
       <CPPLanguageStandard>GNUPP11</CPPLanguageStandard>
       <AdditionalOptions>-g %(AdditionalOptions)</AdditionalOptions>
+      <SupportExceptions>true</SupportExceptions>
     </ClCompile>
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>uuid;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLibraryNames>uuid;PocoUtil;PocoFoundation;PocoDataSQLite;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
@@ -65,7 +74,6 @@
     <ClCompile Include="i2cscanner.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="IdlePage.cpp" />
-    <ClCompile Include="IntertialGuidence.cpp" />
     <ClCompile Include="LawnMap.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MapNode.cpp" />
@@ -105,7 +113,6 @@
     <ClInclude Include="guid.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="IdlePage.h" />
-    <ClInclude Include="InertialGuidence.h" />
     <ClInclude Include="LawnMap.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MapLibConstants.h" />
@@ -141,13 +148,10 @@
     <ClInclude Include="Undocking.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="debug.mak" />
+    <None Include="Makefile" />
     <None Include="RobotLib-Debug.vgdbsettings" />
     <None Include="RobotLib-Release.vgdbsettings" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
-      <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Icons\back-arrow_318-9335.jpg" />
@@ -168,6 +172,9 @@
       <DeploymentContent>true</DeploymentContent>
       <SubType>Designer</SubType>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

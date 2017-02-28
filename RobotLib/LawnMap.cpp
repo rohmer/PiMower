@@ -31,6 +31,16 @@ void LawnMap::getExtents(std::pair<int, int> &minXY, std::pair<int, int> &maxXY)
 	maxXY = this->maxXY;
 }
 
+void LawnMap::clear()
+{
+	std::map<std::pair<int, int>, MapNode *>::iterator it;
+	for (it = mapContents.begin(); it != mapContents.end(); it++)
+	{
+		delete(it->second);
+	}
+	mapContents.clear();
+}
+
 void LawnMap::setNode(int x, int y, map_node_t nodeType, std::pair<double, double> location)	
 {
 	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ x, y });
@@ -131,6 +141,26 @@ std::vector<MapNode *> LawnMap::getBaseStations()
 	return baseStations;
 }
 
+map_node_t LawnMap::getNodeType(std::pair<int, int> location)
+{
+	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ location.first,location.second});
+	if (it == mapContents.end())
+	{
+		return map_node_t::BLOCK_UNKNOWN;
+	}
+	return getNode(location.first, location.second)->blockContents();
+}
+
+map_node_t LawnMap::getNodeType(int x, int y)
+{
+	return getNodeType(std::make_pair(x, y));
+}
+
+map_node_t LawnMap::getNodeType(Point location)
+{
+	return getNodeType(std::make_pair(location.x, location.y));
+}
+
 MapNode* LawnMap::getNode(int x, int y)
 {
 	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ x, y });
@@ -143,49 +173,61 @@ MapNode* LawnMap::getNode(int x, int y)
 
 MapNode *LawnMap::loadMapNode(std::pair<int, int> coord)
 {
-	SQLite::Database db(DB_LOCATION,
-		SQLite::OPEN_READONLY);
-	SQLite::Statement stmt(db, "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap WHERE X=? AND Y=?");
-	stmt.bind(1, coord.first);
-	stmt.bind(2, coord.second);
-	while (stmt.executeStep())
+	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Statement stmt(session);
+	int x, y, b, contents;
+	double lat, lon;
+	bool blocking;
+	stmt << "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap WHERE X=? AND Y=?",
+		Poco::Data::use(coord.first),
+		Poco::Data::use(coord.second),
+		Poco::Data::range(0, 1),
+		Poco::Data::into(x),
+		Poco::Data::into(y),
+		Poco::Data::into(b),
+		Poco::Data::into(lat),
+		Poco::Data::into(lon),
+		Poco::Data::into(blocking),
+		Poco::Data::into(contents);		
 	{
-		int x = stmt.getColumn(0).getInt();
-		int y = stmt.getColumn(1).getInt();
-		int b = stmt.getColumn(2).getInt();
-		double lat = stmt.getColumn(3).getDouble();
-		double lon = stmt.getColumn(4).getDouble();
-		bool blocking=true;
-		if (b == 0)
-			blocking = false;
-		int contents = stmt.getColumn(5).getInt();
-		MapNode *returnVal = new MapNode(std::make_pair(x, y), static_cast<map_node_t>(contents), std::make_pair(lat, lon));
-		return returnVal;
+		std::unique_lock<std::mutex> lock(Database::dbMutex);
+		while (!stmt.done())
+		{
+			stmt.execute();
+			MapNode *returnVal = new MapNode(std::make_pair(x, y), static_cast<map_node_t>(contents), std::make_pair(lat, lon));
+			return returnVal;
+		}
 	}
 	return NULL;
 }
 
 void LawnMap::storeMapNode(MapNode *mapNode)
 {
-	SQLite::Database db(DB_LOCATION,
-		SQLite::OPEN_READWRITE);
-	SQLite::Statement stmt(db, "UPDATE LawnMap SET Blocking=?, Contents=?, Latitude=?, Longitude=? WHERE X=? AND Y=?");
-	stmt.bind(1, mapNode->isBlocking());
-	stmt.bind(2, mapNode->blockContents());
-	stmt.bind(3, mapNode->getLocation().first);
-	stmt.bind(4, mapNode->getLocation().second);	
-	stmt.bind(5, mapNode->getGridCoord().first);
-	stmt.bind(6, mapNode->getGridCoord().second);
-	if (stmt.exec() == 0)
+	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Statement stmt(session);
+	stmt << "UPDATE LawnMap SET Blocking=?, Contents=?, Latitude=?, Longitude=? WHERE X=? AND Y=?",
+		Poco::Data::use(mapNode->isBlocking()),
+		Poco::Data::use(mapNode->blockContents()),
+		Poco::Data::use(mapNode->getLocation().first),
+		Poco::Data::use(mapNode->getLocation().second),
+		Poco::Data::use(mapNode->getGridCoord().first),
+		Poco::Data::use(mapNode->getGridCoord().second);
 	{
-		SQLite::Statement insert(db, "INSERT INTO LawnMap(?,?,?,?,?,?)");
-		stmt.bind(1, mapNode->getGridCoord().first);
-		stmt.bind(2, mapNode->getGridCoord().second);
-		stmt.bind(3, mapNode->getLocation().first);
-		stmt.bind(4, mapNode->getLocation().second);		
-		stmt.bind(5, mapNode->isBlocking());
-		stmt.bind(6, mapNode->blockContents());
-		insert.exec();
+		std::unique_lock<std::mutex> lock(Database::dbMutex);
+
+		if (stmt.execute() == 0)
+		{
+			Poco::Data::Statement stmt(session);
+			stmt << "INSERT INTO LawnMap(?,?,?,?,?,?)",
+				Poco::Data::use(mapNode->getGridCoord().first),
+				Poco::Data::use(mapNode->getGridCoord().second);
+			Poco::Data::use(mapNode->getLocation().first),
+			Poco::Data::use(mapNode->getLocation().second),
+			Poco::Data::use(mapNode->isBlocking()),
+			Poco::Data::use(mapNode->blockContents());
+				
+			stmt.execute();
+		}
 	}
 }
 
@@ -245,20 +287,24 @@ bool LawnMap::loadMap()
 		delete(it->second);
 	}
 	mapContents.clear();
-	SQLite::Database db(DB_LOCATION,
-		SQLite::OPEN_READONLY);
-	SQLite::Statement stmt(db, "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap");	
-	while (stmt.executeStep())
+	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Statement stmt(session);
+	int x, y, b;
+	double lat, lon;
+	bool blocking;
+	int contents;
+	stmt << "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap",
+		Poco::Data::into(x),
+		Poco::Data::into(y),
+		Poco::Data::into(b),
+		Poco::Data::into(lat),
+		Poco::Data::into(lon),
+		Poco::Data::into(blocking),
+		Poco::Data::into(contents),
+		Poco::Data::range(0, 1);	
+	while (!stmt.done())
 	{
-		int x = stmt.getColumn(0).getInt();
-		int y = stmt.getColumn(1).getInt();
-		int b = stmt.getColumn(2).getInt();
-		double lat = stmt.getColumn(3).getDouble();
-		double lon = stmt.getColumn(4).getDouble();
-		bool blocking = true;
-		if (b == 0)
-			blocking = false;
-		int contents = stmt.getColumn(5).getInt();
+		stmt.execute();
 		MapNode *mNode = new MapNode(std::make_pair(x, y), static_cast<map_node_t>(contents), std::make_pair(lat, lon));
 		mapContents.emplace(std::make_pair(x, y), mNode);
 	}
@@ -480,6 +526,11 @@ void LawnMap::clearMowedFlags()
 	}
 }
 
+MapNode *LawnMap::closestNodeOfType(Point currentLocation, map_node_t nodeType)
+{
+	return closestNodeOfType(std::make_pair(currentLocation.x, currentLocation.y), nodeType);
+}
+
 // Finds the closest node to the current node, using a spiral path outwards
 MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_node_t nodeType)
 {
@@ -508,7 +559,7 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = maxX;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNode(x, y + a)->blockContents() == nodeType)
+					if (getNodeType(x, y + a) == nodeType)
 						return getNode(x, y + a);
 				}
 			}
@@ -522,7 +573,7 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = maxX;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNode(x-a, y)->blockContents() == nodeType)
+					if (getNodeType(x-a, y)== nodeType)
 						return getNode(x-a, y);
 				}
 			}
@@ -536,7 +587,7 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = minY;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNode(x, y-a)->blockContents() == nodeType)
+					if (getNodeType(x, y-a) == nodeType)
 						return getNode(x, y-a);
 				}
 			}
@@ -550,7 +601,7 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = minY;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNode(x+a, y)->blockContents() == nodeType)
+					if (getNodeType(x+a, y)== nodeType)
 						return getNode(x + a, y);
 				}
 			}			
@@ -560,4 +611,95 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 	
 	// We did not find one on the map
 	return NULL;
+}
+
+//Returns the closest grass node that hasnt been mowed
+MapNode *LawnMap::closestUnmowedNode(std::pair<int, int> currentLocation)
+{
+	std::pair<int, int> minXY;
+	std::pair<int, int> maxXY;
+	getExtents(minXY, maxXY);
+	int minX = minXY.first;
+	int maxX = maxXY.first;
+	int minY = minXY.second;
+	int maxY = maxXY.second;
+			
+	int spiralSize = 0;
+	Point startingPoint(currentLocation.first, currentLocation.second);
+	
+	while ((spiralSize < (maxX - minX)) && (spiralSize < (maxY - minY)))
+	{
+		for (int dir = 0; dir <= 3; dir++)	
+		{
+			if (dir == 0)		// DOWN
+			{
+				int x = currentLocation.first + spiralSize;
+				int y = currentLocation.first - spiralSize;
+				if (y < minY)
+					y = minY;
+				if (x > maxX)
+					x = maxX;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					MapNode *node = getNode(x, y + a);					
+					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
+						return node;
+				}
+			}
+			if (dir == 1)		// LEFT
+			{
+				int x = currentLocation.first + spiralSize;
+				int y = currentLocation.first + spiralSize;
+				if (y > maxY)
+					y = maxY;
+				if (x > maxX)
+					x = maxX;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					MapNode *node = getNode(x - a, y);					
+					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
+						return node;					
+				}
+			}
+			if (dir == 2)		// UP
+			{
+				int x = currentLocation.first - spiralSize;
+				int y = currentLocation.first + spiralSize;
+				if (y > maxY)
+					y = maxY;
+				if (x < minY)
+					x = minY;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					MapNode *node = getNode(x, y - a);					
+					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
+						return node;										
+				}
+			}
+			if (dir == 3)		// RIGHT
+			{
+				int x = currentLocation.first - spiralSize;
+				int y = currentLocation.first - spiralSize;
+				if (y < minY)
+					y = minY;
+				if (x < minY)
+					x = minY;
+				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
+				{
+					MapNode *node = getNode(x+a, y);					
+					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
+						return node;															
+				}
+			}			
+		}
+		spiralSize++;
+	}
+	
+	// We did not find one on the map
+	return NULL;
+}
+
+MapNode *LawnMap::closestUnmowedNode(Point currentLocation)
+{
+	return closestUnmowedNode(std::make_pair(currentLocation.x, currentLocation.y));
 }

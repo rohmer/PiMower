@@ -110,6 +110,10 @@
     <Filter Include="Header files\Robot\Scheduler">
       <UniqueIdentifier>{7151e890-88fc-4a60-8683-0c9973984318}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{9bd0bde1-b7cb-4ee8-aa71-04b2adafd3e2}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotLib.cpp">
@@ -138,9 +142,6 @@
     </ClCompile>
     <ClCompile Include="MapNode.cpp">
       <Filter>Source files\MapLib</Filter>
-    </ClCompile>
-    <ClCompile Include="IntertialGuidence.cpp">
-      <Filter>Source files\LocationManager</Filter>
     </ClCompile>
     <ClCompile Include="Behavior.cpp">
       <Filter>Source files\Robot\Behaviors</Filter>
@@ -257,9 +258,6 @@
     </ClInclude>
     <ClInclude Include="MapNode.h">
       <Filter>Header files\MapLib</Filter>
-    </ClInclude>
-    <ClInclude Include="InertialGuidence.h">
-      <Filter>Header files\LocationManager</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Header files\MapLib\Pathfinding</Filter>
@@ -380,6 +378,10 @@
     <None Include="RobotLib-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
     </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Icons\back-arrow_318-9335.jpg">
@@ -423,5 +425,10 @@
     <Xml Include="config.xml">
       <Filter>Header files\Robot\Configuration</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>Source files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

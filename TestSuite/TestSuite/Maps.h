@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
 
-std::string testYardMap[] =
+std::vector<std::string> testYardMap =
 { 
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"xxxxxxxxxxxxxxxxxxgggggggggggggggggggggggggggggggggccccccccccccccxxxx",
@@ -27,7 +28,7 @@ std::string testYardMap[] =
 	"xxxxgggggggggxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxcccccccxxxx"
 };
 
-std::string multistationPath[] =
+std::vector<std::string> multistationPath =
 { 
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"xgggggggggggggggggggggggggggsx",
@@ -45,7 +46,7 @@ std::string multistationPath[] =
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 };
 
-std::string pathTest[] =
+std::vector<std::string> pathTest =
 { 
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"xgggggggggggggggggggggggggggsx",

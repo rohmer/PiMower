@@ -2,6 +2,8 @@
 
 ObjectProximityDetection::ObjectProximityDetection(RobotLib *robotLib, Config *config)
 {
+	if (robotLib->getEmulator())
+		return;
 	this->robotLib = robotLib;
 	this->config = config;
 	arduinoHost = new ArduinoSensorHost(robotLib, config->getArduinoHost().i2caddr);
@@ -25,8 +27,7 @@ std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetect
 	std::map<uint8_t, sProximity>::iterator it;
 	int shortestDistanceInches = 9999;
 	sProximityResult result;
-	result.motionResult = NO_OBJECT;
-	
+	result.motionResult = NO_OBJECT;		
 	for (int a = 0; a < sensorValues.size(); a++)
 	{
 		it = proximitySensors.find(sensorValues[a].proximityValue.echoPin);

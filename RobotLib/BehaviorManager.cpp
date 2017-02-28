@@ -63,15 +63,16 @@ void BehaviorManager::stateChange(states_t newState)
 	int mon = now->tm_mon + 1;
 	int day = now->tm_mday + 1;
 	timeStr << year << "-" << mon << "-" << day << " " << now->tm_hour << ":" << now->tm_min << ":" << now->tm_sec;
-	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
-	SQLite::Statement stmt(db, "INSERT INTO States(?,?,?)");
+	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Statement stmt(session);
 	std::stringstream gStr;
 	gStr << robotLib->getSessionID();
 	
-	stmt.bind(1, gStr.str());;
-	stmt.bind(2, newState);
-	stmt.bind(3, timeStr.str());
-	if (stmt.exec() <= 0)
+	stmt <<  "INSERT INTO States(?,?,?)",
+		Poco::Data::use(gStr.str()),
+		Poco::Data::use(newState),
+		Poco::Data::use(timeStr.str());
+	if (stmt.execute() <= 0)
 		robotLib->LogError("Failed to insert State Change into database");
 	currentState = newState;
 }
@@ -103,6 +104,10 @@ void BehaviorManager::behaviorLoop()
 				if (scheduler->legalMowingTime(mowingSessions))
 				{
 					mowingSessions++;
+					// Set the new GUID
+					robotLib->setSessionID();
+					// Clear the map of mowing
+					robotLib->getMap()->clearMowedFlags();					
 					stateChange(STATE_UNDOCKING);					
 				}
 			}

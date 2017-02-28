@@ -23,6 +23,10 @@
     <Filter Include="Source files\MapTests">
       <UniqueIdentifier>{3913ad8c-ab0c-42fb-8bd9-a3647cffbd86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{7b7767d2-f1bf-489e-a103-34f95dba3044}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestSuite.cpp">
@@ -38,6 +42,10 @@
     </None>
     <None Include="TestSuite-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -390,19 +390,27 @@ void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 bool Config::readConfigDB()
 {
 	// First get sensors
-		
-	SQLite::Statement query(*Database::getInstance().getDBHandle(), "SELECT * FROM sensors");
+	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Statement stmt(session);
+	int sensorType,gpioPin,echoPin;
+	std::string loc,name;
+	stmt << "SELECT * FROM sensors",
+		Poco::Data::range(0, 1),
+		Poco::Data::into(sensorType),
+		Poco::Data::into(gpioPin),
+		Poco::Data::into(echoPin),
+		Poco::Data::into(loc),
+		Poco::Data::into(name);
 	bumperSensors.clear();
 	std::vector<sProximitySensors> pSensors;
-	while (query.executeStep())
+	while (!stmt.done())
 	{
-		int sensorType = query.getColumn(0).getInt();
+		stmt.execute();
 		if (sensorType == 0)
 		{
 			// Bumper
 			sBumperSensor bSensor;
-			bSensor.gpioPin = query.getColumn(1).getInt();
-			std::string loc = query.getColumn(3).getString();
+			bSensor.gpioPin = gpioPin;
 			std::transform(loc.begin(), loc.end(), loc.begin(), ::toupper);
 			if (loc == "FRONT")
 			{
@@ -427,9 +435,8 @@ bool Config::readConfigDB()
 		{
 			//Proximity
 			sProximitySensors pSensor; 
-			pSensor.triggerPin = query.getColumn(1).getInt();
-			pSensor.echoPin = query.getColumn(2).getInt();
-			std::string loc = query.getColumn(3).getString();
+			pSensor.triggerPin = gpioPin;
+			pSensor.echoPin = echoPin;
 			std::transform(loc.begin(), loc.end(), loc.begin(),::toupper);
 			if (loc == "FRONT")
 			{
@@ -447,16 +454,46 @@ bool Config::readConfigDB()
 			{
 				pSensor.location = eSensorLocation::RIGHT;
 			}
-			pSensor.name = query.getColumn(4).getString();
+			pSensor.name = name;
 			pSensors.push_back(pSensor);
 		}
 	}
-	SQLite::Statement cQuery(*Database::getInstance().getDBHandle(), "SELECT * FROM config");
+	Poco::Data::Statement cQuery(session);
+	int ll;
+	sPWMController pwmController;
+	sArduinoHost aHost;
+	sSpeedConfig nsConfig, osConfig;
+	cQuery << "SELECT * FROM config",
+		Poco::Data::into(ll),
+		Poco::Data::into(driveWheelDiameter),
+		Poco::Data::into(driveGearRatio),
+		Poco::Data::into(driveMotorMaxRPM),
+		Poco::Data::into(pwmController.i2cChannel),
+		Poco::Data::into(pwmController.leftDriveChannel),
+		Poco::Data::into(pwmController.rightDriveChannel),
+		Poco::Data::into(pwmController.bladeChannel),
+		Poco::Data::into(aHost.i2caddr),		
+		Poco::Data::into(aHost.proximityTollerance),
+		Poco::Data::into(nsConfig.forwardRPM),
+		Poco::Data::into(nsConfig.reverseRPM),
+		Poco::Data::into(nsConfig.rotationRPM),
+		Poco::Data::into(osConfig.forwardRPM),
+		Poco::Data::into(osConfig.reverseRPM),
+		Poco::Data::into(normalAcceleration);
+		Poco::Data::into(rotationalAcceleration);
+		Poco::Data::into(leftEncoderPin);
+		Poco::Data::into(rightEncoderPin);		
+		Poco::Data::into(batteryChargePercentage);		
+		Poco::Data::into(mapScale);		
+		Poco::Data::into(encoderTicksPerRevolution);
+		Poco::Data::into(errorLEDPin);
+		
+		
 	bool readConfig = false;
-	while (cQuery.executeStep())
+	while (!cQuery.done())
 	{
+		cQuery.execute();
 		readConfig = true;
-		int ll = cQuery.getColumn(0).getInt();
 		if (ll == 0)			
 			minimumLoggingLevel = min_log_level_t::Debug;
 		else
@@ -475,59 +512,44 @@ bool Config::readConfigDB()
 			robotLib->Log(ss.str());
 			minimumLoggingLevel = min_log_level_t::Critical;
 		}
-		driveWheelDiameter = cQuery.getColumn(1).getDouble();
-		driveGearRatio = cQuery.getColumn(2).getDouble();
-		driveMotorMaxRPM = cQuery.getColumn(3).getInt();
-		sPWMController pwmController;
-		pwmController.i2cChannel = cQuery.getColumn(4).getInt();
-		pwmController.leftDriveChannel = cQuery.getColumn(5).getInt();
-		pwmController.rightDriveChannel = cQuery.getColumn(6).getInt();
-		pwmController.bladeChannel = cQuery.getColumn(7).getInt();
 		this->pwmController = pwmController;
-		sArduinoHost aHost;
-		aHost.i2caddr = cQuery.getColumn(8).getInt();
-		aHost.proximitySensors = pSensors;
-		aHost.proximityTollerance = cQuery.getColumn(9).getDouble();
-		sSpeedConfig sConfig;
-		sConfig.forwardRPM = cQuery.getColumn(10).getInt();
-		sConfig.reverseRPM = cQuery.getColumn(11).getInt();
-		sConfig.rotationRPM = cQuery.getColumn(12).getInt();
-		normalOperationSpeed = sConfig;
-		sConfig.forwardRPM = cQuery.getColumn(13).getInt();
-		sConfig.reverseRPM = cQuery.getColumn(14).getInt();
-		objectDetectionSpeed = sConfig;
-		normalAcceleration = cQuery.getColumn(15).getInt();
-		rotationalAcceleration = cQuery.getColumn(16).getInt();
-		leftEncoderPin = cQuery.getColumn(17).getInt();
-		rightEncoderPin = cQuery.getColumn(18).getInt();		
-		batteryChargePercentage = cQuery.getColumn(19).getInt();		
-		mapScale = cQuery.getColumn(20).getInt();		
-		encoderTicksPerRevolution = cQuery.getColumn(21).getInt();
-		errorLEDPin = cQuery.getColumn(22).getInt();
+		this->arduinoHost = aHost;
+		this->normalOperationSpeed = nsConfig;
+		this->objectDetectionSpeed = osConfig;
 	}	
 	return readConfig;
 }
 
 void Config::writeConfigDB()
 {
+	Poco::Data::Session session("SQLite", DB_LOCATION);		
+	
 	// First clear tables
-	Database::getInstance().execSql("DELETE FROM sensors");
-	Database::getInstance().execSql("DELETE FROM config");
+	session << "DELETE FROM sensors", Poco::Data::now;	
+	
+	session << "DELETE FROM config", Poco::Data::now;
 	
 	// Add the sensors
 	for (int a = 0; a < bumperSensors.size(); a++)
 	{
-		std::stringstream ss;
-		ss << "INSERT INTO sensors VALUES(0," << bumperSensors[a].gpioPin << ",0,\"" << bumperSensors[a].location << "\",\"\")";
-		if (!Database::getInstance().execSql(ss.str()))
+		Poco::Data::Statement stmt(session);
+		stmt << "INSERT INTO sensors VALUES(0,?,0,?,?)",
+			Poco::Data::use(bumperSensors[a].gpioPin),
+			Poco::Data::use(bumperSensors[a].location),
+			Poco::Data::use("");
+		if (stmt.execute()!=1)
 			robotLib->LogError("Error inserting bumperSensor into database");		
 	}
 	for (int a = 0; a < arduinoHost.proximitySensors.size(); a++)
 	{
-		std::stringstream ss;
-		ss << "INSERT INTO sensors VALUES(1," << arduinoHost.proximitySensors[a].triggerPin << "," << arduinoHost.proximitySensors[a].echoPin << ", \"" << arduinoHost.proximitySensors[a].location << "\",\"" << arduinoHost.proximitySensors[a].name<<"\")";
-		if (!Database::getInstance().execSql(ss.str()))
-			robotLib->LogError("Error inserting bumperSensor into database");			
+		Poco::Data::Statement stmt(session);
+		stmt << "INSERT INTO sensors VALUES(1,?,?,?,?)",
+			Poco::Data::use(arduinoHost.proximitySensors[a].triggerPin),
+			Poco::Data::use(arduinoHost.proximitySensors[a].echoPin),
+			Poco::Data::use(arduinoHost.proximitySensors[a].location),
+			Poco::Data::use(arduinoHost.proximitySensors[a].name);
+		if (stmt.execute() != 1)
+			robotLib->LogError("Error inserting proximity sensor into database");				
 	}
 	
 	std::stringstream ss;
@@ -546,32 +568,33 @@ void Config::writeConfigDB()
 	case Exception:
 		intLogLevel = 3;
 		break;
-	}	
-	SQLite::Statement s(*Database::getInstance().getDBHandle(), "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-	s.bind(1, intLogLevel);
-	s.bind(2, driveWheelDiameter);
-	s.bind(3, driveGearRatio);
-	s.bind(4, driveMotorMaxRPM);
-	s.bind(5, pwmController.i2cChannel);
-	s.bind(6, pwmController.leftDriveChannel);
-	s.bind(7, pwmController.rightDriveChannel);
-	s.bind(8, pwmController.bladeChannel);
-	s.bind(9, arduinoHost.i2caddr);
-	s.bind(10, arduinoHost.proximityTollerance);
-	s.bind(11, normalOperationSpeed.forwardRPM);
-	s.bind(12, normalOperationSpeed.reverseRPM);
-	s.bind(13, normalOperationSpeed.rotationRPM);
-	s.bind(14, objectDetectionSpeed.forwardRPM);
-	s.bind(15, objectDetectionSpeed.reverseRPM);
-	s.bind(16, normalAcceleration);
-	s.bind(17, rotationalAcceleration);
-	s.bind(18, leftEncoderPin);
-	s.bind(19,rightEncoderPin);
-	s.bind(20, batteryChargePercentage);
-	s.bind(21, mapScale);
-	s.bind(22, encoderTicksPerRevolution);
-	s.bind(23, errorLEDPin);
-	s.exec();
+	}		
+	Poco::Data::Statement stmt(session);
+	stmt << "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+		Poco::Data::use(intLogLevel),
+	Poco::Data::use(driveWheelDiameter),
+	Poco::Data::use(driveGearRatio),
+	Poco::Data::use(driveMotorMaxRPM),
+	Poco::Data::use(pwmController.i2cChannel),
+	Poco::Data::use(pwmController.leftDriveChannel),
+	Poco::Data::use(pwmController.rightDriveChannel),
+	Poco::Data::use(pwmController.bladeChannel),
+	Poco::Data::use(arduinoHost.i2caddr),
+	Poco::Data::use(arduinoHost.proximityTollerance),
+	Poco::Data::use(normalOperationSpeed.forwardRPM),
+	Poco::Data::use(normalOperationSpeed.reverseRPM),
+	Poco::Data::use(normalOperationSpeed.rotationRPM),
+	Poco::Data::use(objectDetectionSpeed.forwardRPM),
+	Poco::Data::use(objectDetectionSpeed.reverseRPM),
+	Poco::Data::use(normalAcceleration),
+	Poco::Data::use(rotationalAcceleration),
+	Poco::Data::use(leftEncoderPin),
+	Poco::Data::use(rightEncoderPin),
+	Poco::Data::use(batteryChargePercentage),
+	Poco::Data::use(mapScale),
+	Poco::Data::use(encoderTicksPerRevolution),
+	Poco::Data::use(errorLEDPin);
+	stmt.execute();
 }
 
 rapidxml::xml_node<> *Config::createSpeedNode(rapidxml::xml_node<> *rootNode, rapidxml::xml_document<> &doc)

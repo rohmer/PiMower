@@ -152,6 +152,10 @@
     <Filter Include="Source files\RA8875\Adafruit_GFX">
       <UniqueIdentifier>{4e367547-6fe3-48a4-8c6e-f779a47a750c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{ffc28cee-7486-4746-9052-6008f3d6f04b}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -382,6 +386,10 @@
     </None>
     <None Include="SensorLib-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
     </None>
   </ItemGroup>
 </Project>

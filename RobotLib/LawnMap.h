@@ -8,6 +8,7 @@
 #include "Node.h"
 #include "RobotLib.h"
 #include "../RobotController/SensorLib/SensorLib.h"
+#include "Point.h"
 
 class LawnMap
 {
@@ -15,6 +16,8 @@ public:
 	LawnMap(RobotLib *robotLib);
 	~LawnMap();
 	void setNode(int x, int y, map_node_t nodeType, std::pair<double, double>location);
+	void setNodeMowed(int x, int y);
+	
 	MapNode *getNode(int x, int y);
 	bool saveMap();
 	bool loadMap();
@@ -33,6 +36,14 @@ public:
 	void storeMapNode(MapNode *node);
 	MapNode *loadMapNode(std::pair<int, int> coord);
 	MapNode *closestNodeOfType(std::pair<int, int> currentLocation, map_node_t nodeType);
+	MapNode *closestNodeOfType(Point currentLocation, map_node_t nodeType);
+	MapNode *closestUnmowedNode(std::pair<int, int> currentLocation);
+	MapNode *closestUnmowedNode(Point currentLocation);
+	void clearMowedFlags();
+	void clear();
+	map_node_t getNodeType(std::pair<int, int> location);
+	map_node_t getNodeType(Point location);
+	map_node_t getNodeType(int x, int y);
 	
 private:
 	RobotLib *robotLib;
@@ -45,5 +56,5 @@ private:
 	void createPathMap();
 	int dx[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 	int dy[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
-	void clearMowedFlags();
+	
 };

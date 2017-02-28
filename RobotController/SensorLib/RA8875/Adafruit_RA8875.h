@@ -31,7 +31,7 @@
   #include <pgmspace.h>
 #endif
 
-#include <Adafruit_GFX.h>
+#include "Adafruit-GFX-Library-master/Adafruit_GFX.h"
 
 #ifndef _ADAFRUIT_RA8875_H
 #define _ADAFRUIT_RA8875_H

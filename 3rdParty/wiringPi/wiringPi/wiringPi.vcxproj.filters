@@ -17,6 +17,10 @@
       <UniqueIdentifier>{d15f07d3-0fb8-4f67-a673-a943628b7cdb}</UniqueIdentifier>
       <Extensions>*.vgdbsettings</Extensions>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{4951b822-3bae-419c-89da-2312f872033a}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="wiringPi-Debug.vgdbsettings">
@@ -24,6 +28,10 @@
     </None>
     <None Include="wiringPi-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

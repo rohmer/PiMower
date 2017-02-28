@@ -43,45 +43,68 @@ RobotLib::~RobotLib()
 
 void RobotLib::initLog()
 {
-	humble::logging::Factory &fac = humble::logging::Factory::getInstance();
-	fac.setDefaultFormatter(new humble::logging::PatternFormatter("[%lls] %date -> %m\n"));
-	fac.registerAppender(new humble::logging::ConsoleAppender());
+	Poco::Logger& logger = Poco::Logger::get("RobotLib");		
 	switch (config->getLogLevel())
 	{
 		case min_log_level_t::Debug:
-			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::All));	
+			logger.setLevel("trace");
 			break;
 		case min_log_level_t::Warn:
-			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Warn));	
-			break;
+		logger.setLevel("warning");
+		break;
 		case min_log_level_t::Critical:
-			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Error));	
-			break;
+		logger.setLevel("critical");
+		break;
 		case min_log_level_t::Exception:
-			fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Fatal));	
+		logger.setLevel("fatal");
+			
 			break;		
 	}
-	fac.registerAppender(new humble::logging::RollingFileAppender("Robot.log", false, 2, 20 * 1024 * 1024));
+	Poco::AutoPtr<Poco::FileChannel> pChannel(new Poco::FileChannel);
+	pChannel->setProperty("path", "Robot.log");
+	pChannel->setProperty("rotation", "20 K");
+	pChannel->setProperty("archive", "timestamp");
+	logger.setChannel(pChannel);	
 #ifdef DEBUG
-	fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::All));
+	logger.setLevel("trace");			
 #endif	
 }
 
 void RobotLib::setLogLevel(int logLevel)
-{
-	humble::logging::Factory &fac = humble::logging::Factory::getInstance();	
+{	
 	if (logLevel == 0)
-		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::All));
+	{		
+		Poco::Logger::get("RobotLib").setLevel("trace");
+		minLogLevel = logLevel;
+		return;
+	}
 	if (logLevel == 1)
-		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Warn));
+	{		
+		Poco::Logger::get("RobotLib").setLevel("warning");
+		minLogLevel = logLevel;
+		return;
+	}
 	if (logLevel == 2)
-		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Error));
+	{
+		Poco::Logger::get("RobotLib").setLevel("critical");
+		minLogLevel = logLevel;
+		return;
+	}
 	if (logLevel == 3)
-		fac.setConfiguration(new humble::logging::SimpleConfiguration(humble::logging::LogLevel::Fatal));
+	{
+		Poco::Logger::get("RobotLib").setLevel("fatal");
+		minLogLevel = logLevel;
+		return;
+	}
+	logLevel = 1;
+	Poco::Logger::get("RobotLib").setLevel("warning");
+	minLogLevel = logLevel;
 }
 
 void RobotLib::logDB(std::string message, int severity)
 {
+	if (severity < minLogLevel)
+		return;
 	std::stringstream sql;
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
@@ -90,7 +113,7 @@ void RobotLib::logDB(std::string message, int severity)
 	int mon = now->tm_mon + 1;
 	int day = now->tm_mday + 1;
 	timeStr << year << "-" << mon << "-" << day << " " << now->tm_hour << ":" << now->tm_min << ":" << now->tm_sec;
-	dbLogMsg msg;
+	dbLogMsg msg;	
 	msg.timeStr = timeStr.str();
 	msg.severity = severity;
 	msg.msg = message;
@@ -105,12 +128,12 @@ void RobotLib::logDB(std::string message, int severity)
 
 void RobotLib::dbLogger()
 {
-	SQLite::Database db(DB_LOCATION, SQLite::OPEN_READWRITE);
-	SQLite::Statement stmt(db, "INSERT INTO Log VALUES(?,?,?,?)");
 	long clearPoint = 300; // clear every 5 minutes
 	long clearCounter = 0;
 	while (!shutdown && logMessages.size() > 0)
 	{
+		Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
+		Poco::Data::Statement stmt(dbSession);		
 		while(logMessages.size()>0)
 		{
 			dbLogMsg msg;
@@ -120,19 +143,18 @@ void RobotLib::dbLogger()
 				msg = logMessages.back();				
 				logMessages.pop_back();
 			}
-			stmt.clearBindings();
-			stmt.bind(1, msg.timeStr);
-			stmt.bind(2, msg.msg);
-			stmt.bind(3, msg.severity);
-			stmt.bind(4, msg.sessionID);
+			stmt << "INSERT INTO Log VALUES(?,?,?,?)",
+				Poco::Data::use(msg.timeStr),
+				Poco::Data::use(msg.msg),
+				Poco::Data::use(msg.severity),
+				Poco::Data::use(msg.sessionID);			
 			try
 			{
 				{
 					std::unique_lock<std::mutex> lock(Database::dbMutex);
 		
-					if (!stmt.exec())
-						LogError("Failed to insert event into database");
-					stmt.reset();
+					if (!stmt.execute())
+						LogError("Failed to insert event into database");										
 				}
 			}
 			catch (std::exception &e)
@@ -149,17 +171,16 @@ void RobotLib::dbLogger()
 			clearCounter++;
 			// DO TIME BASED DELETION
 			std::stringstream ss;
-			ss << "DELETE FROM Log WHERE timestamp <= date('now','-" << config->getMessagedDBRetention() << " minutes')";
+			Poco::Data::Statement clear(dbSession);
+			clear << "DELETE FROM Log WHERE timestamp <= date('now','-" << config->getMessagedDBRetention() << " minutes')";
 			Log(ss.str());
-			SQLite::Statement pruneStmt(db, ss.str());
-	
+			
 			if (clearCounter > clearPoint)				
 			{
 				clearCounter = 0;
 				{
 					std::unique_lock<std::mutex> lock(Database::dbMutex);
-					pruneStmt.exec();	
-					pruneStmt.reset();
+					clear.execute();
 				}
 			}
 			delay(1000);
@@ -168,22 +189,19 @@ void RobotLib::dbLogger()
 }
 void RobotLib::Log(std::string message)
 {
-	HUMBLE_LOGGER(logger, "RobotLogger");	
-	HL_TRACE(logger, message);		
+	Poco::Logger::get("RobotLib").trace(message);		
 	logDB(message, 0);
 }
 
 void RobotLib::LogWarn(std::string message)
 {
-	HUMBLE_LOGGER(logger, "RobotLogger");
-	HUMBLE_LOG(logger, message, humble::logging::LogLevel::Warn);		
+	Poco::Logger::get("RobotLib").warning(message);
 	logDB(message, 1);
 }
 
 void RobotLib::LogError(std::string message)
 {
-	HUMBLE_LOGGER(logger, "RobotLogger");
-	HL_ERROR(logger, message);		
+	Poco::Logger::get("RobotLib").critical(message);		
 	logDB(message, 2);
 }
 
@@ -191,8 +209,7 @@ void RobotLib::LogException(std::exception &e)
 {
 	std::stringstream ss;
 	ss << "Exception caught: " << e.what() << std::endl;
-	HUMBLE_LOGGER(logger, "RobotLogger");
-	HL_FATAL(logger, ss.str());
+	Poco::Logger::get("RobotLib").fatal(ss.str());
 	logDB(ss.str(), 3);
 }
 

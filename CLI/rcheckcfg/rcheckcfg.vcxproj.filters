@@ -17,6 +17,10 @@
       <UniqueIdentifier>{a9a92419-77b6-468f-a447-a2478baf58dc}</UniqueIdentifier>
       <Extensions>*.vgdbsettings</Extensions>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{1beae470-b87c-4fc1-bdf7-aaf93146f175}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="rcheckcfg.cpp">
@@ -35,6 +39,10 @@
     </None>
     <None Include="rcheckcfg-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

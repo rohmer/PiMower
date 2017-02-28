@@ -1,6 +1,8 @@
 #pragma once
 #include "RobotLib.h"
 #include "Database.h"
+#include <Poco/Data/Session.h>
+#include <Poco/Data/Connector.h>
 #include <time.h>
 
 /*

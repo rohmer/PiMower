@@ -7,7 +7,10 @@
 #include <mutex>
 #include <condition_variable>
 #include <thread>
-#include "../3rdParty/humblelogging-master/include/humblelogging/api.h"
+#include <Poco/Message.h>
+#include <Poco/Logger.h>
+#include <Poco/AutoPtr.h>
+#include <Poco/FileChannel.h>
 #include "../3rdParty/RapidXML/rapidxml_print.hpp"
 #include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 #include "Database.h"
@@ -108,5 +111,6 @@ private:
 	std::pair <int, int> currentLocation;
 	std::deque<dbLogMsg> logMessages;
 	std::mutex logMutex;
-	std::condition_variable logCondition;
+	std::condition_variable logCondition;	
+	int minLogLevel = 1;
 };

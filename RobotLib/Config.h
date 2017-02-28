@@ -6,7 +6,6 @@
 #include <iostream>
 #include "RobotLib.h"
 #include "Database.h"
-#include "../3rdParty/SQLiteC++/include/SQLiteCpp/Statement.h"
 
 // Holds the configuration items for the robot
 

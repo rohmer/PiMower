@@ -25,6 +25,14 @@
     <Toolchain>C:\SysGCC\raspberry</Toolchain>
     <GNUTargetType>DynamicLibrary</GNUTargetType>
     <TestFrameworkPropertyListFile>$(ProjectDir)TestFramework.props</TestFrameworkPropertyListFile>
+    <ConfigurationType>Makefile</ConfigurationType>
+    <NMakeOutput>$(ProjectDir)SensorLib-Debug.vgdbsettings</NMakeOutput>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeIncludeSearchPath>c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9;c:\sysgcc\raspberry\arm-linux-gnueabihf\include\c++\4.9\backward;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include;c:\sysgcc\raspberry\lib\gcc\arm-linux-gnueabihf\4.9\include-fixed;c:\sysgcc\raspberry\arm-linux-gnueabihf\include;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include\arm-linux-gnueabihf;c:\sysgcc\raspberry\arm-linux-gnueabihf\sysroot\usr\include;ArduCamDriver;../../3rdParty/OpenCV/include;../../3rdParty/raspicam-0.1.4/include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <Toolchain>C:\SysGCC\raspberry</Toolchain>
@@ -127,12 +135,17 @@
     <ClInclude Include="TCS34725.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="debug.mak" />
+    <None Include="Makefile" />
     <None Include="SensorLib-Debug.vgdbsettings" />
     <None Include="SensorLib-Release.vgdbsettings" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3rdParty\humblelogging-master\HumbleLogging\HumbleLogging.vcxproj">
-      <Project>{1537d3c2-d03b-4bd5-a2f8-ab45f283ad37}</Project>
+    <ProjectReference Include="..\..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
+      <Project>{6a967716-d419-4c6e-9b5c-c8a68a3af2d1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RobotLib\RobotLib.vcxproj">
+      <Project>{b37f3067-2a62-4034-9068-352f6949466a}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
