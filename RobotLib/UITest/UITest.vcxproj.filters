@@ -17,6 +17,10 @@
       <UniqueIdentifier>{2967aeb0-5da7-4622-bfee-8b872d30a08b}</UniqueIdentifier>
       <Extensions>*.vgdbsettings</Extensions>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{ea49fb94-b5b1-48bc-a46b-1d488a76c368}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UITest.cpp">
@@ -35,6 +39,10 @@
     </None>
     <None Include="UITest-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

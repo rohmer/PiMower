@@ -4,8 +4,9 @@ TEST_GROUP(MapTests)
 {
 	void setup()
 	{
+		std::clog << "Setup MapTests";
 		mapTestRobotLib = new RobotLib();
-		mapTestLawnMap = new LawnMap(mapTestRobotLib);
+		mapTestLawnMap = mapTestRobotLib->getMap();
 	}
 	
 	void teardown()
@@ -53,6 +54,7 @@ void loadYardMap()
 
 TEST(MapTests,InitMapLib)
 {
+	std::clog << "MapTests::InitMapLib";
 	if (mapTestLawnMap == NULL)
 	{
 		FAIL("Failed to init LawnMap");
@@ -62,6 +64,8 @@ TEST(MapTests,InitMapLib)
 
 TEST(MapTests, LoadMaps)
 {
+	std::clog << "MapTests::LoadMaps";
+	
 	loadYardMap();	
 	std::vector<MapNode *> baseStations = mapTestLawnMap->getBaseStations();
 	if (baseStations.size() == 0)
@@ -74,11 +78,14 @@ TEST(MapTests, LoadMaps)
 	x = baseStation->getGridCoord().first;
 	y = baseStation->getGridCoord().second;
 	ss << "Base station found at(" << x << "," << y << ")";
+	std::clog << ss;
 	mapTestRobotLib->Log(ss.str());	
 }
 
 TEST(MapTests, ClosestGrassTest)
 {
+	std::clog << "MapTests::ClosestGrassTest";
+	
 	loadYardMap(); 
 	MapNode *node = mapTestLawnMap->closestNodeOfType(Point(0, 0), map_node_t::BLOCK_GRASS);
 }

@@ -35,8 +35,8 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES :=
-EXTERNAL_LIBS := 
+SOURCEFILES := Args.cpp HTMLOutput.cpp rcheckcfg.cpp
+EXTERNAL_LIBS := ../../3rdParty/wiringPi/wiringPi/$(BINARYDIR)/wiringPi.so ../../RobotController/SensorLib/$(BINARYDIR)/SensorLib.so ../../RobotLib/$(BINARYDIR)/RobotLib.so
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 
 CFLAGS += $(COMMONFLAGS)
@@ -179,3 +179,12 @@ $(BINARYDIR)/%.o : %.cxx $(all_make_files) |$(BINARYDIR)
 	$(CC) $(CFLAGS) $(CXXFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
 
 #VisualGDB: GeneratedRules				#<--- All lines below are auto-generated. Remove this line to suppress auto-generation of file rules.
+$(BINARYDIR)/wiringPi.so : ../../3rdParty/wiringPi/wiringPi/$(BINARYDIR)/wiringPi.so
+	$(CP) ../../3rdParty/wiringPi/wiringPi/$(BINARYDIR)/wiringPi.so $(BINARYDIR)/wiringPi.so
+
+$(BINARYDIR)/SensorLib.so : ../../RobotController/SensorLib/$(BINARYDIR)/SensorLib.so
+	$(CP) ../../RobotController/SensorLib/$(BINARYDIR)/SensorLib.so $(BINARYDIR)/SensorLib.so
+
+$(BINARYDIR)/RobotLib.so : ../../RobotLib/$(BINARYDIR)/RobotLib.so
+	$(CP) ../../RobotLib/$(BINARYDIR)/RobotLib.so $(BINARYDIR)/RobotLib.so
+

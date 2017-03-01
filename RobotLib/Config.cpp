@@ -9,6 +9,7 @@ Config::Config(RobotLib *robotLib)
 #else
 	minimumLoggingLevel = min_log_level_t::Warn;
 #endif
+	Database &db = Database::getInstance();
 	validConfig = getConfig();
 	if (errorLEDPin <= 0)
 	{
@@ -389,11 +390,11 @@ void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 
 bool Config::readConfigDB()
 {
-	// First get sensors
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	// First get sensors	
+	Poco::Data::Session session("SQLite", DB_LOCATION);	
 	Poco::Data::Statement stmt(session);
 	int sensorType,gpioPin,echoPin;
-	std::string loc,name;
+	std::string loc,name;	
 	stmt << "SELECT * FROM sensors",
 		Poco::Data::range(0, 1),
 		Poco::Data::into(sensorType),
@@ -486,37 +487,40 @@ bool Config::readConfigDB()
 		Poco::Data::into(batteryChargePercentage);		
 		Poco::Data::into(mapScale);		
 		Poco::Data::into(encoderTicksPerRevolution);
-		Poco::Data::into(errorLEDPin);
+		Poco::Data::into(errorLEDPin),
+		Poco::Data::range(0,1);
 		
 		
 	bool readConfig = false;
 	while (!cQuery.done())
-	{
-		cQuery.execute();
-		readConfig = true;
-		if (ll == 0)			
-			minimumLoggingLevel = min_log_level_t::Debug;
-		else
-		if (ll == 1)
-			minimumLoggingLevel = min_log_level_t::Warn;
-		else
-		if (ll == 2)
-			minimumLoggingLevel = min_log_level_t::Critical;
-		else
-		if (ll == 3)
-			minimumLoggingLevel = min_log_level_t::Exception;
-		else
-		{
-			std::stringstream ss;
-			ss << "Unknown logging level: " << ll << ", defaulting to Critical";
-			robotLib->Log(ss.str());
-			minimumLoggingLevel = min_log_level_t::Critical;
+	{		
+		if (cQuery.execute() > 0)
+		{			
+			readConfig = true;
+			if (ll == 0)			
+				minimumLoggingLevel = min_log_level_t::Debug;
+			else
+			if (ll == 1)
+				minimumLoggingLevel = min_log_level_t::Warn;
+			else
+			if (ll == 2)
+				minimumLoggingLevel = min_log_level_t::Critical;
+			else
+			if (ll == 3)
+				minimumLoggingLevel = min_log_level_t::Exception;
+			else
+			{
+				std::stringstream ss;
+				ss << "Unknown logging level: " << ll << ", defaulting to Critical";
+				robotLib->Log(ss.str());
+				minimumLoggingLevel = min_log_level_t::Critical;
+			}
+			this->pwmController = pwmController;
+			this->arduinoHost = aHost;
+			this->normalOperationSpeed = nsConfig;
+			this->objectDetectionSpeed = osConfig;
 		}
-		this->pwmController = pwmController;
-		this->arduinoHost = aHost;
-		this->normalOperationSpeed = nsConfig;
-		this->objectDetectionSpeed = osConfig;
-	}	
+	}		
 	return readConfig;
 }
 

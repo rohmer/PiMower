@@ -11,6 +11,8 @@
 #include <Poco/Logger.h>
 #include <Poco/AutoPtr.h>
 #include <Poco/FileChannel.h>
+#include <Poco/SplitterChannel.h>
+#include <Poco/ConsoleChannel.h>
 #include "../3rdParty/RapidXML/rapidxml_print.hpp"
 #include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 #include "Database.h"

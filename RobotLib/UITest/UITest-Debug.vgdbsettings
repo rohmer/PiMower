@@ -6,11 +6,37 @@
       <Directories />
       <PathStyle>MinGWUnixSlash</PathStyle>
     </CustomSourceDirectories>
+    <BuildHost>
+      <Transport>None</Transport>
+    </BuildHost>
     <DeploymentHost>
       <HostName>192.168.2.43</HostName>
       <Transport>SSH</Transport>
       <UserName>root</UserName>
     </DeploymentHost>
+    <MainSourceTransferCommand>
+      <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+      <RemoteHost>
+        <Transport>None</Transport>
+      </RemoteHost>
+      <LocalDirectory>$(ProjectDir)</LocalDirectory>
+      <RemoteDirectory>/tmp/VisualGDB/$(ProjectDirUnixStyle)</RemoteDirectory>
+      <FileMasks>
+        <string>*.cpp</string>
+        <string>*.h</string>
+        <string>*.hpp</string>
+        <string>*.c</string>
+        <string>*.cc</string>
+        <string>*.cxx</string>
+        <string>*.mak</string>
+        <string>Makefile</string>
+        <string>*.txt</string>
+        <string>*.cmake</string>
+      </FileMasks>
+      <TransferNewFilesOnly>true</TransferNewFilesOnly>
+      <IncludeSubdirectories>true</IncludeSubdirectories>
+      <DeleteDisappearedFiles>false</DeleteDisappearedFiles>
+    </MainSourceTransferCommand>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
     <SkipBuildIfNoSourceFilesChanged>false</SkipBuildIfNoSourceFilesChanged>
     <IgnoreFileTransferErrors>false</IgnoreFileTransferErrors>
@@ -18,7 +44,9 @@
     <SkipDeploymentTests>false</SkipDeploymentTests>
     <MainSourceDirectoryForLocalBuilds>$(ProjectDir)</MainSourceDirectoryForLocalBuilds>
   </Project>
-  <Build xsi:type="com.visualgdb.build.msbuild">
+  <Build xsi:type="com.visualgdb.build.make">
+    <MakeFilePathRelativeToSourceDir>Makefile</MakeFilePathRelativeToSourceDir>
+    <MakeConfigurationName>Debug</MakeConfigurationName>
     <Toolchain>
       <Name>Raspberry PI</Name>
       <UniqueID>com.visualgdb.raspberry_pi</UniqueID>
@@ -40,8 +68,29 @@
         <PathStyle>MinGWUnixSlash</PathStyle>
       </SourceDirMapping>
     </Toolchain>
-    <ProjectFile>UITest.vcxproj</ProjectFile>
-    <ParallelJobCount>0</ParallelJobCount>
+    <MakeCommandTemplate>
+      <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+      <RemoteHost>
+        <HostName>BuildMachine</HostName>
+        <Transport>BuiltinShortcut</Transport>
+      </RemoteHost>
+      <Command>cmd.exe</Command>
+      <Arguments>/c "C:\SysGCC\raspberry\bin\make.exe"</Arguments>
+      <WorkingDirectory>$(BuildDir)</WorkingDirectory>
+      <Environment>
+        <Records>
+          <Record>
+            <VariableName>LANG</VariableName>
+            <Value>en_US.UTF-8</Value>
+          </Record>
+          <Record>
+            <VariableName>PATH</VariableName>
+            <Value>C:\SysGCC\raspberry\bin;%PATH%</Value>
+          </Record>
+        </Records>
+      </Environment>
+      <BackgroundMode xsi:nil="true" />
+    </MakeCommandTemplate>
   </Build>
   <Debug xsi:type="com.visualgdb.debug.remote">
     <AdditionalStartupCommands />
@@ -86,6 +135,7 @@
             <Value>C:\SysGCC\raspberry\bin;%PATH%</Value>
           </Record>
         </Records>
+        <EnvironmentSetupFiles />
       </GDBEnvironment>
       <DebuggedProgram>$(TargetPath)</DebuggedProgram>
       <GDBServerPort>2000</GDBServerPort>
@@ -118,6 +168,7 @@
     <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
   </CustomShortcuts>
   <UserDefinedVariables />
+  <ImportedPropertySheets />
   <CodeSense>
     <Enabled>Unknown</Enabled>
     <ExtraSettings>

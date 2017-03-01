@@ -19,7 +19,14 @@ FusedMotionSensor::~FusedMotionSensor()
 {
 	this->shutdown = true;
 	robotLib->Log("Shutting down FusedMotionSensor");
-	motionSensorThread.join();
+	try
+	{
+		motionSensorThread.join();
+	}
+	catch (std::system_error &e)
+	{
+		robotLib->LogException(e);
+	}
 	robotLib->Log("FusedMotionSensor shutdown");	
 }
 

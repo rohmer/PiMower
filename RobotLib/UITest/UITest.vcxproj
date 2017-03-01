@@ -23,6 +23,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <GNUConfigurationType>Debug</GNUConfigurationType>
     <Toolchain>C:\SysGCC\raspberry</Toolchain>
+    <ConfigurationType>Makefile</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <Toolchain>C:\SysGCC\raspberry</Toolchain>
@@ -41,6 +42,8 @@
     <ClCompile Include="UITest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="debug.mak" />
+    <None Include="Makefile" />
     <None Include="UITest-Debug.vgdbsettings" />
     <None Include="UITest-Release.vgdbsettings" />
   </ItemGroup>

@@ -129,5 +129,13 @@ void GPSManager::startManagerThread(GPSManager *gpsMgr)
 GPSManager::~GPSManager()
 {
 	shutdown = true;
-	gpsManagerThread.join();	
+	robotLib->Log("Destroying GPSManager");
+	try
+	{	
+		gpsManagerThread.join();	
+	}
+	catch (std::system_error &e)
+	{
+		robotLib->LogException(e);
+	}
 }

@@ -2,8 +2,9 @@
 Guid RobotLib::sessionGuid;
 
 RobotLib::RobotLib()
-{	
-	config = getConfig();
+{		
+	Poco::Data::SQLite::Connector::registerConnector();
+	config = getConfig();	
 	initLog();
 	emulator = checkEmulator();
 	if (emulator)
@@ -12,9 +13,11 @@ RobotLib::RobotLib()
 	}
 	deviceManager = new DeviceManager(*this);
 	dbLoggerThread = std::thread(startLogDBThread,this);
+	mapObject = new LawnMap(this);
 	// Set error pin and clear it
 	pinMode(config->getErrorStatusPin(), OUTPUT);
 	digitalWrite(config->getErrorStatusPin(), LOW);
+	Log("RobotLib Initialized");
 }
 
 void RobotLib::startLogDBThread(RobotLib *robotLib)
@@ -35,15 +38,20 @@ Config *RobotLib::getConfig()
 RobotLib::~RobotLib()
 {	
 	shutdown = true;
-	dbLoggerThread.join();
-	delete(deviceManager);
-	if (mapObject)
-		delete(mapObject);	
+	try
+	{
+		if(dbLoggerThread.joinable())
+			dbLoggerThread.join();	
+	}
+	catch (std::exception &e)
+	{
+		LogException(e);
+	}
 }
 
 void RobotLib::initLog()
-{
-	Poco::Logger& logger = Poco::Logger::get("RobotLib");		
+{	
+	Poco::Logger& logger = Poco::Logger::get("RobotLib");			
 	switch (config->getLogLevel())
 	{
 		case min_log_level_t::Debug:
@@ -60,11 +68,17 @@ void RobotLib::initLog()
 			
 			break;		
 	}
+	Poco::AutoPtr<Poco::SplitterChannel> pSplitter(new Poco::SplitterChannel);
 	Poco::AutoPtr<Poco::FileChannel> pChannel(new Poco::FileChannel);
+	Poco::AutoPtr<Poco::ConsoleChannel>  cChannel(new Poco::ConsoleChannel);
 	pChannel->setProperty("path", "Robot.log");
-	pChannel->setProperty("rotation", "20 K");
-	pChannel->setProperty("archive", "timestamp");
-	logger.setChannel(pChannel);	
+	pChannel->setProperty("rotation", "20 M");
+	pChannel->setProperty("archive", "timestamp");	
+	pChannel->setProperty("purgeCount", "1");
+	pSplitter->addChannel(pChannel);
+	pSplitter->addChannel(cChannel);	
+	logger.setChannel(pSplitter);	
+	
 #ifdef DEBUG
 	logger.setLevel("trace");			
 #endif	
@@ -154,14 +168,18 @@ void RobotLib::dbLogger()
 					std::unique_lock<std::mutex> lock(Database::dbMutex);
 		
 					if (!stmt.execute())
-						LogError("Failed to insert event into database");										
+					{
+						std::stringstream ss;
+						ss << "Failed to insert event\ntimeStr=" << msg.timeStr << "\nmsg=" << msg.msg << "\nSev=" << msg.severity << "\nsesID=" << msg.sessionID;
+						std::clog << ss;
+					}
 				}
 			}
 			catch (std::exception &e)
 			{
 				std::stringstream ss;
-				ss << "Exception caught: " << e.what() << std::endl;
-				LogError(ss.str());
+				ss << "Failed to insert event\ntimeStr=" << msg.timeStr << "\nmsg=" << msg.msg << "\nSev=" << msg.severity << "\nsesID=" << msg.sessionID;
+				std::clog << ss;
 			}
 		}		
 		// If we are shutting down, push these as fast as we can

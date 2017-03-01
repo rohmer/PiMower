@@ -169,7 +169,7 @@ private:
 	RobotLib *robotLib;	
 	bool validConfig = false;
 	uint8_t leftEncoderPin, rightEncoderPin;	
-	min_log_level_t minimumLoggingLevel;
+	min_log_level_t minimumLoggingLevel=min_log_level_t::Warn;
 	float driveWheelDiameter, driveGearRatio;
 	unsigned int driveMotorMaxRPM;
 	int normalAcceleration, rotationalAcceleration;

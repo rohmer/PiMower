@@ -17,6 +17,10 @@
       <UniqueIdentifier>{0aa2c582-3871-4f74-9d21-7fc4b5e03572}</UniqueIdentifier>
       <Extensions>*.vgdbsettings</Extensions>
     </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{25514a53-dea3-4f0b-8fe8-839d44560b7a}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotDaemon.cpp">
@@ -29,6 +33,10 @@
     </None>
     <None Include="RobotDaemon-Release.vgdbsettings">
       <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ void Database::initDB()
 {
 	try
 	{
-		Poco::Data::SQLite::Connector::registerConnector();
+		Poco::Data::SQLite::Connector::registerConnector();		
 		Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
 		// Check for all our tables
 		if (!tableExists("Position"))
@@ -38,11 +38,18 @@ void Database::initDB()
 
 bool Database::tableExists(std::string tableName)
 {
-	Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
+	Poco::Data::Session  dbSession("SQLite", DB_LOCATION);	
 	Poco::Data::Statement select(dbSession);
-	select << "SELECT * FROM sqlite_master WHERE name=? and type='table'", Poco::Data::use(tableName);
+	std::string name;
+	select << "SELECT name FROM sqlite_master WHERE name=? and type='table'", 
+		Poco::Data::use(tableName),
+		Poco::Data::into(name);
 	while (!select.done())
-		return true;
+	{		
+		select.execute();
+		if (name == tableName)
+			return true;
+	}
 	return false;
 }
 
@@ -153,22 +160,18 @@ bool Database::createPositionTable()
 		"Roll REAL, "\
 		"AccelX REAL, " \
 		"AccelY REAL, "\
-		"AccelZ REAL)";		
-	
+		"AccelZ REAL)";			
 	return execSql(sql);		
 }
 
 bool Database::execSql(std::string sqlStmt)
 {
-	{
-#ifdef DEBUG
-		std::cout << sqlStmt;
-#endif 
+	{		
 		std::unique_lock<std::mutex> lock(this->dbMutex);
 		try
 		{
 			Poco::Data::Session session("SQLite", DB_LOCATION);
-			session << sqlStmt;
+			session << sqlStmt, Poco::Data::now;
 			return true;
 		}
 		catch (std::exception &e)
