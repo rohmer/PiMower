@@ -13,6 +13,9 @@
 #include <Poco/FileChannel.h>
 #include <Poco/SplitterChannel.h>
 #include <Poco/ConsoleChannel.h>
+#include <Poco/Data/Statement.h>
+#include <Poco/Data/SQLite/Connector.h>
+#include <Poco/Data/SQLite/Utility.h>
 #include "../3rdParty/RapidXML/rapidxml_print.hpp"
 #include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 #include "Database.h"
@@ -39,8 +42,12 @@ class GPSManager;
 // Includes things like the logger
 class RobotLib
 {
-public:		
-	RobotLib();
+public:			
+	static RobotLib &getInstance()
+	{
+		static RobotLib instance;
+		return instance;
+	}
 	void Log(std::string message);
 	void LogWarn(std::string message);
 	void LogError(std::string message);	
@@ -88,6 +95,8 @@ public:
 	void clearError();
 		
 private:	
+	RobotLib();
+	
 	struct dbLogMsg
 	{
 		std::string timeStr;
@@ -96,7 +105,7 @@ private:
 		std::string sessionID;
 	};
 	
-	static void startLogDBThread(RobotLib *robotLib);
+	int clearCounter = 0;
 	
 	void logDB(std::string message, int severity);
 	void initLog();
@@ -106,13 +115,13 @@ private:
 	LawnMap *mapObject;
 	Config *config = NULL;
 	MotorController *motorController = NULL;
-	static Guid sessionGuid;
-	std::thread dbLoggerThread;
+	static Guid sessionGuid;	
 	void dbLogger();
 	bool shutdown = false;
 	std::pair <int, int> currentLocation;
-	std::deque<dbLogMsg> logMessages;
-	std::mutex logMutex;
-	std::condition_variable logCondition;	
 	int minLogLevel = 1;
+	
+public:
+	RobotLib(RobotLib const&)		= delete;
+	void operator=(RobotLib const&)	= delete;
 };

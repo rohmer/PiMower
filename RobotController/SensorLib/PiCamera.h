@@ -12,12 +12,12 @@
 
 #ifdef HAS_OPENCV
 #include "../../3rdParty/raspicam-0.1.4/src/raspicam_cv.h"
-#include "../../3rdParty/OpenCV/include/opencv2/opencv.hpp"
-#include "../../3rdParty/OpenCV/include/opencv/highgui.h"
-#include "../../3rdParty/OpenCV/include/opencv2/highgui/highgui.hpp"
-#include "../../3rdParty/OpenCV/include/opencv2/core/core.hpp"
-#include "../../3rdParty/OpenCV/include/opencv2/core/persistence.hpp"
-#include "../../3rdParty/OpenCV/include/opencv2/imgproc/imgproc.hpp"
+#include <opencv2/opencv.hpp>
+#include <opencv/highgui.h>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/core/persistence.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 #define TRAINING_DIR "/usr/local/Robot/Detection"
 #define TRAINING_FILE "/usr/local/Robot/Detection/trainedFiles.xml"

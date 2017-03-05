@@ -17,12 +17,12 @@ void Scheduler::setDOWTime(eDOW dayOfWeek,
 	
 	
 	stmt << "INSERT INTO Schedule(?,?,?,?,?,?)", 
-		Poco::Data::use(dayOfWeek),
-		Poco::Data::use(hourStart),
-		Poco::Data::use(minStart),
-		Poco::Data::use(hourStop),
-		Poco::Data::use(minuteStop),
-		Poco::Data::use(mowingSessions);
+		Poco::Data::Keywords::bind(dayOfWeek),
+		Poco::Data::Keywords::bind(hourStart),
+		Poco::Data::Keywords::bind(minStart),
+		Poco::Data::Keywords::bind(hourStop),
+		Poco::Data::Keywords::bind(minuteStop),
+		Poco::Data::Keywords::bind(mowingSessions);
 	
 	if (stmt.execute()!=0)
 		robotLib->LogError("Failed to insert schedule entry");
@@ -42,7 +42,7 @@ void Scheduler::clearSchedule(eDOW dayOfWeek)
 	
 	
 	stmt << "DELETE FROM Schedule WHERE DayOfWeek=?", 
-		Poco::Data::use(dayOfWeek);
+		Poco::Data::Keywords::bind(dayOfWeek);
 		
 	if (stmt.execute() != 0)
 		robotLib->LogError("Failed to insert schedule entry");	
@@ -59,12 +59,12 @@ bool Scheduler::legalMowingTime(uint8_t numberOfSessionsComplete)
 	stmt << "SELECT * FROM Schedule WHERE DayOfWeek=? AND "\
 		"StartHour<=? AND StartMinute<=? AND" \
 		"EndHour>=? AND EndMinute>=? AND mowingSessions>?",		
-		Poco::Data::use(now->tm_wday),
-		Poco::Data::use(now->tm_hour),
-		Poco::Data::use(now->tm_min),
-		Poco::Data::use(now->tm_hour),
-		Poco::Data::use(now->tm_min),
-		Poco::Data::use(numberOfSessionsComplete);
+		Poco::Data::Keywords::bind(now->tm_wday),
+		Poco::Data::Keywords::bind(now->tm_hour),
+		Poco::Data::Keywords::bind(now->tm_min),
+		Poco::Data::Keywords::bind(now->tm_hour),
+		Poco::Data::Keywords::bind(now->tm_min),
+		Poco::Data::Keywords::bind(numberOfSessionsComplete);
 	
 	
 	{

@@ -30,7 +30,7 @@ MapNode::MapNode(std::pair<int, int>coord, map_node_t blockContent, std::pair<do
 	}
 }
 
-bool MapNode::isBlocking() const
+bool MapNode::isBlocking()
 {
 	if (nodeContent == BLOCK_GRASS || nodeContent == BLOCK_UNKNOWN 
 		|| nodeContent == BLOCK_BASE_STATION)
@@ -43,7 +43,7 @@ std::pair<double, double> MapNode::getLocation()
 	return std::make_pair(this->latitude, this->longitude);
 }
 
-map_node_t MapNode::blockContents() const
+map_node_t MapNode::blockContents() 
 {
 	return this->nodeContent;
 }

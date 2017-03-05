@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rcheckcfg", "..\CLI\rcheckcfg\rcheckcfg.vcxproj", "{4C9AB672-6D50-4675-A305-8A95860B9A64}"
 EndProject
@@ -36,49 +36,103 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		InstallPrereq.sh = InstallPrereq.sh
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLibrary", "..\TestLibrary\TestLibrary.vcxproj", "{ACF644C7-4606-4479-BCE5-A1480C07BF87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|VisualGDB = Debug|VisualGDB
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|VisualGDB = Release|VisualGDB
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Release|x64.ActiveCfg = Release|VisualGDB
+		{4C9AB672-6D50-4675-A305-8A95860B9A64}.Release|x86.ActiveCfg = Release|VisualGDB
 		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|x64.ActiveCfg = Release|VisualGDB
+		{45A0148E-3F88-4098-AD1C-6A52EE93732A}.Release|x86.ActiveCfg = Release|VisualGDB
 		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Release|x64.ActiveCfg = Release|VisualGDB
+		{EBB917F3-74E7-4EB6-97D3-C2CE6873B5F9}.Release|x86.ActiveCfg = Release|VisualGDB
 		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|x64.ActiveCfg = Release|VisualGDB
+		{6A967716-D419-4C6E-9B5C-C8A68A3AF2D1}.Release|x86.ActiveCfg = Release|VisualGDB
 		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|x64.ActiveCfg = Release|VisualGDB
+		{A17730CE-5FD1-4CB8-9B8D-5E9F076E7698}.Release|x86.ActiveCfg = Release|VisualGDB
 		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|x64.ActiveCfg = Release|VisualGDB
+		{A6DF2A5F-0C0F-4325-93C2-9EF774B7B524}.Release|x86.ActiveCfg = Release|VisualGDB
 		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{B37F3067-2A62-4034-9068-352F6949466A}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{B37F3067-2A62-4034-9068-352F6949466A}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Release|x64.ActiveCfg = Release|VisualGDB
+		{B37F3067-2A62-4034-9068-352F6949466A}.Release|x86.ActiveCfg = Release|VisualGDB
 		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|x64.ActiveCfg = Release|VisualGDB
+		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D}.Release|x86.ActiveCfg = Release|VisualGDB
 		{5360C344-D7E6-4829-885A-95022C8CCA98}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
 		{5360C344-D7E6-4829-885A-95022C8CCA98}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{5360C344-D7E6-4829-885A-95022C8CCA98}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{5360C344-D7E6-4829-885A-95022C8CCA98}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{5360C344-D7E6-4829-885A-95022C8CCA98}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{5360C344-D7E6-4829-885A-95022C8CCA98}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{5360C344-D7E6-4829-885A-95022C8CCA98}.Release|x64.ActiveCfg = Release|VisualGDB
+		{5360C344-D7E6-4829-885A-95022C8CCA98}.Release|x86.ActiveCfg = Release|VisualGDB
 		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Debug|x86.ActiveCfg = Debug|VisualGDB
 		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
 		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Release|x64.ActiveCfg = Release|VisualGDB
+		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721}.Release|x86.ActiveCfg = Release|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Debug|x64.ActiveCfg = Debug|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Debug|x86.ActiveCfg = Debug|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Release|x64.ActiveCfg = Release|VisualGDB
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87}.Release|x86.ActiveCfg = Release|VisualGDB
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,5 +148,6 @@ Global
 		{EAD6683E-F9AB-4402-B93A-39A204DEAE4D} = {27E14E05-8F89-491B-B0B5-D9B78F7E8F54}
 		{5360C344-D7E6-4829-885A-95022C8CCA98} = {27E14E05-8F89-491B-B0B5-D9B78F7E8F54}
 		{1FCEBB38-4A83-4F84-96C6-63A8A8BCA721} = {C26B8A3E-D380-467A-B8B6-F943772E1E18}
+		{ACF644C7-4606-4479-BCE5-A1480C07BF87} = {CAE0343B-79BE-474C-8AD9-F2271AD938CC}
 	EndGlobalSection
 EndGlobal

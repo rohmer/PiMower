@@ -50,16 +50,17 @@ bool Config::getConfig(std::string cfgFile)
 		}
 		rootNode = doc.first_node("PiMowerConfig");
 	
+		std::clog << "0";
 		if (rootNode->first_attribute("ErrorLEDPin", 0, false))
 		{
 			errorLEDPin = atoi(rootNode->first_attribute("ErrorLEDPin", 0, false)->value());
 		}
-		
+		std::clog << "1";
 		if (rootNode->first_attribute("DBLogRetentionHours", 0, false))
 		{
 			messagesToKeepInDB = atoi(rootNode->first_attribute("DBLogRetentionHours", 0, false)->value());
 		}
-		
+		std::clog << "2";
 		// Now go thru and parse each of the sub-nodes
 		rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
 	
@@ -68,13 +69,13 @@ bool Config::getConfig(std::string cfgFile)
 			robotLib->LogError("Configuration missing Sensor node, which is required");
 			return false;
 		}
-	
+		std::clog << "3";
 		if (!readSensors(sensorNode))
 		{
 			robotLib->Log("Fatal error in sensor node, exiting");
 			return false;
 		}	
-	
+		std::clog << "4";
 		rapidxml::xml_node<> *speedNode = rootNode->first_node("Speed", 0, false);
 		if (!speedNode)
 		{
@@ -82,38 +83,39 @@ bool Config::getConfig(std::string cfgFile)
 			rootNode = createSpeedNode(rootNode, doc);
 			writeConfiguration(rootNode, doc, cfgFile);
 		}
+		std::clog << "5";
 		if (!readSpeed(speedNode))
 		{
 			robotLib->LogError("Fatal error in speed node, exiting");
 			return false;
 		}
-	
+		std::clog << "6";	
 		rapidxml::xml_node<> *encoder = rootNode->first_node("MotorEncoder", 0, false);
 		if (!encoder)
 		{
+			std::clog << "No Encoder Node";
 			robotLib->LogError("Fatal error, MotorEncoder node not set in config, exiting");
 			return false;
 		}
-	
+		std::clog << "7";	
 		if (!readEncoder(encoder))
 		{
-			robotLib->Log("Fatal error in MotorEncoder node, exiting");
+			std::clog << "Error in encoder node";
+			robotLib->Log("Fatal error in MotorEncoder node, exiting");		
 			return false;
 		}
-	
+		std::clog << "8";	
 		rapidxml::xml_node<> *physical = rootNode->first_node("Physical", 0, false);
 		if (!physical)
 		{
-			robotLib->LogError("Fatal error, Physical node not set in config, exiting");
-			return false;
+			robotLib->LogError("Fatal error, Physical node not set in config, exiting");			
 		}
-	
+		std::clog << "9";	
 		if (!readPhysical(physical))
 		{
-			robotLib->Log("Fatal error in Physical node, exiting");
-			return false;
+			robotLib->Log("Fatal error in Physical node, exiting");			
 		}
-	
+		std::clog << "10";	
 		rapidxml::xml_node<> *logNode = rootNode->first_node("Logging", 0, false);
 		if (!logNode)
 		{
@@ -186,7 +188,7 @@ bool Config::readEncoder(rapidxml::xml_node<> *encoderNode)
 		leftEncoderPin = std::atoi(encoderNode->first_attribute("leftPin", 0, false)->value());
 	}
 	else
-	{
+	{		
 		robotLib->LogError("MotorEncoder missing required leftPin setting");
 		return false;
 	}
@@ -396,12 +398,12 @@ bool Config::readConfigDB()
 	int sensorType,gpioPin,echoPin;
 	std::string loc,name;	
 	stmt << "SELECT * FROM sensors",
-		Poco::Data::range(0, 1),
-		Poco::Data::into(sensorType),
-		Poco::Data::into(gpioPin),
-		Poco::Data::into(echoPin),
-		Poco::Data::into(loc),
-		Poco::Data::into(name);
+		Poco::Data::Keywords::range(0, 1),
+		Poco::Data::Keywords::into(sensorType),
+		Poco::Data::Keywords::into(gpioPin),
+		Poco::Data::Keywords::into(echoPin),
+		Poco::Data::Keywords::into(loc),
+		Poco::Data::Keywords::into(name);
 	bumperSensors.clear();
 	std::vector<sProximitySensors> pSensors;
 	while (!stmt.done())
@@ -465,30 +467,30 @@ bool Config::readConfigDB()
 	sArduinoHost aHost;
 	sSpeedConfig nsConfig, osConfig;
 	cQuery << "SELECT * FROM config",
-		Poco::Data::into(ll),
-		Poco::Data::into(driveWheelDiameter),
-		Poco::Data::into(driveGearRatio),
-		Poco::Data::into(driveMotorMaxRPM),
-		Poco::Data::into(pwmController.i2cChannel),
-		Poco::Data::into(pwmController.leftDriveChannel),
-		Poco::Data::into(pwmController.rightDriveChannel),
-		Poco::Data::into(pwmController.bladeChannel),
-		Poco::Data::into(aHost.i2caddr),		
-		Poco::Data::into(aHost.proximityTollerance),
-		Poco::Data::into(nsConfig.forwardRPM),
-		Poco::Data::into(nsConfig.reverseRPM),
-		Poco::Data::into(nsConfig.rotationRPM),
-		Poco::Data::into(osConfig.forwardRPM),
-		Poco::Data::into(osConfig.reverseRPM),
-		Poco::Data::into(normalAcceleration);
-		Poco::Data::into(rotationalAcceleration);
-		Poco::Data::into(leftEncoderPin);
-		Poco::Data::into(rightEncoderPin);		
-		Poco::Data::into(batteryChargePercentage);		
-		Poco::Data::into(mapScale);		
-		Poco::Data::into(encoderTicksPerRevolution);
-		Poco::Data::into(errorLEDPin),
-		Poco::Data::range(0,1);
+		Poco::Data::Keywords::into(ll),
+		Poco::Data::Keywords::into(driveWheelDiameter),
+		Poco::Data::Keywords::into(driveGearRatio),
+		Poco::Data::Keywords::into(driveMotorMaxRPM),
+		Poco::Data::Keywords::into(pwmController.i2cChannel),
+		Poco::Data::Keywords::into(pwmController.leftDriveChannel),
+		Poco::Data::Keywords::into(pwmController.rightDriveChannel),
+		Poco::Data::Keywords::into(pwmController.bladeChannel),
+		Poco::Data::Keywords::into(aHost.i2caddr),		
+		Poco::Data::Keywords::into(aHost.proximityTollerance),
+		Poco::Data::Keywords::into(nsConfig.forwardRPM),
+		Poco::Data::Keywords::into(nsConfig.reverseRPM),
+		Poco::Data::Keywords::into(nsConfig.rotationRPM),
+		Poco::Data::Keywords::into(osConfig.forwardRPM),
+		Poco::Data::Keywords::into(osConfig.reverseRPM),
+		Poco::Data::Keywords::into(normalAcceleration);
+	Poco::Data::Keywords::into(rotationalAcceleration);
+	Poco::Data::Keywords::into(leftEncoderPin);
+	Poco::Data::Keywords::into(rightEncoderPin);		
+	Poco::Data::Keywords::into(batteryChargePercentage);		
+	Poco::Data::Keywords::into(mapScale);		
+	Poco::Data::Keywords::into(encoderTicksPerRevolution);
+	Poco::Data::Keywords::into(errorLEDPin),
+		Poco::Data::Keywords::range(0, 1);
 		
 		
 	bool readConfig = false;
@@ -520,38 +522,48 @@ bool Config::readConfigDB()
 			this->normalOperationSpeed = nsConfig;
 			this->objectDetectionSpeed = osConfig;
 		}
-	}		
+	}
+	
 	return readConfig;
 }
 
 void Config::writeConfigDB()
 {
+	std::clog << "Wriing Config DB";
 	Poco::Data::Session session("SQLite", DB_LOCATION);		
 	
 	// First clear tables
-	session << "DELETE FROM sensors", Poco::Data::now;	
+	session << "DELETE * FROM sensors", Poco::Data::Keywords::now;	
 	
-	session << "DELETE FROM config", Poco::Data::now;
+	session << "DELETE * FROM config", Poco::Data::Keywords::now;
 	
 	// Add the sensors
+	std::clog << "Wriing Sesors";
 	for (int a = 0; a < bumperSensors.size(); a++)
 	{
 		Poco::Data::Statement stmt(session);
+		int triggerPin = bumperSensors[a].gpioPin;
+		int location = bumperSensors[a].location;
+		
 		stmt << "INSERT INTO sensors VALUES(0,?,0,?,?)",
-			Poco::Data::use(bumperSensors[a].gpioPin),
-			Poco::Data::use(bumperSensors[a].location),
-			Poco::Data::use("");
+			Poco::Data::Keywords::bind(triggerPin),
+			Poco::Data::Keywords::bind(location),
+			Poco::Data::Keywords::bind("");
 		if (stmt.execute()!=1)
 			robotLib->LogError("Error inserting bumperSensor into database");		
 	}
 	for (int a = 0; a < arduinoHost.proximitySensors.size(); a++)
 	{
 		Poco::Data::Statement stmt(session);
+		int triggerPin = arduinoHost.proximitySensors[a].triggerPin;
+		int echoPin = arduinoHost.proximitySensors[a].echoPin;
+		int location = arduinoHost.proximitySensors[a].location;
+		std::string name = arduinoHost.proximitySensors[a].name;
 		stmt << "INSERT INTO sensors VALUES(1,?,?,?,?)",
-			Poco::Data::use(arduinoHost.proximitySensors[a].triggerPin),
-			Poco::Data::use(arduinoHost.proximitySensors[a].echoPin),
-			Poco::Data::use(arduinoHost.proximitySensors[a].location),
-			Poco::Data::use(arduinoHost.proximitySensors[a].name);
+			Poco::Data::Keywords::bind(triggerPin),
+			Poco::Data::Keywords::bind(echoPin),
+			Poco::Data::Keywords::bind(location),
+			Poco::Data::Keywords::bind(name);
 		if (stmt.execute() != 1)
 			robotLib->LogError("Error inserting proximity sensor into database");				
 	}
@@ -573,31 +585,32 @@ void Config::writeConfigDB()
 		intLogLevel = 3;
 		break;
 	}		
+	std::clog << "Wriing Config Values";
 	Poco::Data::Statement stmt(session);
 	stmt << "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-		Poco::Data::use(intLogLevel),
-	Poco::Data::use(driveWheelDiameter),
-	Poco::Data::use(driveGearRatio),
-	Poco::Data::use(driveMotorMaxRPM),
-	Poco::Data::use(pwmController.i2cChannel),
-	Poco::Data::use(pwmController.leftDriveChannel),
-	Poco::Data::use(pwmController.rightDriveChannel),
-	Poco::Data::use(pwmController.bladeChannel),
-	Poco::Data::use(arduinoHost.i2caddr),
-	Poco::Data::use(arduinoHost.proximityTollerance),
-	Poco::Data::use(normalOperationSpeed.forwardRPM),
-	Poco::Data::use(normalOperationSpeed.reverseRPM),
-	Poco::Data::use(normalOperationSpeed.rotationRPM),
-	Poco::Data::use(objectDetectionSpeed.forwardRPM),
-	Poco::Data::use(objectDetectionSpeed.reverseRPM),
-	Poco::Data::use(normalAcceleration),
-	Poco::Data::use(rotationalAcceleration),
-	Poco::Data::use(leftEncoderPin),
-	Poco::Data::use(rightEncoderPin),
-	Poco::Data::use(batteryChargePercentage),
-	Poco::Data::use(mapScale),
-	Poco::Data::use(encoderTicksPerRevolution),
-	Poco::Data::use(errorLEDPin);
+		Poco::Data::Keywords::bind(intLogLevel),
+	Poco::Data::Keywords::bind(driveWheelDiameter),
+	Poco::Data::Keywords::bind(driveGearRatio),
+	Poco::Data::Keywords::bind(driveMotorMaxRPM),
+	Poco::Data::Keywords::bind(pwmController.i2cChannel),
+	Poco::Data::Keywords::bind(pwmController.leftDriveChannel),
+	Poco::Data::Keywords::bind(pwmController.rightDriveChannel),
+	Poco::Data::Keywords::bind(pwmController.bladeChannel),
+	Poco::Data::Keywords::bind(arduinoHost.i2caddr),
+	Poco::Data::Keywords::bind(arduinoHost.proximityTollerance),
+	Poco::Data::Keywords::bind(normalOperationSpeed.forwardRPM),
+	Poco::Data::Keywords::bind(normalOperationSpeed.reverseRPM),
+	Poco::Data::Keywords::bind(normalOperationSpeed.rotationRPM),
+	Poco::Data::Keywords::bind(objectDetectionSpeed.forwardRPM),
+	Poco::Data::Keywords::bind(objectDetectionSpeed.reverseRPM),
+	Poco::Data::Keywords::bind(normalAcceleration),
+	Poco::Data::Keywords::bind(rotationalAcceleration),
+	Poco::Data::Keywords::bind(leftEncoderPin),
+	Poco::Data::Keywords::bind(rightEncoderPin),
+	Poco::Data::Keywords::bind(batteryChargePercentage),
+	Poco::Data::Keywords::bind(mapScale),
+	Poco::Data::Keywords::bind(encoderTicksPerRevolution),
+	Poco::Data::Keywords::bind(errorLEDPin);
 	stmt.execute();
 }
 

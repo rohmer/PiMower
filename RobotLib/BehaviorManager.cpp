@@ -68,10 +68,12 @@ void BehaviorManager::stateChange(states_t newState)
 	std::stringstream gStr;
 	gStr << robotLib->getSessionID();
 	
+	std::string sessid = gStr.str();
+	std::string tStr = timeStr.str();
 	stmt <<  "INSERT INTO States(?,?,?)",
-		Poco::Data::use(gStr.str()),
-		Poco::Data::use(newState),
-		Poco::Data::use(timeStr.str());
+		Poco::Data::Keywords::bind(sessid),
+		Poco::Data::Keywords::bind(newState),
+		Poco::Data::Keywords::bind(tStr);
 	if (stmt.execute() <= 0)
 		robotLib->LogError("Failed to insert State Change into database");
 	currentState = newState;

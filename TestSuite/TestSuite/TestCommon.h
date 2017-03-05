@@ -1,2 +1,3 @@
 #pragma once
-#include "CppUTest/MemoryLeakDetectorMallocMacros.h"
+#include "../../TestLibrary/PIRobotTestLib.h"
+#include "../../TestLibrary/TestContainer.h"

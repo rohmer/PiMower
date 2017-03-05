@@ -1130,6 +1130,7 @@
 
 // --- Include directories begin --- //
 //../..
+//../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include
 //c:\sysgcc\raspberry\bin\../lib/gcc/arm-linux-gnueabihf/4.9/../../../../arm-linux-gnueabihf/include/c++/4.9
 //c:\sysgcc\raspberry\bin\../lib/gcc/arm-linux-gnueabihf/4.9/../../../../arm-linux-gnueabihf/include/c++/4.9/backward
 //c:\sysgcc\raspberry\bin\../lib/gcc/arm-linux-gnueabihf/4.9/include
@@ -1138,6 +1139,8 @@
 //c:\sysgcc\raspberry\bin\../arm-linux-gnueabihf/sysroot/usr/include/arm-linux-gnueabihf
 //c:\sysgcc\raspberry\bin\../arm-linux-gnueabihf/sysroot/usr/include
 //../3rdParty/OpenCV/include
+//../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/include
+//../3rdParty/wiringPi/wiringPi
 // --- Include directories end --- //
 
 

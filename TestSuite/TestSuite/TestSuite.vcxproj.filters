@@ -27,6 +27,12 @@
       <UniqueIdentifier>{7b7767d2-f1bf-489e-a103-34f95dba3044}</UniqueIdentifier>
       <Extensions>*.mak</Extensions>
     </Filter>
+    <Filter Include="Header files\RobotLib">
+      <UniqueIdentifier>{cfc75513-e01d-4f65-9000-f670dc6fae47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\RobotLib">
+      <UniqueIdentifier>{7c283e1f-7bf0-4c27-95b8-dbf6a30a3639}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestSuite.cpp">
@@ -34,6 +40,12 @@
     </ClCompile>
     <ClCompile Include="MapTests.cpp">
       <Filter>Source files\MapTests</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotLibTests.cpp">
+      <Filter>Source files\RobotLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigTests.cpp">
+      <Filter>Source files\RobotLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +72,12 @@
     </ClInclude>
     <ClInclude Include="TestCommon.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotLibTests.h">
+      <Filter>Header files\RobotLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigTests.h">
+      <Filter>Header files\RobotLib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

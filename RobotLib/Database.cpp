@@ -1,9 +1,15 @@
 #include "Database.h"
 std::mutex Database::dbMutex;
+Poco::Data::SessionPool *Database::sessionPool;
 
 Database::Database()
 {
 	initDB();
+}
+
+Poco::Data::Session Database::getDBSession()
+{
+	return sessionPool->get();
 }
 
 void Database::initDB()
@@ -11,6 +17,7 @@ void Database::initDB()
 	try
 	{
 		Poco::Data::SQLite::Connector::registerConnector();		
+		sessionPool = new Poco::Data::SessionPool("SQLite", DB_LOCATION);
 		Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
 		// Check for all our tables
 		if (!tableExists("Position"))
@@ -38,12 +45,12 @@ void Database::initDB()
 
 bool Database::tableExists(std::string tableName)
 {
-	Poco::Data::Session  dbSession("SQLite", DB_LOCATION);	
+	Poco::Data::Session dbSession = getDBSession();
 	Poco::Data::Statement select(dbSession);
 	std::string name;
 	select << "SELECT name FROM sqlite_master WHERE name=? and type='table'", 
-		Poco::Data::use(tableName),
-		Poco::Data::into(name);
+		Poco::Data::Keywords::bind(tableName),
+		Poco::Data::Keywords::into(name);
 	while (!select.done())
 	{		
 		select.execute();
@@ -170,8 +177,8 @@ bool Database::execSql(std::string sqlStmt)
 		std::unique_lock<std::mutex> lock(this->dbMutex);
 		try
 		{
-			Poco::Data::Session session("SQLite", DB_LOCATION);
-			session << sqlStmt, Poco::Data::now;
+			Poco::Data::Session session = getDBSession();
+			session << sqlStmt, Poco::Data::Keywords::now;
 			return true;
 		}
 		catch (std::exception &e)

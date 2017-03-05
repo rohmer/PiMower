@@ -9,6 +9,7 @@
 #include <iostream>
 #include <Poco/Logger.h>
 #include <Poco/Data/Session.h>
+#include <Poco/Data/SessionPool.h>
 #include <Poco/Data/SQLite/Connector.h>
 
 #define DB_LOCATION "/usr/local/Robot/robot.db"
@@ -27,11 +28,13 @@ public:
 	bool insertPositionEvent(sensors_event_t *event);	
 	static std::mutex dbMutex;
 	
+	static Poco::Data::Session getDBSession();
+	
 	~Database();
 	
 private:
 	Database();	
-	
+	static Poco::Data::SessionPool *sessionPool;
 	void initDB();
 	bool createPositionTable();
 	bool createConfigTable();

@@ -13,9 +13,9 @@ OBJCOPY := C:/SysGCC/raspberry/bin/arm-linux-gnueabihf-objcopy.exe
 
 #Additional flags
 PREPROCESSOR_MACROS := 
-INCLUDE_DIRS := ArduCamDriver ../../3rdParty/OpenCV/include ../../3rdParty/raspicam-0.1.4/include
+INCLUDE_DIRS := ../../3rdParty/OpenCV ../../3rdParty/poco-include ../../3rdParty/raspicam-0.1.4/include ../../3rdParty/wiringPi/wiringPi ArduCamDriver
 LIBRARY_DIRS := /usr/local/lib
-LIBRARY_NAMES := PocoUtil uuid pthread PocoFoundation PocoSQLite raspicam raspicam_cv opencv_imgcodecs opencv_imgproc opencv_core
+LIBRARY_NAMES := PocoUtil uuid pthread PocoFoundation PocoDataSQLite raspicam raspicam_cv opencv_imgcodecs opencv_imgproc opencv_core
 ADDITIONAL_LINKER_INPUTS := 
 MACOS_FRAMEWORKS := 
 LINUX_PACKAGES := 

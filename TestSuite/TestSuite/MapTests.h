@@ -1,11 +1,20 @@
 #pragma once
 #include "../../RobotLib/RobotLib.h"
 #include "TestCommon.h"
-#include "Maps.h"
-#include "CppUTest/TestHarness.h"  // MUST GO LAST
 
+class MapTests
+{
+public:
+	MapTests(RobotLib *robotLib, PiRobotTestLib *testLib);
+	PiRobotTestLib *runTests();
+	~MapTests();
+	
+private:
+	void loadYardMap();
+	void initMapTest();
+	void loadMapsTest();
+	void closestGrassTest();
+	RobotLib *robotLib;
+	PiRobotTestLib *testLib;
+};
 
-RobotLib *mapTestRobotLib;
-LawnMap *mapTestLawnMap;
-
-void loadYardMap();

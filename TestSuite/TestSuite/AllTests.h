@@ -1,4 +1,3 @@
 #pragma once
-#include "CppUTest/TestHarness.h"
-
-IMPORT_TEST_GROUP(MapTests);
+#include "MapTests.h"
+#include "RobotLibTests.h"

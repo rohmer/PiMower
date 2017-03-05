@@ -35,8 +35,8 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := MapTests.cpp TestSuite.cpp
-EXTERNAL_LIBS := ../../3rdParty/wiringPi/wiringPi/$(BINARYDIR)/wiringPi.so ../../RobotController/SensorLib/$(BINARYDIR)/SensorLib.so ../../RobotLib/$(BINARYDIR)/RobotLib.so
+SOURCEFILES := ConfigTests.cpp MapTests.cpp RobotLibTests.cpp TestSuite.cpp
+EXTERNAL_LIBS := ../../3rdParty/wiringPi/wiringPi/$(BINARYDIR)/wiringPi.so ../../RobotController/SensorLib/$(BINARYDIR)/SensorLib.so ../../RobotLib/$(BINARYDIR)/RobotLib.so ../../TestLibrary/$(BINARYDIR)/TestLibrary.so
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 
 CFLAGS += $(COMMONFLAGS)
@@ -187,4 +187,7 @@ $(BINARYDIR)/SensorLib.so : ../../RobotController/SensorLib/$(BINARYDIR)/SensorL
 
 $(BINARYDIR)/RobotLib.so : ../../RobotLib/$(BINARYDIR)/RobotLib.so
 	$(CP) ../../RobotLib/$(BINARYDIR)/RobotLib.so $(BINARYDIR)/RobotLib.so
+
+$(BINARYDIR)/TestLibrary.so : ../../TestLibrary/$(BINARYDIR)/TestLibrary.so
+	$(CP) ../../TestLibrary/$(BINARYDIR)/TestLibrary.so $(BINARYDIR)/TestLibrary.so
 

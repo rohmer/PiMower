@@ -1,16 +1,16 @@
 #include "AllTests.h"
-#include "CppUTest/CommandLineTestRunner.h"
 #include <iostream>
 
 int main(int argc, char *argv[])
 {	
-	try
-	{
-		CommandLineTestRunner::RunAllTests(argc, argv);
-	}
-	catch (std::exception &e)
-	{
-		std::clog << "Error;";
-	}
-	return 0;
+	RobotLib *robotLib = &RobotLib::getInstance();
+	PiRobotTestLib *testLib = new PiRobotTestLib();
+	RobotLibTests *robotLibTests = new RobotLibTests(testLib);
+	testLib = robotLibTests->runTests();
+	delete(robotLibTests);
+	MapTests *mapTests = new MapTests(robotLib, testLib);
+	testLib = mapTests->runTests();
+	delete(mapTests);
+	
+	testLib->DisplayResults();
 }

@@ -13,9 +13,9 @@ OBJCOPY := C:/SysGCC/raspberry/bin/arm-linux-gnueabihf-objcopy.exe
 
 #Additional flags
 PREPROCESSOR_MACROS := 
-INCLUDE_DIRS := 
+INCLUDE_DIRS := ../../3rdParty/poco-include ../../3rdParty/wiringPi/wiringPi
 LIBRARY_DIRS := 
-LIBRARY_NAMES := PocoUtil uuid pthread PocoFoundation PocoSQLite raspicam raspicam_cv opencv_imgcodecs opencv_imgproc opencv_core CppUTest
+LIBRARY_NAMES := PocoUtil uuid pthread PocoFoundation PocoData PocoDataSQLite raspicam raspicam_cv opencv_imgcodecs opencv_imgproc opencv_core
 ADDITIONAL_LINKER_INPUTS := 
 MACOS_FRAMEWORKS := 
 LINUX_PACKAGES := 

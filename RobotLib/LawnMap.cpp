@@ -179,16 +179,16 @@ MapNode *LawnMap::loadMapNode(std::pair<int, int> coord)
 	double lat, lon;
 	bool blocking;
 	stmt << "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap WHERE X=? AND Y=?",
-		Poco::Data::use(coord.first),
-		Poco::Data::use(coord.second),
-		Poco::Data::range(0, 1),
-		Poco::Data::into(x),
-		Poco::Data::into(y),
-		Poco::Data::into(b),
-		Poco::Data::into(lat),
-		Poco::Data::into(lon),
-		Poco::Data::into(blocking),
-		Poco::Data::into(contents);		
+		Poco::Data::Keywords::bind(coord.first),
+		Poco::Data::Keywords::bind(coord.second),
+		Poco::Data::Keywords::range(0, 1),
+		Poco::Data::Keywords::into(x),
+		Poco::Data::Keywords::into(y),
+		Poco::Data::Keywords::into(b),
+		Poco::Data::Keywords::into(lat),
+		Poco::Data::Keywords::into(lon),
+		Poco::Data::Keywords::into(blocking),
+		Poco::Data::Keywords::into(contents);		
 	{
 		std::unique_lock<std::mutex> lock(Database::dbMutex);
 		while (!stmt.done())
@@ -205,13 +205,21 @@ void LawnMap::storeMapNode(MapNode *mapNode)
 {
 	Poco::Data::Session session("SQLite", DB_LOCATION);
 	Poco::Data::Statement stmt(session);
+	double lat = mapNode->getLocation().first;
+	double lon = mapNode->getLocation().second;
+	int blockContents=mapNode->blockContents();
+	bool isBlocking = mapNode->isBlocking();
+	int gridX = mapNode->getGridCoord().first;
+	int gridY = mapNode->getGridCoord().second;
+	
 	stmt << "UPDATE LawnMap SET Blocking=?, Contents=?, Latitude=?, Longitude=? WHERE X=? AND Y=?",
-		Poco::Data::use(mapNode->isBlocking()),
-		Poco::Data::use(mapNode->blockContents()),
-		Poco::Data::use(mapNode->getLocation().first),
-		Poco::Data::use(mapNode->getLocation().second),
-		Poco::Data::use(mapNode->getGridCoord().first),
-		Poco::Data::use(mapNode->getGridCoord().second);
+		Poco::Data::Keywords::bind(isBlocking),
+		Poco::Data::Keywords::bind(blockContents),
+		Poco::Data::Keywords::bind(lat),
+		Poco::Data::Keywords::bind(lon),
+		Poco::Data::Keywords::bind(gridX),
+		Poco::Data::Keywords::bind(gridY),
+		Poco::Data::Keywords::now;
 	{
 		std::unique_lock<std::mutex> lock(Database::dbMutex);
 
@@ -219,12 +227,12 @@ void LawnMap::storeMapNode(MapNode *mapNode)
 		{
 			Poco::Data::Statement stmt(session);
 			stmt << "INSERT INTO LawnMap(?,?,?,?,?,?)",
-				Poco::Data::use(mapNode->getGridCoord().first),
-				Poco::Data::use(mapNode->getGridCoord().second);
-			Poco::Data::use(mapNode->getLocation().first),
-			Poco::Data::use(mapNode->getLocation().second),
-			Poco::Data::use(mapNode->isBlocking()),
-			Poco::Data::use(mapNode->blockContents());
+				Poco::Data::Keywords::bind(gridX),
+				Poco::Data::Keywords::bind(gridY);
+			Poco::Data::Keywords::bind(lat),
+			Poco::Data::Keywords::bind(lon),
+			Poco::Data::Keywords::bind(isBlocking),
+			Poco::Data::Keywords::bind(blockContents);
 				
 			stmt.execute();
 		}
@@ -294,14 +302,14 @@ bool LawnMap::loadMap()
 	bool blocking;
 	int contents;
 	stmt << "SELECT (X,Y,Latitude,Longitude,Blocking,Contents) FROM LawnMap",
-		Poco::Data::into(x),
-		Poco::Data::into(y),
-		Poco::Data::into(b),
-		Poco::Data::into(lat),
-		Poco::Data::into(lon),
-		Poco::Data::into(blocking),
-		Poco::Data::into(contents),
-		Poco::Data::range(0, 1);	
+		Poco::Data::Keywords::into(x),
+		Poco::Data::Keywords::into(y),
+		Poco::Data::Keywords::into(b),
+		Poco::Data::Keywords::into(lat),
+		Poco::Data::Keywords::into(lon),
+		Poco::Data::Keywords::into(blocking),
+		Poco::Data::Keywords::into(contents),
+		Poco::Data::Keywords::range(0, 1);	
 	while (!stmt.done())
 	{
 		stmt.execute();

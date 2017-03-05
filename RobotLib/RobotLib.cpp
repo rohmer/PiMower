@@ -1,6 +1,8 @@
 #include "RobotLib.h"
 Guid RobotLib::sessionGuid;
 
+//TODO: This needs to be a singleton
+
 RobotLib::RobotLib()
 {		
 	Poco::Data::SQLite::Connector::registerConnector();
@@ -11,18 +13,12 @@ RobotLib::RobotLib()
 	{
 		Log("Running on QEMU emulator");
 	}
-	deviceManager = new DeviceManager(*this);
-	dbLoggerThread = std::thread(startLogDBThread,this);
+	deviceManager = new DeviceManager(*this);	
 	mapObject = new LawnMap(this);
 	// Set error pin and clear it
 	pinMode(config->getErrorStatusPin(), OUTPUT);
 	digitalWrite(config->getErrorStatusPin(), LOW);
 	Log("RobotLib Initialized");
-}
-
-void RobotLib::startLogDBThread(RobotLib *robotLib)
-{
-	robotLib->dbLogger();
 }
 
 Config *RobotLib::getConfig()
@@ -37,16 +33,6 @@ Config *RobotLib::getConfig()
 
 RobotLib::~RobotLib()
 {	
-	shutdown = true;
-	try
-	{
-		if(dbLoggerThread.joinable())
-			dbLoggerThread.join();	
-	}
-	catch (std::exception &e)
-	{
-		LogException(e);
-	}
 }
 
 void RobotLib::initLog()
@@ -119,7 +105,6 @@ void RobotLib::logDB(std::string message, int severity)
 {
 	if (severity < minLogLevel)
 		return;
-	std::stringstream sql;
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
 	std::stringstream timeStr;
@@ -127,84 +112,30 @@ void RobotLib::logDB(std::string message, int severity)
 	int mon = now->tm_mon + 1;
 	int day = now->tm_mday + 1;
 	timeStr << year << "-" << mon << "-" << day << " " << now->tm_hour << ":" << now->tm_min << ":" << now->tm_sec;
-	dbLogMsg msg;	
-	msg.timeStr = timeStr.str();
-	msg.severity = severity;
-	msg.msg = message;
 	std::stringstream ss;
 	ss << getSessionID();
-	msg.sessionID = ss.str();
-	{
-		std::unique_lock<std::mutex> lock(this->logMutex);
-		logMessages.push_front(msg);
+	std::string sessionID = ss.str();
+	Poco::Data::Session dbSession = Database::getDBSession(); 
+	Poco::Data::Statement stmt = (dbSession << "INSERT INTO Log VALUES(?,?,?,?)",
+		Poco::Data::Keywords::bind(timeStr.str()),
+		Poco::Data::Keywords::bind(message),
+		Poco::Data::Keywords::bind(severity),
+		Poco::Data::Keywords::bind(sessionID));
+	stmt.executeAsync();
+	
+	clearCounter++;
+	if (clearCounter > 100)
+	{		
+		std::stringstream ss;
+		Poco::Data::Statement clear(dbSession);
+		int clearNum = config->getMessagedDBRetention();
+		clear << "DELETE FROM Log WHERE timestamp <= date('now','-" << clearNum << " minutes')";					
+		clearCounter = 0;
+		clear.executeAsync();
 	}
 }
 
-void RobotLib::dbLogger()
-{
-	long clearPoint = 300; // clear every 5 minutes
-	long clearCounter = 0;
-	while (!shutdown && logMessages.size() > 0)
-	{
-		Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
-		Poco::Data::Statement stmt(dbSession);		
-		while(logMessages.size()>0)
-		{
-			dbLogMsg msg;
-			{	
-				std::unique_lock<std::mutex> lock(this->logMutex);
-				this->logCondition.wait(lock, [=]{return !this->logMessages.empty();});
-				msg = logMessages.back();				
-				logMessages.pop_back();
-			}
-			stmt << "INSERT INTO Log VALUES(?,?,?,?)",
-				Poco::Data::use(msg.timeStr),
-				Poco::Data::use(msg.msg),
-				Poco::Data::use(msg.severity),
-				Poco::Data::use(msg.sessionID);			
-			try
-			{
-				{
-					std::unique_lock<std::mutex> lock(Database::dbMutex);
-		
-					if (!stmt.execute())
-					{
-						std::stringstream ss;
-						ss << "Failed to insert event\ntimeStr=" << msg.timeStr << "\nmsg=" << msg.msg << "\nSev=" << msg.severity << "\nsesID=" << msg.sessionID;
-						std::clog << ss;
-					}
-				}
-			}
-			catch (std::exception &e)
-			{
-				std::stringstream ss;
-				ss << "Failed to insert event\ntimeStr=" << msg.timeStr << "\nmsg=" << msg.msg << "\nSev=" << msg.severity << "\nsesID=" << msg.sessionID;
-				std::clog << ss;
-			}
-		}		
-		// If we are shutting down, push these as fast as we can
-		// Also dont prune
-		if (!shutdown)
-		{			
-			clearCounter++;
-			// DO TIME BASED DELETION
-			std::stringstream ss;
-			Poco::Data::Statement clear(dbSession);
-			clear << "DELETE FROM Log WHERE timestamp <= date('now','-" << config->getMessagedDBRetention() << " minutes')";
-			Log(ss.str());
-			
-			if (clearCounter > clearPoint)				
-			{
-				clearCounter = 0;
-				{
-					std::unique_lock<std::mutex> lock(Database::dbMutex);
-					clear.execute();
-				}
-			}
-			delay(1000);
-		}
-	}
-}
+
 void RobotLib::Log(std::string message)
 {
 	Poco::Logger::get("RobotLib").trace(message);		
@@ -219,6 +150,7 @@ void RobotLib::LogWarn(std::string message)
 
 void RobotLib::LogError(std::string message)
 {
+	std::clog << "Error Message: " <<message;
 	Poco::Logger::get("RobotLib").critical(message);		
 	logDB(message, 2);
 }
