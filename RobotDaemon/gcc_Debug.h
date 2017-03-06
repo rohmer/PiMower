@@ -1133,6 +1133,8 @@
 //c:\sysgcc\raspberry\bin\../lib/gcc/arm-linux-gnueabihf/4.9/../../../../arm-linux-gnueabihf/include
 //c:\sysgcc\raspberry\bin\../arm-linux-gnueabihf/sysroot/usr/include/arm-linux-gnueabihf
 //c:\sysgcc\raspberry\bin\../arm-linux-gnueabihf/sysroot/usr/include
+//../3rdParty/poco-include
+//../3rdParty/wiringPi/wiringPi
 // --- Include directories end --- //
 
 

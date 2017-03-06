@@ -102,6 +102,7 @@ void FusedMotionSensor::sensorManagerThread()
 					currentResult.result = fmsResultType::OBJECT_DETECTED;
 					currentResult.resultTime = time(NULL);		
 					currentResult.location = spr.direction;
+					currentResult.distance = opsResult.second;
 				}
 				else
 				{
@@ -111,6 +112,7 @@ void FusedMotionSensor::sensorManagerThread()
 						currentResult.result = fmsResultType::OBJECT_DETECTED;						
 						currentResult.resultTime = time(NULL);
 						currentResult.location = spr.direction;
+						currentResult.distance = opsResult.second;
 					}
 					else
 					{
@@ -120,6 +122,7 @@ void FusedMotionSensor::sensorManagerThread()
 							currentResult.result = fmsResultType::OBJECT_DETECTED;
 							currentResult.resultTime = time(NULL);
 							currentResult.location = spr.direction;										
+							currentResult.distance = opsResult.second;
 						}
 						else
 						{
@@ -129,6 +132,7 @@ void FusedMotionSensor::sensorManagerThread()
 								currentResult.result = fmsResultType::OBJECT_DETECTED;
 								currentResult.resultTime = time(NULL);
 								currentResult.location = spr.direction;
+								currentResult.distance = opsResult.second;
 							}
 							else
 							{
@@ -136,6 +140,7 @@ void FusedMotionSensor::sensorManagerThread()
 								currentResult.result = fmsResultType::CLEAR;
 								currentResult.resultTime = time(NULL);
 								currentResult.location = spr.direction;
+								currentResult.distance = opsResult.second;
 							}														
 						} 
 					}

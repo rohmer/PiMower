@@ -67,7 +67,7 @@ void RobotEvents::headingChangedEvent(int newHeading)
 	stmt.executeAsync();
 }
 
-void RobotEvents::requestMoveEvent(int distanceInInches)
+void RobotEvents::requestMoveEvent(int distanceInInches,bool forward)
 {
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
@@ -78,10 +78,14 @@ void RobotEvents::requestMoveEvent(int distanceInInches)
 	timeStr << year << "-" << mon << "-" << day << " " << now->tm_hour << ":" << now->tm_min << ":" << now->tm_sec;
 	Poco::Data::Session sess = Database::getDBSession();
 	Poco::Data::Statement stmt(sess);
-	stmt << "INSERT INTO Events VALUES(?,?,?,0,0,0,0,?)",
+	int f = 1;
+	if (!forward)
+		f = 0;
+	stmt << "INSERT INTO Events VALUES(?,?,?,?,0,0,0,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
 		Poco::Data::Keywords::bind((int)REQUEST_MOVE),
 		Poco::Data::Keywords::bind(distanceInInches),
+		Poco::Data::Keywords::bind(f),
 		Poco::Data::Keywords::bind(getUUID());
 	stmt.executeAsync();
 }

@@ -25,7 +25,7 @@ public:
 	static void speedChangeEvent(int previousSpeedLeft, int previousSpeedRight, int newSpeedLeft, int newSpeedRight);
 	static void headingChangeEvent(float previousHeading, int newHeading);
 	static void headingChangedEvent(int newHeading);
-	static void requestMoveEvent(int distanceInInches);
+	static void requestMoveEvent(int distanceInInches, bool forward);
 	static void completeMoveEvent();
 	static void turnOnBladeEvent();
 	static void turnOffBladeEvent();

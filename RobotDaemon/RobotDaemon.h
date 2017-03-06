@@ -6,19 +6,34 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <Poco/Util/ServerApplication.h>
+#include <Poco/Util/Option.h>
+#include <Poco/Util/OptionSet.h>
+#include <Poco/Util/HelpFormatter.h>
+
 #include "../RobotLib/RobotLib.h"
-#include "../3rdParty/argtable2-13/src/argtable2.h"
 #include "../RobotLib/Config.h"
 
-class RobotDaemon
+class RobotDaemon : public Poco::Util::ServerApplication
 {
-	public:
-		int main(int argc, char *argv[]);
+public:
+	RobotDaemon();
+	~RobotDaemon();
 	
-	private:
-		RobotLib* robotLib;
-		min_log_level_t minLogLevel;
-		std::string config;
-		bool processCLI(int argc, char *argv[]);
-		
+protected:
+	void initialize(Poco::Util::Application &self);
+	void uninitialize();
+	void defineOptions(Poco::Util::OptionSet &options);
+	void handleHelp(const std::string& name, const std::string& value);
+	void displayHelp();
+	int main(const Poco::Util::Application::ArgVec &args);
+	
+private:
+	RobotLib* robotLib;
+	min_log_level_t minLogLevel;
+	std::string config;
+	bool helpRequested;
 };
+
+POCO_SERVER_MAIN(RobotDaemon)
+

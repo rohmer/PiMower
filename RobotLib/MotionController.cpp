@@ -144,7 +144,9 @@ eMotionResult MotionController::rotateToHeading(int heading)
 			{					
 				ss << " Front Bumper";
 				robotLib->Log(ss.str());
+				std::pair <int,int> prevSpeed=motorController->currentDriveMotorRPM();				
 				motorController->SetSpeed(0, 0);				
+				RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
 				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));				
 				int currentHeading = gpsManager->getHeading();
 				RobotEvents::headingChangedEvent(currentHeading);
@@ -155,7 +157,9 @@ eMotionResult MotionController::rotateToHeading(int heading)
 			{
 				ss << " Rear Bumper";
 				robotLib->Log(ss.str());
-				motorController->SetSpeed(0, 0);
+				std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();				
+				motorController->SetSpeed(0, 0);				
+				RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
 				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));								
 				RobotEvents::headingChangedEvent(currentHeading);
 				RobotEvents::bumperActivatedEvent(eSensorLocation::BACK);				
@@ -175,9 +179,9 @@ eMotionResult MotionController::rotateToHeading(int heading)
 	gpsManager->getLocation();
 }
 
-// TODO: Add RobotEvents to the rest of this, also setup SIMULATION mode
 eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward, bool cutting)
 {	
+	RobotEvents::requestMoveEvent(inchesToTravel, forward);
 	// First find the odometer
 	std::pair<long, long> initialOdVal = odometer->readCounters();
 	Point originalPoint = Point(robotLib->getCurrentXLoc(), robotLib->getCurrentYLoc());
@@ -208,6 +212,11 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 		if (heading >= 360)
 			heading -= 360;
 	}
+	if (cutting)
+	{		
+		motorController->SetSpeed(0, 0, 100);
+		RobotEvents::turnOnBladeEvent();
+	}
 	// Now travel loop
 	// TODO: Find out the # encoder ticks per full wheel rotation
 	while (currentOdVal < (initialOdVal.first + revolutionsToTravel))
@@ -221,10 +230,13 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 		if (sensorResult.result == fmsResultType::HARD_RESULT)
 		{
 			// Stop
-			motorController->SetSpeed(0, 0);
-			location=gpsManager->getLocation();
+			std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();				
+			motorController->SetSpeed(0, 0);				
+			RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
+			location = gpsManager->getLocation();
 			Point currentPoint = getCurrentMapLocation(originalPoint, heading, distanceTraveled);
 			robotLib->getMap()->setNode(currentPoint.x, currentPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));
+			RobotEvents::bumperActivatedEvent(sensorResult.location);
 			if (sensorResult.location == eSensorLocation::BACK)
 				return eMotionResult::BUMPER_BACK;
 			return eMotionResult::BUMPER_FRONT;
@@ -240,6 +252,7 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			else
 				rpm = config->getObjDetReverseRPM();
 			rpmCounter = 0;
+			RobotEvents::proximityActivatedEvent(sensorResult.location, sensorResult.distance);
 		}
 		
 		// We found a non-grass section
@@ -252,6 +265,7 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			// TODO: Might want to stop blade
 			if (cutting)
 			{
+				RobotEvents::turnOffBladeEvent();
 				motorController->SetSpeed(0, 0);
 				return eMotionResult::NON_GRASS;
 			}
@@ -282,13 +296,17 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			rpmCounter++;
 			if (setRPM > rpm)
 				setRPM = rpm;
+			std::pair<int, int> pRPM = motorController->currentDriveMotorRPM();
 			motorController->SetSpeed(setRPM, setRPM);
+			RobotEvents::speedChangeEvent(pRPM.first, pRPM.second, setRPM, setRPM);
 		}
 		delay(50);
 	}	
 	// we got there! :)
 	// Stop
+	std::pair<int, int> pRPM = motorController->currentDriveMotorRPM();	
 	motorController->SetSpeed(0, 0);
+	RobotEvents::speedChangeEvent(pRPM.first, pRPM.second, 0, 0);
 	return eMotionResult::SUCCESS;
 }
 

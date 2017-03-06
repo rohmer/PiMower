@@ -60,11 +60,6 @@
     <None Include="rcheckcfg-Release.vgdbsettings" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3rdParty\argtable2-13\argtable\argtable.vcxproj">
-      <Project>{45a0148e-3f88-4098-ad1c-6a52ee93732a}</Project>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
     <ProjectReference Include="..\..\3rdParty\wiringPi\wiringPi\wiringPi.vcxproj">
       <Project>{6a967716-d419-4c6e-9b5c-c8a68a3af2d1}</Project>
     </ProjectReference>

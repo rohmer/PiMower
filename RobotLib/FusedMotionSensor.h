@@ -23,7 +23,8 @@ enum fmsResultType
 struct fmsResult
 {
 	fmsResultType result;
-	eSensorLocation location;	
+	eSensorLocation location;
+	float distance;
 	time_t resultTime;
 };
 
