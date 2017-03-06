@@ -36,10 +36,10 @@ struct sPWMController
 
 enum eSensorLocation
 {
-	FRONT,
-	BACK,
-	LEFT,
-	RIGHT
+	FRONT = 0,
+	BACK  = 1,
+	LEFT  = 2,
+	RIGHT = 3
 };
 
 struct sBumperSensor
@@ -190,6 +190,7 @@ private:
 	void writeConfigDB();
 	bool readConfigDB();
 	
+	bool loadConfig();
 	unsigned long messagesToKeepInDB = 168;
 	
 	unsigned int errorLEDPin=-1;

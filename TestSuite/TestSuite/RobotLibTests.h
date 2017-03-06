@@ -5,6 +5,8 @@
 #include <Poco/Data/Statement.h>
 #include "../../RobotLib/RobotLib.h"
 #include "TestCommon.h"
+#include <iostream>
+#include <fstream>
 
 class RobotLibTests
 {

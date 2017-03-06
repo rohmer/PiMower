@@ -13,6 +13,8 @@
 #include <Poco/FileChannel.h>
 #include <Poco/SplitterChannel.h>
 #include <Poco/ConsoleChannel.h>
+#include <Poco/PatternFormatter.h>
+#include <Poco/FormattingChannel.h>
 #include <Poco/Data/Statement.h>
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Data/SQLite/Utility.h>
@@ -67,12 +69,20 @@ public:
 	LawnMap *getMap();	
 	void setLogLevel(int logLevel);
 	Config *getConfig();
+	bool loadConfig(std::string configFile);
 	MotorController *getMotorController();
 	void setSessionID();
 	static Guid getSessionID()
 	{
 		return sessionGuid;
 	}
+	static std::string getSessionIDStr()
+	{
+		std::stringstream gStr;
+		gStr << sessionGuid;
+		return gStr.str();
+	}
+	
 	GPSManager *getGPSManager();	
 	int getCurrentXLoc()
 	{
@@ -93,7 +103,32 @@ public:
 	
 	void setError(std::string errorMessage, std::string fromBehavior);
 	void clearError();
-		
+	void setSimulation(bool value)	
+	{
+		simulator = value;
+		lat = 0;
+		lon = 0;
+		heading = 0;		
+	}
+	
+	bool getSimulation()
+	{
+		return simulator;
+	}
+	
+	double getSimulatedLat()
+	{
+		return lat;
+	}
+	double getSimulatedLon()
+	{
+		return lon;
+	}
+	double getSimulatedHeading()
+	{
+		return heading;
+	}
+	
 private:	
 	RobotLib();
 	
@@ -120,6 +155,11 @@ private:
 	bool shutdown = false;
 	std::pair <int, int> currentLocation;
 	int minLogLevel = 1;
+	
+	bool simulator = false;	
+	// Info for simulator
+	double lat, lon;
+	double heading;
 	
 public:
 	RobotLib(RobotLib const&)		= delete;

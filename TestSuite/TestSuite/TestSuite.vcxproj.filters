@@ -79,5 +79,8 @@
     <ClInclude Include="ConfigTests.h">
       <Filter>Header files\RobotLib</Filter>
     </ClInclude>
+    <ClInclude Include="TestConfig.h">
+      <Filter>Header files\RobotLib</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

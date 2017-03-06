@@ -136,6 +136,13 @@ std::string LSM303_Magnetometer::getDeviceName()
 
 bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 {
+	if (robotLib->getSimulation())
+	{
+		// For now all we care about is heading
+		event->gyro.heading = robotLib->getSimulatedHeading();
+		return true;
+	}
+	
 	if (!magInit)
 	{
 		robotLib->LogError("Magnetometer is not intialized");

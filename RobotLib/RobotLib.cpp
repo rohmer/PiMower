@@ -21,6 +21,11 @@ RobotLib::RobotLib()
 	Log("RobotLib Initialized");
 }
 
+bool RobotLib::loadConfig(std::string configFile)
+{
+	return config->getConfig(configFile);
+}
+
 Config *RobotLib::getConfig()
 {
 	if (config == NULL)
@@ -56,12 +61,15 @@ void RobotLib::initLog()
 	}
 	Poco::AutoPtr<Poco::SplitterChannel> pSplitter(new Poco::SplitterChannel);
 	Poco::AutoPtr<Poco::FileChannel> pChannel(new Poco::FileChannel);
+	Poco::AutoPtr<Poco::PatternFormatter> pf(new Poco::PatternFormatter);
+	pf->setProperty("pattern", "%Y/%m/%d %H:%M:%S %p: %t");
 	Poco::AutoPtr<Poco::ConsoleChannel>  cChannel(new Poco::ConsoleChannel);
+	Poco::AutoPtr<Poco::FormattingChannel> pFC(new Poco::FormattingChannel(pf, pChannel));
 	pChannel->setProperty("path", "Robot.log");
 	pChannel->setProperty("rotation", "20 M");
 	pChannel->setProperty("archive", "timestamp");	
 	pChannel->setProperty("purgeCount", "1");
-	pSplitter->addChannel(pChannel);
+	pSplitter->addChannel(pFC);
 	pSplitter->addChannel(cChannel);	
 	logger.setChannel(pSplitter);	
 	
@@ -102,9 +110,10 @@ void RobotLib::setLogLevel(int logLevel)
 }
 
 void RobotLib::logDB(std::string message, int severity)
-{
-	if (severity < minLogLevel)
-		return;
+{		
+	std::clog << "Sev: " << severity << " Message: " << message;
+	//if (severity <= minLogLevel)
+	//	return;
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
 	std::stringstream timeStr;
@@ -121,7 +130,7 @@ void RobotLib::logDB(std::string message, int severity)
 		Poco::Data::Keywords::bind(message),
 		Poco::Data::Keywords::bind(severity),
 		Poco::Data::Keywords::bind(sessionID));
-	stmt.executeAsync();
+	stmt.executeAsync(false);
 	
 	clearCounter++;
 	if (clearCounter > 100)
@@ -138,29 +147,25 @@ void RobotLib::logDB(std::string message, int severity)
 
 void RobotLib::Log(std::string message)
 {
-	Poco::Logger::get("RobotLib").trace(message);		
-	logDB(message, 0);
+	Poco::Logger::get("RobotLib").trace(message);			
 }
 
 void RobotLib::LogWarn(std::string message)
 {
-	Poco::Logger::get("RobotLib").warning(message);
-	logDB(message, 1);
+	Poco::Logger::get("RobotLib").warning(message);	
 }
 
 void RobotLib::LogError(std::string message)
 {
 	std::clog << "Error Message: " <<message;
-	Poco::Logger::get("RobotLib").critical(message);		
-	logDB(message, 2);
+	Poco::Logger::get("RobotLib").critical(message);			
 }
 
 void RobotLib::LogException(std::exception &e)
 {
 	std::stringstream ss;
 	ss << "Exception caught: " << e.what() << std::endl;
-	Poco::Logger::get("RobotLib").fatal(ss.str());
-	logDB(ss.str(), 3);
+	Poco::Logger::get("RobotLib").fatal(ss.str());	
 }
 
 bool RobotLib::checkEmulator()

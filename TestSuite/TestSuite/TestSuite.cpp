@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 	MapTests *mapTests = new MapTests(robotLib, testLib);
 	testLib = mapTests->runTests();
 	delete(mapTests);
-	
+	ConfigTests *configTests = new ConfigTests(robotLib, testLib);
+	testLib=configTests->runTests();
 	testLib->DisplayResults();
 }

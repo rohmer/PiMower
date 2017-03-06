@@ -73,32 +73,29 @@ void RobotLibTests::loggingTestDebug()
 	std::string uuid = genUUID();
 	// Log it
 	robotLib->Log(uuid);
-	// A little hacky, but it *SHOULD* have gotten there within 5 seconds.
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	try
+	std::string sev = "Trace";
+	std::ifstream inputFile;
+	inputFile.open("Robot.log");
+	std::string line;
+	int offset;
+	if (inputFile.is_open())
 	{
-		Poco::Data::Session sess = Database::getDBSession();
-		Poco::Data::Statement stmt(sess);
-		stmt << "SELECT * FROM Log WHERE message=?",
-			Poco::Data::Keywords::bind(uuid),
-			Poco::Data::Keywords::range(0, 1);
-		while (!stmt.done())
+		while (!inputFile.eof())
 		{
-			if (stmt.execute() > 0)
+			std::getline(inputFile, line);
+			if ((offset = line.find(uuid, 0)) != std::string::npos)
 			{
-				testLib->AddTestResult("RobotLib Tests", "Logging Debug Test", SUCCESS);
-				return;
+				if ((offset = line.find(sev, 0)) != std::string::npos)
+				{
+					testLib->AddTestResult("RobotLib Tests", "Log Trace", SUCCESS);
+					inputFile.close();
+					return;
+				}
 			}
-		}
-		std::stringstream ss;
-		ss << "Failed to find log entry with \"" << uuid << "\" as the message";
-		testLib->AddTestResult("RobotLib Tests", "Logging Debug Test", FAILED, ss.str());
-		return;
+		}			
 	}
-	catch (std::exception &e)
-	{
-		testLib->AddTestResult("RobotLib Tests", "Logging Debug Test", FAILED, e.what());
-	}
+	testLib->AddTestResult("RobotLib Tests", "Log Trace", FAILED, "Did not find message in log file");
+	inputFile.close();	
 }
 
 void RobotLibTests::loggingTestWarn()
@@ -107,33 +104,30 @@ void RobotLibTests::loggingTestWarn()
 	// Create a random UUID
 	std::string uuid = genUUID();
 	// Log it
-	robotLib->Log(uuid);
-	// A little hacky, but it *SHOULD* have gotten there within 5 seconds.
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	try
+	robotLib->LogWarn(uuid);	
+	std::string sev = "Warning";
+	std::ifstream inputFile;
+	inputFile.open("Robot.log");
+	std::string line;
+	int offset;
+	if (inputFile.is_open())
 	{
-		Poco::Data::Session sess = Database::getDBSession();
-		Poco::Data::Statement stmt(sess);
-		stmt << "SELECT * FROM Log WHERE message=?",
-			Poco::Data::Keywords::use(uuid),
-			Poco::Data::Keywords::range(0, 1);
-		while (!stmt.done())
+		while (!inputFile.eof())
 		{
-			if (stmt.execute() > 0)
+			std::getline(inputFile, line);
+			if ((offset = line.find(uuid, 0)) != std::string::npos)
 			{
-				testLib->AddTestResult("RobotLib Tests", "Logging Warn Test", SUCCESS);
-				return;
+				if ((offset = line.find(sev, 0)) != std::string::npos)
+				{
+					testLib->AddTestResult("RobotLib Tests", "Log Warning", SUCCESS);
+					inputFile.close();
+					return;
+				}
 			}
-		}
-		std::stringstream ss;
-		ss << "Failed to find log entry with \"" << uuid << "\" as the message";
-		testLib->AddTestResult("RobotLib Tests", "Logging Warn Test", FAILED, ss.str());
-		return;
+		}			
 	}
-	catch (std::exception &e)
-	{
-		testLib->AddTestResult("RobotLib Tests", "Logging Warn Test", FAILED, e.what());
-	}
+	testLib->AddTestResult("RobotLib Tests", "Log Warning", FAILED, "Did not find message in log file");
+	inputFile.close();
 }
 
 void RobotLibTests::loggingTestError()
@@ -142,33 +136,30 @@ void RobotLibTests::loggingTestError()
 	// Create a random UUID
 	std::string uuid = genUUID();
 	// Log it
-	robotLib->Log(uuid);
-	// A little hacky, but it *SHOULD* have gotten there within 5 seconds.
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	try
+	robotLib->LogError(uuid);
+	std::string sev = "Critical";
+	std::ifstream inputFile;
+	inputFile.open("Robot.log");
+	std::string line;
+	int offset;
+	if (inputFile.is_open())
 	{
-		Poco::Data::Session sess = Database::getDBSession();
-		Poco::Data::Statement stmt(sess);
-		stmt << "SELECT * FROM Log WHERE message=?",
-			Poco::Data::Keywords::use(uuid),
-			Poco::Data::Keywords::range(0, 1);
-		while (!stmt.done())
+		while (!inputFile.eof())
 		{
-			if (stmt.execute() > 0)
+			std::getline(inputFile, line);
+			if ((offset = line.find(uuid, 0)) != std::string::npos)
 			{
-				testLib->AddTestResult("RobotLib Tests", "Logging Error Test", SUCCESS);
-				return;
+				if ((offset = line.find(sev, 0)) != std::string::npos)
+				{
+					testLib->AddTestResult("RobotLib Tests", "Log Critical", SUCCESS);
+					inputFile.close();
+					return;
+				}
 			}
-		}
-		std::stringstream ss;
-		ss << "Failed to find log entry with \"" << uuid << "\" as the message";
-		testLib->AddTestResult("RobotLib Tests", "Logging Error Test", FAILED, ss.str());
-		return;
+		}			
 	}
-	catch (std::exception &e)
-	{
-		testLib->AddTestResult("RobotLib Tests", "Logging Error Test", FAILED, e.what());
-	}
+	testLib->AddTestResult("RobotLib Tests", "Log Critical", FAILED, "Did not find message in log file");
+	inputFile.close();
 }
 
 void RobotLibTests::loggingTestException()
@@ -176,35 +167,49 @@ void RobotLibTests::loggingTestException()
 	robotLib->setLogLevel(0);
 	// Create a random UUID
 	std::string uuid = genUUID();
-	// Log it
-	robotLib->Log(uuid);
+	struct testException : std::exception
+	{
+	public:
+		std::string val;
+		const char* what() const noexcept
+		{ 
+			return val.c_str();
+		}
+	};
 	
-	// A little hacky, but it *SHOULD* have gotten there within 5 seconds.
-	std::this_thread::sleep_for(std::chrono::seconds(5));
 	try
 	{
-		Poco::Data::Session sess = Database::getDBSession();
-		Poco::Data::Statement stmt(sess);
-		stmt << "SELECT * FROM Log WHERE message=?",
-			Poco::Data::Keywords::use(uuid),
-			Poco::Data::Keywords::range(0, 1);
-		while (!stmt.done())
-		{
-			if (stmt.execute() > 0)
-			{
-				testLib->AddTestResult("RobotLib Tests", "Logging Exception Test", SUCCESS);
-				return;
-			}
-		}
-		std::stringstream ss;
-		ss << "Failed to find log entry with \"" << uuid << "\" as the message";
-		testLib->AddTestResult("RobotLib Tests", "Logging Exception Test", FAILED, ss.str());
-		return;
+		throw testException();
 	}
-	catch (std::exception &e)
+	catch (testException &ex)
 	{
-		testLib->AddTestResult("RobotLib Tests", "Logging Exception Test", FAILED, e.what());
+		ex.val = uuid;
+		robotLib->LogException(ex);
 	}
+	std::string sev = "Exception";
+	std::ifstream inputFile;
+	inputFile.open("Robot.log");
+	std::string line;
+	int offset;
+	if (inputFile.is_open())
+	{
+		while (!inputFile.eof())
+		{
+			std::getline(inputFile, line);
+			if ((offset = line.find(uuid, 0)) != std::string::npos)
+			{
+				if ((offset = line.find(sev, 0)) != std::string::npos)
+				{
+					testLib->AddTestResult("RobotLib Tests", "Log Exception", SUCCESS);
+					inputFile.close();
+					return;
+				}
+			}
+		}			
+	}
+	testLib->AddTestResult("RobotLib Tests", "Log Exception", FAILED, "Did not find message in log file");
+	inputFile.close();
+	
 }
 
 PiRobotTestLib *RobotLibTests::runTests()

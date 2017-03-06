@@ -30,7 +30,7 @@ public:
 	void SetSpeed(int leftMotorSpeecPct, int rightMotorSpeedPct);
 	
 	void AllStop();
-	std::pair <float, float> currentDriveMotorRPM();
+	std::pair <int, int> currentDriveMotorRPM();
 	eTravelDirection currentMotion();
 	
 	

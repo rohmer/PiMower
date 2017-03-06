@@ -83,6 +83,7 @@
     <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="PositionalMath.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="RobotEvents.cpp" />
     <ClCompile Include="RobotLib.cpp" />
     <ClCompile Include="Scheduler.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Point.h" />
     <ClInclude Include="PositionalMath.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="RobotEvents.h" />
     <ClInclude Include="RobotLib.h" />
     <ClInclude Include="RobotStatus.h" />
     <ClInclude Include="Scheduler.h" />

@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+#include <iostream>
 #include "../../RobotLib/RobotLib.h"
 #include "TestCommon.h"
 
@@ -10,5 +12,8 @@ public:
 	~ConfigTests();										
 	
 private:
-	
+	void loadConfig();
+	bool testSetup;
+	RobotLib *robotLib;
+	PiRobotTestLib *testLib;
 };

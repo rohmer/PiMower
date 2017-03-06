@@ -230,6 +230,9 @@
     <ClCompile Include="PositionalMath.cpp">
       <Filter>Source files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="RobotEvents.cpp">
+      <Filter>Source files\Robot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RobotLib.h">
@@ -369,6 +372,9 @@
     </ClInclude>
     <ClInclude Include="Point.h">
       <Filter>Header files\UI\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotEvents.h">
+      <Filter>Header files\Robot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

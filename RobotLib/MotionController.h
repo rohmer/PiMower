@@ -9,6 +9,7 @@
 #include "ObjectProximityDetection.h"
 #include "../RobotController/SensorLib/LS7366R.h"
 #include "FusedMotionSensor.h"
+#include "RobotEvents.h"
 #include "Point.h"
 
 enum eMotionResult

@@ -100,9 +100,9 @@ void MotorController::AllStop()
 		pca9685->pca9685SetPin(a, MOTOR_STOP);
 }
 
-std::pair<float,float> MotorController::currentDriveMotorRPM()
+std::pair<int,int> MotorController::currentDriveMotorRPM()
 {
-	float leftRPM = config->getMaxDriveRPM()*config->getDriveGearRatio()*(leftMotorSpeed / 100);
-	float rightRPM = config->getMaxDriveRPM()*config->getDriveGearRatio()*(rightMotorSpeed / 100);
+	int leftRPM = config->getMaxDriveRPM()*config->getDriveGearRatio()*(leftMotorSpeed / 100);
+	int rightRPM = config->getMaxDriveRPM()*config->getDriveGearRatio()*(rightMotorSpeed / 100);
 	return std::make_pair(leftRPM, rightRPM);
 }

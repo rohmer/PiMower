@@ -20,3 +20,23 @@ std::pair<double, double> PositionalMath::decPointFromPos(sensors_event_t *locat
 		lon *= -1;
 	return std::make_pair(lat, lon);
 }
+
+double PositionalMath::inchesToLat(int inches)
+{
+	return (1 / (364734 * 12))*inches;
+}
+
+double PositionalMath::inchesToLong(int inches)
+{
+	return (1 / (249527 * 12))*inches;
+}
+
+double PositionalMath::latToInches(double lat)
+{
+	return lat*(364734 * 12);
+}
+
+double PositionalMath::longToInches(double lon)
+{
+	return lon*(249527 * 12);
+}

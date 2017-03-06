@@ -43,23 +43,28 @@ void MotionController::initialize()
 	// So, now we find out how far each rotation of the motor translates to
 	// linear travel
 	// which is circumferance*driveRatio
-	distancePerWheelRotation = wheelDiameter * 2 * 3.14159265*driveRatio;
+	distancePerWheelRotation = wheelDiameter * 2 * 3.14159265*driveRatio/config->getEncoderTicksPerRevolution();
 
 }
 
 void MotionController::allStop()
 {
+	std::pair<int, int> prevSpeed = motorController->currentDriveMotorRPM();
 	motorController->AllStop();
+	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
+	RobotEvents::turnOffBladeEvent();
 }
 
 void MotionController::motionStop()
 {
+	std::pair<int,int> prevSpeed=motorController->currentDriveMotorRPM();
 	motorController->SetSpeed(0, 0);
+	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);	
 }
 
 eMotionResult MotionController::rotateToHeading(int heading)
 {
-	motorController->SetSpeed(0, 0);
+	motionStop();
 	Point originalPoint = Point(robotLib->getCurrentXLoc(), robotLib->getCurrentYLoc());
 	
 	int currentHeading = gpsManager->getHeading();
@@ -68,6 +73,7 @@ eMotionResult MotionController::rotateToHeading(int heading)
 		robotLib->LogError("Gyro is unavailable, motion controls disabled");		
 		motorController->AllStop();
 	}
+	RobotEvents::headingChangeEvent(currentHeading, heading);
 	bool clockwise = false;
 	int potentialHeading = currentHeading + 180;	// Clockwise is +. counter -
 	if (potentialHeading > 360)
@@ -140,6 +146,9 @@ eMotionResult MotionController::rotateToHeading(int heading)
 				robotLib->Log(ss.str());
 				motorController->SetSpeed(0, 0);				
 				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));				
+				int currentHeading = gpsManager->getHeading();
+				RobotEvents::headingChangedEvent(currentHeading);
+				RobotEvents::bumperActivatedEvent(eSensorLocation::FRONT);
 				return eMotionResult::BUMPER_FRONT;
 			}
 			else
@@ -148,19 +157,25 @@ eMotionResult MotionController::rotateToHeading(int heading)
 				robotLib->Log(ss.str());
 				motorController->SetSpeed(0, 0);
 				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));								
+				RobotEvents::headingChangedEvent(currentHeading);
+				RobotEvents::bumperActivatedEvent(eSensorLocation::BACK);				
 				return eMotionResult::BUMPER_BACK;
 			}
 		}
 		delay(10);		
 		currentHeading = gpsManager->getHeading();
 	}
+	RobotEvents::headingChangedEvent(currentHeading);				
 	// Stop motors, the next behavior will move us forward or reverse as needed
+	std::pair<int, int> prevSpeed = motorController->currentDriveMotorRPM();
 	motorController->SetSpeed(0, 0);
+	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);	
 	
 	// Store in DB the location info
 	gpsManager->getLocation();
 }
 
+// TODO: Add RobotEvents to the rest of this, also setup SIMULATION mode
 eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward, bool cutting)
 {	
 	// First find the odometer

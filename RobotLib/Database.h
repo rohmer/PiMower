@@ -42,6 +42,7 @@ private:
 	bool createStateTable();
 	bool createMapTable();
 	bool createLogTable();
+	bool createEventTable();
 		
 	bool tableExists(std::string tableName);
 	

@@ -32,6 +32,8 @@ void Database::initDB()
 			createMapTable();
 		if (!tableExists("Log"))
 			createLogTable();
+		if (!tableExists("Events"))
+			createEventTable();
 
 	}
 	catch (std::exception &e)
@@ -70,6 +72,19 @@ bool Database::createLogTable()
 	return execSql(sql);
 }
 
+bool Database::createEventTable()
+{
+	std::string sql = "CREATE TABLE Events("\
+		"timestamp DATETIME NOT NULL, "\
+		"eventType INT NOT NULL, "\
+		"eventValue0 FLOAT,"\
+		"eventValue1 FLOAT,"\
+		"eventValue2 FLOAT,"\
+		"eventValue3 FLOAT,"\
+		"eventValue4 FLOAT,"\
+		"SessionID CHAR(36) PRIMARY KEY NOT NULL)";
+	return execSql(sql);
+}
 bool Database::createMapTable()
 {
 	std::string sql = "CREATE TABLE LawnMap("\

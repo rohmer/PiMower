@@ -10,7 +10,7 @@ Config::Config(RobotLib *robotLib)
 	minimumLoggingLevel = min_log_level_t::Warn;
 #endif
 	Database &db = Database::getInstance();
-	validConfig = getConfig();
+	validConfig = loadConfig();
 	if (errorLEDPin <= 0)
 	{
 		validConfig = false;
@@ -18,6 +18,15 @@ Config::Config(RobotLib *robotLib)
 		return;
 	}
 	pinMode(errorLEDPin, OUTPUT);
+}
+
+bool Config::loadConfig()
+{
+	if (!readConfigDB())
+	{
+		return getConfig(CONFIG_FILE);		
+	}
+	return true;
 }
 
 bool Config::getConfig()
@@ -28,108 +37,92 @@ bool Config::getConfig()
 bool Config::getConfig(std::string cfgFile)
 {
 	bool writeConfig = false;
-	if (!readConfigDB())	
-	{		
-		std::ifstream configFile(cfgFile);
-		if (!configFile.good())
-		{
-			robotLib->LogError("Configuration file does not exist.");
-			writeConfig = true;
-		}
-	
-		rapidxml::xml_document<> doc;
-		std::vector<char> buffer((std::istreambuf_iterator<char>(configFile)), std::istreambuf_iterator<char>());
-		buffer.push_back('\0');
-		doc.parse<0>(&buffer[0]);
-	
-		rapidxml::xml_node<> *rootNode = doc.first_node("PiMowerConfig", 0, false);
-		if (!rootNode)
-		{
-			robotLib->LogError("Configuration file does not have a root node of PiMowerConfig");
-			return false;
-		}
-		rootNode = doc.first_node("PiMowerConfig");
-	
-		std::clog << "0";
-		if (rootNode->first_attribute("ErrorLEDPin", 0, false))
-		{
-			errorLEDPin = atoi(rootNode->first_attribute("ErrorLEDPin", 0, false)->value());
-		}
-		std::clog << "1";
-		if (rootNode->first_attribute("DBLogRetentionHours", 0, false))
-		{
-			messagesToKeepInDB = atoi(rootNode->first_attribute("DBLogRetentionHours", 0, false)->value());
-		}
-		std::clog << "2";
-		// Now go thru and parse each of the sub-nodes
-		rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
-	
-		if (!sensorNode)
-		{
-			robotLib->LogError("Configuration missing Sensor node, which is required");
-			return false;
-		}
-		std::clog << "3";
-		if (!readSensors(sensorNode))
-		{
-			robotLib->Log("Fatal error in sensor node, exiting");
-			return false;
-		}	
-		std::clog << "4";
-		rapidxml::xml_node<> *speedNode = rootNode->first_node("Speed", 0, false);
-		if (!speedNode)
-		{
-			robotLib->LogWarn("Speed Node missing, will recreate");
-			rootNode = createSpeedNode(rootNode, doc);
-			writeConfiguration(rootNode, doc, cfgFile);
-		}
-		std::clog << "5";
-		if (!readSpeed(speedNode))
-		{
-			robotLib->LogError("Fatal error in speed node, exiting");
-			return false;
-		}
-		std::clog << "6";	
-		rapidxml::xml_node<> *encoder = rootNode->first_node("MotorEncoder", 0, false);
-		if (!encoder)
-		{
-			std::clog << "No Encoder Node";
-			robotLib->LogError("Fatal error, MotorEncoder node not set in config, exiting");
-			return false;
-		}
-		std::clog << "7";	
-		if (!readEncoder(encoder))
-		{
-			std::clog << "Error in encoder node";
-			robotLib->Log("Fatal error in MotorEncoder node, exiting");		
-			return false;
-		}
-		std::clog << "8";	
-		rapidxml::xml_node<> *physical = rootNode->first_node("Physical", 0, false);
-		if (!physical)
-		{
-			robotLib->LogError("Fatal error, Physical node not set in config, exiting");			
-		}
-		std::clog << "9";	
-		if (!readPhysical(physical))
-		{
-			robotLib->Log("Fatal error in Physical node, exiting");			
-		}
-		std::clog << "10";	
-		rapidxml::xml_node<> *logNode = rootNode->first_node("Logging", 0, false);
-		if (!logNode)
-		{
-			minimumLoggingLevel = min_log_level_t::Critical;
-			#ifdef DEBUG
-			minimumLoggingLevel = Debug;
-			#endif		
-		}
-		else
-		{
-			readLogLevel(logNode);	
-		}
-		writeConfigDB();
+	std::ifstream configFile(cfgFile);
+	if (!configFile.good())
+	{
+		robotLib->LogError("Configuration file does not exist.");
+		writeConfig = true;
 	}
+	
+	rapidxml::xml_document<> doc;
+	std::vector<char> buffer((std::istreambuf_iterator<char>(configFile)), std::istreambuf_iterator<char>());
+	buffer.push_back('\0');
+	doc.parse<0>(&buffer[0]);
+	
+	rapidxml::xml_node<> *rootNode = doc.first_node("PiMowerConfig", 0, false);
+	if (!rootNode)
+	{
+		robotLib->LogError("Configuration file does not have a root node of PiMowerConfig");
+		return false;
+	}
+	rootNode = doc.first_node("PiMowerConfig");
+			
+	if (rootNode->first_attribute("ErrorLEDPin", 0, false))
+	{
+		errorLEDPin = atoi(rootNode->first_attribute("ErrorLEDPin", 0, false)->value());
+	}
+	if (rootNode->first_attribute("DBLogRetentionHours", 0, false))
+	{
+		messagesToKeepInDB = atoi(rootNode->first_attribute("DBLogRetentionHours", 0, false)->value());
+	}
+	// Now go thru and parse each of the sub-nodes
+	rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
+	
+	if (!sensorNode)
+	{
+		robotLib->LogError("Configuration missing Sensor node, which is required");
+		return false;
+	}
+	if (!readSensors(sensorNode))
+	{
+		robotLib->Log("Fatal error in sensor node, exiting");
+		return false;
+	}			
+	rapidxml::xml_node<> *speedNode = rootNode->first_node("Speed", 0, false);
+	if (!speedNode)
+	{
+		robotLib->LogWarn("Speed Node missing, will recreate");
+		rootNode = createSpeedNode(rootNode, doc);
+		writeConfiguration(rootNode, doc, cfgFile);
+	}
+	if (!readSpeed(speedNode))
+	{
+		robotLib->LogError("Fatal error in speed node, exiting");
+		return false;
+	}
+	rapidxml::xml_node<> *encoder = rootNode->first_node("MotorEncoder", 0, false);
+	if (!encoder)
+	{
+		robotLib->LogError("Fatal error, MotorEncoder node not set in config, exiting");
+		return false;
+	}
+	if (!readEncoder(encoder))
+	{
+		robotLib->Log("Fatal error in MotorEncoder node, exiting");		
+		return false;
+	}
+	rapidxml::xml_node<> *physical = rootNode->first_node("Physical", 0, false);
+	if (!physical)
+	{
+		robotLib->LogError("Fatal error, Physical node not set in config, exiting");			
+	}
+	if (!readPhysical(physical))
+	{
+		robotLib->Log("Fatal error in Physical node, exiting");			
+	}
+	rapidxml::xml_node<> *logNode = rootNode->first_node("Logging", 0, false);
+	if (!logNode)
+	{
+		minimumLoggingLevel = min_log_level_t::Critical;
+		#ifdef DEBUG
+		minimumLoggingLevel = Debug;
+		#endif		
+	}
+	else
+	{
+		readLogLevel(logNode);	
+	}
+	writeConfigDB();
 	return true;
 }
 
@@ -483,15 +476,14 @@ bool Config::readConfigDB()
 		Poco::Data::Keywords::into(osConfig.forwardRPM),
 		Poco::Data::Keywords::into(osConfig.reverseRPM),
 		Poco::Data::Keywords::into(normalAcceleration);
-	Poco::Data::Keywords::into(rotationalAcceleration);
-	Poco::Data::Keywords::into(leftEncoderPin);
-	Poco::Data::Keywords::into(rightEncoderPin);		
-	Poco::Data::Keywords::into(batteryChargePercentage);		
-	Poco::Data::Keywords::into(mapScale);		
-	Poco::Data::Keywords::into(encoderTicksPerRevolution);
-	Poco::Data::Keywords::into(errorLEDPin),
+		Poco::Data::Keywords::into(rotationalAcceleration);
+		Poco::Data::Keywords::into(leftEncoderPin);
+		Poco::Data::Keywords::into(rightEncoderPin);		
+		Poco::Data::Keywords::into(batteryChargePercentage);		
+		Poco::Data::Keywords::into(mapScale);		
+		Poco::Data::Keywords::into(encoderTicksPerRevolution);
+		Poco::Data::Keywords::into(errorLEDPin),
 		Poco::Data::Keywords::range(0, 1);
-		
 		
 	bool readConfig = false;
 	while (!cQuery.done())
@@ -522,23 +514,19 @@ bool Config::readConfigDB()
 			this->normalOperationSpeed = nsConfig;
 			this->objectDetectionSpeed = osConfig;
 		}
-	}
-	
+	}	
 	return readConfig;
 }
 
 void Config::writeConfigDB()
-{
-	std::clog << "Wriing Config DB";
+{	
 	Poco::Data::Session session("SQLite", DB_LOCATION);		
-	
 	// First clear tables
-	session << "DELETE * FROM sensors", Poco::Data::Keywords::now;	
+	session << "DELETE FROM sensors", Poco::Data::Keywords::now;	
 	
-	session << "DELETE * FROM config", Poco::Data::Keywords::now;
-	
+	session << "DELETE FROM config", Poco::Data::Keywords::now;
+	std::clog << "Writing Sensors";
 	// Add the sensors
-	std::clog << "Wriing Sesors";
 	for (int a = 0; a < bumperSensors.size(); a++)
 	{
 		Poco::Data::Statement stmt(session);
@@ -567,7 +555,7 @@ void Config::writeConfigDB()
 		if (stmt.execute() != 1)
 			robotLib->LogError("Error inserting proximity sensor into database");				
 	}
-	
+	std::clog << "Writing Config";
 	std::stringstream ss;
 	int intLogLevel;
 	switch (minimumLoggingLevel)
@@ -585,7 +573,6 @@ void Config::writeConfigDB()
 		intLogLevel = 3;
 		break;
 	}		
-	std::clog << "Wriing Config Values";
 	Poco::Data::Statement stmt(session);
 	stmt << "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 		Poco::Data::Keywords::bind(intLogLevel),
@@ -612,6 +599,7 @@ void Config::writeConfigDB()
 	Poco::Data::Keywords::bind(encoderTicksPerRevolution),
 	Poco::Data::Keywords::bind(errorLEDPin);
 	stmt.execute();
+	std::clog << "Done DB";
 }
 
 rapidxml::xml_node<> *Config::createSpeedNode(rapidxml::xml_node<> *rootNode, rapidxml::xml_document<> &doc)
