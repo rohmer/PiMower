@@ -12,7 +12,7 @@ AR := C:/SysGCC/raspberry/bin/arm-linux-gnueabihf-ar.exe
 OBJCOPY := C:/SysGCC/raspberry/bin/arm-linux-gnueabihf-objcopy.exe
 
 #Additional flags
-PREPROCESSOR_MACROS := DEBUG __GNUC__
+PREPROCESSOR_MACROS := DEBUG
 INCLUDE_DIRS := ../.. ../3rdParty/OpenCV/include ../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/include ../3rdParty/wiringPi/wiringPi ../../../../../../SysGCC/raspberry/arm-linux-gnueabihf/sysroot/usr/local/include
 LIBRARY_DIRS := 
 LIBRARY_NAMES := uuid pthread PocoDataSQLite raspicam raspicam_cv opencv_imgcodecs opencv_imgproc opencv_core PocoFoundation

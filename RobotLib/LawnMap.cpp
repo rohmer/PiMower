@@ -173,7 +173,7 @@ MapNode* LawnMap::getNode(int x, int y)
 
 MapNode *LawnMap::loadMapNode(std::pair<int, int> coord)
 {
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	int x, y, b, contents;
 	double lat, lon;
@@ -203,7 +203,7 @@ MapNode *LawnMap::loadMapNode(std::pair<int, int> coord)
 
 void LawnMap::storeMapNode(MapNode *mapNode)
 {
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	double lat = mapNode->getLocation().first;
 	double lon = mapNode->getLocation().second;
@@ -295,7 +295,7 @@ bool LawnMap::loadMap()
 		delete(it->second);
 	}
 	mapContents.clear();
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	int x, y, b;
 	double lat, lon;

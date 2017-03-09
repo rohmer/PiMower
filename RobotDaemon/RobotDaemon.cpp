@@ -20,7 +20,13 @@ void RobotDaemon::defineOptions(Poco::Util::OptionSet &options)
 		Poco::Util::Option("help", "h", "Display help information on command line arguments")
 		.required(false)
 		.repeatable(false)
-		.callback(Poco::Util::OptionCallback<RobotDaemon>(this, &RobotDaemon::handleHelp));
+		.callback(Poco::Util::OptionCallback<RobotDaemon>(this, &RobotDaemon::handleHelp)));
+	options.addOption(
+		Poco::Util::Option("sim", "s", "Run simulation against a map file")
+			.required(false)
+			.repeatable(false)
+			.argument("file", true)
+			.callback(Poco::Util::OptionCallback<RobotDaemon>(this, &RobotDaemon::handleSim)));
 }
 
 void RobotDaemon::handleHelp(const std::string& name, const std::string& value)
@@ -37,4 +43,17 @@ void RobotDaemon::displayHelp()
 	helpFormatter.setUsage("RobotDaemon");
 	helpFormatter.setHeader("RobotDaemon application help options");
 	helpFormatter.format(std::cout);
+}
+
+void RobotDaemon::handleSim(const std::string &name, const std::string &value)
+{
+}
+
+void RobotDaemon::uninitialize()
+{
+}
+
+int RobotDaemon::main(const Poco::Util::Application::ArgVec &args)
+{
+	return 0;
 }

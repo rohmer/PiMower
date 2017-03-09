@@ -12,7 +12,7 @@ void Scheduler::setDOWTime(eDOW dayOfWeek,
 	uint8_t minuteStop,
 	uint8_t mowingSessions)
 {
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	
 	
@@ -30,14 +30,14 @@ void Scheduler::setDOWTime(eDOW dayOfWeek,
 
 void Scheduler::clearSchedule()
 {
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	
 	session << "DELETE from Schedule";		
 }
 
 void Scheduler::clearSchedule(eDOW dayOfWeek)
 {
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	
 	
@@ -52,7 +52,7 @@ bool Scheduler::legalMowingTime(uint8_t numberOfSessionsComplete)
 {
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	
 	

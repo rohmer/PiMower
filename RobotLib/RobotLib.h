@@ -108,6 +108,8 @@ public:
 		simulator = value;
 		lat = 0;
 		lon = 0;
+		locX = 0; 
+		locY = 0;
 		heading = 0;		
 	}
 	
@@ -127,6 +129,22 @@ public:
 	double getSimulatedHeading()
 	{
 		return heading;
+	}
+	
+	double getSimulatedPosX()
+	{
+		return locX;
+	}
+	
+	double getSimulatedPosY()
+	{
+		return locY;
+	}
+	
+	void setSimulatedPosition(double x, double y)
+	{
+		locX = x;
+		locY = y;
 	}
 	
 private:	
@@ -160,6 +178,7 @@ private:
 	// Info for simulator
 	double lat, lon;
 	double heading;
+	double locX, locY;
 	
 public:
 	RobotLib(RobotLib const&)		= delete;

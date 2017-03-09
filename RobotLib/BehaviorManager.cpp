@@ -63,7 +63,8 @@ void BehaviorManager::stateChange(states_t newState)
 	int mon = now->tm_mon + 1;
 	int day = now->tm_mday + 1;
 	timeStr << year << "-" << mon << "-" << day << " " << now->tm_hour << ":" << now->tm_min << ":" << now->tm_sec;
-	Poco::Data::Session session("SQLite", DB_LOCATION);
+	
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	std::stringstream gStr;
 	gStr << robotLib->getSessionID();

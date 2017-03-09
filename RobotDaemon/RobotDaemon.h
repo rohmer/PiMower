@@ -27,6 +27,7 @@ protected:
 	void handleHelp(const std::string& name, const std::string& value);
 	void displayHelp();
 	int main(const Poco::Util::Application::ArgVec &args);
+	void handleSim(const std::string &name, const std::string &value);
 	
 private:
 	RobotLib* robotLib;

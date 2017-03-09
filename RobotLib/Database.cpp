@@ -1,10 +1,11 @@
 #include "Database.h"
 std::mutex Database::dbMutex;
 Poco::Data::SessionPool *Database::sessionPool;
+bool Database::init;
 
 Database::Database()
 {
-	initDB();
+
 }
 
 Poco::Data::Session Database::getDBSession()
@@ -14,11 +15,18 @@ Poco::Data::Session Database::getDBSession()
 
 void Database::initDB()
 {
+	std::string _dbConnString = "host=" MYSQL_HOST
+	";user=" MYSQL_USER
+	";password=" MYSQL_PWD
+	";db=" MYSQL_DB
+	";compress=true"
+	";auto-reconnect=true"
+	";secure-auth=true";
 	try
-	{
-		Poco::Data::SQLite::Connector::registerConnector();		
-		sessionPool = new Poco::Data::SessionPool("SQLite", DB_LOCATION);
-		Poco::Data::Session  dbSession("SQLite", DB_LOCATION);
+	{		
+		Poco::Data::MySQL::Connector::registerConnector();
+		sessionPool = new Poco::Data::SessionPool(Poco::Data::MySQL::Connector::KEY, _dbConnString);
+		
 		// Check for all our tables
 		if (!tableExists("Position"))
 			createPositionTable();
@@ -47,34 +55,48 @@ void Database::initDB()
 
 bool Database::tableExists(std::string tableName)
 {
+	std::clog << "Getting session";		
 	Poco::Data::Session dbSession = getDBSession();
 	Poco::Data::Statement select(dbSession);
 	std::string name;
-	select << "SELECT name FROM sqlite_master WHERE name=? and type='table'", 
-		Poco::Data::Keywords::bind(tableName),
-		Poco::Data::Keywords::into(name);
-	while (!select.done())
-	{		
-		select.execute();
-		if (name == tableName)
-			return true;
+	try
+	{
+		select << "SHOW TABLES LIKE '?'", 
+			Poco::Data::Keywords::bind(tableName),
+			Poco::Data::Keywords::into(name);
+		std::clog << "Selecting";
+		
+		while (!select.done())
+		{		
+			select.execute();
+			if (name == tableName)
+			{
+				std::clog << "Found";		
+				return true;
+			}
+		}
+		std::clog << "Not found";
+	}
+	catch (Poco::Data::MySQL::StatementException &e)		
+	{
+		std::clog << e.displayText();
 	}
 	return false;
 }
 
 bool Database::createLogTable()
 {
-	std::string sql = "CREATE TABLE Log("\
+	std::string sql = "CREATE TABLE Log ("\
 		"timestamp DATETIME NOT NULL, "\
 		"severity INT NOT NULL, "\
 		"message TEXT, "\
 		"sessionID CHAR(36))";
-	return execSql(sql);
+	return  Database::execSql(sql);
 }
 
 bool Database::createEventTable()
 {
-	std::string sql = "CREATE TABLE Events("\
+	std::string sql = "CREATE TABLE Events ("\
 		"timestamp DATETIME NOT NULL, "\
 		"eventType INT NOT NULL, "\
 		"eventValue0 FLOAT,"\
@@ -83,44 +105,44 @@ bool Database::createEventTable()
 		"eventValue3 FLOAT,"\
 		"eventValue4 FLOAT,"\
 		"SessionID CHAR(36) PRIMARY KEY NOT NULL)";
-	return execSql(sql);
+	return Database::execSql(sql);
 }
 bool Database::createMapTable()
 {
-	std::string sql = "CREATE TABLE LawnMap("\
+	std::string sql = "CREATE TABLE LawnMap ("\
 		"X INT NOT NULL, "\
 		"Y INT NOT NULL, "\
 		"Latitude FLOAT, "\
 		"Longitude FLOAT, " \
 		"Blocking BOOLEAN, " \
 		"Contents INT)";
-	return execSql(sql);
+	return Database::execSql(sql);
 }
 
 bool Database::createStateTable()
 {
-	std::string sql = "CREATE TABLE State("\
+	std::string sql = "CREATE TABLE State ("\
 		"sessionID CHAR(36) PRIMARY KEY NOT NULL,"\
 		"State INT,"\
 		"Timestamp DATETIME)";
-	return execSql(sql);
+	return Database::execSql(sql);
 }
 
 bool Database::createScheduleTable()
 {
-	std::string sql = "CREATE TABLE Schedule("\
+	std::string sql = "CREATE TABLE Schedule ("\
 		"DayOfWeek INT," \
 		"StartHour INT," \
 		"StartMinute INT," \
 		"EndHour INT, "\
 		"EndMinute INT, " \
 		"MowingSessions INT)";
-	return execSql(sql);
+	return Database::execSql(sql);
 }
 
 bool Database::createConfigTable()
 {
-	std::string sql = "CREATE TABLE Config(" \
+	std::string sql = "CREATE TABLE Config (" \
 		"LogLevel INT," \
 		"DriveWheelDiameter REAL, "\
 		"DriveGearRatio REAL, " \
@@ -145,27 +167,29 @@ bool Database::createConfigTable()
 		"EncoderTicksPerRevolution INT," \
 		"ErrorLEDPin INT)";
 		
-	if (!execSql(sql))
+	if (!Database::execSql(sql))
 		return false;
 	
-	sql = "CREATE TABLE Sensors(" \
+	sql = "CREATE TABLE Sensors (" \
 		"SensorType INT, " \
 		"TriggerPin INT, " \
 		"EchoPin INT, " \
 		"Location CHAR(5), " \
 		"Name CHAR(32))";
-	return execSql(sql);	
+	return Database::execSql(sql);	
 }
 
 bool Database::createPositionTable()
 {
-	std::string sql = "CREATE TABLE Position("	\
+	std::clog << "Creating Position Table";
+		
+	std::string sql = "CREATE TABLE Position ("	\
 		"sessionID CHAR(36) PRIMARY KEY NOT NULL," \
-		"timestamp INTEGER NOT NULL," \
-		"LAT_Degrees REAL," \
-		"LAT_Minutes REAL," \
-		"LONG_Degrees REAL," \
-		"LONG_Minutes REAL," \
+		"posTime INT NOT NULL," \
+		"LAT_Degrees DOUBLE," \
+		"LAT_Minutes DOUBLE," \
+		"LONG_Degrees DOUBLE," \
+		"LONG_Minutes DOUBLE," \
 		"LAT_Cardinal CHAR(1)," \
 		"LONG_Cardinal CHAR(1),"  \
 		"Altitude REAL," \
@@ -173,7 +197,7 @@ bool Database::createPositionTable()
 		"Speed_KPH REAL, " \
 		"Course REAL, " \
 		"MAGVariation REAL," \
-		"HDOP, " \
+		"HDOP REAL, " \
 		"FixQuality INT, " \
 		"Satellites INT, " \
 		"Fix BOOLEAN, " \
@@ -183,13 +207,12 @@ bool Database::createPositionTable()
 		"AccelX REAL, " \
 		"AccelY REAL, "\
 		"AccelZ REAL)";			
-	return execSql(sql);		
+	return Database::execSql(sql);		
 }
 
 bool Database::execSql(std::string sqlStmt)
 {
 	{		
-		std::unique_lock<std::mutex> lock(this->dbMutex);
 		try
 		{
 			Poco::Data::Session session = getDBSession();

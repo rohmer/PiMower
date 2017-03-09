@@ -1,11 +1,9 @@
 #include "RobotLib.h"
 Guid RobotLib::sessionGuid;
 
-//TODO: This needs to be a singleton
-
 RobotLib::RobotLib()
 {		
-	Poco::Data::SQLite::Connector::registerConnector();
+	//Database::initDB();
 	config = getConfig();	
 	initLog();
 	emulator = checkEmulator();
@@ -113,7 +111,7 @@ void RobotLib::logDB(std::string message, int severity)
 {		
 	std::clog << "Sev: " << severity << " Message: " << message;
 	//if (severity <= minLogLevel)
-	//	return;
+//		return;
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
 	std::stringstream timeStr;
@@ -125,12 +123,12 @@ void RobotLib::logDB(std::string message, int severity)
 	ss << getSessionID();
 	std::string sessionID = ss.str();
 	Poco::Data::Session dbSession = Database::getDBSession(); 
-	Poco::Data::Statement stmt = (dbSession << "INSERT INTO Log VALUES(?,?,?,?)",
+	Poco::Data::Statement stmt = (dbSession << "INSERT LOW_PRIORITY INTO Log (timestamp,message,severity,sessionID) VALUES(?,?,?,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
 		Poco::Data::Keywords::bind(message),
 		Poco::Data::Keywords::bind(severity),
 		Poco::Data::Keywords::bind(sessionID));
-	stmt.executeAsync(false);
+	stmt.execute();
 	
 	clearCounter++;
 	if (clearCounter > 100)
@@ -138,7 +136,7 @@ void RobotLib::logDB(std::string message, int severity)
 		std::stringstream ss;
 		Poco::Data::Statement clear(dbSession);
 		int clearNum = config->getMessagedDBRetention();
-		clear << "DELETE FROM Log WHERE timestamp <= date('now','-" << clearNum << " minutes')";					
+		clear << "DELETE FROM Log WHERE timestamp <= date_sub(curdate(), interval " << clearNum << " minute);";
 		clearCounter = 0;
 		clear.executeAsync();
 	}
@@ -148,17 +146,20 @@ void RobotLib::logDB(std::string message, int severity)
 void RobotLib::Log(std::string message)
 {
 	Poco::Logger::get("RobotLib").trace(message);			
+	logDB(message, 0);
 }
 
 void RobotLib::LogWarn(std::string message)
 {
 	Poco::Logger::get("RobotLib").warning(message);	
+	logDB(message, 1);
 }
 
 void RobotLib::LogError(std::string message)
 {
 	std::clog << "Error Message: " <<message;
 	Poco::Logger::get("RobotLib").critical(message);			
+	logDB(message, 2);
 }
 
 void RobotLib::LogException(std::exception &e)
@@ -166,6 +167,7 @@ void RobotLib::LogException(std::exception &e)
 	std::stringstream ss;
 	ss << "Exception caught: " << e.what() << std::endl;
 	Poco::Logger::get("RobotLib").fatal(ss.str());	
+	logDB(ss.str(), 3);
 }
 
 bool RobotLib::checkEmulator()

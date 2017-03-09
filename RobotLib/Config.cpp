@@ -386,11 +386,12 @@ void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 bool Config::readConfigDB()
 {
 	// First get sensors	
-	Poco::Data::Session session("SQLite", DB_LOCATION);	
+	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
-	int sensorType,gpioPin,echoPin;
-	std::string loc,name;	
-	stmt << "SELECT * FROM sensors",
+	int sensorType, gpioPin, echoPin;
+	std::string loc, name;	
+	std::clog << "\n\nSelecting Sensors\n";
+	stmt << "SELECT * FROM Sensors",
 		Poco::Data::Keywords::range(0, 1),
 		Poco::Data::Keywords::into(sensorType),
 		Poco::Data::Keywords::into(gpioPin),
@@ -399,83 +400,94 @@ bool Config::readConfigDB()
 		Poco::Data::Keywords::into(name);
 	bumperSensors.clear();
 	std::vector<sProximitySensors> pSensors;
-	while (!stmt.done())
+	try
+	{	
+		while (!stmt.done())
+		{
+			stmt.execute();
+			if (sensorType == 0)
+			{
+				// Bumper
+				sBumperSensor bSensor;
+				bSensor.gpioPin = gpioPin;
+				std::transform(loc.begin(), loc.end(), loc.begin(),::toupper);
+				if (loc == "FRONT")
+				{
+					bSensor.location = eSensorLocation::FRONT;
+				}
+				if (loc == "BACK")
+				{
+					bSensor.location = eSensorLocation::BACK;
+				}
+				if (loc == "LEFT")
+				{
+					bSensor.location = eSensorLocation::LEFT;
+				}
+				if (loc == "RIGHT")
+				{
+					bSensor.location = eSensorLocation::RIGHT;
+				}
+				bumperSensors.push_back(bSensor);
+			}
+			else
+			if (sensorType == 1)
+			{
+				//Proximity
+				sProximitySensors pSensor; 
+				pSensor.triggerPin = gpioPin;
+				pSensor.echoPin = echoPin;
+				std::transform(loc.begin(), loc.end(), loc.begin(), ::toupper);
+				if (loc == "FRONT")
+				{
+					pSensor.location = eSensorLocation::FRONT;
+				}
+				if (loc == "BACK")
+				{
+					pSensor.location = eSensorLocation::BACK;
+				}
+				if (loc == "LEFT")
+				{
+					pSensor.location = eSensorLocation::LEFT;
+				}
+				if (loc == "RIGHT")
+				{
+					pSensor.location = eSensorLocation::RIGHT;
+				}
+				pSensor.name = name;
+				pSensors.push_back(pSensor);
+			}
+		}
+	}
+	catch (Poco::Data::MySQL::StatementException &e)
 	{
-		stmt.execute();
-		if (sensorType == 0)
-		{
-			// Bumper
-			sBumperSensor bSensor;
-			bSensor.gpioPin = gpioPin;
-			std::transform(loc.begin(), loc.end(), loc.begin(), ::toupper);
-			if (loc == "FRONT")
-			{
-				bSensor.location = eSensorLocation::FRONT;
-			}
-			if (loc == "BACK")
-			{
-				bSensor.location = eSensorLocation::BACK;
-			}
-			if (loc == "LEFT")
-			{
-				bSensor.location = eSensorLocation::LEFT;
-			}
-			if (loc == "RIGHT")
-			{
-				bSensor.location = eSensorLocation::RIGHT;
-			}
-			bumperSensors.push_back(bSensor);
-		}
-		else
-		if (sensorType == 1)
-		{
-			//Proximity
-			sProximitySensors pSensor; 
-			pSensor.triggerPin = gpioPin;
-			pSensor.echoPin = echoPin;
-			std::transform(loc.begin(), loc.end(), loc.begin(),::toupper);
-			if (loc == "FRONT")
-			{
-				pSensor.location = eSensorLocation::FRONT;
-			}
-			if (loc == "BACK")
-			{
-				pSensor.location = eSensorLocation::BACK;
-			}
-			if (loc == "LEFT")
-			{
-				pSensor.location = eSensorLocation::LEFT;
-			}
-			if (loc == "RIGHT")
-			{
-				pSensor.location = eSensorLocation::RIGHT;
-			}
-			pSensor.name = name;
-			pSensors.push_back(pSensor);
-		}
+		std::clog << e.displayText();
 	}
 	Poco::Data::Statement cQuery(session);
 	int ll;
 	sPWMController pwmController;
 	sArduinoHost aHost;
 	sSpeedConfig nsConfig, osConfig;
-	cQuery << "SELECT * FROM config",
-		Poco::Data::Keywords::into(ll),
-		Poco::Data::Keywords::into(driveWheelDiameter),
-		Poco::Data::Keywords::into(driveGearRatio),
-		Poco::Data::Keywords::into(driveMotorMaxRPM),
-		Poco::Data::Keywords::into(pwmController.i2cChannel),
-		Poco::Data::Keywords::into(pwmController.leftDriveChannel),
-		Poco::Data::Keywords::into(pwmController.rightDriveChannel),
-		Poco::Data::Keywords::into(pwmController.bladeChannel),
-		Poco::Data::Keywords::into(aHost.i2caddr),		
-		Poco::Data::Keywords::into(aHost.proximityTollerance),
-		Poco::Data::Keywords::into(nsConfig.forwardRPM),
-		Poco::Data::Keywords::into(nsConfig.reverseRPM),
-		Poco::Data::Keywords::into(nsConfig.rotationRPM),
-		Poco::Data::Keywords::into(osConfig.forwardRPM),
-		Poco::Data::Keywords::into(osConfig.reverseRPM),
-		Poco::Data::Keywords::into(normalAcceleration);
+	std::clog << "\n\nSelecting Config\n";
+	bool readConfig = false;
+	try
+	{	
+		cQuery << "SELECT * FROM Config",
+			Poco::Data::Keywords::into(ll),
+			Poco::Data::Keywords::into(driveWheelDiameter),
+			Poco::Data::Keywords::into(driveGearRatio),
+			Poco::Data::Keywords::into(driveMotorMaxRPM),
+			Poco::Data::Keywords::into(pwmController.i2cChannel),
+			Poco::Data::Keywords::into(pwmController.leftDriveChannel),
+			Poco::Data::Keywords::into(pwmController.rightDriveChannel),
+			Poco::Data::Keywords::into(pwmController.bladeChannel),
+			Poco::Data::Keywords::into(aHost.i2caddr),		
+			Poco::Data::Keywords::into(aHost.proximityTollerance),
+			Poco::Data::Keywords::into(nsConfig.forwardRPM),
+			Poco::Data::Keywords::into(nsConfig.reverseRPM),
+			Poco::Data::Keywords::into(nsConfig.rotationRPM),
+			Poco::Data::Keywords::into(osConfig.forwardRPM),
+			Poco::Data::Keywords::into(osConfig.reverseRPM),
+			Poco::Data::Keywords::into(normalAcceleration);
 		Poco::Data::Keywords::into(rotationalAcceleration);
 		Poco::Data::Keywords::into(leftEncoderPin);
 		Poco::Data::Keywords::into(rightEncoderPin);		
@@ -484,48 +496,53 @@ bool Config::readConfigDB()
 		Poco::Data::Keywords::into(encoderTicksPerRevolution);
 		Poco::Data::Keywords::into(errorLEDPin),
 		Poco::Data::Keywords::range(0, 1);
-		
-	bool readConfig = false;
-	while (!cQuery.done())
-	{		
-		if (cQuery.execute() > 0)
-		{			
-			readConfig = true;
-			if (ll == 0)			
-				minimumLoggingLevel = min_log_level_t::Debug;
-			else
-			if (ll == 1)
-				minimumLoggingLevel = min_log_level_t::Warn;
-			else
-			if (ll == 2)
-				minimumLoggingLevel = min_log_level_t::Critical;
-			else
-			if (ll == 3)
-				minimumLoggingLevel = min_log_level_t::Exception;
-			else
-			{
-				std::stringstream ss;
-				ss << "Unknown logging level: " << ll << ", defaulting to Critical";
-				robotLib->Log(ss.str());
-				minimumLoggingLevel = min_log_level_t::Critical;
+						
+		while (!cQuery.done())
+		{		
+			if (cQuery.execute() > 0)
+			{			
+				readConfig = true;
+				if (ll == 0)			
+					minimumLoggingLevel = min_log_level_t::Debug;
+				else
+				if (ll == 1)
+					minimumLoggingLevel = min_log_level_t::Warn;
+				else
+				if (ll == 2)
+					minimumLoggingLevel = min_log_level_t::Critical;
+				else
+				if (ll == 3)
+					minimumLoggingLevel = min_log_level_t::Exception;
+				else
+				{
+					std::stringstream ss;
+					ss << "Unknown logging level: " << ll << ", defaulting to Critical";
+					robotLib->Log(ss.str());
+					minimumLoggingLevel = min_log_level_t::Critical;
+				}
+				this->pwmController = pwmController;
+				this->arduinoHost = aHost;
+				this->normalOperationSpeed = nsConfig;
+				this->objectDetectionSpeed = osConfig;
 			}
-			this->pwmController = pwmController;
-			this->arduinoHost = aHost;
-			this->normalOperationSpeed = nsConfig;
-			this->objectDetectionSpeed = osConfig;
 		}
-	}	
+	}
+	catch (Poco::Data::MySQL::StatementException &e)
+	{
+		std::clog << e.displayText();
+	}
+	
+	std::clog << "Done with config";
 	return readConfig;
 }
 
 void Config::writeConfigDB()
 {	
-	Poco::Data::Session session("SQLite", DB_LOCATION);		
+	Poco::Data::Session session = Database::getDBSession();
 	// First clear tables
-	session << "DELETE FROM sensors", Poco::Data::Keywords::now;	
+	session << "DELETE FROM Sensors", Poco::Data::Keywords::now;	
 	
-	session << "DELETE FROM config", Poco::Data::Keywords::now;
-	std::clog << "Writing Sensors";
+	session << "DELETE FROM Config", Poco::Data::Keywords::now;	
 	// Add the sensors
 	for (int a = 0; a < bumperSensors.size(); a++)
 	{
@@ -533,7 +550,7 @@ void Config::writeConfigDB()
 		int triggerPin = bumperSensors[a].gpioPin;
 		int location = bumperSensors[a].location;
 		
-		stmt << "INSERT INTO sensors VALUES(0,?,0,?,?)",
+		stmt << "INSERT INTO Sensors VALUES(0,?,0,?,?)",
 			Poco::Data::Keywords::bind(triggerPin),
 			Poco::Data::Keywords::bind(location),
 			Poco::Data::Keywords::bind("");
@@ -547,7 +564,7 @@ void Config::writeConfigDB()
 		int echoPin = arduinoHost.proximitySensors[a].echoPin;
 		int location = arduinoHost.proximitySensors[a].location;
 		std::string name = arduinoHost.proximitySensors[a].name;
-		stmt << "INSERT INTO sensors VALUES(1,?,?,?,?)",
+		stmt << "INSERT INTO Sensors VALUES(1,?,?,?,?)",
 			Poco::Data::Keywords::bind(triggerPin),
 			Poco::Data::Keywords::bind(echoPin),
 			Poco::Data::Keywords::bind(location),
