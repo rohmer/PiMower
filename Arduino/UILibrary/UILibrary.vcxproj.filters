@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{6cebd795-b76d-4e2e-a5e8-955ace26e1a6}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{c619c564-eba1-436b-a268-e8a418654f0e}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{00beeac2-cfc8-4d97-9d03-cc7736b78591}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{92051b66-42ec-43a3-b3f9-7139cd354bcc}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Source files\Device-specific files">
+      <UniqueIdentifier>{f4a80de2-14e0-4d96-8592-499a6c3ca5a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Device-specific files">
+      <UniqueIdentifier>{3277349b-fced-4145-978f-e55edff599fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\UI">
+      <UniqueIdentifier>{23c111f3-de3a-4eef-897c-709dc6a31526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\UI">
+      <UniqueIdentifier>{d4e963a6-9d51-4428-99e9-4e27a2338b9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LEDBlink.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source files\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UILibrary-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="UILibrary-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="avr.props">
+      <Filter>Source files\Device-specific files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="avr.xml">
+      <Filter>VisualGDB settings</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UIMenu.h">
+      <Filter>Header files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Header files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header files\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
