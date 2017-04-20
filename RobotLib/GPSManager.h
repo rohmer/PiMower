@@ -15,7 +15,7 @@ class GPSManager
 		~GPSManager();
 		sensors_event_t* getLocation();
 		int getHeading();
-	
+
 	private:
 		void gpsThread();
 		static void startManagerThread(GPSManager *gpsMgr);
@@ -26,11 +26,11 @@ class GPSManager
 		LSM303_Accelerometer *lsmAccel;
 		std::thread gpsManagerThread;
 		Database *database;
-		uint8_t pollingInt, pollingAvg;	
+		uint8_t pollingInt, pollingAvg;
 		std::vector <sensors_gps_t> locationInfo;
 		DeviceBase* gpsDevice;
 		bool initialized = false;
 		bool shutdown = false;
-		bool magnetometerActive = false;	
+		bool magnetometerActive = false;
 		bool accelerometerActive = false;
 };

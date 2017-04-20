@@ -4,7 +4,6 @@
 
 class MowerState
 {
-	
 	private:
 		int bladeRPM;
 		int odometerLeft, odometerRight;
@@ -12,8 +11,8 @@ class MowerState
 		int distanceTraveled;
 		float currentBattery;
 		float heading;
-		
+
 		MOWER_PATTERN_T currentMowPattern;
 		MOWER_STATE_T currentMowerState;
-		LawnMap *map;		
+		LawnMap *map;
 };

@@ -19,7 +19,7 @@ class RobotDaemon : public Poco::Util::ServerApplication
 public:
 	RobotDaemon();
 	~RobotDaemon();
-	
+
 protected:
 	void initialize(Poco::Util::Application &self);
 	void uninitialize();
@@ -28,7 +28,7 @@ protected:
 	void displayHelp();
 	int main(const Poco::Util::Application::ArgVec &args);
 	void handleSim(const std::string &name, const std::string &value);
-	
+
 private:
 	RobotLib* robotLib;
 	min_log_level_t minLogLevel;
@@ -37,4 +37,3 @@ private:
 };
 
 POCO_SERVER_MAIN(RobotDaemon)
-

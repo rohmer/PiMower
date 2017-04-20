@@ -14,25 +14,25 @@
 class RobotLib;
 
 class ParserBase
-{	
-	public:
-		ParserBase(RobotLib *robotLib)
-		{
-			this->robotLib = robotLib;
-			event = new sensors_gps_t();
-		}
-		virtual sensors_gps_t *Parse(std::vector<std::string> tokens)
-		{			
-		}
-		virtual std::string getName()
-		{
-		}
-		~ParserBase()
-		{						
-		}
-	
-	protected:
-		std::vector<std::string> tokens;		
-		RobotLib *robotLib;	
-		sensors_gps_t *event;
+{
+public:
+	ParserBase(RobotLib *robotLib)
+	{
+		this->robotLib = robotLib;
+		event = new sensors_gps_t();
+	}
+	virtual sensors_gps_t *Parse(std::vector<std::string> tokens)
+	{
+	}
+	virtual std::string getName()
+	{
+	}
+	~ParserBase()
+	{
+	}
+
+protected:
+	std::vector<std::string> tokens;
+	RobotLib *robotLib;
+	sensors_gps_t *event;
 };

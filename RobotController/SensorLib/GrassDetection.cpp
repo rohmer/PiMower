@@ -1,14 +1,14 @@
 #include "GrassDetection.h"
 
-GrassDetection::GrassDetection(RobotLib *robotLib) :
-	SensorBase(robotLib)
-	
-{	
+GrassDetection::GrassDetection(RobotLib *robotLib)
+	: SensorBase(robotLib)
+
+{
 	initialized = init();
 }
 
 // Loads the current dictionary, generates any dictionary if needed
-// Also gets the image sensor 
+// Also gets the image sensor
 bool GrassDetection::init()
 {
 	getThreshold();
@@ -33,11 +33,11 @@ std::vector<std::string> GrassDetection::getImageFiles(std::string directory)
 			if (idx != std::string::npos)
 			{
 				std::string ext = fname.substr(idx + 1);
-				std::transform(ext.begin(), ext.end(), ext.begin(),::tolower);
+				std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
 				for (int i = 0; i < graphicFileTypes.size(); i++)
 				{
 					if (graphicFileTypes[i] == ext)
-					{						
+					{
 						files.push_back(fname);
 						i = graphicFileTypes.size() + 1;
 					}
@@ -50,17 +50,17 @@ std::vector<std::string> GrassDetection::getImageFiles(std::string directory)
 
 bool GrassDetection::needRetraining(std::vector<std::string> availableFiles)
 {
-	// First we load the trainedFiles.xml	
+	// First we load the trainedFiles.xml
 	std::ifstream trainingFile(TRAINING_FILE);
 	if (!trainingFile.good())
 	{
 		robotLib->Log("Training file does not exist, regenerating");
 		return true;
 	}
-	
+
 	rapidxml::xml_document<> doc;
 	rapidxml::xml_node<> *rootNode;
-	
+
 	std::vector<char> buffer((std::istreambuf_iterator<char>(trainingFile)), std::istreambuf_iterator<char>());
 	buffer.push_back('\0');
 	doc.parse<0>(&buffer[0]);
@@ -74,14 +74,13 @@ bool GrassDetection::needRetraining(std::vector<std::string> availableFiles)
 	if (!fileNode)
 	{
 		robotLib->Log("Training file does not have File node(s)");
-		return true;		
+		return true;
 	}
 	if (rootNode->first_attribute("GrassTheshold"))
 		grassThreshold = atof(rootNode->first_attribute("GrassThreshold")->value());
 	else
 		grassThreshold = 0.01f;
-	
-	
+
 	for (rapidxml::xml_node<> *fn = rootNode->first_node("File"); fn; fn = rootNode->next_sibling())
 	{
 		if (fn->first_attribute("Name"))
@@ -132,14 +131,14 @@ void GrassDetection::writeTrainedFiles(std::vector<std::string> filesTrained)
 void GrassDetection::getThreshold()
 {
 	std::vector<std::string> trainingFiles = getImageFiles(TRAINING_DIR);
-	if (!needRetraining(trainingFiles) && grassThreshold!=0)
+	if (!needRetraining(trainingFiles) && grassThreshold != 0)
 	{
 		robotLib->Log("Training unnecessary");
 		return;
 	}
 	cv::Mat input;
-	std::vector<cv::KeyPoint> keypoints;	
-	cv::Mat descriptor,featuresUnclustered;
+	std::vector<cv::KeyPoint> keypoints;
+	cv::Mat descriptor, featuresUnclustered;
 	float lowestPct = 1;
 	for (int a = 0; a < trainingFiles.size(); a++)
 	{
@@ -154,7 +153,7 @@ void GrassDetection::getThreshold()
 		cv::inRange(input, cv::Scalar(44, 90, 30), cv::Scalar(76, 255, 255), HSV);
 		int num = cv::countNonZero(HSV);
 		int total = HSV.rows*HSV.cols;
-		double pct = static_cast<double>(num) / static_cast<double>(total);	
+		double pct = static_cast<double>(num) / static_cast<double>(total);
 		if (pct < lowestPct)
 			lowestPct = pct;
 	}
@@ -165,16 +164,16 @@ void GrassDetection::getThreshold()
 bool GrassDetection::getEvent(sensors_event_t *event)
 {
 	if (!initialized)
-	{		
+	{
 		init();
 		if (!initialized)
 		{
 			robotLib->LogError("Cannot initialize GrassDetection");
 			return false;
-		}			
+		}
 	}
 	//memset(event, 0, sizeof(sensors_event_t));
-	
+
 	if (!camera.isOpened())
 	{
 		if (!camera.open())
@@ -183,7 +182,7 @@ bool GrassDetection::getEvent(sensors_event_t *event)
 			return false;
 		}
 	}
-	
+
 	// Capture an image
 	cv::Mat image;
 	camera.grab();
@@ -194,7 +193,7 @@ bool GrassDetection::getEvent(sensors_event_t *event)
 	cv::inRange(image, cv::Scalar(44, 90, 30), cv::Scalar(76, 255, 255), HSV);
 	int num = cv::countNonZero(HSV);
 	int total = HSV.rows*HSV.cols;
-	double pct = static_cast<double>(num) / static_cast<double>(total);	
+	double pct = static_cast<double>(num) / static_cast<double>(total);
 	if (pct > grassThreshold)
 	{
 		event->objectDetection.objectDetected = true;

@@ -3,13 +3,13 @@
 ParserGPVTG::ParserGPVTG(RobotLib *robotLib)
 	: ParserBase(robotLib)
 {
-	robotLib->Log("ParserGPVTG Initalized");	
+	robotLib->Log("ParserGPVTG Initalized");
 }
 
 sensors_gps_t *ParserGPVTG::Parse(std::vector<std::string> tokens)
 {
 	//memset(event, 0, sizeof(sensors_gps_t));
-	
+
 	event->messageType.push_back(nmea_msg_t::NMEA_GPGGA);
 	for (int a = 1; a < tokens.size(); a++)
 	{
@@ -23,9 +23,9 @@ sensors_gps_t *ParserGPVTG::Parse(std::vector<std::string> tokens)
 			event->speedKTS = nmea_dec_parse(tokens[a]);
 		case NMEA_GPVTG_GROUND_SPEED_KPH:
 			event->speedKPH = nmea_dec_parse(tokens[a]);
-			break;		
+			break;
 		}
 	}
-	
+
 	return event;
 }

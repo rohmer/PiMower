@@ -9,11 +9,11 @@ INA219::INA219(RobotLib *robotLib)
 		initialized = true;
 		return;
 	}
-	
+
 	i2cfd = -1;
 	i2cfd = DeviceManager::getI2CFD(0x40);
 	if (i2cfd < 0)
-	{		
+	{
 		initialized = false;
 		return;
 	}
@@ -29,11 +29,11 @@ INA219::INA219(RobotLib *robotLib, uint8_t i2cAddress)
 		initialized = true;
 		return;
 	}
-	
+
 	i2cfd = -1;
 	i2cfd = DeviceManager::getI2CFD(i2cAddress);
 	if (i2cfd < 0)
-	{		
+	{
 		initialized = false;
 		return;
 	}
@@ -41,7 +41,7 @@ INA219::INA219(RobotLib *robotLib, uint8_t i2cAddress)
 }
 
 bool INA219::setCalibration_32V_2A()
-{	
+{
 	ina219_calValue = 4096;
 	ina219_currentDivider_mA = 10;  // Current LSB = 100uA per bit (1000/100 = 10)
 	ina219_powerDivider_mW = 2;     // Power LSB = 1mW per bit (2/1)
@@ -58,10 +58,10 @@ bool INA219::setCalibration_32V_2A()
 }
 
 bool INA219::setCalibration_32V_1A()
-{	
+{
 	ina219_calValue = 10240;
-	ina219_currentDivider_mA = 25;  
-	ina219_powerDivider_mW = 1;  
+	ina219_currentDivider_mA = 25;
+	ina219_powerDivider_mW = 1;
 	if (wiringPiI2CWriteReg16(i2cfd, INA219_REG_CALIBRATION, ina219_calValue) < 0)
 		return false;
 	uint16_t config = INA219_CONFIG_BVOLTAGERANGE_32V |
@@ -75,10 +75,10 @@ bool INA219::setCalibration_32V_1A()
 }
 
 bool INA219::setCalibration_16V_400mA()
-{	
+{
 	ina219_calValue = 8192;
-	ina219_currentDivider_mA = 20;  
-	ina219_powerDivider_mW = 1;  
+	ina219_currentDivider_mA = 20;
+	ina219_powerDivider_mW = 1;
 	if (wiringPiI2CWriteReg16(i2cfd, INA219_REG_CALIBRATION, ina219_calValue) < 0)
 		return false;
 	uint16_t config = INA219_CONFIG_BVOLTAGERANGE_32V |
@@ -91,7 +91,7 @@ bool INA219::setCalibration_16V_400mA()
 	return true;
 }
 
-std::string INA219::getDeviceName() 
+std::string INA219::getDeviceName()
 {
 	return "INA219";
 }
@@ -101,7 +101,7 @@ sensors_type_t INA219::getSensorType()
 	return sensors_type_t::SENSOR_TYPE_CURRENT;
 }
 
-std::string INA219::getDeviceDescription() 
+std::string INA219::getDeviceDescription()
 {
 	return "INA219 i2c current sensor";
 }
@@ -110,7 +110,7 @@ device_status_t INA219::getDeviceStatus(RobotLib *robotLib)
 {
 	return device_status_t::DEVICE_UNKNOWN;
 }
-	
+
 int16_t INA219::getBusVoltage_raw()
 {
 	uint16_t value = wiringPiI2CReadReg16(i2cfd, INA219_REG_BUSVOLTAGE);
@@ -149,13 +149,13 @@ float INA219::getCurrent_mA()
 	return valueDec;
 }
 
-bool INA219::getEvent(sensors_event_t *event) 
+bool INA219::getEvent(sensors_event_t *event)
 {
 	if (!event)
 	{
-		event = new sensors_event_t();		
+		event = new sensors_event_t();
 	}
-	
+
 	if (!initialized)
 		return false;
 	event->voltage = getBusVoltage_V();

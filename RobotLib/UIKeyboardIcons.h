@@ -60,7 +60,7 @@ unsigned char shift_icon[] = {
 };
 
 unsigned char spacebar_icon[] =
-{ 
+{
 	0xff,
 	0xff,
 	0xff,
@@ -118,7 +118,7 @@ unsigned char spacebar_icon[] =
 };
 
 unsigned char symbol_icon[] =
-{	
+{
 	0xff, 0x07, 0xf0
 , 0xfc, 0x01, 0xf0
 , 0xf8, 0xf0, 0xf0

@@ -33,21 +33,20 @@ class ScreenManager
 			lastTouched = -1;
 			return itemId;
 		}
-	
-	private:	
+
+	private:
 		DigoleLCD *lcd;
 		std::map<int, UIElement *> staticElements;
 		std::map<int, UIElement *> interactiveElements;
-		
+
 		std::vector<UIElement *> elementsToUpdate;
 		RobotLib *robotLib;
-	
+
 		std::thread screenManagerThread;
 		bool shutdown;
 		int elementIDCounter = 0;
-	
+
 		int msleep(unsigned long milisec);
 		void screenDriver();
 		int lastTouched = -1;
 };
-

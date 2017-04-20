@@ -8,11 +8,11 @@
 
 class ParserGPGLL : public ParserBase
 {
-	public:
-		ParserGPGLL(RobotLib *robotLib);
-		sensors_gps_t *Parse(std::vector<std::string> tokens);	
-		std::string getName()
-		{ 
-			return "GPGLL";
-		}
+public:
+	ParserGPGLL(RobotLib *robotLib);
+	sensors_gps_t *Parse(std::vector<std::string> tokens);
+	std::string getName()
+	{
+		return "GPGLL";
+	}
 };

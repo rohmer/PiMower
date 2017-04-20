@@ -1,6 +1,6 @@
 #pragma once
 
-class UIFont 
+class UIFont
 {
 	public:
 		enum eFontName
@@ -14,7 +14,7 @@ class UIFont
 			u8g_font_unifont,
 			defaultFont
 		};
-	
+
 		static int getFontNum(eFontName font);
 		static int getFontWidth(eFontName font);
 		static int getFontHeight(eFontName font);

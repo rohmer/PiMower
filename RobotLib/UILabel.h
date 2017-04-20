@@ -13,11 +13,10 @@ public:
 	{
 		return -1;
 	}
-	
+
 protected:
 	void setArea() override;
-	
-	
+
 private:
 	std::string labelText;
 	UIFont::eFontName labelFont;

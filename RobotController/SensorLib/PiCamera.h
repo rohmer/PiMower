@@ -41,9 +41,9 @@ public:
 	{
 		return "Grass Sensor using PiCamera";
 	}
-	
+
 	bool isGrass();
-	
+
 private:
 	double grassThreshold;
 	bool init();
@@ -52,7 +52,7 @@ private:
 	std::vector<std::string> getImageFiles(std::string directory);
 	bool needRetraining(std::vector<std::string> availableFiles);
 	void writeTrainedFiles(std::vector<std::string> filesTrained);
-	raspicam::RaspiCam_Cv camera;		
+	raspicam::RaspiCam_Cv camera;
 };
 
 #endif

@@ -9,9 +9,9 @@ class ParserGPVTG : public ParserBase
 {
 public:
 	ParserGPVTG(RobotLib *robotLib);
-	sensors_gps_t *Parse(std::vector<std::string> tokens);	
+	sensors_gps_t *Parse(std::vector<std::string> tokens);
 	std::string getName()
-	{ 
+	{
 		return "GPVTG";
 	}
 };

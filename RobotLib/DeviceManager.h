@@ -15,8 +15,8 @@ class DeviceEntry;
 
 // Handles the management and detection of connected devices
 class DeviceManager
-{		
-	public:		
+{
+	public:
 		DeviceManager(RobotLib &robotLib);
 		~DeviceManager();
 		std::vector<DeviceEntry*> getByType(device_type_t deviceType);
@@ -26,12 +26,11 @@ class DeviceManager
 		static uint8_t getSerialFD(std::string dev, int baud);
 		static uint8_t getSPIFD(uint8_t dev, int speed);
 		DeviceBase *addDevice(DeviceBase* device);
-		
+
 	private:
-		std::vector<DeviceEntry*> devices;	
+		std::vector<DeviceEntry*> devices;
 		RobotLib *robotLib;
 		void initialize();
 		static std::map <std::string,uint8_t> serialfd;
 		static std::map<uint8_t, uint8_t> i2cfd, spifd;
-
 };

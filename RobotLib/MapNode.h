@@ -5,7 +5,7 @@
 class MapNode
 {
 public:
-	MapNode(std::pair<int, int> coord, map_node_t nodeContent, std::pair<double, double> location);	
+	MapNode(std::pair<int, int> coord, map_node_t nodeContent, std::pair<double, double> location);
 	std::pair<int, int> getGridCoord();
 	map_node_t blockContents();
 	bool isBlocking();

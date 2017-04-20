@@ -30,51 +30,49 @@
 
 #include "max31855.h"
 
-static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
+static int myAnalogRead(struct wiringPiNodeStruct *node, int pin)
 {
-  uint32_t spiData ;
-  int temp ;
-  int chan = pin - node->pinBase ;
+	uint32_t spiData;
+	int temp;
+	int chan = pin - node->pinBase;
 
-  wiringPiSPIDataRW (node->fd, (unsigned char *)&spiData, 4) ;
+	wiringPiSPIDataRW(node->fd, (unsigned char *)&spiData, 4);
 
-  spiData = __bswap_32(spiData) ;
+	spiData = __bswap_32(spiData);
 
-  switch (chan)
-  {
-    case 0:				// Existing read - return raw value * 4
-      spiData >>= 18 ;
-      temp = spiData & 0x1FFF ;		// Bottom 13 bits
-      if ((spiData & 0x2000) != 0)	// Negative
-        temp = -temp ;
+	switch (chan)
+	{
+	case 0:				// Existing read - return raw value * 4
+		spiData >>= 18;
+		temp = spiData & 0x1FFF;		// Bottom 13 bits
+		if ((spiData & 0x2000) != 0)	// Negative
+			temp = -temp;
 
-      return temp ;
+		return temp ;
 
-    case 1:				// Return error bits
-      return spiData & 0x7 ;
+	case 1:				// Return error bits
+		return spiData & 0x7 ;
 
-    case 2:				// Return temp in C * 10
-      spiData >>= 18 ;
-      temp = spiData & 0x1FFF ;		// Bottom 13 bits
-      if ((spiData & 0x2000) != 0)	// Negative
-        temp = -temp ;
+	case 2:				// Return temp in C * 10
+		spiData >>= 18;
+		temp = spiData & 0x1FFF;		// Bottom 13 bits
+		if ((spiData & 0x2000) != 0)	// Negative
+			temp = -temp;
 
-      return (int)((((double)temp * 25) + 0.5) / 10.0) ;
+		return (int)((((double)temp * 25) + 0.5) / 10.0) ;
 
-    case 3:				// Return temp in F * 10
-      spiData >>= 18 ;
-      temp = spiData & 0x1FFF ;		// Bottom 13 bits
-      if ((spiData & 0x2000) != 0)	// Negative
-        temp = -temp ;
+	case 3:				// Return temp in F * 10
+		spiData >>= 18;
+		temp = spiData & 0x1FFF;		// Bottom 13 bits
+		if ((spiData & 0x2000) != 0)	// Negative
+			temp = -temp;
 
-      return (int)((((((double)temp * 0.25 * 9.0 / 5.0) + 32.0) * 100.0) + 0.5) / 10.0) ;
+		return (int)((((((double)temp * 0.25 * 9.0 / 5.0) + 32.0) * 100.0) + 0.5) / 10.0) ;
 
-    default:				// Who knows...
-      return 0 ;
-
-  }
+	default:				// Who knows...
+		return 0 ;
+	}
 }
-
 
 /*
  * max31855Setup:
@@ -83,17 +81,17 @@ static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
  *********************************************************************************
  */
 
-int max31855Setup (const int pinBase, int spiChannel)
+int max31855Setup(const int pinBase, int spiChannel)
 {
-  struct wiringPiNodeStruct *node ;
+	struct wiringPiNodeStruct *node ;
 
-  if (wiringPiSPISetup (spiChannel, 5000000) < 0)	// 5MHz - prob 4 on the Pi
-    return FALSE ;
+	if (wiringPiSPISetup(spiChannel, 5000000) < 0)	// 5MHz - prob 4 on the Pi
+		return FALSE ;
 
-  node = wiringPiNewNode (pinBase, 4) ;
+	node = wiringPiNewNode(pinBase, 4);
 
-  node->fd         = spiChannel ;
-  node->analogRead = myAnalogRead ;
+	node->fd         = spiChannel;
+	node->analogRead = myAnalogRead;
 
-  return TRUE ;
+	return TRUE ;
 }

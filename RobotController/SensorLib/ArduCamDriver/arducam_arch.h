@@ -21,7 +21,6 @@ uint8_t arducam_spi_read(uint8_t address, int SPI_CS);
 void arducam_spi_transfer(uint8_t data);
 void arducam_spi_transfers(uint8_t *buf, uint32_t size);
 
-
 // Delay execution for delay milliseconds
 void arducam_delay_ms(uint32_t delay);
 

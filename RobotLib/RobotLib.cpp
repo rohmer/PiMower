@@ -2,16 +2,16 @@
 Guid RobotLib::sessionGuid;
 
 RobotLib::RobotLib()
-{		
+{
 	//Database::initDB();
-	config = getConfig();	
+	config = getConfig();
 	initLog();
 	emulator = checkEmulator();
 	if (emulator)
 	{
 		Log("Running on QEMU emulator");
 	}
-	deviceManager = new DeviceManager(*this);	
+	deviceManager = new DeviceManager(*this);
 	mapObject = new LawnMap(this);
 	// Set error pin and clear it
 	pinMode(config->getErrorStatusPin(), OUTPUT);
@@ -35,27 +35,27 @@ Config *RobotLib::getConfig()
 }
 
 RobotLib::~RobotLib()
-{	
+{
 }
 
 void RobotLib::initLog()
-{	
-	Poco::Logger& logger = Poco::Logger::get("RobotLib");			
+{
+	Poco::Logger& logger = Poco::Logger::get("RobotLib");
 	switch (config->getLogLevel())
 	{
-		case min_log_level_t::Debug:
-			logger.setLevel("trace");
-			break;
-		case min_log_level_t::Warn:
+	case min_log_level_t::Debug:
+		logger.setLevel("trace");
+		break;
+	case min_log_level_t::Warn:
 		logger.setLevel("warning");
 		break;
-		case min_log_level_t::Critical:
+	case min_log_level_t::Critical:
 		logger.setLevel("critical");
 		break;
-		case min_log_level_t::Exception:
+	case min_log_level_t::Exception:
 		logger.setLevel("fatal");
-			
-			break;		
+
+		break;
 	}
 	Poco::AutoPtr<Poco::SplitterChannel> pSplitter(new Poco::SplitterChannel);
 	Poco::AutoPtr<Poco::FileChannel> pChannel(new Poco::FileChannel);
@@ -65,27 +65,27 @@ void RobotLib::initLog()
 	Poco::AutoPtr<Poco::FormattingChannel> pFC(new Poco::FormattingChannel(pf, pChannel));
 	pChannel->setProperty("path", "Robot.log");
 	pChannel->setProperty("rotation", "20 M");
-	pChannel->setProperty("archive", "timestamp");	
+	pChannel->setProperty("archive", "timestamp");
 	pChannel->setProperty("purgeCount", "1");
 	pSplitter->addChannel(pFC);
-	pSplitter->addChannel(cChannel);	
-	logger.setChannel(pSplitter);	
-	
+	pSplitter->addChannel(cChannel);
+	logger.setChannel(pSplitter);
+
 #ifdef DEBUG
-	logger.setLevel("trace");			
-#endif	
+	logger.setLevel("trace");
+#endif
 }
 
 void RobotLib::setLogLevel(int logLevel)
-{	
+{
 	if (logLevel == 0)
-	{		
+	{
 		Poco::Logger::get("RobotLib").setLevel("trace");
 		minLogLevel = logLevel;
 		return;
 	}
 	if (logLevel == 1)
-	{		
+	{
 		Poco::Logger::get("RobotLib").setLevel("warning");
 		minLogLevel = logLevel;
 		return;
@@ -108,7 +108,7 @@ void RobotLib::setLogLevel(int logLevel)
 }
 
 void RobotLib::logDB(std::string message, int severity)
-{		
+{
 	std::clog << "Sev: " << severity << " Message: " << message;
 	//if (severity <= minLogLevel)
 //		return;
@@ -122,17 +122,17 @@ void RobotLib::logDB(std::string message, int severity)
 	std::stringstream ss;
 	ss << getSessionID();
 	std::string sessionID = ss.str();
-	Poco::Data::Session dbSession = Database::getDBSession(); 
+	Poco::Data::Session dbSession = Database::getDBSession();
 	Poco::Data::Statement stmt = (dbSession << "INSERT LOW_PRIORITY INTO Log (timestamp,message,severity,sessionID) VALUES(?,?,?,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
 		Poco::Data::Keywords::bind(message),
 		Poco::Data::Keywords::bind(severity),
 		Poco::Data::Keywords::bind(sessionID));
 	stmt.execute();
-	
+
 	clearCounter++;
 	if (clearCounter > 100)
-	{		
+	{
 		std::stringstream ss;
 		Poco::Data::Statement clear(dbSession);
 		int clearNum = config->getMessagedDBRetention();
@@ -142,23 +142,22 @@ void RobotLib::logDB(std::string message, int severity)
 	}
 }
 
-
 void RobotLib::Log(std::string message)
 {
-	Poco::Logger::get("RobotLib").trace(message);			
+	Poco::Logger::get("RobotLib").trace(message);
 	logDB(message, 0);
 }
 
 void RobotLib::LogWarn(std::string message)
 {
-	Poco::Logger::get("RobotLib").warning(message);	
+	Poco::Logger::get("RobotLib").warning(message);
 	logDB(message, 1);
 }
 
 void RobotLib::LogError(std::string message)
 {
-	std::clog << "Error Message: " <<message;
-	Poco::Logger::get("RobotLib").critical(message);			
+	std::clog << "Error Message: " << message;
+	Poco::Logger::get("RobotLib").critical(message);
 	logDB(message, 2);
 }
 
@@ -166,7 +165,7 @@ void RobotLib::LogException(std::exception &e)
 {
 	std::stringstream ss;
 	ss << "Exception caught: " << e.what() << std::endl;
-	Poco::Logger::get("RobotLib").fatal(ss.str());	
+	Poco::Logger::get("RobotLib").fatal(ss.str());
 	logDB(ss.str(), 3);
 }
 
@@ -179,7 +178,7 @@ bool RobotLib::checkEmulator()
 		LogError("Could not open /proc/cpuinfo");
 		return false;
 	}
-	
+
 	while (fgets(line, 120, cpufd) != NULL)
 		if (strncmp(line, "Hardware", 8) == 0)
 			break ;
@@ -190,7 +189,7 @@ bool RobotLib::checkEmulator()
 		fclose(cpufd);
 		return false;
 	}
-	
+
 	if (strstr(line, "BCM2709") != NULL)	// Pi v2 - no point doing anything more at this point
 	{
 		fclose(cpufd);
@@ -231,5 +230,5 @@ MotorController *RobotLib::getMotorController()
 void RobotLib::setSessionID()
 {
 	GuidGenerator guidGen;
-	this->sessionGuid=guidGen.newGuid();
+	this->sessionGuid = guidGen.newGuid();
 }

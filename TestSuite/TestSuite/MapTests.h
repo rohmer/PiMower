@@ -8,7 +8,7 @@ public:
 	MapTests(RobotLib *robotLib, PiRobotTestLib *testLib);
 	PiRobotTestLib *runTests();
 	~MapTests();
-	
+
 private:
 	void loadYardMap();
 	void initMapTest();
@@ -17,4 +17,3 @@ private:
 	RobotLib *robotLib;
 	PiRobotTestLib *testLib;
 };
-

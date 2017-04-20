@@ -2,7 +2,7 @@
 #include "../3rdParty/wiringPi/wiringPi/wiringPi.h"
 
 Config::Config(RobotLib *robotLib)
-{	
+{
 	this->robotLib = robotLib;
 #ifdef DEBUG
 	minimumLoggingLevel = min_log_level_t::Debug;
@@ -24,13 +24,13 @@ bool Config::loadConfig()
 {
 	if (!readConfigDB())
 	{
-		return getConfig(CONFIG_FILE);		
+		return getConfig(CONFIG_FILE);
 	}
 	return true;
 }
 
 bool Config::getConfig()
-{	
+{
 	return getConfig(CONFIG_FILE);
 }
 
@@ -43,12 +43,12 @@ bool Config::getConfig(std::string cfgFile)
 		robotLib->LogError("Configuration file does not exist.");
 		writeConfig = true;
 	}
-	
+
 	rapidxml::xml_document<> doc;
 	std::vector<char> buffer((std::istreambuf_iterator<char>(configFile)), std::istreambuf_iterator<char>());
 	buffer.push_back('\0');
 	doc.parse<0>(&buffer[0]);
-	
+
 	rapidxml::xml_node<> *rootNode = doc.first_node("PiMowerConfig", 0, false);
 	if (!rootNode)
 	{
@@ -56,7 +56,7 @@ bool Config::getConfig(std::string cfgFile)
 		return false;
 	}
 	rootNode = doc.first_node("PiMowerConfig");
-			
+
 	if (rootNode->first_attribute("ErrorLEDPin", 0, false))
 	{
 		errorLEDPin = atoi(rootNode->first_attribute("ErrorLEDPin", 0, false)->value());
@@ -67,7 +67,7 @@ bool Config::getConfig(std::string cfgFile)
 	}
 	// Now go thru and parse each of the sub-nodes
 	rapidxml::xml_node<> *sensorNode = rootNode->first_node("Sensors", 0, false);
-	
+
 	if (!sensorNode)
 	{
 		robotLib->LogError("Configuration missing Sensor node, which is required");
@@ -77,7 +77,7 @@ bool Config::getConfig(std::string cfgFile)
 	{
 		robotLib->Log("Fatal error in sensor node, exiting");
 		return false;
-	}			
+	}
 	rapidxml::xml_node<> *speedNode = rootNode->first_node("Speed", 0, false);
 	if (!speedNode)
 	{
@@ -98,29 +98,29 @@ bool Config::getConfig(std::string cfgFile)
 	}
 	if (!readEncoder(encoder))
 	{
-		robotLib->Log("Fatal error in MotorEncoder node, exiting");		
+		robotLib->Log("Fatal error in MotorEncoder node, exiting");
 		return false;
 	}
 	rapidxml::xml_node<> *physical = rootNode->first_node("Physical", 0, false);
 	if (!physical)
 	{
-		robotLib->LogError("Fatal error, Physical node not set in config, exiting");			
+		robotLib->LogError("Fatal error, Physical node not set in config, exiting");
 	}
 	if (!readPhysical(physical))
 	{
-		robotLib->Log("Fatal error in Physical node, exiting");			
+		robotLib->Log("Fatal error in Physical node, exiting");
 	}
 	rapidxml::xml_node<> *logNode = rootNode->first_node("Logging", 0, false);
 	if (!logNode)
 	{
 		minimumLoggingLevel = min_log_level_t::Critical;
-		#ifdef DEBUG
+#ifdef DEBUG
 		minimumLoggingLevel = Debug;
-		#endif		
+#endif
 	}
 	else
 	{
-		readLogLevel(logNode);	
+		readLogLevel(logNode);
 	}
 	writeConfigDB();
 	return true;
@@ -154,7 +154,7 @@ bool Config::readPhysical(rapidxml::xml_node<> *physicalNode)
 	{
 		robotLib->LogError("Physical node missing required DriveMotorMaxRPM setting");
 		return false;
-	}		
+	}
 	if (physicalNode->first_attribute("BatteryChargePercentage", 0, false))
 	{
 		batteryChargePercentage = std::atof(physicalNode->first_attribute("BatteryChargePercentage", 0, false)->value());
@@ -168,20 +168,20 @@ bool Config::readPhysical(rapidxml::xml_node<> *physicalNode)
 	{
 		mapScale = std::atoi(physicalNode->first_attribute("MapScale", 0, false)->value());
 	}
-	
+
 	return true;
 }
 
 bool Config::readEncoder(rapidxml::xml_node<> *encoderNode)
 {
 	leftEncoderPin = -1;
-	rightEncoderPin = -1;	
+	rightEncoderPin = -1;
 	if (encoderNode->first_attribute("leftPin", 0, false))
 	{
 		leftEncoderPin = std::atoi(encoderNode->first_attribute("leftPin", 0, false)->value());
 	}
 	else
-	{		
+	{
 		robotLib->LogError("MotorEncoder missing required leftPin setting");
 		return false;
 	}
@@ -204,7 +204,7 @@ bool Config::readEncoder(rapidxml::xml_node<> *encoderNode)
 		robotLib->LogError("rightPin has an invalid value, must be 0<x<=52");
 		return false;
 	}
-	
+
 	if (encoderNode->first_attribute("TicksPerRevolution", 0, false))
 	{
 		encoderTicksPerRevolution = std::atoi(encoderNode->first_attribute("TicksPerRevolution", 0, false)->value());
@@ -214,7 +214,7 @@ bool Config::readEncoder(rapidxml::xml_node<> *encoderNode)
 		robotLib->LogError("MotorEncoder missing required TicksPerRevolution setting");
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -223,7 +223,7 @@ void Config::readLogLevel(rapidxml::xml_node<> *logNode)
 	if (logNode->first_attribute("Level", 0, false))
 	{
 		std::string levStr = logNode->first_attribute("Level", 0, false)->value();
-		std::transform(levStr.begin(), levStr.end(), levStr.begin(),::toupper);				
+		std::transform(levStr.begin(), levStr.end(), levStr.begin(), ::toupper);
 		if (levStr == "DEBUG")
 			minimumLoggingLevel = Debug;
 		else
@@ -240,7 +240,7 @@ void Config::readLogLevel(rapidxml::xml_node<> *logNode)
 			std::stringstream ss;
 			ss << "Unknown logging level set in Logging: " << logNode->first_attribute("Level", 0, false)->value() << ".  Defaulting to WARN";
 			robotLib->LogWarn(ss.str());
-			minimumLoggingLevel = Warn;			
+			minimumLoggingLevel = Warn;
 		}
 	}
 	else
@@ -248,10 +248,10 @@ void Config::readLogLevel(rapidxml::xml_node<> *logNode)
 		minimumLoggingLevel = min_log_level_t::Critical;
 #ifdef DEBUG
 		minimumLoggingLevel = Debug;
-#endif	
+#endif
 		std::stringstream ss;
 		ss << "Unknown logging level unset in Logging Defaulting to " << std::to_string(minimumLoggingLevel);
-		robotLib->LogWarn(ss.str());				
+		robotLib->LogWarn(ss.str());
 	}
 }
 
@@ -289,7 +289,7 @@ bool Config::readSpeed(rapidxml::xml_node<> *speedNode)
 			return false;
 		}
 		normalOperationSpeed = sConfig;
-	}	
+	}
 	else
 	{
 		robotLib->LogError("Speed Node missing required NormalOperation node");
@@ -333,14 +333,14 @@ bool Config::readSpeed(rapidxml::xml_node<> *speedNode)
 		robotLib->LogError("Speed Node missing required NormalOperation node");
 		return false;
 	}
-	
+
 	// Now Acceleration
 	if (speedNode->first_node("Acceleration", 0, false))
 	{
 		rapidxml::xml_node<> *acc = speedNode->first_node("Acceleration", 0, false);
 		if (acc->first_attribute("Normal", 0, false))
 		{
-			normalAcceleration = std::atoi(acc->first_attribute("Normal", 0, false)->value());		
+			normalAcceleration = std::atoi(acc->first_attribute("Normal", 0, false)->value());
 		}
 		else
 		{
@@ -349,7 +349,7 @@ bool Config::readSpeed(rapidxml::xml_node<> *speedNode)
 		}
 		if (acc->first_attribute("Rotational", 0, false))
 		{
-			rotationalAcceleration = std::atoi(acc->first_attribute("Rotational", 0, false)->value());		
+			rotationalAcceleration = std::atoi(acc->first_attribute("Rotational", 0, false)->value());
 		}
 		else
 		{
@@ -366,12 +366,12 @@ bool Config::readSpeed(rapidxml::xml_node<> *speedNode)
 	return true;
 }
 
-void Config::writeConfiguration(rapidxml::xml_node<> *rootNode, 
+void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 	rapidxml::xml_document<> &doc,
 	std::string cfgFile)
 {
 	std::string xmlString;
-	
+
 	rapidxml::print(std::back_inserter(xmlString), doc);
 	std::ofstream fs(cfgFile);
 	if (!fs)
@@ -380,16 +380,16 @@ void Config::writeConfiguration(rapidxml::xml_node<> *rootNode,
 		return;
 	}
 	fs << xmlString;
-	fs.close();	
+	fs.close();
 }
 
 bool Config::readConfigDB()
 {
-	// First get sensors	
+	// First get sensors
 	Poco::Data::Session session = Database::getDBSession();
 	Poco::Data::Statement stmt(session);
 	int sensorType, gpioPin, echoPin;
-	std::string loc, name;	
+	std::string loc, name;
 	std::clog << "\n\nSelecting Sensors\n";
 	stmt << "SELECT * FROM Sensors",
 		Poco::Data::Keywords::range(0, 1),
@@ -401,7 +401,7 @@ bool Config::readConfigDB()
 	bumperSensors.clear();
 	std::vector<sProximitySensors> pSensors;
 	try
-	{	
+	{
 		while (!stmt.done())
 		{
 			stmt.execute();
@@ -410,7 +410,7 @@ bool Config::readConfigDB()
 				// Bumper
 				sBumperSensor bSensor;
 				bSensor.gpioPin = gpioPin;
-				std::transform(loc.begin(), loc.end(), loc.begin(),::toupper);
+				std::transform(loc.begin(), loc.end(), loc.begin(), ::toupper);
 				if (loc == "FRONT")
 				{
 					bSensor.location = eSensorLocation::FRONT;
@@ -433,10 +433,10 @@ bool Config::readConfigDB()
 			if (sensorType == 1)
 			{
 				//Proximity
-				sProximitySensors pSensor; 
+				sProximitySensors pSensor;
 				pSensor.triggerPin = gpioPin;
 				pSensor.echoPin = echoPin;
-				std::transform(loc.begin(), loc.end(), loc.begin(), ::toupper);
+				std::transform(loc.begin(), loc.end(), loc.begin(),::toupper);
 				if (loc == "FRONT")
 				{
 					pSensor.location = eSensorLocation::FRONT;
@@ -470,7 +470,7 @@ bool Config::readConfigDB()
 	std::clog << "\n\nSelecting Config\n";
 	bool readConfig = false;
 	try
-	{	
+	{
 		cQuery << "SELECT * FROM Config",
 			Poco::Data::Keywords::into(ll),
 			Poco::Data::Keywords::into(driveWheelDiameter),
@@ -480,7 +480,7 @@ bool Config::readConfigDB()
 			Poco::Data::Keywords::into(pwmController.leftDriveChannel),
 			Poco::Data::Keywords::into(pwmController.rightDriveChannel),
 			Poco::Data::Keywords::into(pwmController.bladeChannel),
-			Poco::Data::Keywords::into(aHost.i2caddr),		
+			Poco::Data::Keywords::into(aHost.i2caddr),
 			Poco::Data::Keywords::into(aHost.proximityTollerance),
 			Poco::Data::Keywords::into(nsConfig.forwardRPM),
 			Poco::Data::Keywords::into(nsConfig.reverseRPM),
@@ -490,19 +490,19 @@ bool Config::readConfigDB()
 			Poco::Data::Keywords::into(normalAcceleration);
 		Poco::Data::Keywords::into(rotationalAcceleration);
 		Poco::Data::Keywords::into(leftEncoderPin);
-		Poco::Data::Keywords::into(rightEncoderPin);		
-		Poco::Data::Keywords::into(batteryChargePercentage);		
-		Poco::Data::Keywords::into(mapScale);		
+		Poco::Data::Keywords::into(rightEncoderPin);
+		Poco::Data::Keywords::into(batteryChargePercentage);
+		Poco::Data::Keywords::into(mapScale);
 		Poco::Data::Keywords::into(encoderTicksPerRevolution);
 		Poco::Data::Keywords::into(errorLEDPin),
 		Poco::Data::Keywords::range(0, 1);
-						
+
 		while (!cQuery.done())
-		{		
+		{
 			if (cQuery.execute() > 0)
-			{			
+			{
 				readConfig = true;
-				if (ll == 0)			
+				if (ll == 0)
 					minimumLoggingLevel = min_log_level_t::Debug;
 				else
 				if (ll == 1)
@@ -531,31 +531,31 @@ bool Config::readConfigDB()
 	{
 		std::clog << e.displayText();
 	}
-	
+
 	std::clog << "Done with config";
 	return readConfig;
 }
 
 void Config::writeConfigDB()
-{	
+{
 	Poco::Data::Session session = Database::getDBSession();
 	// First clear tables
-	session << "DELETE FROM Sensors", Poco::Data::Keywords::now;	
-	
-	session << "DELETE FROM Config", Poco::Data::Keywords::now;	
+	session << "DELETE FROM Sensors", Poco::Data::Keywords::now;
+
+	session << "DELETE FROM Config", Poco::Data::Keywords::now;
 	// Add the sensors
 	for (int a = 0; a < bumperSensors.size(); a++)
 	{
 		Poco::Data::Statement stmt(session);
 		int triggerPin = bumperSensors[a].gpioPin;
 		int location = bumperSensors[a].location;
-		
+
 		stmt << "INSERT INTO Sensors VALUES(0,?,0,?,?)",
 			Poco::Data::Keywords::bind(triggerPin),
 			Poco::Data::Keywords::bind(location),
 			Poco::Data::Keywords::bind("");
-		if (stmt.execute()!=1)
-			robotLib->LogError("Error inserting bumperSensor into database");		
+		if (stmt.execute() != 1)
+			robotLib->LogError("Error inserting bumperSensor into database");
 	}
 	for (int a = 0; a < arduinoHost.proximitySensors.size(); a++)
 	{
@@ -570,7 +570,7 @@ void Config::writeConfigDB()
 			Poco::Data::Keywords::bind(location),
 			Poco::Data::Keywords::bind(name);
 		if (stmt.execute() != 1)
-			robotLib->LogError("Error inserting proximity sensor into database");				
+			robotLib->LogError("Error inserting proximity sensor into database");
 	}
 	std::clog << "Writing Config";
 	std::stringstream ss;
@@ -589,7 +589,7 @@ void Config::writeConfigDB()
 	case Exception:
 		intLogLevel = 3;
 		break;
-	}		
+	}
 	Poco::Data::Statement stmt(session);
 	stmt << "INSERT INTO Config VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 		Poco::Data::Keywords::bind(intLogLevel),
@@ -641,10 +641,10 @@ rapidxml::xml_node<> *Config::createSpeedNode(rapidxml::xml_node<> *rootNode, ra
 }
 
 bool Config::readPWMController(rapidxml::xml_node<> *pwmNode)
-{	
+{
 	if (pwmNode->first_attribute("i2caddr", 0, false))
 	{
-		pwmController.i2cChannel = std::atoi(pwmNode->first_attribute("i2caddr", 0, false)->value());		
+		pwmController.i2cChannel = std::atoi(pwmNode->first_attribute("i2caddr", 0, false)->value());
 		std::stringstream ss;
 		ss << "PWM Controller I2C Address==" << (int)pwmController.i2cChannel;
 		robotLib->Log(ss.str());
@@ -660,7 +660,7 @@ bool Config::readPWMController(rapidxml::xml_node<> *pwmNode)
 		robotLib->Log("Readding ControlChannels node");
 		if (channels->first_attribute("leftDriveChannel", 0, false))
 		{
-			pwmController.leftDriveChannel = std::atoi(channels->first_attribute("leftDriveChannel", 0, false)->value());			
+			pwmController.leftDriveChannel = std::atoi(channels->first_attribute("leftDriveChannel", 0, false)->value());
 			std::stringstream ss;
 			ss << "Left Drive Channel==" << (int)pwmController.leftDriveChannel;
 			robotLib->Log(ss.str());
@@ -672,7 +672,7 @@ bool Config::readPWMController(rapidxml::xml_node<> *pwmNode)
 		}
 		if (channels->first_attribute("rightDriveChannel", 0, false))
 		{
-			pwmController.rightDriveChannel = std::atoi(channels->first_attribute("rightDriveChannel", 0, false)->value());			
+			pwmController.rightDriveChannel = std::atoi(channels->first_attribute("rightDriveChannel", 0, false)->value());
 			std::stringstream ss;
 			ss << "Right Drive Channel==" << (int)pwmController.rightDriveChannel;
 			robotLib->Log(ss.str());
@@ -684,7 +684,7 @@ bool Config::readPWMController(rapidxml::xml_node<> *pwmNode)
 		}
 		if (channels->first_attribute("bladeChannel", 0, false))
 		{
-			pwmController.bladeChannel = std::atoi(channels->first_attribute("bladeChannel", 0, false)->value());			
+			pwmController.bladeChannel = std::atoi(channels->first_attribute("bladeChannel", 0, false)->value());
 			std::stringstream ss;
 			ss << "Blade Channel==" << (int)pwmController.bladeChannel;
 			robotLib->Log(ss.str());
@@ -693,7 +693,7 @@ bool Config::readPWMController(rapidxml::xml_node<> *pwmNode)
 		{
 			robotLib->LogError("Channels under PWMController missing bladeChannel");
 			return false;
-		}		
+		}
 	}
 	return true;
 }
@@ -710,22 +710,22 @@ bool Config::readBumperSensor(rapidxml::xml_node<> *bumper)
 		return false;
 	}
 	std::string attribute = attr->name();
-	std::transform(attribute.begin(), attribute.end(), attribute.begin(),::toupper);				
+	std::transform(attribute.begin(), attribute.end(), attribute.begin(), ::toupper);
 	robotLib->Log("Attribute: " + attribute);
 	if (attribute == "GPIOPIN")
-	{		
+	{
 		int val = std::atoi(attr->value());
-		bs.gpioPin = val;			
+		bs.gpioPin = val;
 	}
 	attr = bumper->first_attribute("Location", 0, false);
 	attribute = attr->name();
-	std::transform(attribute.begin(), attribute.end(), attribute.begin(), ::toupper);				
+	std::transform(attribute.begin(), attribute.end(), attribute.begin(),::toupper);
 	robotLib->Log("Attribute: " + attribute);
-	
+
 	if (attribute == "LOCATION")
 	{
 		std::string locStr = attr->value();
-		std::transform(locStr.begin(), locStr.end(), locStr.begin(),::toupper);				
+		std::transform(locStr.begin(), locStr.end(), locStr.begin(), ::toupper);
 		if (locStr == "FRONT")
 			bs.location = eSensorLocation::FRONT;
 		else
@@ -741,7 +741,7 @@ bool Config::readBumperSensor(rapidxml::xml_node<> *bumper)
 		{
 			std::stringstream ss;
 			ss << "Unknown location for Bumper Location: " << locStr;
-			robotLib->LogWarn(ss.str());			
+			robotLib->LogWarn(ss.str());
 		}
 		robotLib->Log("Bumper Location: " + std::to_string(bs.location));
 	}
@@ -759,7 +759,7 @@ bool Config::readBumperSensor(rapidxml::xml_node<> *bumper)
 		if (bumperSensors[a].gpioPin == bs.gpioPin)
 			exists = true;
 	}
-	if(!exists)
+	if (!exists)
 		this->bumperSensors.push_back(bs);
 	return true;
 }
@@ -777,13 +777,13 @@ bool Config::readArduinoHost(rapidxml::xml_node<> *arduinoHost)
 	if (aHost.i2caddr <= 0 || aHost.i2caddr > 127)
 	{
 		robotLib->LogError("ArduinoHost/I2CAddress out of range");
-		return false;		
+		return false;
 	}
 	if (arduinoHost->first_attribute("proximitytollerance", 0, false))
-	{		
+	{
 		aHost.proximityTollerance = std::atof(arduinoHost->first_attribute("proximitytollerance", 0, false)->value());
 	}
-	for (rapidxml::xml_node<> *pSensor = arduinoHost->first_node("Proximity", 0, false); pSensor; pSensor= pSensor->next_sibling())
+	for (rapidxml::xml_node<> *pSensor = arduinoHost->first_node("Proximity", 0, false); pSensor; pSensor = pSensor->next_sibling())
 	{
 		sProximitySensors prox;
 		if (pSensor->first_attribute("triggerPin", 0, false))
@@ -800,8 +800,8 @@ bool Config::readArduinoHost(rapidxml::xml_node<> *arduinoHost)
 		}
 		if (pSensor->first_attribute("location", 0, false))
 		{
-			std::string locStr = pSensor->first_attribute("location",0,false)->value();
-			std::transform(locStr.begin(), locStr.end(), locStr.begin(), ::toupper);				
+			std::string locStr = pSensor->first_attribute("location", 0, false)->value();
+			std::transform(locStr.begin(), locStr.end(), locStr.begin(),::toupper);
 			if (locStr == "FRONT")
 				prox.location = eSensorLocation::FRONT;
 			else
@@ -823,7 +823,7 @@ bool Config::readArduinoHost(rapidxml::xml_node<> *arduinoHost)
 			ss << "Proximity Sensor added.  Trigger[" << prox.triggerPin << "], Echo[" << prox.echoPin << "], Name: " << prox.name << ", Location[" << prox.location << "]";
 			robotLib->Log(ss.str());
 		}
-	}	
+	}
 	return true;
 }
 
@@ -841,11 +841,11 @@ bool Config::readSensors(rapidxml::xml_node<> *sensorNode)
 		robotLib->Log("Exiting readSensors, FALSE");
 		return false;
 	}
-	
+
 	for (rapidxml::xml_node<> *bumperSensors = sensorNode->first_node("BumperSensor", 0, false); bumperSensors; bumperSensors = bumperSensors->next_sibling())
 	{
-		if (strcmp(bumperSensors->name(),"BumperSensor")==0)
-		{			
+		if (strcmp(bumperSensors->name(), "BumperSensor") == 0)
+		{
 			if (!readBumperSensor(bumperSensors))
 			{
 				robotLib->Log("Exiting readSensors, FALSE");
@@ -860,13 +860,13 @@ bool Config::readSensors(rapidxml::xml_node<> *sensorNode)
 		robotLib->LogError("ArduinoHost not found, and is required");
 		return false;
 	}
-	
+
 	if (!readArduinoHost(arduinoHost))
 	{
 		robotLib->Log("Error reading ArduinoHost Node.  Exiting readSensors, FALSE");
 		return false;
-	}		
-	
+	}
+
 	robotLib->Log("Exiting readSensors, TRUE");
 	return true;
 }

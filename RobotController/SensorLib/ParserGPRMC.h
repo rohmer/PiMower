@@ -13,11 +13,11 @@
 
 class ParserGPRMC : public ParserBase
 {
-	public:
-		ParserGPRMC(RobotLib *robotLib);
-		sensors_gps_t *Parse(std::vector<std::string> tokens);
-		std::string getName()
-		{ 
-			return "GPRMC";
-		}
+public:
+	ParserGPRMC(RobotLib *robotLib);
+	sensors_gps_t *Parse(std::vector<std::string> tokens);
+	std::string getName()
+	{
+		return "GPRMC";
+	}
 };

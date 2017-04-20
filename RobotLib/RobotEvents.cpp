@@ -67,7 +67,7 @@ void RobotEvents::headingChangedEvent(int newHeading)
 	stmt.executeAsync();
 }
 
-void RobotEvents::requestMoveEvent(int distanceInInches,bool forward)
+void RobotEvents::requestMoveEvent(int distanceInInches, bool forward)
 {
 	time_t t = time(0);
 	struct tm *now = localtime(&t);
@@ -103,7 +103,7 @@ void RobotEvents::completeMoveEvent()
 	Poco::Data::Statement stmt(sess);
 	stmt << "INSERT INTO Events VALUES(?,?,0,0,0,0,0,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
-		Poco::Data::Keywords::bind((int)COMPLETE_MOVE),		
+		Poco::Data::Keywords::bind((int)COMPLETE_MOVE),
 		Poco::Data::Keywords::bind(getUUID());
 	stmt.executeAsync();
 }
@@ -121,7 +121,7 @@ void RobotEvents::turnOnBladeEvent()
 	Poco::Data::Statement stmt(sess);
 	stmt << "INSERT INTO Events VALUES(?,?,1,0,0,0,0,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
-		Poco::Data::Keywords::bind((int)TURN_ON_BLADE),		
+		Poco::Data::Keywords::bind((int)TURN_ON_BLADE),
 		Poco::Data::Keywords::bind(getUUID());
 	stmt.executeAsync();
 }
@@ -158,7 +158,7 @@ void RobotEvents::bumperActivatedEvent(eSensorLocation bumperLocation)
 	stmt << "INSERT INTO Events VALUES(?,?,?,0,0,0,0,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
 		Poco::Data::Keywords::bind((int)BUMPER_ACTIVATED),
-		Poco::Data::Keywords::bind((int)bumperLocation),		
+		Poco::Data::Keywords::bind((int)bumperLocation),
 		Poco::Data::Keywords::bind(getUUID());
 	stmt.executeAsync();
 }
@@ -177,8 +177,8 @@ void RobotEvents::proximityActivatedEvent(eSensorLocation proximityLocation, flo
 	stmt << "INSERT INTO Events VALUES(?,?,?,?,0,0,0,?)",
 		Poco::Data::Keywords::bind(timeStr.str()),
 		Poco::Data::Keywords::bind((int)PROXIMITY_DETECTION),
-		Poco::Data::Keywords::bind((int)proximityLocation),		
-		Poco::Data::Keywords::bind((int)distanceInInches),				
+		Poco::Data::Keywords::bind((int)proximityLocation),
+		Poco::Data::Keywords::bind((int)distanceInInches),
 		Poco::Data::Keywords::bind(getUUID());
 	stmt.executeAsync();
 }

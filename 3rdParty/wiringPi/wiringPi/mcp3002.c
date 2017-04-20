@@ -33,25 +33,24 @@
  *********************************************************************************
  */
 
-static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
+static int myAnalogRead(struct wiringPiNodeStruct *node, int pin)
 {
-  unsigned char spiData [2] ;
-  unsigned char chanBits ;
-  int chan = pin - node->pinBase ;
+	unsigned char spiData[2];
+	unsigned char chanBits;
+	int chan = pin - node->pinBase;
 
-  if (chan == 0)
-    chanBits = 0b11010000 ;
-  else
-    chanBits = 0b11110000 ;
+	if (chan == 0)
+		chanBits = 0b11010000;
+	else
+		chanBits = 0b11110000;
 
-  spiData [0] = chanBits ;
-  spiData [1] = 0 ;
+	spiData[0] = chanBits;
+	spiData[1] = 0;
 
-  wiringPiSPIDataRW (node->fd, spiData, 2) ;
+	wiringPiSPIDataRW(node->fd, spiData, 2);
 
-  return ((spiData [0] << 7) | (spiData [1] >> 1)) & 0x3FF ;
+	return ((spiData[0] << 7) | (spiData[1] >> 1)) & 0x3FF ;
 }
-
 
 /*
  * mcp3002Setup:
@@ -60,17 +59,17 @@ static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
  *********************************************************************************
  */
 
-int mcp3002Setup (const int pinBase, int spiChannel)
+int mcp3002Setup(const int pinBase, int spiChannel)
 {
-  struct wiringPiNodeStruct *node ;
+	struct wiringPiNodeStruct *node ;
 
-  if (wiringPiSPISetup (spiChannel, 1000000) < 0)
-    return FALSE ;
+	if (wiringPiSPISetup(spiChannel, 1000000) < 0)
+		return FALSE ;
 
-  node = wiringPiNewNode (pinBase, 2) ;
+	node = wiringPiNewNode(pinBase, 2);
 
-  node->fd         = spiChannel ;
-  node->analogRead = myAnalogRead ;
+	node->fd         = spiChannel;
+	node->analogRead = myAnalogRead;
 
-  return TRUE ;
+	return TRUE ;
 }

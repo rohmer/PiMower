@@ -22,9 +22,9 @@ class DeviceRegistry
 		void add(device_creator);
 		it begin();
 		it end();
-	
+
 	private:
-		std::vector <device_creator> m_devices;	
+		std::vector <device_creator> m_devices;
 };
 
 class DeviceRegistration

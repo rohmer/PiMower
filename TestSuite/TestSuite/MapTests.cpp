@@ -10,15 +10,15 @@ MapTests::MapTests(RobotLib *robotLib, PiRobotTestLib *testLib)
 MapTests::~MapTests()
 {
 	try
-	{		
+	{
 		testLib->AddTestResult("Map Tests",
-			"Destructor Test", 
+			"Destructor Test",
 			SUCCESS);
 	}
 	catch (std::exception &e)
 	{
 		testLib->AddTestResult("Map Tests",
-			"Destructor Test", 
+			"Destructor Test",
 			FAILED,
 			e.what());
 	}
@@ -27,7 +27,7 @@ MapTests::~MapTests()
 void MapTests::loadYardMap()
 {
 	robotLib->getMap()->clear();
-	int x = 0; 
+	int x = 0;
 	int y = 0;
 	for (int a = 0; a < testYardMap.size(); a++)
 	{
@@ -36,7 +36,7 @@ void MapTests::loadYardMap()
 			switch (testYardMap[a][b])
 			{
 			case('s'):
-				robotLib->getMap()-> setNode(x, y, map_node_t::BLOCK_BASE_STATION, std::make_pair<double, double>(x, y));
+				robotLib->getMap()->setNode(x, y, map_node_t::BLOCK_BASE_STATION, std::make_pair<double, double>(x, y));
 				break;
 			case('x'):
 				robotLib->getMap()->setNode(x, y, map_node_t::BLOCK_BUMP, std::make_pair<double, double>(x, y));
@@ -56,41 +56,41 @@ void MapTests::loadYardMap()
 			}
 			x++;
 		}
-		y++; x = 0;		
+		y++; x = 0;
 	}
 }
 
 void MapTests::initMapTest()
 {
-	if (robotLib->getMap() == NULL)	
+	if (robotLib->getMap() == NULL)
 	{
 		testLib->AddTestResult("Map Tests", "Initialize Map Test", eTestResult::FAILED, "Map returned NULL");
 	}
 	else
 	{
 		testLib->AddTestResult("Map Tests", "Initialize Map Test", eTestResult::SUCCESS);
-	}	
+	}
 }
 
 void MapTests::loadMapsTest()
 {
-	loadYardMap();	
+	loadYardMap();
 	std::vector<MapNode *> baseStations = robotLib->getMap()->getBaseStations();
 	if (baseStations.size() == 0)
 	{
 		testLib->AddTestResult("Map Tests", "Load Maps Test", eTestResult::FAILED, "No base stations found");
 		return;
 	}
-	
+
 	MapNode *baseStation = baseStations[0];
 	std::stringstream ss;
-	int x = 0; 
+	int x = 0;
 	int y = 0;
 	x = baseStation->getGridCoord().first;
 	y = baseStation->getGridCoord().second;
 	ss << "Base station found at(" << x << "," << y << ")";
 	std::clog << ss;
-	robotLib->Log(ss.str());	
+	robotLib->Log(ss.str());
 	testLib->AddTestResult("Map Tests",
 		"Load Maps Test",
 		eTestResult::SUCCESS);
@@ -98,7 +98,7 @@ void MapTests::loadMapsTest()
 
 void MapTests::closestGrassTest()
 {
-	loadYardMap(); 
+	loadYardMap();
 	MapNode *node = robotLib->getMap()->closestNodeOfType(Point(0, 0), map_node_t::BLOCK_GRASS);
 	if (node == NULL)
 	{
@@ -118,25 +118,25 @@ PiRobotTestLib *MapTests::runTests()
 	}
 	catch (std::exception &e)
 	{
-		testLib->AddTestResult("Map Tests", "Initialize Map Test", eTestResult::FAILED, e.what());		
+		testLib->AddTestResult("Map Tests", "Initialize Map Test", eTestResult::FAILED, e.what());
 	}
-		
+
 	try
 	{
 		loadMapsTest();
 	}
 	catch (std::exception &e)
 	{
-		testLib->AddTestResult("Map Tests", "Load Maps Test", eTestResult::FAILED, e.what());		
+		testLib->AddTestResult("Map Tests", "Load Maps Test", eTestResult::FAILED, e.what());
 	}
-	
+
 	try
 	{
 		closestGrassTest();
 	}
 	catch (std::exception &e)
 	{
-		testLib->AddTestResult("Map Tests", "Closest Grass Test", eTestResult::FAILED, e.what());		
-	}	
+		testLib->AddTestResult("Map Tests", "Closest Grass Test", eTestResult::FAILED, e.what());
+	}
 	return testLib;
 }

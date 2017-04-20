@@ -12,14 +12,14 @@ int main(int argc, char *argv[])
 		cout << "Error!";
 		return -1;
 	}
-	
+
 	RobotLib *robotLib = new RobotLib();
 	if (args.getVerbose())
 	{
 		robotLib->setLogLevel(0);
 	}
-	
-	Config config(robotLib);	
+
+	Config config(robotLib);
 	std::string cfgFile = args.getConfigFile();
 	if (!config.getConfig(cfgFile))
 	{
@@ -32,21 +32,21 @@ int main(int argc, char *argv[])
 	}
 	HTMLOutput htmlOut(robotLib, config);
 	std::string html = htmlOut.generateReport();
-	
+
 	if (args.getWriteHTML())
-	{		
+	{
 		HTMLOutput htmlOut(robotLib, config);
 		std::string html = htmlOut.generateReport();
 		std::ofstream fs(args.getHtmlFile());
 		if (!fs)
 		{
-			robotLib->LogError("Could not write report file");			
+			robotLib->LogError("Could not write report file");
 		}
 		else
 		{
 			fs << html;
 			fs.close();
 		}
-	}	
+	}
 	return 0;
 }

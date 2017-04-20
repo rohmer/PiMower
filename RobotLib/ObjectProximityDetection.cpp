@@ -8,7 +8,7 @@ ObjectProximityDetection::ObjectProximityDetection(RobotLib *robotLib, Config *c
 	this->config = config;
 	arduinoHost = new ArduinoSensorHost(robotLib, config->getArduinoHost().i2caddr);
 	for (int a = 0; a < config->getArduinoHost().proximitySensors.size(); a++)
-	{		
+	{
 		sProximity psensor;
 		psensor.sensor = config->getArduinoHost().proximitySensors[a];
 		arduinoHost->addProximitySensor(psensor.sensor.triggerPin, psensor.sensor.echoPin);
@@ -23,17 +23,17 @@ ObjectProximityDetection::ObjectProximityDetection(RobotLib *robotLib, Config *c
 // This returns the values for the CLOSEST object
 std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetection::scanProximity()
 {
-	std::vector<ArduinoSensorHost::sSensorReturn> sensorValues=arduinoHost->getSensorValues();
+	std::vector<ArduinoSensorHost::sSensorReturn> sensorValues = arduinoHost->getSensorValues();
 	std::map<uint8_t, sProximity>::iterator it;
 	int shortestDistanceInches = 9999;
 	sProximityResult result;
-	result.motionResult = NO_OBJECT;		
+	result.motionResult = NO_OBJECT;
 	for (int a = 0; a < sensorValues.size(); a++)
 	{
 		it = proximitySensors.find(sensorValues[a].proximityValue.echoPin);
 		if (it != proximitySensors.end())
-		{			
-			sProximity sensor = proximitySensors[sensorValues[a].proximityValue.echoPin];		
+		{
+			sProximity sensor = proximitySensors[sensorValues[a].proximityValue.echoPin];
 			if (sensor.lastCheck == -1 || sensor.lastDistanceRaw == -1)
 			{
 				sensor.lastCheck = sensorValues[a].proximityValue.pingTime;
@@ -49,7 +49,7 @@ std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetect
 					{
 						result.motionResult = analyzeMotion(sensor, sensorValues[a]);
 						result.direction = sensor.sensor.location;
-					}					
+					}
 				}
 				sensor.lastCheck = sensorValues[a].proximityValue.pingTime;
 				sensor.lastDistanceRaw = sensorValues[a].proximityValue.rawRange;
@@ -70,13 +70,13 @@ std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetect
 	int shortestDistanceInches = 9999;
 	sProximityResult result;
 	result.motionResult = NO_OBJECT;
-	
+
 	for (int a = 0; a < sensorValues.size(); a++)
 	{
 		it = proximitySensors.find(sensorValues[a].proximityValue.echoPin);
 		if (it != proximitySensors.end())
-		{			
-			sProximity sensor = proximitySensors[sensorValues[a].proximityValue.echoPin];		
+		{
+			sProximity sensor = proximitySensors[sensorValues[a].proximityValue.echoPin];
 			if (sensor.sensor.location == dir)
 			{
 				if (sensor.lastCheck == -1 || sensor.lastDistanceRaw == -1)
@@ -94,12 +94,12 @@ std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetect
 						{
 							result.motionResult = analyzeMotion(sensor, sensorValues[a]);
 							result.direction = sensor.sensor.location;
-						}					
+						}
 					}
 				}
 			}
 			sensor.lastCheck = sensorValues[a].proximityValue.pingTime;
-			sensor.lastDistanceRaw = sensorValues[a].proximityValue.rawRange;			
+			sensor.lastDistanceRaw = sensorValues[a].proximityValue.rawRange;
 		}
 	}
 	return std::make_pair(result, shortestDistanceInches);
@@ -107,23 +107,23 @@ std::pair<ObjectProximityDetection::sProximityResult, int> ObjectProximityDetect
 // Need to think about this, need the time of each of the pings actually.  Might have
 // to send that from the arduino
 
-ObjectProximityDetection::eObjectMotionResult 
-	ObjectProximityDetection::analyzeMotion(sProximity lastReading, 
+ObjectProximityDetection::eObjectMotionResult
+	ObjectProximityDetection::analyzeMotion(sProximity lastReading,
 	ArduinoSensorHost::sSensorReturn currentReading)
 {
 	float proximityTollerance = config->getArduinoHost().proximityTollerance;
 	int tolleranceFactor;
 	if (lastReading.lastDistanceRaw > currentReading.proximityValue.rawRange)
 	{
-		tolleranceFactor = lastReading.lastDistanceRaw*(proximityTollerance/100);
+		tolleranceFactor = lastReading.lastDistanceRaw*(proximityTollerance / 100);
 	}
 	else
 	{
-		tolleranceFactor = currentReading.proximityValue.rawRange*(proximityTollerance/100);
+		tolleranceFactor = currentReading.proximityValue.rawRange*(proximityTollerance / 100);
 	}
 	long tolleranceRange = round(lastReading.lastDistanceRaw*(tolleranceFactor));
-	if(currentReading.proximityValue.rawRange<lastReading.lastCheck+tolleranceRange ||
-		currentReading.proximityValue.rawRange>lastReading.lastCheck-tolleranceRange)
+	if (currentReading.proximityValue.rawRange<lastReading.lastCheck + tolleranceRange ||
+		currentReading.proximityValue.rawRange>lastReading.lastCheck - tolleranceRange)
 	{
 		return OBJECT_STATIONARY;
 	}
@@ -131,5 +131,5 @@ ObjectProximityDetection::eObjectMotionResult
 	{
 		return OBJECT_CLOSING;
 	}
-	return OBJECT_RETREATING;	
+	return OBJECT_RETREATING;
 }

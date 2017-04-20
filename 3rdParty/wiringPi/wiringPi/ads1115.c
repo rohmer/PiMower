@@ -116,17 +116,26 @@
 
 #define	CONFIG_DEFAULT		(0x8583)	// From the datasheet
 
-
-static const uint16_t dataRates [8] =
+static const uint16_t dataRates[8] =
 {
-  CONFIG_DR_8SPS, CONFIG_DR_16SPS, CONFIG_DR_32SPS, CONFIG_DR_64SPS, CONFIG_DR_128SPS, CONFIG_DR_475SPS, CONFIG_DR_860SPS
-} ;
+	CONFIG_DR_8SPS,
+	CONFIG_DR_16SPS,
+	CONFIG_DR_32SPS,
+	CONFIG_DR_64SPS,
+	CONFIG_DR_128SPS,
+	CONFIG_DR_475SPS,
+	CONFIG_DR_860SPS
+};
 
-static const uint16_t gains [6] =
+static const uint16_t gains[6] =
 {
-  CONFIG_PGA_6_144V, CONFIG_PGA_4_096V, CONFIG_PGA_2_048V, CONFIG_PGA_1_024V, CONFIG_PGA_0_512V, CONFIG_PGA_0_256V
-} ;
-
+	CONFIG_PGA_6_144V,
+	CONFIG_PGA_4_096V,
+	CONFIG_PGA_2_048V,
+	CONFIG_PGA_1_024V,
+	CONFIG_PGA_0_512V,
+	CONFIG_PGA_0_256V
+};
 
 /*
  * analogRead:
@@ -136,72 +145,71 @@ static const uint16_t gains [6] =
  *********************************************************************************
  */
 
-static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
+static int myAnalogRead(struct wiringPiNodeStruct *node, int pin)
 {
-  int chan = pin - node->pinBase ;
-  int16_t  result ;
-  uint16_t config = CONFIG_DEFAULT ;
+	int chan = pin - node->pinBase;
+	int16_t  result;
+	uint16_t config = CONFIG_DEFAULT;
 
-  chan &= 7 ;
+	chan &= 7;
 
-// Setup the configuration register
+	// Setup the configuration register
 
-//	Set PGA/voltage range
+	//	Set PGA/voltage range
 
-  config &= ~CONFIG_PGA_MASK ;
-  config |= node->data0 ;
+	config &= ~CONFIG_PGA_MASK;
+	config |= node->data0;
 
-//	Set sample speed
+	//	Set sample speed
 
-  config &= ~CONFIG_DR_MASK ;
-  config |= node->data1 ;
+	config &= ~CONFIG_DR_MASK;
+	config |= node->data1;
 
-//	Set single-ended channel or differential mode
+	//	Set single-ended channel or differential mode
 
-  config &= ~CONFIG_MUX_MASK ;
+	config &= ~CONFIG_MUX_MASK;
 
-  switch (chan)
-  {
-    case 0: config |= CONFIG_MUX_SINGLE_0 ; break ;
-    case 1: config |= CONFIG_MUX_SINGLE_1 ; break ;
-    case 2: config |= CONFIG_MUX_SINGLE_2 ; break ;
-    case 3: config |= CONFIG_MUX_SINGLE_3 ; break ;
+	switch (chan)
+	{
+	case 0: config |= CONFIG_MUX_SINGLE_0; break ;
+	case 1: config |= CONFIG_MUX_SINGLE_1; break ;
+	case 2: config |= CONFIG_MUX_SINGLE_2; break ;
+	case 3: config |= CONFIG_MUX_SINGLE_3; break ;
 
-    case 4: config |= CONFIG_MUX_DIFF_0_1 ; break ;
-    case 5: config |= CONFIG_MUX_DIFF_2_3 ; break ;
-    case 6: config |= CONFIG_MUX_DIFF_0_3 ; break ;
-    case 7: config |= CONFIG_MUX_DIFF_1_3 ; break ;
-  }
+	case 4: config |= CONFIG_MUX_DIFF_0_1; break ;
+	case 5: config |= CONFIG_MUX_DIFF_2_3; break ;
+	case 6: config |= CONFIG_MUX_DIFF_0_3; break ;
+	case 7: config |= CONFIG_MUX_DIFF_1_3; break ;
+	}
 
-//	Start a single conversion
+	//	Start a single conversion
 
-  config |= CONFIG_OS_SINGLE ;
-  config = __bswap_16 (config) ;
-  wiringPiI2CWriteReg16 (node->fd, 1, config) ;
+	config |= CONFIG_OS_SINGLE;
+	config = __bswap_16(config);
+	wiringPiI2CWriteReg16(node->fd, 1, config);
 
-// Wait for the conversion to complete
+	// Wait for the conversion to complete
 
-  for (;;)
-  {
-    result =  wiringPiI2CReadReg16 (node->fd, 1) ;
-    result = __bswap_16 (result) ;
-    if ((result & CONFIG_OS_MASK) != 0)
-      break ;
-    delayMicroseconds (100) ;
-  }
+	for (;;)
+	{
+		result =  wiringPiI2CReadReg16(node->fd, 1);
+		result = __bswap_16(result);
+		if ((result & CONFIG_OS_MASK) != 0)
+			break ;
+		delayMicroseconds(100);
+	}
 
-  result =  wiringPiI2CReadReg16 (node->fd, 0) ;
-  result = __bswap_16 (result) ;
+	result =  wiringPiI2CReadReg16(node->fd, 0);
+	result = __bswap_16(result);
 
-// Sometimes with a 0v input on a single-ended channel the internal 0v reference
-//	can be higher than the input, so you get a negative result...
+	// Sometimes with a 0v input on a single-ended channel the internal 0v reference
+	//	can be higher than the input, so you get a negative result...
 
-  if ( (chan < 4) && (result < 0) ) 
-    return 0 ;
-  else
-    return (int)result ;
+	if ((chan < 4) && (result < 0))
+		return 0 ;
+	else
+		return (int)result ;
 }
-
 
 /*
  * digitalWrite:
@@ -213,26 +221,24 @@ static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
  *********************************************************************************
  */
 
-static void myDigitalWrite (struct wiringPiNodeStruct *node, int pin, int data)
+static void myDigitalWrite(struct wiringPiNodeStruct *node, int pin, int data)
 {
-  int chan = pin - node->pinBase ;
-  chan &= 3 ;
+	int chan = pin - node->pinBase;
+	chan &= 3;
 
-  if (chan == 0)	// Gain Control
-  {
-    if ( (data < 0) || (data > 6) )	// Use default if out of range
-      data = 2 ;
-    node->data0 = gains [data] ;
-  }
-  else			// Data rate control
-  {
-    if ( (data < 0) || (data > 7) )	// Use default if out of range
-      data = 4 ;
-    node->data0 = dataRates [data] ;
-  }
-  
+	if (chan == 0)	// Gain Control
+	{
+		if ((data < 0) || (data > 6))	// Use default if out of range
+			data = 2;
+		node->data0 = gains[data];
+	}
+	else			// Data rate control
+	{
+		if ((data < 0) || (data > 7))	// Use default if out of range
+			data = 4;
+		node->data0 = dataRates[data];
+	}
 }
-
 
 /*
  * analogWrite:
@@ -242,28 +248,26 @@ static void myDigitalWrite (struct wiringPiNodeStruct *node, int pin, int data)
  *********************************************************************************
  */
 
-static void myAnalogWrite (struct wiringPiNodeStruct *node, int pin, int data)
+static void myAnalogWrite(struct wiringPiNodeStruct *node, int pin, int data)
 {
-  int chan = pin - node->pinBase ;
-  int reg ;
-  int16_t ndata ;
+	int chan = pin - node->pinBase;
+	int reg;
+	int16_t ndata;
 
-  chan &= 3 ;
+	chan &= 3;
 
-  reg = chan + 2 ;
+	reg = chan + 2;
 
-  /**/ if (data < -32767)
-    ndata = -32767 ;
-  else if (data > 32767)
-    ndata = 32767 ;
-  else
-    ndata = (int16_t)data ;
+	  /**/ if (data < -32767)
+		ndata = -32767;
+	else if (data > 32767)
+		ndata = 32767;
+	else
+		ndata = (int16_t)data;
 
-  ndata = __bswap_16 (ndata) ;
-  wiringPiI2CWriteReg16 (node->fd, reg, data) ;
+	ndata = __bswap_16(ndata);
+	wiringPiI2CWriteReg16(node->fd, reg, data);
 }
-
-
 
 /*
  * ads1115Setup:
@@ -272,22 +276,22 @@ static void myAnalogWrite (struct wiringPiNodeStruct *node, int pin, int data)
  *********************************************************************************
  */
 
-int ads1115Setup (const int pinBase, int i2cAddr)
+int ads1115Setup(const int pinBase, int i2cAddr)
 {
-  struct wiringPiNodeStruct *node ;
-  int fd ;
+	struct wiringPiNodeStruct *node ;
+	int fd;
 
-  if ((fd = wiringPiI2CSetup (i2cAddr)) < 0)
-    return FALSE ;
+	if ((fd = wiringPiI2CSetup(i2cAddr)) < 0)
+		return FALSE ;
 
-  node = wiringPiNewNode (pinBase, 8) ;
+	node = wiringPiNewNode(pinBase, 8);
 
-  node->fd           = fd ;
-  node->data0        = CONFIG_PGA_4_096V ;	// Gain in data0
-  node->data1        = CONFIG_DR_128SPS ;	// Samples/sec in data1
-  node->analogRead   = myAnalogRead ;
-  node->analogWrite  = myAnalogWrite ;
-  node->digitalWrite = myDigitalWrite ;
+	node->fd           = fd;
+	node->data0        = CONFIG_PGA_4_096V;	// Gain in data0
+	node->data1        = CONFIG_DR_128SPS;	// Samples/sec in data1
+	node->analogRead   = myAnalogRead;
+	node->analogWrite  = myAnalogWrite;
+	node->digitalWrite = myDigitalWrite;
 
-  return TRUE ;
+	return TRUE ;
 }

@@ -16,11 +16,11 @@ enum eRobotEvent
 	TURN_ON_BLADE           = 6,
 	TURN_OFF_BLADE          = 7,
 	BUMPER_ACTIVATED		= 8,
-	PROXIMITY_DETECTION		= 9	
+	PROXIMITY_DETECTION		= 9
 };
 
 class RobotEvents
-{	
+{
 public:
 	static void speedChangeEvent(int previousSpeedLeft, int previousSpeedRight, int newSpeedLeft, int newSpeedRight);
 	static void headingChangeEvent(float previousHeading, int newHeading);
@@ -31,7 +31,7 @@ public:
 	static void turnOffBladeEvent();
 	static void bumperActivatedEvent(eSensorLocation bumperLocation);
 	static void proximityActivatedEvent(eSensorLocation proximityLocation, float distanceInInches);
-	
+
 private:
 	static std::string getUUID();
 };

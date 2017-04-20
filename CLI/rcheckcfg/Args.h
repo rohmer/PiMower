@@ -28,7 +28,7 @@ public:
 	{
 		return htmlReport;
 	}
-	
+
 private:
 	bool error = false;
 	bool writeHtml = false;

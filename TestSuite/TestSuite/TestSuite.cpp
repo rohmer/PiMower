@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main(int argc, char *argv[])
-{	
+{
 	RobotLib *robotLib = &RobotLib::getInstance();
 	PiRobotTestLib *testLib = new PiRobotTestLib();
 	RobotLibTests *robotLibTests = new RobotLibTests(testLib);
@@ -12,6 +12,6 @@ int main(int argc, char *argv[])
 	testLib = mapTests->runTests();
 	delete(mapTests);
 	ConfigTests *configTests = new ConfigTests(robotLib, testLib);
-	testLib=configTests->runTests();
+	testLib = configTests->runTests();
 	testLib->DisplayResults();
 }

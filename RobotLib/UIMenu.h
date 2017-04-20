@@ -14,13 +14,13 @@ public:
 		ReturnsValue,
 		PointerToPage
 	};
-	
+
 	struct MenuItem
 	{
-		MenuItem(uint8_t itemNumber, 
-			std::string itemText, 
-			MenuItemType itemType, 
-			int returnValue, 
+		MenuItem(uint8_t itemNumber,
+			std::string itemText,
+			MenuItemType itemType,
+			int returnValue,
 			int pageLink)
 		{
 			this->itemNumber = itemNumber;
@@ -35,9 +35,9 @@ public:
 		int returnValue;
 		int pageLink;
 	};
-	
+
 	struct MenuPage
-	{		
+	{
 		MenuPage()
 		{
 		}
@@ -49,9 +49,9 @@ public:
 			this->itemsFont = UIFont::defaultFont;
 			itemsColor = DigoleLCD::YELLOW;
 		}
-		MenuPage(std::string title, 
-			uint8_t titleColor, 
-			UIFont::eFontName titleFont, 
+		MenuPage(std::string title,
+			uint8_t titleColor,
+			UIFont::eFontName titleFont,
 			UIFont::eFontName itemsFont,
 			uint8_t itemsColor)
 		{
@@ -66,9 +66,9 @@ public:
 		UIFont::eFontName titleFont;
 		UIFont::eFontName itemsFont;
 		uint8_t itemsColor;
-		std::vector<MenuItem> menuItems;						
+		std::vector<MenuItem> menuItems;
 	};
-	
+
 	UIMenu(RobotLib *robotLib);
 	uint8_t createMenuPage(std::string title);
 	uint8_t createMenuPage(std::string title,
@@ -77,13 +77,13 @@ public:
 		UIFont::eFontName itemsFont,
 		uint8_t itemsColor);
 	uint8_t addMenuOption(uint8_t menuPage,
-		std::string itemText, 
-		MenuItemType itemType, 
-		int returnValue = -1, 
+		std::string itemText,
+		MenuItemType itemType,
+		int returnValue = -1,
 		int pageLink=-1);
 	bool checkMenu();
 	void update(DigoleLCD *lcd, RobotLib *robotLib);
-		
+
 private:
 	RobotLib *robotLib;
 	std::map<uint8_t, MenuPage> menuPages;		// uint - page number, returned in createMenuPage

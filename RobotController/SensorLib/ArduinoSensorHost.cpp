@@ -1,7 +1,7 @@
 #include "ArduinoSensorHost.h"
 
-ArduinoSensorHost::ArduinoSensorHost(RobotLib *robotLib) 
-	: DeviceBase(robotLib,DEVICE_TYPE_T::DEVICE)
+ArduinoSensorHost::ArduinoSensorHost(RobotLib *robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	this->initialized = false;
 	i2caddr = 0x44;
@@ -38,18 +38,18 @@ std::vector<std::string> ArduinoSensorHost::split(const std::string &s, char del
 	}
 	return tokens;
 }
-	
+
 std::vector<ArduinoSensorHost::sSensorReturn> ArduinoSensorHost::getSensorValues()
 {
-	std::vector<ArduinoSensorHost::sSensorReturn> ret;	
+	std::vector<ArduinoSensorHost::sSensorReturn> ret;
 	ret.clear();
-	
+
 	// Ok, now everything is setup
 	// Read a line from I2C
-	char buf[255];	
+	char buf[255];
 	read(i2cfd, buf, 255);
 	std::string sensorLine(buf);
-	sensorLine=sensorLine.substr(0, sensorLine.find('\n'));
+	sensorLine = sensorLine.substr(0, sensorLine.find('\n'));
 	robotLib->Log(sensorLine);
 	std::vector<std::string> tokens = split(sensorLine, '~');
 	std::stringstream s;
@@ -79,7 +79,7 @@ std::vector<ArduinoSensorHost::sSensorReturn> ArduinoSensorHost::getSensorValues
 			}
 		}
 		if (tokens[a][0] == 'P')
-		{	
+		{
 			robotLib->Log("Proximity: " + tokens[a]);
 			std::vector<std::string> sensors = split(tokens[a].substr(1), '|');
 			for (int b = 0; b < sensors.size(); b++)
@@ -91,12 +91,12 @@ std::vector<ArduinoSensorHost::sSensorReturn> ArduinoSensorHost::getSensorValues
 				sProximityReturn prox;
 				r.returnType = PROXIMITY;
 				std::vector<std::string> val = split(t, ',');
-				if (val.size() ==3)
-				{				
+				if (val.size() == 3)
+				{
 					robotLib->Log(val[2]);
 					prox.echoPin = std::atoi(val[0].c_str());
 					prox.rawRange = std::atoi(val[1].c_str());
-					prox.pingTime = std::atoll(val[2].c_str());					
+					prox.pingTime = std::atoll(val[2].c_str());
 					if (prox.echoPin > 0)
 					{
 						prox.distanceCentimeters = round(prox.rawRange / 29.0 / 2);
@@ -109,27 +109,27 @@ std::vector<ArduinoSensorHost::sSensorReturn> ArduinoSensorHost::getSensorValues
 		}
 	}
 	robotLib->Log(sensorLine);
-	
+
 	return ret;
 }
 
 void ArduinoSensorHost::addSwitchSensor(uint8_t triggerPin)
 {
 	switchSensors.push_back(triggerPin);
-	
+
 	std::stringstream ss;
 	ss << "S";
 	for (int a = 0; a < switchSensors.size(); a++)
 	{
 		if (a > 0)
 		{
-			ss << ",";				
+			ss << ",";
 		}
 		ss << (int)switchSensors[a];
 	}
-	#ifdef DEBUG
+#ifdef DEBUG
 	robotLib->Log(ss.str());
-	#endif
+#endif
 	ss << "\0";
 	int w = write(i2cfd, ss.str().c_str(), ss.str().length());
 	if (w != ss.str().length())
@@ -137,7 +137,7 @@ void ArduinoSensorHost::addSwitchSensor(uint8_t triggerPin)
 		std::stringstream eStr;
 		eStr << i2cfd << " - Error writing to I2C, expected to write: " << ss.str().length() << ", actually wrote: " << w;
 		robotLib->LogError(eStr.str());
-	}	
+	}
 	delay(500);
 }
 
@@ -155,7 +155,7 @@ void ArduinoSensorHost::addProximitySensor(uint8_t triggerPin, uint8_t echoPin)
 				ss << "|";
 			}
 			ss << (int)proximitySensors[a].first << "," << (int)proximitySensors[a].second;
-		}			
+		}
 #ifdef DEBUG
 		robotLib->Log(ss.str());
 #endif
@@ -167,8 +167,7 @@ void ArduinoSensorHost::addProximitySensor(uint8_t triggerPin, uint8_t echoPin)
 			eStr << i2cfd << " - Error writing to I2C, expected to write: " << ss.str().length() << ", actually wrote: " << w;
 			robotLib->LogError(eStr.str());
 		}
-		initialized = true;					
+		initialized = true;
 	}
 	delay(500);
 }
-	

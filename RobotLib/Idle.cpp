@@ -7,8 +7,8 @@
 
 Idle::Idle(RobotLib *robotLib, GPSManager *gpsManager, MotionController *motionController)
 	: Behavior(robotLib, gpsManager, motionController, "Idle")
-{	
-	batterySensor = (BQ34Z100G1 *)robotLib->getDeviceManager()->getByName("BQ34Z100-G1");		
+{
+	batterySensor = (BQ34Z100G1 *)robotLib->getDeviceManager()->getByName("BQ34Z100-G1");
 }
 
 Idle::~Idle()
@@ -19,7 +19,7 @@ Idle::~Idle()
 // Return 0 if we stay in Idle
 // 1 if we are to dock
 uint8_t Idle::run()
-{	
+{
 	if (batterySensor->getPctRemaining() < robotLib->getConfig()->getMinimumBatteryPct())
 		return 1;
 	return 0;

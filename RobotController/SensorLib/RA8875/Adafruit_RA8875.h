@@ -1,34 +1,33 @@
 /**************************************************************************/
 /*!
-    @file     Adafruit_RA8875.cpp
-    @author   Limor Friend/Ladyada, K.Townsend/KTOWN for Adafruit Industries
-    @license  BSD license, all text above and below must be included in
-              any redistribution
+	@file     Adafruit_RA8875.cpp
+	@author   Limor Friend/Ladyada, K.Townsend/KTOWN for Adafruit Industries
+	@license  BSD license, all text above and below must be included in
+			  any redistribution
 
  This is the library for the Adafruit RA8875 Driver board for TFT displays
  ---------------> http://www.adafruit.com/products/1590
  The RA8875 is a TFT driver for up to 800x480 dotclock'd displays
  It is tested to work with displays in the Adafruit shop. Other displays
  may need timing adjustments and are not guanteed to work.
- 
+
  Adafruit invests time and resources providing this open
  source code, please support Adafruit and open-source hardware
  by purchasing products from Adafruit!
- 
+
  Written by Limor Fried/Ladyada for Adafruit Industries.
  BSD license, check license.txt for more information.
  All text above must be included in any redistribution.
 
-    @section  HISTORY
-    
-    v1.0 - First release
+	@section  HISTORY
+
+	v1.0 - First release
 */
 
-
 #ifdef __AVR
-  #include <avr/pgmspace.h>
+#include <avr/pgmspace.h>
 #elif defined(ESP8266)
-  #include <pgmspace.h>
+#include <pgmspace.h>
 #endif
 
 #include "Adafruit-GFX-Library-master/Adafruit_GFX.h"
@@ -40,33 +39,33 @@
 enum RA8875sizes { RA8875_480x272, RA8875_800x480 };
 
 // Touch screen cal structs
-typedef struct TSPoint 
+typedef struct TSPoint
 {
-  int32_t x;
-  int32_t y;
+	int32_t x;
+	int32_t y;
 } tsPoint_t;
 
 typedef struct //Matrix
 {
-  int32_t An,
-          Bn,
-          Cn,
-          Dn,
-          En,
-          Fn,
-          Divider ;
+	int32_t An,
+		Bn,
+		Cn,
+		Dn,
+		En,
+		Fn,
+		Divider;
 } tsMatrix_t;
 
 class Adafruit_RA8875 : public Adafruit_GFX {
 public:
 	Adafruit_RA8875(uint8_t cs, uint8_t rst);
-  
+
 	bool begin(enum RA8875sizes s);
 	void    softReset(void);
 	void    displayOn(bool on);
 	void    sleep(bool sleep);
 
-	  /* Text functions */
+	/* Text functions */
 	void    textMode(void);
 	void    textSetCursor(uint16_t x, uint16_t y);
 	void    textColor(uint16_t foreColor, uint16_t bgColor);
@@ -74,17 +73,17 @@ public:
 	void    textEnlarge(uint8_t scale);
 	void    textWrite(const char* buffer, uint16_t len = 0);
 
-	  /* Graphics functions */
+	/* Graphics functions */
 	void    graphicsMode(void);
 	void    setXY(uint16_t x, uint16_t y);
 	void    pushPixels(uint32_t num, uint16_t p);
 	void    fillRect(void);
 
-	  /* Adafruit_GFX functions */
+	/* Adafruit_GFX functions */
 	void    drawPixel(int16_t x, int16_t y, uint16_t color);
 	void    drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
 	void    drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
-  
+
 	/* HW accelerated wrapper functions (override Adafruit_GFX prototypes) */
 	void    fillScreen(uint16_t color);
 	void    drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color);
@@ -98,7 +97,7 @@ public:
 	void    fillEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis, int16_t shortAxis, uint16_t color);
 	void    drawCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis, int16_t shortAxis, uint8_t curvePart, uint16_t color);
 	void    fillCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis, int16_t shortAxis, uint8_t curvePart, uint16_t color);
-  
+
 	/* Backlight */
 	void    GPIOX(bool on);
 	void    PWM1config(bool on, uint8_t clock);
@@ -106,12 +105,12 @@ public:
 	void    PWM1out(uint8_t p);
 	void    PWM2out(uint8_t p);
 
-	  /* Touch screen */
+	/* Touch screen */
 	void    touchEnable(bool on);
 	bool touched(void);
 	bool touchRead(uint16_t *x, uint16_t *y);
 
-	  /* Low level access */
+	/* Low level access */
 	void    writeReg(uint8_t reg, uint8_t val);
 	uint8_t readReg(uint8_t reg);
 	void    writeData(uint8_t d);
@@ -122,7 +121,7 @@ public:
 	uint16_t width(void);
 	uint16_t height(void);
 
-	  /* Play nice with Arduino's Print class */
+	/* Play nice with Arduino's Print class */
 	virtual size_t write(uint8_t b) {
 		textWrite((const char *)&b, 1);
 		return 1;
@@ -135,7 +134,7 @@ public:
 private:
 	void PLLinit(void);
 	void initialize(void);
-  
+
 	/* GFX Helper Functions */
 	void circleHelper(int16_t x0, int16_t y0, int16_t r, uint16_t color, bool filled);
 	void rectHelper(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color, bool filled);
@@ -143,7 +142,7 @@ private:
 	void ellipseHelper(int16_t xCenter, int16_t yCenter, int16_t longAxis, int16_t shortAxis, uint16_t color, bool filled);
 	void curveHelper(int16_t xCenter, int16_t yCenter, int16_t longAxis, int16_t shortAxis, uint8_t curvePart, uint16_t color, bool filled);
 
-	int spifd;	
+	int spifd;
 	uint8_t _cs, _rst;
 	uint16_t _width, _height;
 	uint8_t _textScale;
@@ -157,7 +156,7 @@ private:
 #define	RA8875_GREEN            0x07E0
 #define RA8875_CYAN             0x07FF
 #define RA8875_MAGENTA          0xF81F
-#define RA8875_YELLOW           0xFFE0  
+#define RA8875_YELLOW           0xFFE0
 #define RA8875_WHITE            0xFFFF
 
 // Command/Data pins for SPI
@@ -257,7 +256,6 @@ private:
 #define RA8875_DCR_DRAWLINE           0x00
 #define RA8875_DCR_DRAWTRIANGLE       0x01
 #define RA8875_DCR_DRAWSQUARE         0x10
-
 
 #define RA8875_ELLIPSE                0xA0
 #define RA8875_ELLIPSE_STATUS         0x80

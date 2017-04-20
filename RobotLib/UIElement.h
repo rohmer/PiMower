@@ -13,12 +13,12 @@ enum eTextAlignment
 class UIElement
 {
 	public:
-		UIElement(Point position, bool needsUpdate, bool uiTarget);		
-		bool ptInElement(Point pt);		
+		UIElement(Point position, bool needsUpdate, bool uiTarget);
+		bool ptInElement(Point pt);
 		virtual void update(DigoleLCD *lcd, RobotLib *robotLib)
 		{
 			robotLib->Log("Calling base");
-		};				
+		};
 		bool updateRequired()
 		{
 			return needsUpdate;
@@ -38,8 +38,8 @@ class UIElement
 		virtual int processTouch(Point pt) {} 		// -1 if not touching a control, otherwise the control
 													// value;
 	protected:
-		virtual void setArea(){};		
-		int elementID;	
+		virtual void setArea(){};
+		int elementID;
 		bool needsUpdate, uiTarget;
 		Point position;
 		Rectangle elementArea;

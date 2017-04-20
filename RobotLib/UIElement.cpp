@@ -12,5 +12,5 @@ bool UIElement::ptInElement(Point pt)
 {
 	if (!uiTarget)
 		return false;
-	return (elementArea.contains(pt));		
+	return (elementArea.contains(pt));
 }

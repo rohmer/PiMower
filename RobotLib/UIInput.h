@@ -10,9 +10,9 @@ class UIInput : public UIElement
 {
 public:
 	UIInput();
-		
+
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
-	
+
 private:
 	struct keyTarget_s
 	{
@@ -24,7 +24,7 @@ private:
 		Rectangle area;
 		char character;
 	};
-	
+
 enum eKeyboardShown
 	{
 		alpha,
@@ -33,9 +33,9 @@ enum eKeyboardShown
 	};
 	// Special Keys: C=Change Page, P=Space, B=BackSpace, S Shift
 	std::string alphaPort[5] = { "abcdef","ghijkl", "mnopqr","stuvwx", "SyPzCB" };
-	
+
 	bool redraw = false;
-	
+
 	eKeyboardShown currentKeyboard = eKeyboardShown::alpha;
 	bool shiftedKeys = false;
 	void drawPortrait(DigoleLCD *lcd, RobotLib *robotLib);

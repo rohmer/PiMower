@@ -8,9 +8,9 @@
 class Behavior
 {
 public:
-	Behavior(RobotLib *robotLib, 
-		GPSManager *gpsManager, 
-		MotionController *motionController, 
+	Behavior(RobotLib *robotLib,
+		GPSManager *gpsManager,
+		MotionController *motionController,
 		std::string behaviorName)
 	{
 		this->robotLib = robotLib;
@@ -18,19 +18,18 @@ public:
 		this->motionController = motionController;
 		this->behaviorName = behaviorName;
 	}
-	;		
-	
+	;
+
 	virtual ~Behavior()
 	{
 	}
-		
+
 	virtual uint8_t run()
 	{
 	}
-		
-	
+
 	std::string getBehaviorName();
-	
+
 protected:
 	RobotLib* robotLib;
 	GPSManager *gpsManager;

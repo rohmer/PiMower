@@ -8,15 +8,15 @@ ST7565::ST7565(RobotLib *robotLib)
 	if (robotLib->getEmulator())
 		return;
 
-	initialize(LCD_SID,LCD_SCK,LCD_A0,LCD_nRST,LCD_nCS,true);	
+	initialize(LCD_SID, LCD_SCK, LCD_A0, LCD_nRST, LCD_nCS, true);
 }
 
-ST7565::ST7565(RobotLib *robotLib, int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, bool fullfont) 
+ST7565::ST7565(RobotLib *robotLib, int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, bool fullfont)
 	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	if (robotLib->getEmulator())
 		return;
-	initialize(SID,SCLK,A0,RST,CS,fullfont);
+	initialize(SID, SCLK, A0, RST, CS, fullfont);
 }
 
 void ST7565::initialize(int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, bool fullfont)
@@ -28,23 +28,23 @@ void ST7565::initialize(int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t C
 	this->rst = RST;
 	this->cs = CS;
 	this->fullfont = fullfont;
-	
+
 	pinMode(sid, OUTPUT);
 	pinMode(sclk, OUTPUT);
 	pinMode(a0, OUTPUT);
 	pinMode(rst, OUTPUT);
 	pinMode(cs, OUTPUT);
-	
+
 	// toggle RST low to reset; CS low so it'll listen to us
 	if (cs > 0)
 	{
 		digitalWrite(CS, 0);
 	}
-	
+
 	digitalWrite(rst, 0);
 	usleep(50000);
 	digitalWrite(rst, 1);
-	
+
 	// LCD bias select
 	cmd(CMD_SET_BIAS_7);
 	// ADC select
@@ -53,32 +53,32 @@ void ST7565::initialize(int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t C
 	cmd(CMD_SET_COM_NORMAL);
 	// Initial display line
 	cmd(CMD_SET_DISP_START_LINE);
-	
+
 	// Turn on voltage converter
 	cmd(CMD_SET_POWER_CONTROL | 0x4);
-	
+
 	usleep(50000);
-	
+
 	// turn on voltage regulator (VC=1, VR=1, VF=0)
 	cmd(CMD_SET_POWER_CONTROL | 0x6);
 	// wait >=50ms
 	usleep(50000);
-	
+
 	// turn on voltage follower (VC=1, VR=1, VF=1)
 	cmd(CMD_SET_POWER_CONTROL | 0x7);
 	// wait
 	usleep(10000);
-	
+
 	// set lcd operating voltage (regulator resistor, ref voltage resistor)
 	cmd(CMD_SET_RESISTOR_RATIO | 0x6);
-	
+
 	updateBoundingBox(0, 0, LCDWIDTH - 1, LCDHEIGHT - 1);
 	cmd(CMD_DISPLAY_ON);
 	cmd(CMD_SET_ALLPTS_NORMAL);
 }
 
 // draw a circle outline
-void ST7565::drawcircle(uint8_t x0,	uint8_t y0,	uint8_t r, uint8_t color) 
+void ST7565::drawcircle(uint8_t x0, uint8_t y0, uint8_t r, uint8_t color)
 {
 	updateBoundingBox(x0 - r, y0 - r, x0 + r, y0 + r);
 
@@ -102,17 +102,16 @@ void ST7565::drawcircle(uint8_t x0,	uint8_t y0,	uint8_t r, uint8_t color)
 		x++;
 		ddF_x += 2;
 		f += ddF_x;
-  
+
 		isetpixel(x0 + x, y0 + y, color);
 		isetpixel(x0 - x, y0 + y, color);
 		isetpixel(x0 + x, y0 - y, color);
 		isetpixel(x0 - x, y0 - y, color);
-    
+
 		isetpixel(x0 + y, y0 + x, color);
 		isetpixel(x0 - y, y0 + x, color);
 		isetpixel(x0 + y, y0 - x, color);
 		isetpixel(x0 - y, y0 - x, color);
-    
 	}
 }
 
@@ -130,7 +129,7 @@ void ST7565::drawstring(uint8_t x, uint8_t line, char *c) {
 	}
 }
 
-void ST7565::drawbitmap(uint8_t x, uint8_t y, const uint8_t *bitmap, uint8_t w,	uint8_t h, uint8_t color) 
+void ST7565::drawbitmap(uint8_t x, uint8_t y, const uint8_t *bitmap, uint8_t w, uint8_t h, uint8_t color)
 {
 	for (uint8_t j = 0; j < h; j++) {
 		for (uint8_t i = 0; i < w; i++) {
@@ -143,8 +142,7 @@ void ST7565::drawbitmap(uint8_t x, uint8_t y, const uint8_t *bitmap, uint8_t w,	
 	updateBoundingBox(x, y, x + w, y + h);
 }
 
-
-void ST7565::drawstring_P(uint8_t x, uint8_t line, const char *str) 
+void ST7565::drawstring_P(uint8_t x, uint8_t line, const char *str)
 {
 	while (1) {
 		char c = *str++;
@@ -161,10 +159,10 @@ void ST7565::drawstring_P(uint8_t x, uint8_t line, const char *str)
 	}
 }
 
-void  ST7565::drawchar(uint8_t x, uint8_t line, char c) 
+void  ST7565::drawchar(uint8_t x, uint8_t line, char c)
 {
 	if (fullfont)
-	{		
+	{
 		for (uint8_t i = 0; i < 5; i++)
 		{
 			st7565_buffer[x + (line * 128)] = gca_fontfull[(c * 5) + i];
@@ -183,7 +181,7 @@ void  ST7565::drawchar(uint8_t x, uint8_t line, char c)
 }
 
 // bresenham's algorithm - thx wikpedia
-void ST7565::drawline(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t color) 
+void ST7565::drawline(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t color)
 {
 	uint8_t steep = abs(y1 - y0) > abs(x1 - x0);
 	if (steep) {
@@ -229,9 +227,8 @@ void ST7565::drawline(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t co
 }
 
 // filled rectangle
-void ST7565::fillrect(uint8_t x, uint8_t y,	uint8_t w, uint8_t h, uint8_t color) 
+void ST7565::fillrect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
 {
-	  
 	for (uint8_t i = x; i < x + w; i++) {
 		for (uint8_t j = y; j < y + h; j++) {
 			isetpixel(i, j, color);
@@ -242,7 +239,7 @@ void ST7565::fillrect(uint8_t x, uint8_t y,	uint8_t w, uint8_t h, uint8_t color)
 }
 
 // draw a rectangle
-void ST7565::drawrect(uint8_t x, uint8_t y,	uint8_t w, uint8_t h, uint8_t color) 
+void ST7565::drawrect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
 {
 	for (uint8_t i = x; i < x + w; i++) {
 		isetpixel(i, y, color);
@@ -251,15 +248,15 @@ void ST7565::drawrect(uint8_t x, uint8_t y,	uint8_t w, uint8_t h, uint8_t color)
 	for (uint8_t i = y; i < y + h; i++) {
 		isetpixel(x, i, color);
 		isetpixel(x + w - 1, i, color);
-	} 
+	}
 
 	updateBoundingBox(x, y, x + w, y + h);
 }
 
 void ST7565::fillcircle(uint8_t x0,
 	uint8_t y0,
-	uint8_t r, 
-	uint8_t color) 
+	uint8_t r,
+	uint8_t color)
 {
 	updateBoundingBox(x0 - r, y0 - r, x0 + r, y0 + r);
 
@@ -282,15 +279,15 @@ void ST7565::fillcircle(uint8_t x0,
 		x++;
 		ddF_x += 2;
 		f += ddF_x;
-  
+
 		for (uint8_t i = y0 - y; i <= y0 + y; i++) {
 			isetpixel(x0 + x, i, color);
 			isetpixel(x0 - x, i, color);
-		} 
+		}
 		for (uint8_t i = y0 - x; i <= y0 + x; i++) {
 			isetpixel(x0 + y, i, color);
 			isetpixel(x0 - y, i, color);
-		}    
+		}
 	}
 }
 
@@ -300,13 +297,11 @@ void ST7565::isetpixel(uint8_t x, uint8_t y, uint8_t color)
 		return;
 
 	// x is which column
-	if (color) 
-		st7565_buffer[x + (y / 8) * 128] |= (1 << (7 - (y % 8)));  
+	if (color)
+		st7565_buffer[x + (y / 8) * 128] |= (1 << (7 - (y % 8)));
 	else
-		st7565_buffer[x + (y / 8) * 128] &= ~(1 << (7 - (y % 8))); 
-
+		st7565_buffer[x + (y / 8) * 128] &= ~(1 << (7 - (y % 8)));
 }
-
 
 void ST7565::setpixel(uint8_t x, uint8_t y, uint8_t color)
 {
@@ -314,21 +309,21 @@ void ST7565::setpixel(uint8_t x, uint8_t y, uint8_t color)
 		return;
 
 	// x is which column
-	if (color) 
-		st7565_buffer[x + (y / 8) * 128] |= (1 << (7 - (y % 8)));  
+	if (color)
+		st7565_buffer[x + (y / 8) * 128] |= (1 << (7 - (y % 8)));
 	else
-		st7565_buffer[x + (y / 8) * 128] &= ~(1 << (7 - (y % 8))); 
+		st7565_buffer[x + (y / 8) * 128] &= ~(1 << (7 - (y % 8)));
 
 	updateBoundingBox(x, y, x, y);
 }
 
 // Returns the value of a single pixel
-uint8_t ST7565::getpixel(uint8_t x, uint8_t y) 
+uint8_t ST7565::getpixel(uint8_t x, uint8_t y)
 {
 	if ((x >= LCDWIDTH) || (y >= LCDHEIGHT))
 		return 0;
 
-	return (st7565_buffer[x + (y / 8) * 128] >> (7 - (y % 8))) & 0x1;  
+	return (st7565_buffer[x + (y / 8) * 128] >> (7 - (y % 8))) & 0x1;
 }
 
 void ST7565::updateBoundingBox(uint8_t xmin, uint8_t ymin, uint8_t xmax, uint8_t ymax)
@@ -374,16 +369,16 @@ void ST7565::clear()
 void ST7565::clearDisplay()
 {
 	uint8_t p, c;
-  
-	for (p = 0; p < 8; p++) 
+
+	for (p = 0; p < 8; p++)
 	{
 		cmd(CMD_SET_PAGE | p);
-		for (c = 0; c < 129; c++) 
-		{			
+		for (c = 0; c < 129; c++)
+		{
 			cmd(CMD_SET_COLUMN_LOWER | (c & 0xf));
 			cmd(CMD_SET_COLUMN_UPPER | ((c >> 4) & 0xf));
 			data(0x0);
-		}     
+		}
 	}
 }
 
@@ -392,9 +387,9 @@ void ST7565::display()
 	uint8_t col, maxcol, p;
 
 	  /*
-	  Serial.print("Refresh ("); Serial.print(xUpdateMin, DEC); 
+	  Serial.print("Refresh ("); Serial.print(xUpdateMin, DEC);
 	  Serial.print(", "); Serial.print(xUpdateMax, DEC);
-	  Serial.print(","); Serial.print(yUpdateMin, DEC); 
+	  Serial.print(","); Serial.print(yUpdateMin, DEC);
 	  Serial.print(", "); Serial.print(yUpdateMax, DEC); Serial.println(")");
 	  */
 
@@ -405,7 +400,7 @@ void ST7565::display()
 	    putstring_nl("");
 	*/
 		if (partialUpdateEnabled)
-		{			
+		{
 	    // check if this page is part of update
 			if (yUpdateMin >= ((p + 1) * 8)) {
 				continue;   // nope, skip it!
@@ -415,12 +410,10 @@ void ST7565::display()
 			}
 		}
 
-
 		cmd(CMD_SET_PAGE | pagemap[p]);
 
-
 		if (partialUpdateEnabled)
-		{			
+		{
 			col = xUpdateMin;
 			maxcol = xUpdateMax;
 		}
@@ -434,7 +427,7 @@ void ST7565::display()
 		cmd(CMD_SET_COLUMN_LOWER | ((col + ST7565_STARTBYTES) & 0xf));
 		cmd(CMD_SET_COLUMN_UPPER | (((col + ST7565_STARTBYTES) >> 4) & 0x0F));
 		cmd(CMD_RMW);
-    
+
 		for (; col <= maxcol; col++) {
 		  //uart_putw_dec(col);
 		  //uart_putchar(' ');
@@ -443,7 +436,7 @@ void ST7565::display()
 	}
 
 	if (partialUpdateEnabled)
-	{			
+	{
 		xUpdateMin = LCDWIDTH - 1;
 		xUpdateMax = 0;
 		yUpdateMin = LCDHEIGHT - 1;

@@ -3,7 +3,7 @@
 #include <vector>
 
 std::vector<std::string> testYardMap =
-{ 
+{
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"xxxxxxxxxxxxxxxxxxgggggggggggggggggggggggggggggggggccccccccccccccxxxx",
 	"xxxxxxxxxxxxxxxxxxggggggggggggggggggggggggggggggggggcccccccccccccxxxx",
@@ -29,7 +29,7 @@ std::vector<std::string> testYardMap =
 };
 
 std::vector<std::string> multistationPath =
-{ 
+{
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"xgggggggggggggggggggggggggggsx",
 	"xgggggxggggggggggggxgggggggggx",
@@ -47,7 +47,7 @@ std::vector<std::string> multistationPath =
 };
 
 std::vector<std::string> pathTest =
-{ 
+{
 	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"xgggggggggggggggggggggggggggsx",
 	"xgggggxggggggggggggxgggggggggx",

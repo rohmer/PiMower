@@ -1,7 +1,6 @@
 #include "PageManager.h"
 #include "MainMenu.h"
 
-
 PageManager::PageManager()
 	: UIElement(Point(0, 0), true, true)
 {
@@ -15,7 +14,7 @@ void PageManager::update(DigoleLCD *lcd, RobotLib *robotLib)
 {
 	if (currentPage != NULL)
 		currentPage->update(lcd, robotLib);
-	
+
 	if (pageDisplayed == IDLE)
 		return;
 	if (time(0) > (lastTouch + 60))
@@ -30,13 +29,13 @@ int PageManager::processTouch(Point pt)
 {
 	lastTouch = time(0);
 	// first any touch on idle shows main menu
-	if (pageDisplayed == IDLE)	
+	if (pageDisplayed == IDLE)
 	{
 		delete(currentPage);
-		currentPage = new MainMenu();		
+		currentPage = new MainMenu();
 	}
 	else
 	{
-		int val = currentPage->processTouch(pt);		
-	}	
+		int val = currentPage->processTouch(pt);
+	}
 }

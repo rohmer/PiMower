@@ -9,23 +9,23 @@
 // Detects if an object is near, or is an object is getting closer (Moving towards
 // the mower (A dog or person walking up to it))
 
-class ObjectProximityDetection 
+class ObjectProximityDetection
 {
 public:
 	enum eObjectMotionResult
 	{
 		NO_OBJECT         = 0,
 		OBJECT_RETREATING = 1,
-		OBJECT_STATIONARY = 2,		
-		OBJECT_CLOSING    = 3		
+		OBJECT_STATIONARY = 2,
+		OBJECT_CLOSING    = 3
 	};
-	
+
 	struct sProximityResult
 	{
 		eObjectMotionResult motionResult;
 		eSensorLocation direction;
 	};
-	
+
 	ObjectProximityDetection(RobotLib *robotLib, Config *config);
 	std::pair<sProximityResult, int> scanProximity();
 	std::pair<sProximityResult, int> scanProximity(eSensorLocation dir);

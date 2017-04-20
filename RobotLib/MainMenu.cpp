@@ -1,8 +1,8 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu() :
-	UIElement(Point (0,0), false, false)
-{	
+MainMenu::MainMenu()
+	: UIElement(Point(0, 0), false, false)
+{
 }
 
 void MainMenu::update(DigoleLCD *lcd, RobotLib *robotLib)
@@ -15,7 +15,7 @@ void MainMenu::update(DigoleLCD *lcd, RobotLib *robotLib)
 		int page3 = menu->createMenuPage("Mower Setup");
 		menu->addMenuOption(page1, "Mower Status", UIMenu::PointerToPage, -1, page2);
 		menu->addMenuOption(page1, "Mower Setup", UIMenu::PointerToPage, -1, page3);
-	}	
+	}
 	menu->update(lcd, robotLib);
 }
 

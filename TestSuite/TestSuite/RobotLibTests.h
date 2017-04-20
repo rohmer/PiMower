@@ -14,7 +14,7 @@ public:
 	RobotLibTests(PiRobotTestLib *testLib);
 	PiRobotTestLib *runTests();
 	~RobotLibTests();
-	
+
 private:
 	PiRobotTestLib *testLib;
 	RobotLib *robotLib;

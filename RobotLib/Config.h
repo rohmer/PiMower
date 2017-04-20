@@ -16,7 +16,7 @@ typedef enum min_log_level
 	Debug,
 	Warn,
 	Critical,
-	Exception		
+	Exception
 } min_log_level_t;
 
 struct sSpeedConfig
@@ -108,7 +108,7 @@ public:
 	{
 		return std::make_pair(leftEncoderPin, rightEncoderPin);
 	}
-		
+
 	float getDriveWheelDiameter()
 	{
 		return driveWheelDiameter;
@@ -124,7 +124,7 @@ public:
 	int getRotationalAcceleration()
 	{
 		return rotationalAcceleration;
-	}		
+	}
 	sArduinoHost getArduinoHost()
 	{
 		return arduinoHost;
@@ -141,34 +141,34 @@ public:
 	{
 		return batteryChargePercentage;
 	}
-	
+
 	unsigned int getMapScale()
 	{
 		return mapScale;
 	}
-	
+
 	unsigned int getEncoderTicksPerRevolution()
 	{
 		return encoderTicksPerRevolution;
 	}
-	
+
 	unsigned long getMessagedDBRetention()
 	{
 		return messagesToKeepInDB;
 	}
-	
+
 	unsigned int getErrorStatusPin()
 	{
 		return errorLEDPin;
 	}
-	
+
 private:
 	unsigned int mapScale;
 	sSpeedConfig normalOperationSpeed, objectDetectionSpeed;
-	sPWMController pwmController;	
-	RobotLib *robotLib;	
+	sPWMController pwmController;
+	RobotLib *robotLib;
 	bool validConfig = false;
-	uint8_t leftEncoderPin, rightEncoderPin;	
+	uint8_t leftEncoderPin, rightEncoderPin;
 	min_log_level_t minimumLoggingLevel=min_log_level_t::Warn;
 	float driveWheelDiameter, driveGearRatio;
 	unsigned int driveMotorMaxRPM;
@@ -180,19 +180,19 @@ private:
 	bool readSpeed(rapidxml::xml_node<> *speedNode);
 	rapidxml::xml_node<> *createSpeedNode(rapidxml::xml_node<> *rootNode, rapidxml::xml_document<> &doc);
 	void readLogLevel(rapidxml::xml_node<> *rootNode);
-	bool readEncoder(rapidxml::xml_node<> *encoderNode);	
-	bool readPhysical(rapidxml::xml_node<> *rootNode);	
-	void writeConfiguration(rapidxml::xml_node<> *rootNode, 
+	bool readEncoder(rapidxml::xml_node<> *encoderNode);
+	bool readPhysical(rapidxml::xml_node<> *rootNode);
+	void writeConfiguration(rapidxml::xml_node<> *rootNode,
 		rapidxml::xml_document<> &doc,
-		std::string cfgFile);		
+		std::string cfgFile);
 	uint8_t getBatChargePct();
-	
+
 	void writeConfigDB();
 	bool readConfigDB();
-	
+
 	bool loadConfig();
 	unsigned long messagesToKeepInDB = 168;
-	
+
 	unsigned int errorLEDPin=-1;
 	unsigned int encoderTicksPerRevolution;
 	uint8_t batteryChargePercentage;

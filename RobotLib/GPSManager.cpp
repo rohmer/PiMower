@@ -14,8 +14,8 @@ GPSManager::GPSManager(RobotLib *robotLib)
 		robotLib->LogError("No GPS device detected");
 		return;
 	}
-	gpsDevice = locDevices[0]->getDevice();	
-	gpsManagerThread=std::thread (startManagerThread,this);
+	gpsDevice = locDevices[0]->getDevice();
+	gpsManagerThread = std::thread(startManagerThread, this);
 	lsmMag = reinterpret_cast<LSM303_Magnetometer *>(deviceManager->getByName("LSM303_Magnetometer"));
 	lsmAccel = reinterpret_cast<LSM303_Accelerometer *>(deviceManager->getByName("LSM303_Accelerometer"));
 	if (lsmMag)
@@ -26,7 +26,7 @@ GPSManager::GPSManager(RobotLib *robotLib)
 	if (lsmAccel)
 	{
 		accelerometerActive = true;
-	}	
+	}
 	initialized = true;
 }
 
@@ -56,10 +56,10 @@ void GPSManager::gpsThread()
 			locationInfo.insert(locationInfo.begin(), latestLocation->gps);
 			while (locationInfo.size() > pollingAvg)
 				locationInfo.pop_back();
-		
+
 		// Average, newest being the highest level
 			int intTotal = 0;
-			double altTotal = 0;		
+			double altTotal = 0;
 			latitude.degrees = 0;
 			longitude.degrees = 0;
 			latitude.minutes = 0;
@@ -71,7 +71,7 @@ void GPSManager::gpsThread()
 				latitude.degrees += (locationInfo[a].latitude.degrees*mult);
 				latitude.minutes += (locationInfo[a].latitude.minutes*mult);
 				longitude.degrees += (locationInfo[a].longitude.degrees*mult);
-				longitude.minutes += (locationInfo[a].longitude.minutes*mult);			
+				longitude.minutes += (locationInfo[a].longitude.minutes*mult);
 				intTotal += mult;
 			}
 			longitude.cardinal = locationInfo[0].longitude.cardinal;
@@ -85,7 +85,7 @@ void GPSManager::gpsThread()
 			locationInfo[0].latitude = latitude;
 			locationInfo[0].longitude = longitude;
 			latestLocation->gps = locationInfo[0];
-			
+
 			if (lsmAccel)
 			{
 				lsmAccel->getEvent(latestLocation);
@@ -97,15 +97,15 @@ void GPSManager::gpsThread()
 			if (!Database::getInstance().insertPositionEvent(latestLocation))
 			{
 				robotLib->LogWarn("Failed to insert GPS Event");
-			}			
-		} 
+			}
+		}
 		sleep(pollingInt);
 	}
 	delete(latestLocation);
 }
 
 int GPSManager::getHeading()
-{	
+{
 	if (!magnetometerActive)
 		return -1;
 	lsmMag->getEvent(headingEvt);
@@ -116,7 +116,7 @@ sensors_event_t* GPSManager::getLocation()
 {
 	if (locationInfo.size() > 0)
 	{
-		return latestLocation;	
+		return latestLocation;
 	}
 	return NULL;
 }
@@ -131,8 +131,8 @@ GPSManager::~GPSManager()
 	shutdown = true;
 	robotLib->Log("Destroying GPSManager");
 	try
-	{	
-		gpsManagerThread.join();	
+	{
+		gpsManagerThread.join();
 	}
 	catch (std::system_error &e)
 	{

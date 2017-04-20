@@ -1278,4 +1278,3 @@ static const uint8_t gca_fontfull[] =
 	0x3C,
 	0x3C,   /* ASC(254) */
 };
-

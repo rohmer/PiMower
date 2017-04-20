@@ -5,17 +5,17 @@
 // Used to define an area that may or may not have another element
 // as touchable
 // Use case: A sleep screen to make the whole screen touchable
-class UITouchArea : UIElement 
+class UITouchArea : UIElement
 {
 public:
-	UITouchArea(Point position, 
-		uint width, 
+	UITouchArea(Point position,
+		uint width,
 		uint height);
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
 	int processTouch(Point pt) override;
 
 protected:
-	void setArea();	
+	void setArea();
 
 private:
 	uint width, height;

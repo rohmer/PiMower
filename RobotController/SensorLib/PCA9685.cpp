@@ -6,8 +6,8 @@ bool PCA9685::initialized;
 uint8_t PCA9685::pca9685I2CAddr;
 int PCA9685::i2cfd = 0;
 
-PCA9685::PCA9685(RobotLib *robotLib) :
-	DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
+PCA9685::PCA9685(RobotLib *robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	if (robotLib->getEmulator())
 	{
@@ -15,7 +15,7 @@ PCA9685::PCA9685(RobotLib *robotLib) :
 		return;
 	}
 	initialized = false;
-	i2cfd=scanForPCA9685();
+	i2cfd = scanForPCA9685();
 	if (i2cfd > 0)
 	{
 		pca9685Avail = true;
@@ -28,9 +28,9 @@ PCA9685::PCA9685(RobotLib *robotLib) :
 	initialize();
 }
 
-PCA9685::PCA9685(RobotLib *robotLib, uint8_t i2caddress) :
-	DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
-{	
+PCA9685::PCA9685(RobotLib *robotLib, uint8_t i2caddress)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
+{
 	initialized = false;
 	i2cfd = wiringPiI2CSetup(i2caddress);
 	if (i2cfd > 0)
@@ -45,13 +45,13 @@ PCA9685::PCA9685(RobotLib *robotLib, uint8_t i2caddress) :
 		robotLib->LogError(ss.str());
 		return;
 	}
-	
-	initialize();	
+
+	initialize();
 }
 
 void PCA9685::initialize()
 {
-	// Create a node with 16 pins [0..15] + [16] for all	
+	// Create a node with 16 pins [0..15] + [16] for all
 	// Setup the chip enabling auto-increment of registers
 	int settings = wiringPiI2CReadReg8(i2cfd, PCA9685_MODE1) & 0x7F;
 	int autoInc = settings | 0x20;
@@ -60,7 +60,7 @@ void PCA9685::initialize()
 		robotLib->LogError("Failed to write to Reg: PCA9685_MODE1");
 		pca9685Avail = false;
 		return;
-	}			
+	}
 	pca9685PWMFreq(50);
 	initialized = true;
 }
@@ -85,7 +85,7 @@ void PCA9685::pca9685PWMFreq(float frequency)
 		robotLib->Log(ss.str());
 		frequency = newFreq;
 	}
-	
+
 	// To set pwm frequency we have to set the prescale register. The formula is:
 	// prescale = round(osc_clock / (4096 * frequency))) - 1 where osc_clock = 25 MHz
 	// Further info here: http://www.nxp.com/documents/data_sheet/PCA9685.pdf Page 24
@@ -96,7 +96,7 @@ void PCA9685::pca9685PWMFreq(float frequency)
 	int sleep	= settings | 0x10;									// Set sleep bit to 1
 	int wake 	= settings & 0xEF;									// Set sleep bit to 0
 	int restart = wake | 0x80;										// Set restart bit to 1
-	
+
 	// Go to sleep, set prescale and wake up again.
 	wiringPiI2CWriteReg8(i2cfd, PCA9685_MODE1, sleep);
 	wiringPiI2CWriteReg8(i2cfd, PCA9685_PRESCALE, prescale);
@@ -104,12 +104,11 @@ void PCA9685::pca9685PWMFreq(float frequency)
 
 	// Now wait a millisecond until oscillator finished stabilizing and restart PWM.
 	delay(1);
-	wiringPiI2CWriteReg8(i2cfd, PCA9685_MODE1, restart);		
+	wiringPiI2CWriteReg8(i2cfd, PCA9685_MODE1, restart);
 	std::stringstream ss;
 	ss << "PWM Frequency set to: " << frequency;
 	robotLib->Log(ss.str());
 }
-
 
 /**
  * Enables or deactivates full-on
@@ -200,18 +199,18 @@ device_status_t PCA9685::getDeviceStatus(RobotLib *robotLib)
 	{
 		return device_status_t::DEVICE_AVAILABLE;
 	}
-	
+
 	// We havent initialized, we will scan
 	if (scanForPCA9685() > 0)
 	{
 		return device_status_t::DEVICE_CONNECTED;
 	}
-	
+
 	return device_status_t::DEVICE_UNAVAILBLE;
 }
 
 PCA9685::~PCA9685()
-{	
+{
 }
 
 void PCA9685::pPwmWrite(int pin, int value)
@@ -231,7 +230,7 @@ void PCA9685::pPwmWrite(int pin, int value)
  * Note: ALL_LED pin will always return 0
  */
 int PCA9685::pOffRead(int pin)
-{	
+{
 	int off;
 	pca9685PWMRead(pin, 0, &off);
 	return off;
@@ -256,7 +255,7 @@ int PCA9685::pOnRead(int pin)
  * If value is not 0, full-on will be enabled
  */
 void PCA9685::pOnOffWrite(int pin, int value)
-{	
+{
 	if (value)
 		pca9685FullOn(pin, 1);
 	else
@@ -265,12 +264,12 @@ void PCA9685::pOnOffWrite(int pin, int value)
 
 uint8_t PCA9685::scanForPCA9685()
 {
-	std::vector<uint8_t> i2cInUse = scanI2C();	
-	
+	std::vector<uint8_t> i2cInUse = scanI2C();
+
 	// Now go thru all the available addresses with devices attached
 	// Check to see if it is between PCA9685_I2C_MIN and PCA9685_I2C_MAX
 	// then try and communicate
-	for (uint8_t i=0; i<i2cInUse.size(); i++)
+	for (uint8_t i = 0; i < i2cInUse.size(); i++)
 	{
 		if (i2cInUse[i] >= PCA9685_I2C_MIN && i2cInUse[i] <= PCA9685_I2C_MAX)
 		{
@@ -295,7 +294,7 @@ uint8_t PCA9685::scanForPCA9685()
 // a zero value as completely off.  Optional invert parameter supports inverting
 // the pulse for sinking to ground.  Val should be a value from 0 to 4095 inclusive.
 void PCA9685::pca9685SetPin(int pin, int value)
-{	
+{
 	if (value >= 4096)
 		pca9685FullOn(pin, 1);
 	else if (value > 0)

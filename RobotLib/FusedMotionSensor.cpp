@@ -7,9 +7,9 @@ FusedMotionSensor::FusedMotionSensor(RobotLib *robotLib)
 	// Lets get all our Sensors
 	config = robotLib->getConfig();
 	opd = new ObjectProximityDetection(robotLib, config);
-	bumperSensors=config->getBumperSensors();
+	bumperSensors = config->getBumperSensors();
 	piCamera = new PiCamera(robotLib);
-	
+
 	motionSensorThread = std::thread(startSensorThread, this);
 	imagingThread = std::thread(startImageThread, this);
 	motorController = robotLib->getMotorController();
@@ -27,12 +27,12 @@ FusedMotionSensor::~FusedMotionSensor()
 	{
 		robotLib->LogException(e);
 	}
-	robotLib->Log("FusedMotionSensor shutdown");	
+	robotLib->Log("FusedMotionSensor shutdown");
 }
 
 void FusedMotionSensor::startSensorThread(FusedMotionSensor *fms)
 {
-	fms->sensorManagerThread();	
+	fms->sensorManagerThread();
 }
 
 void FusedMotionSensor::startImageThread(FusedMotionSensor *fms)
@@ -45,7 +45,7 @@ void FusedMotionSensor::imageManagerThread()
 	robotLib->Log("Starting imageManagerThread");
 	while (!shutdown)
 	{
-		currentOnGrass=piCamera->isGrass();
+		currentOnGrass = piCamera->isGrass();
 		delay(200);
 	}
 	robotLib->Log("imageManagerThread shutdown");
@@ -82,13 +82,13 @@ void FusedMotionSensor::sensorManagerThread()
 			// A bumper hit
 			currentResult.resultTime = time(NULL);
 			currentResult.location = bumperReturn.second;
-			currentResult.result = fmsResultType::HARD_RESULT;		// Bumpers only fire on hard results			
+			currentResult.result = fmsResultType::HARD_RESULT;		// Bumpers only fire on hard results
 		}
 		else
 		{
-			// Need to check proximity sensors			
-			std::pair <ObjectProximityDetection::sProximityResult,int> opsResult=opd->scanProximity();
-			ObjectProximityDetection::sProximityResult spr = opsResult.first;				
+			// Need to check proximity sensors
+			std::pair <ObjectProximityDetection::sProximityResult, int> opsResult = opd->scanProximity();
+			ObjectProximityDetection::sProximityResult spr = opsResult.first;
 			if (spr.motionResult != ObjectProximityDetection::eObjectMotionResult::NO_OBJECT)
 			{
 				currentResult.result = fmsResultType::CLEAR;
@@ -96,11 +96,11 @@ void FusedMotionSensor::sensorManagerThread()
 			}
 			else
 			{
-				// If an object is getting closer, no matter what the direction notate it				
+				// If an object is getting closer, no matter what the direction notate it
 				if (spr.motionResult == ObjectProximityDetection::eObjectMotionResult::OBJECT_CLOSING)
 				{
 					currentResult.result = fmsResultType::OBJECT_DETECTED;
-					currentResult.resultTime = time(NULL);		
+					currentResult.resultTime = time(NULL);
 					currentResult.location = spr.direction;
 					currentResult.distance = opsResult.second;
 				}
@@ -109,7 +109,7 @@ void FusedMotionSensor::sensorManagerThread()
 					// We are moving forward and its in front of us, and its inside 96 inches
 					if (spr.direction == eSensorLocation::FRONT && motorController->currentMotion() == eTravelDirection::FORWARD && opsResult.second < 96)
 					{
-						currentResult.result = fmsResultType::OBJECT_DETECTED;						
+						currentResult.result = fmsResultType::OBJECT_DETECTED;
 						currentResult.resultTime = time(NULL);
 						currentResult.location = spr.direction;
 						currentResult.distance = opsResult.second;
@@ -121,7 +121,7 @@ void FusedMotionSensor::sensorManagerThread()
 						{
 							currentResult.result = fmsResultType::OBJECT_DETECTED;
 							currentResult.resultTime = time(NULL);
-							currentResult.location = spr.direction;										
+							currentResult.location = spr.direction;
 							currentResult.distance = opsResult.second;
 						}
 						else
@@ -141,14 +141,13 @@ void FusedMotionSensor::sensorManagerThread()
 								currentResult.resultTime = time(NULL);
 								currentResult.location = spr.direction;
 								currentResult.distance = opsResult.second;
-							}														
-						} 
+							}
+						}
 					}
 				}
 			}
 		}
-		
-		
+
 		delay(50);
 	}
 }

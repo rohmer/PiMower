@@ -10,7 +10,7 @@ UILabel::UILabel(Point position, std::string text)
 	setArea();
 }
 
-UILabel::UILabel(Point position, std::string text,UIFont::eFontName font, uint8_t textColor, uint8_t textBackgroundColor)
+UILabel::UILabel(Point position, std::string text, UIFont::eFontName font, uint8_t textColor, uint8_t textBackgroundColor)
 	: UIElement(position, false, false)
 {
 	labelFont = font;
@@ -27,8 +27,8 @@ void UILabel::setArea()
 	elementArea = Rectangle(position.x, position.y, position.x + width, position.y + width);
 }
 
-void UILabel::update(DigoleLCD *lcd, RobotLib *robotLib) 
-{		
+void UILabel::update(DigoleLCD *lcd, RobotLib *robotLib)
+{
 	std::stringstream ss;
 	ss << "Text Color: " << (int)textColor;
 	robotLib->Log(ss.str());
@@ -36,7 +36,7 @@ void UILabel::update(DigoleLCD *lcd, RobotLib *robotLib)
 	ss << "BG Color: " << (int)textBGColor;
 	robotLib->Log(ss.str());
 	ss.clear();
-	ss << "Position: (" << position.x << ", "<< position.y<<")";	
+	ss << "Position: (" << position.x << ", " << position.y << ")";
 	robotLib->Log(ss.str());
 	robotLib->Log(labelText);
 	lcd->setColor(textColor);

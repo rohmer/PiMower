@@ -30,7 +30,6 @@
 
 #include "pcf8574.h"
 
-
 /*
  * myPinMode:
  *	The PCF8574 is an odd chip - the pins are effectively bi-directional,
@@ -39,64 +38,60 @@
  *********************************************************************************
  */
 
-static void myPinMode (struct wiringPiNodeStruct *node, int pin, int mode)
+static void myPinMode(struct wiringPiNodeStruct *node, int pin, int mode)
 {
-  int bit, old ;
+	int bit, old;
 
-  bit  = 1 << ((pin - node->pinBase) & 7) ;
+	bit  = 1 << ((pin - node->pinBase) & 7);
 
-  old = node->data2 ;
-  if (mode == OUTPUT)
-    old &= (~bit) ;	// Write bit to 0
-  else
-    old |=   bit ;	// Write bit to 1
+	old = node->data2;
+	if (mode == OUTPUT)
+		old &= (~bit);	// Write bit to 0
+	else
+		old |=   bit;	// Write bit to 1
 
-  wiringPiI2CWrite (node->fd, old) ;
-  node->data2 = old ;
+	wiringPiI2CWrite(node->fd, old);
+	node->data2 = old;
 }
-
-
 
 /*
  * myDigitalWrite:
  *********************************************************************************
  */
 
-static void myDigitalWrite (struct wiringPiNodeStruct *node, int pin, int value)
+static void myDigitalWrite(struct wiringPiNodeStruct *node, int pin, int value)
 {
-  int bit, old ;
+	int bit, old;
 
-  bit  = 1 << ((pin - node->pinBase) & 7) ;
+	bit  = 1 << ((pin - node->pinBase) & 7);
 
-  old = node->data2 ;
-  if (value == LOW)
-    old &= (~bit) ;
-  else
-    old |=   bit ;
+	old = node->data2;
+	if (value == LOW)
+		old &= (~bit);
+	else
+		old |=   bit;
 
-  wiringPiI2CWrite (node->fd, old) ;
-  node->data2 = old ;
+	wiringPiI2CWrite(node->fd, old);
+	node->data2 = old;
 }
-
 
 /*
  * myDigitalRead:
  *********************************************************************************
  */
 
-static int myDigitalRead (struct wiringPiNodeStruct *node, int pin)
+static int myDigitalRead(struct wiringPiNodeStruct *node, int pin)
 {
-  int mask, value ;
+	int mask, value;
 
-  mask  = 1 << ((pin - node->pinBase) & 7) ;
-  value = wiringPiI2CRead (node->fd) ;
+	mask  = 1 << ((pin - node->pinBase) & 7);
+	value = wiringPiI2CRead(node->fd);
 
-  if ((value & mask) == 0)
-    return LOW ;
-  else 
-    return HIGH ;
+	if ((value & mask) == 0)
+		return LOW ;
+	else
+		return HIGH ;
 }
-
 
 /*
  * pcf8574Setup:
@@ -106,21 +101,21 @@ static int myDigitalRead (struct wiringPiNodeStruct *node, int pin)
  *********************************************************************************
  */
 
-int pcf8574Setup (const int pinBase, const int i2cAddress)
+int pcf8574Setup(const int pinBase, const int i2cAddress)
 {
-  int fd ;
-  struct wiringPiNodeStruct *node ;
+	int fd;
+	struct wiringPiNodeStruct *node ;
 
-  if ((fd = wiringPiI2CSetup (i2cAddress)) < 0)
-    return FALSE ;
+	if ((fd = wiringPiI2CSetup(i2cAddress)) < 0)
+		return FALSE ;
 
-  node = wiringPiNewNode (pinBase, 8) ;
+	node = wiringPiNewNode(pinBase, 8);
 
-  node->fd           = fd ;
-  node->pinMode      = myPinMode ;
-  node->digitalRead  = myDigitalRead ;
-  node->digitalWrite = myDigitalWrite ;
-  node->data2        = wiringPiI2CRead (fd) ;
+	node->fd           = fd;
+	node->pinMode      = myPinMode;
+	node->digitalRead  = myDigitalRead;
+	node->digitalWrite = myDigitalWrite;
+	node->data2        = wiringPiI2CRead(fd);
 
-  return TRUE ;
+	return TRUE ;
 }

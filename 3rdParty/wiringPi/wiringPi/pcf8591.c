@@ -30,38 +30,35 @@
 
 #include "pcf8591.h"
 
-
 /*
  * myAnalogWrite:
  *********************************************************************************
  */
 
-static void myAnalogWrite (struct wiringPiNodeStruct *node, int pin, int value)
+static void myAnalogWrite(struct wiringPiNodeStruct *node, int pin, int value)
 {
-  unsigned char b [2] ;
-  b [0] = 0x40 ;
-  b [1] = value & 0xFF ;
-  write (node->fd, b, 2) ;
+	unsigned char b[2];
+	b[0] = 0x40;
+	b[1] = value & 0xFF;
+	write(node->fd, b, 2);
 }
-
 
 /*
  * myAnalogRead:
  *********************************************************************************
  */
 
-static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
+static int myAnalogRead(struct wiringPiNodeStruct *node, int pin)
 {
-  int x ;
+	int x;
 
-  wiringPiI2CWrite (node->fd, 0x40 | ((pin - node->pinBase) & 3)) ;
+	wiringPiI2CWrite(node->fd, 0x40 | ((pin - node->pinBase) & 3));
 
-  x = wiringPiI2CRead (node->fd) ;	// Throw away the first read
-  x = wiringPiI2CRead (node->fd) ;
+	x = wiringPiI2CRead(node->fd);	// Throw away the first read
+	x = wiringPiI2CRead(node->fd);
 
-  return x ;
+	return x ;
 }
-
 
 /*
  * pcf8591Setup:
@@ -72,19 +69,19 @@ static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
  *********************************************************************************
  */
 
-int pcf8591Setup (const int pinBase, const int i2cAddress)
+int pcf8591Setup(const int pinBase, const int i2cAddress)
 {
-  int fd ;
-  struct wiringPiNodeStruct *node ;
+	int fd;
+	struct wiringPiNodeStruct *node ;
 
-  if ((fd = wiringPiI2CSetup (i2cAddress)) < 0)
-    return FALSE ;
+	if ((fd = wiringPiI2CSetup(i2cAddress)) < 0)
+		return FALSE ;
 
-  node = wiringPiNewNode (pinBase, 4) ;
+	node = wiringPiNewNode(pinBase, 4);
 
-  node->fd          = fd ;
-  node->analogRead  = myAnalogRead ;
-  node->analogWrite = myAnalogWrite ;
+	node->fd          = fd;
+	node->analogRead  = myAnalogRead;
+	node->analogWrite = myAnalogWrite;
 
-  return TRUE ;
+	return TRUE ;
 }

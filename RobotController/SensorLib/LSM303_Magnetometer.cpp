@@ -6,16 +6,16 @@ bool LSM303_Magnetometer::magInit  = false;
 bool LSM303_Magnetometer::magAttached = false;
 int LSM303_Magnetometer::i2cfd_Mag = 0;
 
-LSM303_Magnetometer::LSM303_Magnetometer(RobotLib* rl) :
-	SensorBase(rl)
+LSM303_Magnetometer::LSM303_Magnetometer(RobotLib* rl)
+	: SensorBase(rl)
 {
 	if (rl->getEmulator())
 	{
 		return;
 	}
-	i2cfd_Mag = -1;	
+	i2cfd_Mag = -1;
 	magInit = false;
-	
+
 	try
 	{
 		i2cfd_Mag = DeviceManager::getI2CFD(LSM303_ADDRESS_MAG);
@@ -26,7 +26,7 @@ LSM303_Magnetometer::LSM303_Magnetometer(RobotLib* rl) :
 		magAttached = false;
 		robotLib->LogError("Could not initalize Magnetometer (Device not attached?)");
 	}
-	
+
 	if (i2cfd_Mag == -1)
 	{
 		magInit = false;
@@ -40,10 +40,10 @@ LSM303_Magnetometer::LSM303_Magnetometer(RobotLib* rl) :
 		robotLib->Log("Magnetometer initalized");
 	}
 	uint8_t reg1_a;
-	
+
 	// Enable the Magnetometer
 	int val;
-	val=wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_MR_REG_M, 0x00);
+	val = wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_MR_REG_M, 0x00);
 	// LSM303DLHC has no WHOAMI register so read CRA_REG_M to check
 	// the default value (0b00010000/0x10)
 	reg1_a = wiringPiI2CReadReg8(i2cfd_Mag, LSM303_REGISTER_MAG_CRA_REG_M);
@@ -72,7 +72,7 @@ void LSM303_Magnetometer::getSensor(sensor_t *sensor)
 	sensor->min_delay = 0;
 	sensor->max_value = 0.0F;		// TBD;
 	sensor->min_value = 0.0F;		// TBD;
-	sensor->resolution = 0.0F;		// TBD;	
+	sensor->resolution = 0.0F;		// TBD;
 }
 
 void LSM303_Magnetometer::setMagGain(lsm303MagGain gain)
@@ -82,39 +82,39 @@ void LSM303_Magnetometer::setMagGain(lsm303MagGain gain)
 		robotLib->LogError("Magnetometer is not initalized");
 		return;
 	}
-	
-	wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_CRB_REG_M,static_cast<uint8_t>(gain));
+
+	wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_CRB_REG_M, static_cast<uint8_t>(gain));
 	magGain = gain;
 	switch (gain)
-	{		
-		case LSM303_MAGGAIN_1_3:
-			_lsm303Mag_Gauss_LSB_XY = 1100;
-			_lsm303Mag_Gauss_LSB_Z  = 980;
-			break;
-		case LSM303_MAGGAIN_1_9:
-			_lsm303Mag_Gauss_LSB_XY = 855;
-			_lsm303Mag_Gauss_LSB_Z  = 760;
-			break;
-		case LSM303_MAGGAIN_2_5:
-			_lsm303Mag_Gauss_LSB_XY = 670;
-			_lsm303Mag_Gauss_LSB_Z  = 600;
-			break;
-		case LSM303_MAGGAIN_4_0:
-			_lsm303Mag_Gauss_LSB_XY = 450;
-			_lsm303Mag_Gauss_LSB_Z  = 400;
-			break;
-		case LSM303_MAGGAIN_4_7:
-			_lsm303Mag_Gauss_LSB_XY = 400;
-			_lsm303Mag_Gauss_LSB_Z  = 355;
-			break;
-		case LSM303_MAGGAIN_5_6:
-			_lsm303Mag_Gauss_LSB_XY = 330;
-			_lsm303Mag_Gauss_LSB_Z  = 295;
-			break;
-		case LSM303_MAGGAIN_8_1:
-			_lsm303Mag_Gauss_LSB_XY = 230;
-			_lsm303Mag_Gauss_LSB_Z  = 205;
-			break;
+	{
+	case LSM303_MAGGAIN_1_3:
+		_lsm303Mag_Gauss_LSB_XY = 1100;
+		_lsm303Mag_Gauss_LSB_Z  = 980;
+		break;
+	case LSM303_MAGGAIN_1_9:
+		_lsm303Mag_Gauss_LSB_XY = 855;
+		_lsm303Mag_Gauss_LSB_Z  = 760;
+		break;
+	case LSM303_MAGGAIN_2_5:
+		_lsm303Mag_Gauss_LSB_XY = 670;
+		_lsm303Mag_Gauss_LSB_Z  = 600;
+		break;
+	case LSM303_MAGGAIN_4_0:
+		_lsm303Mag_Gauss_LSB_XY = 450;
+		_lsm303Mag_Gauss_LSB_Z  = 400;
+		break;
+	case LSM303_MAGGAIN_4_7:
+		_lsm303Mag_Gauss_LSB_XY = 400;
+		_lsm303Mag_Gauss_LSB_Z  = 355;
+		break;
+	case LSM303_MAGGAIN_5_6:
+		_lsm303Mag_Gauss_LSB_XY = 330;
+		_lsm303Mag_Gauss_LSB_Z  = 295;
+		break;
+	case LSM303_MAGGAIN_8_1:
+		_lsm303Mag_Gauss_LSB_XY = 230;
+		_lsm303Mag_Gauss_LSB_Z  = 205;
+		break;
 	}
 }
 
@@ -126,7 +126,7 @@ void LSM303_Magnetometer::enableAutoRange(bool enabled)
 void LSM303_Magnetometer::setMagRate(lsm303MagRate rate)
 {
 	uint8_t reg_m = ((uint8_t)rate & 0x07) << 2;
-	wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_CRA_REG_M, reg_m);	
+	wiringPiI2CWriteReg16(i2cfd_Mag, LSM303_REGISTER_MAG_CRA_REG_M, reg_m);
 }
 
 std::string LSM303_Magnetometer::getDeviceName()
@@ -142,12 +142,12 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 		event->gyro.heading = robotLib->getSimulatedHeading();
 		return true;
 	}
-	
+
 	if (!magInit)
 	{
 		robotLib->LogError("Magnetometer is not intialized");
 		return (false);
-	}	
+	}
 	bool readingValid = false;
 	//memset(event, 0, sizeof(sensors_event_t));
 	while (!readingValid)
@@ -156,12 +156,12 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 		if (!(reg_mg & 0x1))
 		{
 			robotLib->LogWarn("Failed to read SR_REG");
-			return false;		
+			return false;
 		}
-		
+
 		/* Read new data */
 		read();
-		
+
 		/* Make sure the sensor isn't saturating if auto-ranging is enabled */
 		if (!autoRange)
 		{
@@ -171,7 +171,7 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 		{
 #if DEBUG
 			std::stringstream ss;
-			ss << raw.x;		
+			ss << raw.x;
 			robotLib->Log(ss.str());
 			ss.clear();
 			ss << raw.y;
@@ -184,10 +184,9 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 				(raw.y >= 2040) | (raw.y <= -2040) |
 				(raw.z >= 2040) | (raw.z <= -2040))
 			{
-			
 				/* Saturating, increase the range if we can */
 				switch (magGain)
-				{			
+				{
 				case LSM303_MAGGAIN_5_6:
 					setMagGain(LSM303_MAGGAIN_8_1);
 					readingValid = false;
@@ -239,8 +238,8 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 			{
 				/* Values are within range */
 				readingValid = true;
-			}			
-		}	 
+			}
+		}
 	}
 	event->version   = sizeof(sensors_event_t);
 	event->sensor_id = LSM303_ADDRESS_MAG;
@@ -260,13 +259,13 @@ bool LSM303_Magnetometer::getEvent(sensors_event_t *event)
 
 void LSM303_Magnetometer::read()
 {
-	wiringPiI2CWrite(i2cfd_Mag, LSM303_REGISTER_MAG_OUT_X_H_M);		
+	wiringPiI2CWrite(i2cfd_Mag, LSM303_REGISTER_MAG_OUT_X_H_M);
 	int a = 0;
 	uint8_t xlo, xhi, ylo, yhi, zlo, zhi;
-		
+
 	while (a < 6)
-	{			
-		int data=0;
+	{
+		int data = 0;
 		data = wiringPiI2CReadReg8(i2cfd_Mag, LSM303_ADDRESS_MAG);
 		if (data < 0)
 		{
@@ -298,7 +297,7 @@ void LSM303_Magnetometer::read()
 	}
 	raw.x = (int16_t)((uint16_t)xlo || ((uint16_t)xhi << 8));
 	raw.y = (int16_t)((uint16_t)ylo || ((uint16_t)yhi << 8));
-	raw.z = (int16_t)((uint16_t)zlo || ((uint16_t)zhi << 8));	
+	raw.z = (int16_t)((uint16_t)zlo || ((uint16_t)zhi << 8));
 }
 
 sensors_type_t LSM303_Magnetometer::getSensorType()
@@ -313,19 +312,19 @@ void LSM303_Magnetometer::calibrate()
 	float MagMinX, MagMaxX;
 	float MagMinY, MagMaxY;
 	float MagMinZ, MagMaxZ;
-	
+
 	while (a < 30)
-	{		
+	{
 		getEvent(event);
 		if (event->magnetic.x < MagMinX)
 		{
-			MagMinX = event->magnetic.x;			
+			MagMinX = event->magnetic.x;
 		}
 		if (event->magnetic.x > MagMaxX)
 		{
-			MagMaxX = event->magnetic.x;			
+			MagMaxX = event->magnetic.x;
 		}
-		if (event->magnetic.y < MagMinY) 
+		if (event->magnetic.y < MagMinY)
 		{
 			MagMinY = event->magnetic.y;
 		}
@@ -333,11 +332,11 @@ void LSM303_Magnetometer::calibrate()
 		{
 			MagMaxY = event->magnetic.y;
 		}
-		if (event->magnetic.z < MagMinZ) 
+		if (event->magnetic.z < MagMinZ)
 		{
 			MagMinZ = event->magnetic.z;
 		}
-		if (event->magnetic.z > MagMaxZ) 
+		if (event->magnetic.z > MagMaxZ)
 		{
 			MagMaxZ = event->magnetic.z;
 		}
@@ -361,12 +360,12 @@ device_status_t LSM303_Magnetometer::getDeviceStatus(RobotLib *robotLib)
 	int i2cfd = i2cfd_Mag;
 	if (i2cfd <= 0)
 	{
-		i2cfd = DeviceManager::getI2CFD(LSM303_ADDRESS_MAG);		
-	} 
+		i2cfd = DeviceManager::getI2CFD(LSM303_ADDRESS_MAG);
+	}
 	if (i2cfd < 0)
 	{
-		return device_status_t::DEVICE_UNAVAILBLE;		
-	}	
+		return device_status_t::DEVICE_UNAVAILBLE;
+	}
 	return device_status_t::DEVICE_CONNECTED;
 }
 

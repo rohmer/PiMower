@@ -9,7 +9,7 @@ LS7366R::LS7366R(RobotLib *robotLib)
 	{
 		initialized = true;
 		return;
-	}	
+	}
 }
 
 LS7366R::LS7366R(RobotLib *robotLib, uint8_t slaveSelectEnc1, uint8_t slaveSelectEnc2)
@@ -19,7 +19,7 @@ LS7366R::LS7366R(RobotLib *robotLib, uint8_t slaveSelectEnc1, uint8_t slaveSelec
 	{
 		initialized = true;
 		return;
-	}	
+	}
 	initialize(slaveSelectEnc1, slaveSelectEnc2);
 }
 
@@ -33,28 +33,27 @@ void LS7366R::initialize(uint8_t slaveEncPin1, uint8_t slaveEncPin2)
 	this->slaveSelectEnc2 = slaveEncPin2;
 	pinMode(slaveSelectEnc1, OUTPUT);
 	pinMode(slaveSelectEnc2, OUTPUT);
-	
+
 	// Intialize encoder 1
 	digitalWrite(slaveSelectEnc1, LOW);
 	clearCounter();
 	clearStatus();
-	wiringPiSPIDataRW(0, (unsigned char *)WRITE_MODE0,sizeof((unsigned char *)WRITE_MODE0));
 	wiringPiSPIDataRW(0, (unsigned char *)WRITE_MODE0, sizeof((unsigned char *)WRITE_MODE0));
-	
+	wiringPiSPIDataRW(0, (unsigned char *)WRITE_MODE0, sizeof((unsigned char *)WRITE_MODE0));
 }
 
 void LS7366R::clearCounter()
 {
 	int ret = wiringPiSPIDataRW(0, (unsigned char *)(CLEAR_COUNTER), sizeof((unsigned char *)CLEAR_COUNTER));
 	if (ret == -1)
-		robotLib->LogError("Error writing to SPI for CLEAR_COUNTER in LS7366R");	
+		robotLib->LogError("Error writing to SPI for CLEAR_COUNTER in LS7366R");
 }
 
 void LS7366R::clearStatus()
 {
 	int ret = wiringPiSPIDataRW(0, (unsigned char *)(CLEAR_STATUS), sizeof((unsigned char *)CLEAR_STATUS));
 	if (ret == -1)
-		robotLib->LogError("Error writing to SPI for CLEAR_STATUS in LS7366R");	
+		robotLib->LogError("Error writing to SPI for CLEAR_STATUS in LS7366R");
 }
 
 std::pair<long, long> LS7366R::readCounters()

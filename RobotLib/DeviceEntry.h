@@ -11,12 +11,12 @@ class DeviceEntry
 		virtual device_type_t getDeviceType()
 		{
 		}
-		device_status_t getDeviceStatus(RobotLib *robotLib);				
-		DeviceBase *getDevice() 
+		device_status_t getDeviceStatus(RobotLib *robotLib);
+		DeviceBase *getDevice()
 		{
 			return device;
 		}
 	private:
 		DeviceBase *device;
-		RobotLib *robotLib;	
+		RobotLib *robotLib;
 };

@@ -27,25 +27,25 @@ public:
 	static Database& getInstance()
 	{
 		if (!init)
-		{			
+		{
 			Database::initDB();
 			init = true;
 		}
 		static Database instance;
 		return instance;
-	}		
-	static bool execSql(std::string sqlStmt);				
-	bool insertPositionEvent(sensors_event_t *event);	
+	}
+	static bool execSql(std::string sqlStmt);
+	bool insertPositionEvent(sensors_event_t *event);
 	static std::mutex dbMutex;
-	
+
 	static Poco::Data::Session getDBSession();
 	static void initDB();
 	~Database();
-	
+
 private:
 	static bool init;
-	Database();	
-	static Poco::Data::SessionPool *sessionPool;	
+	Database();
+	static Poco::Data::SessionPool *sessionPool;
 	static bool createPositionTable();
 	static bool createConfigTable();
 	static bool createScheduleTable();
@@ -53,9 +53,9 @@ private:
 	static bool createMapTable();
 	static bool createLogTable();
 	static bool createEventTable();
-		
+
 	static bool tableExists(std::string tableName);
-	
+
 public:
 	Database(Database const&)		= delete;
 	void operator=(Database const&)	= delete;

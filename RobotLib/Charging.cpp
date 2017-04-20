@@ -9,17 +9,16 @@ Charging::Charging(RobotLib *robotLib, GPSManager *gpsManager, MotionController 
 }
 
 Charging::~Charging()
-{	
+{
 }
 
-// Charging has only three exit points, idle or charging, or ready 
+// Charging has only three exit points, idle or charging, or ready
 // Idle = return val 1
 // Ready = 2
 // Otherwise - stay 0, meaning our behavior doesnt change
 uint8_t Charging::run()
-{	
-	
-	if (currentSensor->getBusVoltage_V() > 1)	
+{
+	if (currentSensor->getBusVoltage_V() > 1)
 	{
 		// We are docked, set our current location to X=0, Y=0
 		robotLib->setCurrentXLoc(0);
@@ -30,5 +29,5 @@ uint8_t Charging::run()
 		}
 		return 0;
 	}
-	return 1;	
+	return 1;
 }

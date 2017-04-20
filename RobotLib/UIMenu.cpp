@@ -1,7 +1,7 @@
 #include "UIMenu.h"
 
-UIMenu::UIMenu(RobotLib *robotLib) :
-	UIElement(Point(0,0), false, true)
+UIMenu::UIMenu(RobotLib *robotLib)
+	: UIElement(Point(0, 0), false, true)
 {
 	this->robotLib = robotLib;
 	pageCounter = 0;
@@ -10,7 +10,7 @@ UIMenu::UIMenu(RobotLib *robotLib) :
 uint8_t UIMenu::createMenuPage(std::string title)
 {
 	MenuPage page(title);
-	menuPages[pageCounter]=page;
+	menuPages[pageCounter] = page;
 	pageCounter++;
 	return (pageCounter - 1);
 }
@@ -20,18 +20,18 @@ uint8_t UIMenu::createMenuPage(std::string title,
 	UIFont::eFontName titleFont,
 	UIFont::eFontName itemsFont,
 	uint8_t itemsColor)
-{	
+{
 	MenuPage page(title, titleColor, titleFont, itemsFont, itemsColor);
 	menuPages[pageCounter] = page;
 	pageCounter++;
-	
+
 	return (pageCounter - 1);
 }
 
 uint8_t UIMenu::addMenuOption(uint8_t menuPage,
-	std::string itemText, 
-	MenuItemType itemType, 
-	int returnValue, 
+	std::string itemText,
+	MenuItemType itemType,
+	int returnValue,
 	int pageLink)
 {
 	std::map<uint8_t, MenuPage>::iterator it;
@@ -44,28 +44,28 @@ uint8_t UIMenu::addMenuOption(uint8_t menuPage,
 		return -1;
 	}
 	int ctr = it->second.menuItems.size();
-	
+
 	if (itemType == MenuItemType::PointerToPage && pageLink == -1)
 	{
 		std::stringstream ss;
-		ss << "This item ("<<ctr<<") is defined as a PointerToPage and pageLink==-1, this will create a broken link.";
-		robotLib->LogWarn(ss.str());		
+		ss << "This item (" << ctr << ") is defined as a PointerToPage and pageLink==-1, this will create a broken link.";
+		robotLib->LogWarn(ss.str());
 	}
 	if (itemType == MenuItemType::ReturnsValue && returnValue == -1)
 	{
 		std::stringstream ss;
 		ss << "This item (" << ctr << ") is defined as a ReturnsValue and returnValue==-1, this is the default, did you mean this?";
-		robotLib->LogWarn(ss.str());		
+		robotLib->LogWarn(ss.str());
 	}
 	MenuItem menuItem(ctr, itemText, itemType, returnValue, pageLink);
-	it->second.menuItems.emplace_back(menuItem);	
+	it->second.menuItems.emplace_back(menuItem);
 }
 
 // Checks to make sure all links work and go to proper pages, and return values are set
 bool UIMenu::checkMenu()
 {
 	std::map<uint8_t, MenuPage>::iterator it, it2;
-	for (it = menuPages.begin(); it != menuPages.end(); it++)	
+	for (it = menuPages.begin(); it != menuPages.end(); it++)
 	{
 		for (int a = 0; a < it->second.menuItems.size(); a++)
 		{
@@ -75,7 +75,7 @@ bool UIMenu::checkMenu()
 				if (it2 == menuPages.end())
 				{
 					std::stringstream ss;
-					ss << "Page #" << it->first << ", item #" << a << " has a link to Page #" << it->second.menuItems[a].pageLink << ".  That page doesnt exist.";											
+					ss << "Page #" << it->first << ", item #" << a << " has a link to Page #" << it->second.menuItems[a].pageLink << ".  That page doesnt exist.";
 					robotLib->LogError(ss.str());
 					return false;
 				}
@@ -118,23 +118,23 @@ void UIMenu::update(DigoleLCD *lcd, RobotLib *robotLib)
 	touchPoints.clear();
 	if (menuPages[currentPage].menuItems.size() > totalRowsAvail)
 	{
-		if (cpRow > 0)	
+		if (cpRow > 0)
 		{
 			// Add scroll up
 			lcd->printxy(0, row - 1, "Scroll Up");
 			touchPoints[-1] = Rectangle(0,
 				(row - 1)*UIFont::getFontHeight(menuPages[currentPage].itemsFont),
 				width,
-				row*UIFont::getFontHeight(menuPages[currentPage].itemsFont));				
+				row*UIFont::getFontHeight(menuPages[currentPage].itemsFont));
 		}
-		if (cpRow + menuPages[currentPage].menuItems.size() > totalRowsAvail)		
+		if (cpRow + menuPages[currentPage].menuItems.size() > totalRowsAvail)
 		{
 			// Add scroll down
 			lcd->printxy(0, totalRowsAvail + 2 + row, "Scroll Down");
 			touchPoints[-1] = Rectangle(0,
 				(totalRowsAvail + 2 + row)*UIFont::getFontHeight(menuPages[currentPage].itemsFont),
 				width,
-				height);				
+				height);
 		}
 	}
 	lcd->setFont(menuPages[currentPage].itemsFont);
@@ -143,6 +143,8 @@ void UIMenu::update(DigoleLCD *lcd, RobotLib *robotLib)
 	{
 		lcd->printxy(2, row + a, menuPages[currentPage].menuItems[a].itemText);
 		touchPoints[menuPages[currentPage].menuItems[a].itemNumber] = Rectangle(0,
-			(row + a)*UIFont::getFontHeight(menuPages[currentPage].itemsFont), width, (row + a + 1)*UIFont::getFontHeight(menuPages[currentPage].itemsFont));
-	}	
+			(row + a)*UIFont::getFontHeight(menuPages[currentPage].itemsFont),
+			width,
+			(row + a + 1)*UIFont::getFontHeight(menuPages[currentPage].itemsFont));
+	}
 }

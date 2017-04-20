@@ -1,8 +1,8 @@
 #include "UIGraphic.h"
 
-UIGraphic::UIGraphic(Point position, 
-	uint width, 
-	uint height, 
+UIGraphic::UIGraphic(Point position,
+	uint width,
+	uint height,
 	const unsigned char graphic[],
 	eGraphicColors colorDepth)
 	: UIElement(position, false, false)
@@ -27,8 +27,8 @@ void UIGraphic::update(DigoleLCD *lcd, RobotLib *robotLib)
 		break;
 	case eGraphicColors::Color65536:
 		lcd->drawBitmap256K(position.x, position.y, width, height, graphic);
-		break;			
-	}		
+		break;
+	}
 }
 
 void UIGraphic::setArea()

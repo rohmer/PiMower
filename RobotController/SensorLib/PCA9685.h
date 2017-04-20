@@ -15,7 +15,7 @@
 #define PCA9685_MODE2 0x01		// location for Mode2 reigster address
 #define PCA9685_PRESCALE 0xFE
 #define PCA9685_LED0 0x06		// location for start of LED0 registers
-#define PCA9685_LEDALL_ON 0xFA	
+#define PCA9685_LEDALL_ON 0xFA
 
 #define PCA9685_I2C_MIN 0x40		// I2C Address Minimum for PCA9685
 #define PCA9685_I2C_MAX 0x40+0x02	// I2C Address Maximum for PCA9685
@@ -23,48 +23,48 @@
 
 class PCA9685 : public DeviceBase
 {
-	public:
-		PCA9685(RobotLib *robotLib);
-		PCA9685(RobotLib *robotLib, uint8_t i2caddress);
-		
-		~PCA9685();
-		device_type_t getDeviceType() override
-		{
-			return DEVICETYPE_OUTPUT;
-		}
-	
-		std::string getDeviceName() override
-		{
-			return "PCA9685";
-		};
-	
-		std::string getDeviceDescription() override
-		{
-			return "PCA9685 I2C to PWM Driver";
-		}
-		
-		static device_status_t getDeviceStatus(RobotLib *robotLib);		
-		void pca9685PWMFreq(float frequency);
-		static void pca9685SetPin(int pin, int value);
-		static void pca9685FullOn(int pin, int tf);
-		static void pca9685FullOff(int pin, int tf);
-		static void pca9685PWMRead(int pin, int *on, int *off);
-		static void pca9685PWMWrite(int pin, int on, int off);
-		void pca9685PWMReset();
-		static uint8_t scanForPCA9685();
-	
-	private:
-		static int i2cfd;
-		static uint8_t pca9685I2CAddr;
-		bool pca9685Avail;		
-		void initialize();		
-		static int baseReg(int pin);
-		static bool initialized;
-			
-		// wiringPi functions
-		static void pPwmWrite(int pin, int value);
-		static int pOffRead(int pin);
-		static int pOnRead(int pin);
-		static void pOnOffWrite(int pin, int value);
+public:
+	PCA9685(RobotLib *robotLib);
+	PCA9685(RobotLib *robotLib, uint8_t i2caddress);
 
+	~PCA9685();
+	device_type_t getDeviceType() override
+	{
+		return DEVICETYPE_OUTPUT;
+	}
+
+	std::string getDeviceName() override
+	{
+		return "PCA9685";
+	}
+	;
+
+	std::string getDeviceDescription() override
+	{
+		return "PCA9685 I2C to PWM Driver";
+	}
+
+	static device_status_t getDeviceStatus(RobotLib *robotLib);
+	void pca9685PWMFreq(float frequency);
+	static void pca9685SetPin(int pin, int value);
+	static void pca9685FullOn(int pin, int tf);
+	static void pca9685FullOff(int pin, int tf);
+	static void pca9685PWMRead(int pin, int *on, int *off);
+	static void pca9685PWMWrite(int pin, int on, int off);
+	void pca9685PWMReset();
+	static uint8_t scanForPCA9685();
+
+private:
+	static int i2cfd;
+	static uint8_t pca9685I2CAddr;
+	bool pca9685Avail;
+	void initialize();
+	static int baseReg(int pin);
+	static bool initialized;
+
+// wiringPi functions
+	static void pPwmWrite(int pin, int value);
+	static int pOffRead(int pin);
+	static int pOnRead(int pin);
+	static void pOnOffWrite(int pin, int value);
 };

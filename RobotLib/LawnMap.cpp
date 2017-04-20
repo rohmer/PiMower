@@ -22,7 +22,7 @@ LawnMap::~LawnMap()
 
 int LawnMap::getPathMap(int x, int y)
 {
-	return (pathMap[x][y]);	
+	return (pathMap[x][y]);
 }
 
 void LawnMap::getExtents(std::pair<int, int> &minXY, std::pair<int, int> &maxXY)
@@ -41,11 +41,11 @@ void LawnMap::clear()
 	mapContents.clear();
 }
 
-void LawnMap::setNode(int x, int y, map_node_t nodeType, std::pair<double, double> location)	
+void LawnMap::setNode(int x, int y, map_node_t nodeType, std::pair<double, double> location)
 {
 	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ x, y });
 	MapNode *mapNode;
-			
+
 	if (it != mapContents.end())
 	{
 		mapNode = it->second;
@@ -78,10 +78,10 @@ void LawnMap::setNode(int x, int y, map_node_t nodeType, std::pair<double, doubl
 		if (minXY.second < 0)
 			mapModY = abs(minXY.second);
 		mapNode = new MapNode(coord, nodeType, location);
-		mapContents.emplace(coord, mapNode);		
+		mapContents.emplace(coord, mapNode);
 #ifdef TRACE
 		std::stringstream ss;
-		ss << "Added node (" << x << "," << y << ") with type: " << nodeType << " to map";		
+		ss << "Added node (" << x << "," << y << ") with type: " << nodeType << " to map";
 		robotLib->Log(ss.str());
 #endif
 		if (nodeType == map_node_t::BLOCK_BASE_STATION)
@@ -143,7 +143,7 @@ std::vector<MapNode *> LawnMap::getBaseStations()
 
 map_node_t LawnMap::getNodeType(std::pair<int, int> location)
 {
-	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ location.first,location.second});
+	std::map<std::pair<int, int>, MapNode *>::iterator it = mapContents.find(std::pair<int, int>{ location.first, location.second });
 	if (it == mapContents.end())
 	{
 		return map_node_t::BLOCK_UNKNOWN;
@@ -188,7 +188,7 @@ MapNode *LawnMap::loadMapNode(std::pair<int, int> coord)
 		Poco::Data::Keywords::into(lat),
 		Poco::Data::Keywords::into(lon),
 		Poco::Data::Keywords::into(blocking),
-		Poco::Data::Keywords::into(contents);		
+		Poco::Data::Keywords::into(contents);
 	{
 		std::unique_lock<std::mutex> lock(Database::dbMutex);
 		while (!stmt.done())
@@ -207,11 +207,11 @@ void LawnMap::storeMapNode(MapNode *mapNode)
 	Poco::Data::Statement stmt(session);
 	double lat = mapNode->getLocation().first;
 	double lon = mapNode->getLocation().second;
-	int blockContents=mapNode->blockContents();
+	int blockContents = mapNode->blockContents();
 	bool isBlocking = mapNode->isBlocking();
 	int gridX = mapNode->getGridCoord().first;
 	int gridY = mapNode->getGridCoord().second;
-	
+
 	stmt << "UPDATE LawnMap SET Blocking=?, Contents=?, Latitude=?, Longitude=? WHERE X=? AND Y=?",
 		Poco::Data::Keywords::bind(isBlocking),
 		Poco::Data::Keywords::bind(blockContents),
@@ -233,7 +233,7 @@ void LawnMap::storeMapNode(MapNode *mapNode)
 			Poco::Data::Keywords::bind(lon),
 			Poco::Data::Keywords::bind(isBlocking),
 			Poco::Data::Keywords::bind(blockContents);
-				
+
 			stmt.execute();
 		}
 	}
@@ -269,7 +269,7 @@ bool LawnMap::saveMap()
 		node->append_attribute(doc.allocate_attribute("type", std::to_string(it->second->blockContents()).c_str()));
 		root->append_node(node);
 	}
-	
+
 	std::string xml;
 	rapidxml::print(std::back_inserter(xml), doc);
 	std::ofstream filestream;
@@ -283,7 +283,7 @@ bool LawnMap::saveMap()
 	{
 		robotLib->LogException(e);
 		return false;
-	}	
+	}
 	return true;
 }
 
@@ -309,7 +309,7 @@ bool LawnMap::loadMap()
 		Poco::Data::Keywords::into(lon),
 		Poco::Data::Keywords::into(blocking),
 		Poco::Data::Keywords::into(contents),
-		Poco::Data::Keywords::range(0, 1);	
+		Poco::Data::Keywords::range(0, 1);
 	while (!stmt.done())
 	{
 		stmt.execute();
@@ -321,8 +321,8 @@ bool LawnMap::loadMap()
 // Adjusts the map to be 0->x as opposed to 0,0 being center
 std::pair<int, int> LawnMap::getPathCoord(MapNode *node)
 {
-	int x=0;
-	int y=0;
+	int x = 0;
+	int y = 0;
 	std::pair<int, int> min, max;
 	this->getExtents(min, max);
 	std::pair<int, int> retVal;
@@ -338,19 +338,19 @@ std::pair<int, int> LawnMap::getPathCoord(MapNode *node)
 	retVal.second = node->getGridCoord().second + y;
 	return retVal;
 }
-	
+
 int LawnMap::getWidth()
 {
 	std::pair<int, int> min, max;
 	getExtents(min, max);
-	return max.first - min.first+1;
+	return max.first - min.first + 1;
 }
 
 int LawnMap::getHeight()
 {
 	std::pair<int, int> min, max;
 	getExtents(min, max);
-	return max.second - min.second+1;
+	return max.second - min.second + 1;
 }
 
 void LawnMap::setMapDirty(bool dirty)
@@ -374,7 +374,7 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 	int i, j, x, y, xdx, ydy;
 	if (mapDirty)
 	{
- 		createPathMap();
+		createPathMap();
 		mapDirty = false;
 	}
 	// clear node maps
@@ -391,17 +391,17 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 		dirMap.emplace_back(clearRow);
 	}
 	std::vector<MapNode *> path;
-	
+
 	int xStart = start.first;
 	int yStart = start.second;
 	int xFinish = end.first;
 	int yFinish = end.second;
-	
+
 	std::priority_queue<node> pq[2]; // list of open (not-yet-tried) nodes
 	int pqi; // pq index
 	node* n0;
 	node* m0;
-	
+
 	pqi = 0;
 	// create the start node and push into list of open nodes
 	n0 = new node(xStart, yStart, 0, 0);
@@ -416,7 +416,7 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 	    // get the current node w/ the highest priority
 	    // from the list of open nodes
 		n0 = new node( pq[pqi].top().getxPos(),
-			pq[pqi].top().getyPos(), 
+			pq[pqi].top().getyPos(),
 			pq[pqi].top().getLevel(),
 			pq[pqi].top().getPriority());
 
@@ -429,7 +429,7 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 
 		        // quit searching when the goal state is reached
 		        //if((*n0).estimate(xFinish, yFinish) == 0)
-		if (x == xFinish && y == yFinish) 
+		if (x == xFinish && y == yFinish)
 		{
 		    // generate the path from finish to start
 		    // by following the directions
@@ -444,7 +444,7 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 			// garbage collection
 			delete n0;
 			// empty the leftover nodes
-			while (!pq[pqi].empty()) pq[pqi].pop();           
+			while (!pq[pqi].empty()) pq[pqi].pop();
 			return path;
 		}
 
@@ -455,12 +455,12 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 
 			if ((xdx >= 0 || xdx <= width - 1 || ydy >= 0 || ydy <= height - 1))
 			{
-				if (pathMap[ydy][xdx] != 1 && closedNodesMap[ydy][xdx] != 1)		
+				if (pathMap[ydy][xdx] != 1 && closedNodesMap[ydy][xdx] != 1)
 				{
 				    // generate a child node
 					m0 = new node( xdx,
 						ydy,
-						n0->getLevel(), 
+						n0->getLevel(),
 						n0->getPriority());
 					m0->nextLevel(i);
 					m0->updatePriority(xFinish, yFinish);
@@ -484,20 +484,20 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 											// by emptying one pq to the other one
 											// except the node to be replaced will be ignored
 											// and the new node will be pushed in instead
-						while (!(pq[pqi].top().getxPos() == xdx && 
+						while (!(pq[pqi].top().getxPos() == xdx &&
 						       pq[pqi].top().getyPos() == ydy))
-						{                
+						{
 							pq[1 - pqi].push(pq[pqi].top());
-							pq[pqi].pop();       
+							pq[pqi].pop();
 						}
 						pq[pqi].pop(); // remove the wanted node
-                    
+
 						// empty the larger size pq to the smaller one
 						if (pq[pqi].size() > pq[1 - pqi].size()) pqi = 1 - pqi;
 						while (!pq[pqi].empty())
-						{                
+						{
 							pq[1 - pqi].push(pq[pqi].top());
-							pq[pqi].pop();       
+							pq[pqi].pop();
 						}
 						pqi = 1 - pqi;
 						pq[pqi].push(*m0); // add the better node instead
@@ -515,11 +515,11 @@ std::vector<MapNode *> LawnMap::findPath(std::pair<int, int> start, std::pair<in
 std::vector<MapNode *> LawnMap::getPathToClosestBase(std::pair<int, int> start)
 {
 	std::vector<MapNode *> path;
-	
-	for (int a=0; a<baseStations.size(); a++)
+
+	for (int a = 0; a < baseStations.size(); a++)
 	{
 		std::vector<MapNode *> p = findPath(start, std::make_pair<int, int>(baseStations[a]->getGridCoord().first, baseStations[a]->getGridCoord().second));
-		if (p.size() > 0 && ((p.size() < path.size()) || path.size()==0 ))
+		if (p.size() > 0 && ((p.size() < path.size()) || path.size() == 0))
 			path = p;
 	}
 	return path;
@@ -549,13 +549,13 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 	int maxX = maxXY.first;
 	int minY = minXY.second;
 	int maxY = maxXY.second;
-			
+
 	int spiralSize = 0;
 	Point startingPoint(currentLocation.first, currentLocation.second);
-	
-	while((spiralSize<(maxX-minX)) && (spiralSize<(maxY-minY)))
+
+	while ((spiralSize < (maxX - minX)) && (spiralSize < (maxY - minY)))
 	{
-		for (int dir = 0; dir <= 3; dir++)	
+		for (int dir = 0; dir <= 3; dir++)
 		{
 			if (dir == 0)		// DOWN
 			{
@@ -581,8 +581,8 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = maxX;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNodeType(x-a, y)== nodeType)
-						return getNode(x-a, y);
+					if (getNodeType(x - a, y) == nodeType)
+						return getNode(x - a, y);
 				}
 			}
 			if (dir == 2)		// UP
@@ -595,8 +595,8 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = minY;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNodeType(x, y-a) == nodeType)
-						return getNode(x, y-a);
+					if (getNodeType(x, y - a) == nodeType)
+						return getNode(x, y - a);
 				}
 			}
 			if (dir == 3)		// RIGHT
@@ -609,14 +609,14 @@ MapNode *LawnMap::closestNodeOfType(std::pair<int, int> currentLocation, map_nod
 					x = minY;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					if (getNodeType(x+a, y)== nodeType)
+					if (getNodeType(x + a, y) == nodeType)
 						return getNode(x + a, y);
 				}
-			}			
+			}
 		}
 		spiralSize++;
 	}
-	
+
 	// We did not find one on the map
 	return NULL;
 }
@@ -631,13 +631,13 @@ MapNode *LawnMap::closestUnmowedNode(std::pair<int, int> currentLocation)
 	int maxX = maxXY.first;
 	int minY = minXY.second;
 	int maxY = maxXY.second;
-			
+
 	int spiralSize = 0;
 	Point startingPoint(currentLocation.first, currentLocation.second);
-	
+
 	while ((spiralSize < (maxX - minX)) && (spiralSize < (maxY - minY)))
 	{
-		for (int dir = 0; dir <= 3; dir++)	
+		for (int dir = 0; dir <= 3; dir++)
 		{
 			if (dir == 0)		// DOWN
 			{
@@ -649,7 +649,7 @@ MapNode *LawnMap::closestUnmowedNode(std::pair<int, int> currentLocation)
 					x = maxX;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					MapNode *node = getNode(x, y + a);					
+					MapNode *node = getNode(x, y + a);
 					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
 						return node;
 				}
@@ -664,9 +664,9 @@ MapNode *LawnMap::closestUnmowedNode(std::pair<int, int> currentLocation)
 					x = maxX;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					MapNode *node = getNode(x - a, y);					
+					MapNode *node = getNode(x - a, y);
 					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
-						return node;					
+						return node;
 				}
 			}
 			if (dir == 2)		// UP
@@ -679,9 +679,9 @@ MapNode *LawnMap::closestUnmowedNode(std::pair<int, int> currentLocation)
 					x = minY;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					MapNode *node = getNode(x, y - a);					
+					MapNode *node = getNode(x, y - a);
 					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
-						return node;										
+						return node;
 				}
 			}
 			if (dir == 3)		// RIGHT
@@ -694,15 +694,15 @@ MapNode *LawnMap::closestUnmowedNode(std::pair<int, int> currentLocation)
 					x = minY;
 				for (int a = 0; a <= ((spiralSize * 2) + 1); a++)
 				{
-					MapNode *node = getNode(x+a, y);					
+					MapNode *node = getNode(x + a, y);
 					if (node->blockContents() == BLOCK_GRASS && !node->getMowedFlag())
-						return node;															
+						return node;
 				}
-			}			
+			}
 		}
 		spiralSize++;
 	}
-	
+
 	// We did not find one on the map
 	return NULL;
 }

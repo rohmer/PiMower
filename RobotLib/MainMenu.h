@@ -12,7 +12,7 @@ public:
 	MainMenu();
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
 	int processTouch(Point pt) override;
-	
+
 private:
 	UIMenu *menu = NULL;
 };

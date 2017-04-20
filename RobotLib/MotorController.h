@@ -23,21 +23,20 @@ class Config;
 class MotorController
 {
 public:
-	MotorController(RobotLib *robotLib, 
+	MotorController(RobotLib *robotLib,
 		Config *config);
-		
+
 	void SetSpeed(int leftMotorSpeedPct, int rightMotorSpeedPct,int bladeSpeedPct);
 	void SetSpeed(int leftMotorSpeecPct, int rightMotorSpeedPct);
-	
+
 	void AllStop();
 	std::pair <int, int> currentDriveMotorRPM();
 	eTravelDirection currentMotion();
-	
-	
+
 private:
 	RobotLib *robotLib;
 	Config *config;
 	uint8_t leftMotorChannel, rightMotorChannel, bladeChannel;
-	PCA9685 *pca9685;		
-	uint8_t leftMotorSpeed, rightMotorSpeed, bladeSpeed;	
+	PCA9685 *pca9685;
+	uint8_t leftMotorSpeed, rightMotorSpeed, bladeSpeed;
 };

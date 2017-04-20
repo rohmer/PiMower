@@ -8,9 +8,9 @@ class ConfigTests
 {
 public:
 	ConfigTests(RobotLib *robotLib, PiRobotTestLib *testLib);
-	PiRobotTestLib *runTests();	
-	~ConfigTests();										
-	
+	PiRobotTestLib *runTests();
+	~ConfigTests();
+
 private:
 	void loadConfig();
 	bool testSetup;

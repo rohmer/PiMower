@@ -2,12 +2,12 @@
 
 UIRadioGroup::UIRadioGroup(Point position)
 	: UIElement(position, false, true)
-{		
+{
 }
 
 UIRadioGroup::UIRadioGroup(Point position,
-	uint8_t radioColor, 
-	uint8_t textColor, 
+	uint8_t radioColor,
+	uint8_t textColor,
 	UIFont::eFontName font,
 	GroupAlignment alignment,
 	eTextAlignment textAlignment)
@@ -33,19 +33,19 @@ void UIRadioGroup::setArea()
 		for (int a = 0; a < values.size(); a++)
 		{
 			if (textAlignment == eTextAlignment::textRight)
-			{				
+			{
 				int startX = position.x + totalSize;
 				int controlPtr = 0;
 				values[a].checkPoint = Point(startX, position.y);
 				controlPtr += checkSize * 2;
-				values[a].textStart = Point(startX + controlPtr, position.y+UIFont::getFontHeight(font));
-				controlPtr+= values[a].label.size()*(UIFont::getFontWidth(font)*.75);
+				values[a].textStart = Point(startX + controlPtr, position.y + UIFont::getFontHeight(font));
+				controlPtr += values[a].label.size()*(UIFont::getFontWidth(font) * .75);
 				values[a].touchPoint = Rectangle(startX, position.y, position.x + controlPtr, position.y + UIFont::getFontHeight(font));
 				totalSize += controlPtr;
-			} 
+			}
 			else
 			{
-				int startX = position.x + totalSize;				
+				int startX = position.x + totalSize;
 				values[a].textStart = Point(position.x + totalSize, position.y);
 				totalSize += values[a].label.size()*UIFont::getFontWidth(font);
 				totalSize += checkSize;
@@ -62,17 +62,17 @@ void UIRadioGroup::setArea()
 		{
 			if (textAlignment == eTextAlignment::textRight)
 			{
-				values[a].checkPoint = Point(position.x, position.y + (a*UIFont::getFontHeight(font)*1.5));
-				values[a].textStart = Point(position.x + checkSize * 2, position.y + ((a + 1)*UIFont::getFontHeight(font) * 1.5)-2);
+				values[a].checkPoint = Point(position.x, position.y + (a*UIFont::getFontHeight(font) * 1.5));
+				values[a].textStart = Point(position.x + checkSize * 2, position.y + ((a + 1)*UIFont::getFontHeight(font) * 1.5) - 2);
 			}
 			else
-			{				
-				values[a].textStart = Point(position.x, position.y + (a*UIFont::getFontHeight(font)*1.5)-2);
+			{
+				values[a].textStart = Point(position.x, position.y + (a*UIFont::getFontHeight(font) * 1.5) - 2);
 				values[a].checkPoint = Point(position.x + checkSize + values[a].label.size()*UIFont::getFontWidth(font), position.y + ((a + 1)*UIFont::getFontHeight(font) * 1.5));
 			}
 		}
 	}
-	
+
 	// Make sure one is selected
 	bool itemSelected = false;
 	for (int a = 0; a < values.size(); a++)
@@ -89,9 +89,9 @@ void UIRadioGroup::update(DigoleLCD *lcd, RobotLib *robotLib)
 	int checkSize = UIFont::getFontHeight(font);
 	if (UIFont::getFontWidth(font) < checkSize)
 	{
-		checkSize = UIFont::getFontWidth(font)/2;
+		checkSize = UIFont::getFontWidth(font) / 2;
 	}
-	
+
 	for (int a = 0; a < values.size(); a++)
 	{
 		lcd->setColor(textColor);
@@ -103,7 +103,7 @@ void UIRadioGroup::update(DigoleLCD *lcd, RobotLib *robotLib)
 			lcd->setColor(radioColor);
 			lcd->setColor(radioColor);
 			lcd->drawBoxFill(values[a].checkPoint.x + 1, values[a].checkPoint.y + 1, checkSize - 2, checkSize - 2);
-		}		
+		}
 	}
 }
 
@@ -120,7 +120,7 @@ bool UIRadioGroup::addRadioItem(std::string label, int value, bool isSelected)
 	radioValue.label = label;
 	radioValue.value = value;
 	radioValue.isSelected = isSelected;
-	
+
 	values.push_back(radioValue);
 	setArea();
 	return true;

@@ -15,7 +15,7 @@ void GPIOButton::addButton(uint8_t pinNumber, std::string buttonName)
 		ss << "Redefining pin #" << pinNumber << ", was defined for: " << buttons.find(pinNumber)->second;
 		robotLib->LogError(ss.str());
 	}
-	
+
 	buttons.emplace(pinNumber, buttonName);
 	pinMode(pinNumber, INPUT);
 }
@@ -27,8 +27,8 @@ std::vector<std::string> GPIOButton::getButtonsPressed()
 	for (it = buttons.begin(); it != buttons.end(); it++)
 	{
 		if (digitalRead(it->first) == 1)
-			ret.push_back(it->second);			
+			ret.push_back(it->second);
 	}
-	
+
 	return ret;
 }

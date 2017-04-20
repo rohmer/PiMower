@@ -1,26 +1,28 @@
 #include "GPIOLED.h"
 
-GPIOLED::GPIOLED(RobotLib *robotLib) : DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
+GPIOLED::GPIOLED(RobotLib *robotLib)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	initialized = false;
 	if (robotLib->getEmulator())
 		return;
 	shutdown = false;
-	pollingThread = std::thread(startDriverThread, this);	
+	pollingThread = std::thread(startDriverThread, this);
 }
 
-GPIOLED::GPIOLED(RobotLib *robotLib, std::string ledName, uint8_t triggerPin) : DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
+GPIOLED::GPIOLED(RobotLib *robotLib, std::string ledName, uint8_t triggerPin)
+	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
 	ledMapping.emplace(std::make_pair(ledName, triggerPin));
 	ledBehavior.emplace(std::make_pair(triggerPin, LED_BEHAVIOR_T::Off));
-	shutdown = false;	
+	shutdown = false;
 	startDriverThread(this);
 	initialized = true;
 	if (robotLib->getEmulator())
 		return;
 
 	pinMode(triggerPin, OUTPUT);
-	pollingThread = std::thread(startDriverThread, this);	
+	pollingThread = std::thread(startDriverThread, this);
 }
 
 GPIOLED::~GPIOLED()
@@ -96,7 +98,7 @@ void GPIOLED::addLED(std::string ledName, uint8_t triggerPin)
 	ledBehavior.emplace(triggerPin, LED_BEHAVIOR_T::Off);
 	if (!initialized)
 	{
-		shutdown = false;	
+		shutdown = false;
 		startDriverThread(this);
 		initialized = true;
 	}
@@ -118,7 +120,7 @@ void GPIOLED::addLED(std::string ledName, uint8_t triggerPin, LED_BEHAVIOR_T beh
 		ledBehavior.emplace(triggerPin, LED_BEHAVIOR_T::On);
 		return;
 	}
-	
+
 	// Deal with blinking
 	if (blinkInterval <= 0)
 		blinkInterval = 1;
@@ -130,7 +132,7 @@ void GPIOLED::addLED(std::string ledName, uint8_t triggerPin, LED_BEHAVIOR_T beh
 	ledBehavior.emplace(triggerPin, behavior);
 	if (!initialized)
 	{
-		shutdown = false;	
+		shutdown = false;
 		startDriverThread(this);
 		initialized = true;
 	}

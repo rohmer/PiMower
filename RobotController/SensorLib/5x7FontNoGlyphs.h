@@ -477,4 +477,3 @@ static const uint8_t gca_font[] =
 	0x20,
 	0x40, /* ASC(126) */
 };
-

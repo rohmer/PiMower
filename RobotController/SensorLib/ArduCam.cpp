@@ -13,8 +13,8 @@ uint8_t ArduCam::sensorAddr;
 
 #define BUF_SIZE (384*1024)
 
-ArduCam::ArduCam(RobotLib *robotLib) :
-	SensorBase(robotLib)
+ArduCam::ArduCam(RobotLib *robotLib)
+	: SensorBase(robotLib)
 {
 	if (robotLib->getEmulator())
 	{
@@ -40,20 +40,20 @@ void ArduCam::initialize(uint8_t i2caddress)
 	{
 		std::stringstream ss;
 		ss << "Could not initialize SPI";
-		robotLib->LogError(ss.str());		
+		robotLib->LogError(ss.str());
 		initialized = false;
 		return;
 	}
-	
+
 	if (!initSensor())
 	{
-		robotLib->LogError("Could not initialize sensor");		
+		robotLib->LogError("Could not initialize sensor");
 		initialized = false;
 		return;
 	}
 	if (!initSPI())
 	{
-		robotLib->LogError("Could not find ArduCam on SPI");		
+		robotLib->LogError("Could not find ArduCam on SPI");
 		initialized = false;
 		return;
 	}
@@ -78,7 +78,7 @@ bool ArduCam::initSPI()
 		return true;
 	}
 	arducam_write_reg(ARDUCHIP_TEST1, 0x55, CAM2_CS);
-	
+
 	temp = arducam_read_reg(ARDUCHIP_TEST1, CAM2_CS);
 	if (temp == 0x55)
 	{
@@ -86,7 +86,7 @@ bool ArduCam::initSPI()
 		return true;
 	}
 	arducam_write_reg(ARDUCHIP_TEST1, 0x55, CAM3_CS);
-	
+
 	temp = arducam_read_reg(ARDUCHIP_TEST1, CAM3_CS);
 	if (temp == 0x55)
 	{
@@ -94,14 +94,14 @@ bool ArduCam::initSPI()
 		return true;
 	}
 	arducam_write_reg(ARDUCHIP_TEST1, 0x55, CAM4_CS);
-	
+
 	temp = arducam_read_reg(ARDUCHIP_TEST1, CAM4_CS);
 	if (temp == 0x55)
 	{
 		spiCS = CAM4_CS;
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -121,12 +121,11 @@ bool ArduCam::initSensor()
 			arducam_i2c_write(0xff, 0x01);
 			arducam_i2c_write(0x15, 0x00);
 			arducam_i2c_write_regs(OV2640_320x240_JPEG);
-
 		}
 		else
 		{
 			arducam_i2c_write_regs(OV2640_QVGA);
-		}		
+		}
 		return true;
 	}
 	if (cameraSensor == sensor_model_t::smOV5642)
@@ -135,9 +134,9 @@ bool ArduCam::initSensor()
 		arducam_i2c_word_write(0x3008, 0x80);
 		arducam_delay_ms(100);
 		if (imageFormat == fmtJPEG)
-		{	
-			arducam_i2c_write_word_regs(ov5642_dvp_fmt_global_init); 
-			arducam_delay_ms(100); 
+		{
+			arducam_i2c_write_word_regs(ov5642_dvp_fmt_global_init);
+			arducam_delay_ms(100);
 			arducam_i2c_write_word_regs(ov5642_dvp_fmt_jpeg_qvga);
 		}
 		else
@@ -149,7 +148,7 @@ bool ArduCam::initSensor()
 			arducam_i2c_word_write(0x3621, reg_val & 0xdf);
 		}
 	}
-	
+
 	std::stringstream ss;
 	ss << "Sensor Model: " << cameraSensor << " is not currently supported";
 	robotLib->LogError(ss.str());
@@ -165,20 +164,20 @@ bool ArduCam::chipTest()
 		arducam_i2c_word_read(OV5642_CHIPID_HIGH, &vid);
 		arducam_i2c_word_read(OV5642_CHIPID_LOW, &pid);
 		if ((vid != 0x56) || (pid != 0x42))
-		{			
+		{
 			return false;
 		}
 		return true;
 	}
-	
+
 	if (cameraSensor == sensor_model_t::smOV2640)
 	{
 		arducam_i2c_word_read(OV2640_CHIPID_HIGH, &vid);
 		arducam_i2c_word_read(OV2640_CHIPID_LOW, &pid);
 		if ((vid != 0x26) || (pid != 0x42))
-		{			
+		{
 			return false;
-		}		
+		}
 		return true;
 	}
 	return false;
@@ -212,14 +211,14 @@ device_status_t ArduCam::getDeviceStatus(RobotLib *robotLib)
 {
 	sensorAddr = 0;
 	if (initI2C(0x3c))
-	{			
+	{
 		cameraSensor = sensor_model_t::smOV5642;
-		sensorAddr = 0x3c;		
+		sensorAddr = 0x3c;
 	}
 	if (initI2C(0x30))
-	{		
+	{
 		cameraSensor = sensor_model_t::smOV2640;
-		sensorAddr = 0x30;		
+		sensorAddr = 0x30;
 	}
 	if (sensorAddr != 0)
 	{
@@ -251,14 +250,14 @@ bool ArduCam::getEvent(sensors_event_t *event)
 	robotLib->Log("Capture Complete");
 	char sfn[19] = "";
 	if (imageFormat == image_format_t::fmtBMP)
-	{		
+	{
 		strcpy(sfn, "/tmp/img.XXXXXX.bmp");
 	}
 	else
 	{
 		strcpy(sfn, "/tmp/img.XXXXXX.jpg");
 	}
-	
+
 	FILE *fp1 = fopen(sfn, "w+");
 	if (!fp1)
 	{
@@ -267,7 +266,7 @@ bool ArduCam::getEvent(sensors_event_t *event)
 		robotLib->LogError(ss.str());
 		return false;
 	}
-	
+
 	size_t len = read_fifo_length(spiCS);
 	if (len >= 393216)
 	{
@@ -289,7 +288,7 @@ bool ArduCam::getEvent(sensors_event_t *event)
 		i += 4096;
 	}
 	arducam_spi_transfers(&buffer[i], len);
-	
+
 	fwrite(buffer, len + i, 1, fp1);
 	digitalWrite(CAM1_CS, HIGH);
 	delay(100);
@@ -298,7 +297,7 @@ bool ArduCam::getEvent(sensors_event_t *event)
 	std::string sFilename(sfn);
 	event->image.filename = sFilename;
 	event->image.imageFormat = imageFormat;
-	event->image.imageSize = imageSize;	
+	event->image.imageSize = imageSize;
 	return true;
 }
 

@@ -1,22 +1,22 @@
 #include "RobotLibTests.h"
 
 RobotLibTests::RobotLibTests(PiRobotTestLib *testLib)
-{	
+{
 	this->testLib = testLib;
 }
 
 RobotLibTests::~RobotLibTests()
 {
 	try
-	{		
+	{
 		testLib->AddTestResult("RobotLib Tests",
-			"Destructor Test", 
+			"Destructor Test",
 			SUCCESS);
 	}
 	catch (std::exception &e)
 	{
 		testLib->AddTestResult("RobotLib Tests",
-			"Destructor Test", 
+			"Destructor Test",
 			FAILED,
 			e.what());
 	}
@@ -45,7 +45,7 @@ void RobotLibTests::initTest()
 void RobotLibTests::deviceManagerInit()
 {
 	try
-	{	
+	{
 		if (!robotLib)
 			robotLib = &RobotLib::getInstance();
 		if (!robotLib->getDeviceManager())
@@ -92,10 +92,10 @@ void RobotLibTests::loggingTestDebug()
 					return;
 				}
 			}
-		}			
+		}
 	}
 	testLib->AddTestResult("RobotLib Tests", "Log Trace", FAILED, "Did not find message in log file");
-	inputFile.close();	
+	inputFile.close();
 }
 
 void RobotLibTests::loggingTestWarn()
@@ -104,7 +104,7 @@ void RobotLibTests::loggingTestWarn()
 	// Create a random UUID
 	std::string uuid = genUUID();
 	// Log it
-	robotLib->LogWarn(uuid);	
+	robotLib->LogWarn(uuid);
 	std::string sev = "Warning";
 	std::ifstream inputFile;
 	inputFile.open("Robot.log");
@@ -124,7 +124,7 @@ void RobotLibTests::loggingTestWarn()
 					return;
 				}
 			}
-		}			
+		}
 	}
 	testLib->AddTestResult("RobotLib Tests", "Log Warning", FAILED, "Did not find message in log file");
 	inputFile.close();
@@ -156,7 +156,7 @@ void RobotLibTests::loggingTestError()
 					return;
 				}
 			}
-		}			
+		}
 	}
 	testLib->AddTestResult("RobotLib Tests", "Log Critical", FAILED, "Did not find message in log file");
 	inputFile.close();
@@ -172,11 +172,11 @@ void RobotLibTests::loggingTestException()
 	public:
 		std::string val;
 		const char* what() const noexcept
-		{ 
+		{
 			return val.c_str();
 		}
 	};
-	
+
 	try
 	{
 		throw testException();
@@ -205,11 +205,10 @@ void RobotLibTests::loggingTestException()
 					return;
 				}
 			}
-		}			
+		}
 	}
 	testLib->AddTestResult("RobotLib Tests", "Log Exception", FAILED, "Did not find message in log file");
 	inputFile.close();
-	
 }
 
 PiRobotTestLib *RobotLibTests::runTests()

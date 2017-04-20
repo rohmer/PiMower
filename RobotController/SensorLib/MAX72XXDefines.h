@@ -6,4 +6,4 @@
 #define MAX_nCS     8
 
 #define INTENSITY     0x0a
-#define SHUTDOWN      0x0c   
+#define SHUTDOWN      0x0c

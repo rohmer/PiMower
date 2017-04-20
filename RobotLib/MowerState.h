@@ -5,7 +5,7 @@ typedef enum MOWER_STATE_T
 {
 	STATE_OFF,          // off
 	STATE_FORWARD,      // drive forward
-	STATE_ROLL,         // drive roll right/left  
+	STATE_ROLL,         // drive roll right/left
 	STATE_REVERSE,      // drive reverse
 	STATE_ERROR,        // error
 	STATE_STATION,       // in station

@@ -13,7 +13,7 @@ double SensorBase::getTimestamp()
 	struct tm y2k = { 0 };
 	y2k.tm_hour = 0; y2k.tm_min = 0; y2k.tm_sec = 0;
 	y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;
-	
+
 	return (difftime(timer, mktime(&y2k)));
 }
 
@@ -24,7 +24,7 @@ uint16_t SensorBase::i2cReadReg16(int fd, uint8_t reg)
 	{
 		std::stringstream ss;
 		ss << "Error writing to Registry: " << reg << " error: " << strerror(errno);
-		robotLib->LogError(ss.str());		
+		robotLib->LogError(ss.str());
 		return -1;
 	}
 
@@ -47,7 +47,7 @@ uint8_t SensorBase::i2cReadReg8(int fd, uint8_t reg)
 
 bool SensorBase::i2cWriteReg16(int fd, uint8_t reg, uint16_t val)
 {
-	if (wiringPiI2CWriteReg16(fd, reg, val) <=0)
+	if (wiringPiI2CWriteReg16(fd, reg, val) <= 0)
 	{
 		std::stringstream ss;
 		ss << "Error writing to Registry: " << reg << " error: " << strerror(errno);

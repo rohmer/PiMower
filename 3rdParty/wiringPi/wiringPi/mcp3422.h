@@ -31,12 +31,11 @@
 #define	MCP3422_GAIN_4	2
 #define	MCP3422_GAIN_8	3
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern int mcp3422Setup (int pinBase, int i2cAddress, int sampleRate, int gain) ;
+	extern int mcp3422Setup(int pinBase, int i2cAddress, int sampleRate, int gain);
 
 #ifdef __cplusplus
 }

@@ -2,7 +2,6 @@
 
 PiRobotTestLib::PiRobotTestLib()
 {
-	
 }
 
 std::string PiRobotTestLib::black()
@@ -71,7 +70,7 @@ std::string PiRobotTestLib::white()
 {
 	return "\033[01;37m";
 }
-	
+
 void PiRobotTestLib::AddTestResult(std::string libName, std::string testName, eTestResult testResult)
 {
 	std::map<std::string, std::vector<sTestContainer> >::iterator it = results.find(libName);
@@ -103,13 +102,12 @@ void PiRobotTestLib::AddTestResult(std::string libName, std::string testName, eT
 	results[libName].push_back(testResults);
 }
 
-
 void PiRobotTestLib::DisplayResults()
 {
 	std::clog << "\n\n";
 	std::map<std::string, std::vector<sTestContainer> >::iterator it;
 	int passed = 0;
-	int failed = 0; 
+	int failed = 0;
 	int notrun = 0;
 	std::cout << white() << "-------------------------------------------------------------------------------\n";
 	std::cout << lightcyan() << "Test Results\n";
@@ -123,9 +121,9 @@ void PiRobotTestLib::DisplayResults()
 			if (tlIt->testResult < lowestResult)
 				lowestResult = tlIt->testResult;
 		}
-		
+
 		std::string color = "";
-		switch(lowestResult)
+		switch (lowestResult)
 		{
 		case eTestResult::SUCCESS:
 			color = lightgreen();
@@ -143,30 +141,31 @@ void PiRobotTestLib::DisplayResults()
 			switch (tlIt->testResult)
 			{
 			case eTestResult::SUCCESS:
-				color = lightgreen();;
+				color = lightgreen();
+				;
 				passed++;
-					break;
+				break;
 			case eTestResult::NOTRUN:
 				color = gray();
 				notrun++;
-					break;
+				break;
 			case eTestResult::FAILED:
 				color = lightred();
 				failed++;
-					break;
+				break;
 			}
-			struct tm *timeStruct = localtime(&tlIt->testTime);			
+			struct tm *timeStruct = localtime(&tlIt->testTime);
 			std::string timeStr = asctime(timeStruct);
 			timeStr.erase(timeStr.find_last_not_of(" \n\r\t") + 1);
 			std::cout << "	" << color << timeStr << "	" << tlIt->testName;
 			if (tlIt->testResult == FAILED)
 			{
-				std::cout << "	" << lightred()<< tlIt->failReason;
+				std::cout << "	" << lightred() << tlIt->failReason;
 			}
-			
+
 			std::cout << "\n";
 		}
 	}
-	std::cout << white()<< "-------------------------------------------------------------------------------\n";
-	std::cout << "Summary: " << lightgreen()<< "Passed :" << passed << "," << lightred()<< " Failed: " << failed << ", " << gray()<< "Not Run: " << notrun << "\n";	
+	std::cout << white() << "-------------------------------------------------------------------------------\n";
+	std::cout << "Summary: " << lightgreen() << "Passed :" << passed << "," << lightred() << " Failed: " << failed << ", " << gray() << "Not Run: " << notrun << "\n";
 }

@@ -3,7 +3,7 @@
 #include <vector>
 
 class UIGraphic :UIElement
-{	
+{
 public:
 	enum eGraphicColors
 	{
@@ -11,10 +11,10 @@ public:
 		Color256,
 		Color65536
 	};
-	UIGraphic(Point position, 
+	UIGraphic(Point position,
 		uint width,
 		uint height,
-		const unsigned char graphic[], 
+		const unsigned char graphic[],
 		eGraphicColors colorDepth);
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
 	int processTouch(Point pt) override
@@ -23,8 +23,8 @@ public:
 	}
 protected:
 	void setArea() override;
-	
-private:	
+
+private:
 	eGraphicColors colorDepth;
 	unsigned char *graphic;
 	uint width, height;

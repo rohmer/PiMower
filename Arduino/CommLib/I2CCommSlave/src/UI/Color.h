@@ -1,93 +1,13 @@
-typedef unsigned long ARGB;
+#pragma once
+#include <stdint.h>
+#include <map>
 
 ///Implements definition and operations with color
 class Color
 {
 public:
-
-    Color()
-    {
-        Argb = (ARGB)Color::Black;
-    }
-
-    /// Construct an opaque Color object with
-    /// the specified Red, Green, Blue values.
-    ///
-    /// Color values are not premultiplied.
-    Color(byte r,
-          byte g,
-          byte b)
-    {
-        Argb = MakeARGB(255, r, g, b);
-    }
-
-    Color(byte a,
-          byte r,
-          byte g,
-          byte b)
-    {
-        Argb = MakeARGB(a, r, g, b);
-    }
-
-    Color(ARGB argb)
-    {
-        Argb = argb;
-    }
-
-    byte GetAlpha() const
-    {
-        return (byte) (Argb >> AlphaShift);
-    }
-
-    byte GetA() const
-    {
-        return GetAlpha();
-    }
-
-    byte GetRed() const
-    {
-        return (byte) (Argb >> RedShift);
-    }
-
-    byte GetR() const
-    {
-        return GetRed();
-    }
-
-    byte GetGreen() const
-    {
-        return (byte) (Argb >> GreenShift);
-    }
-
-    byte GetG() const
-    {
-        return GetGreen();
-    }
-
-    byte GetBlue() const
-    {
-        return (byte) (Argb >> BlueShift);
-    }
-
-    byte GetB() const
-    {
-        return GetBlue();
-    }
-
-    ARGB GetValue() const
-    {
-        return Argb;
-    }
-
-    void SetValue(ARGB argb)
-    {
-        Argb = argb;
-    }
-
-public:
-
     /// Common color constants
-    enum
+    enum ColorDefs
     {
         AliceBlue            = 0xFFF0F8FF,
         AntiqueWhite         = 0xFFFAEBD7,
@@ -232,36 +152,32 @@ public:
         YellowGreen          = 0xFF9ACD32
     };
 
-    /// Shift count and bit mask for A, R, G, B components
-    enum
+    inline static uint16_t Color565(uint8_t r,uint8_t g,uint8_t b) { return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3); }
+    inline static uint16_t GetColor565(ColorDefs color) { return (uint16_t)(((color & 0xF80000) >> 8) | ((color & 0x00FC00) >> 5) | ((color & 0x0000F8) >> 3));}
+    inline static uint16_t Color32To565(int32_t color) { return ((((color >> 16) & 0xFF) / 8) << 11) | ((((color >> 8) & 0xFF) / 4) << 5) | (((color) &  0xFF) / 8);}
+    inline static  void 	Color565ToRGB(uint16_t color, uint8_t &r, uint8_t &g, uint8_t &b){r = (((color & 0xF800) >> 11) * 527 + 23) >> 6; g = (((color & 0x07E0) >> 5) * 259 + 33) >> 6; b = ((color & 0x001F) * 527 + 23) >> 6;}
+    inline static uint16_t ColorToGrayscale(int16_t color)
     {
-        AlphaShift  = 24,
-        RedShift    = 16,
-        GreenShift  = 8,
-        BlueShift   = 0
-    };
-
-    enum
-    {
-        AlphaMask   = 0xff000000,
-        RedMask     = 0x00ff0000,
-        GreenMask   = 0x0000ff00,
-        BlueMask    = 0x000000ff
-    };
-
-    /// Assemble A, R, G, B values into a 32-bit integer
-    static ARGB MakeARGB(byte a,
-                         byte r,
-                         byte g,
-                         byte b)
-    {
-        return (((ARGB) (b) <<  BlueShift) |
-                ((ARGB) (g) << GreenShift) |
-                ((ARGB) (r) <<   RedShift) |
-                ((ARGB) (a) << AlphaShift));
+      uint8_t r,g,b;
+      Color565ToRGB(color,r,g,b);
+      uint8_t grayVal=(r+g+b)/3;
+      return (Color565(grayVal,grayVal,grayVal));
     }
-
-protected:
-
-    ARGB Argb;
+    inline static uint8_t ColorToGrayscaleValue(int16_t color)
+    {
+      uint8_t r,g,b;
+      Color565ToRGB(color,r,g,b);
+      uint8_t grayVal=(r+g+b)/3;
+      return grayVal;
+    }
+    inline static int16_t CombineColor(uint16_t foreground, uint16_t background, uint8_t foregroundOpacity)
+    {
+      uint16_t bgColorGray=ColorToGrayscaleValue(background);
+      uint8_t r,g,b;
+      Color::Color565ToRGB(foreground,r,g,b);
+      r-=bgColorGray*(100/foregroundOpacity);
+      g-=bgColorGray*(100/foregroundOpacity);;
+      b-=bgColorGray*(100/foregroundOpacity);;
+      return(Color::Color565(r,g,b));
+    }
 };

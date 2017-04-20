@@ -6,25 +6,25 @@
 
 class UIToggle : public UIElement
 {
-public:	
-	UIToggle(Point position, 
+public:
+	UIToggle(Point position,
 		std::string text);
-	UIToggle(Point position, 
-		std::string text, 
-		uint8_t checkColor, 
-		uint8_t textColor, 
+	UIToggle(Point position,
+		std::string text,
+		uint8_t checkColor,
+		uint8_t textColor,
 		UIFont::eFontName font,
 		bool state,
 		eTextAlignment textAlign);
-	
+
 	bool getState();
 	void setState(bool state, ScreenManager *screenManager);
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
-	
+
 protected:
 	void setArea();
-	
-private:	
+
+private:
 	bool toggleState;
 	std::string text;
 	uint8_t checkColor = DigoleLCD::LIGHT_RED;

@@ -1,6 +1,6 @@
 #include "BQ34Z100G1.h"
 
-BQ34Z100G1::BQ34Z100G1(RobotLib *robotLib) 
+BQ34Z100G1::BQ34Z100G1(RobotLib *robotLib)
 	: SensorBase(robotLib)
 {
 }

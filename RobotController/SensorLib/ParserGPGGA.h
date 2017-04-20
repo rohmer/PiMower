@@ -16,11 +16,11 @@
 
 class ParserGPGGA : public ParserBase
 {
-	public:
-		ParserGPGGA(RobotLib *robotLib);
-		sensors_gps_t *Parse(std::vector<std::string> tokens);	
-		std::string getName()
-		{ 
-			return "GPGGA";
-		}
+public:
+	ParserGPGGA(RobotLib *robotLib);
+	sensors_gps_t *Parse(std::vector<std::string> tokens);
+	std::string getName()
+	{
+		return "GPGGA";
+	}
 };

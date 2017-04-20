@@ -9,7 +9,7 @@ std::map<uint8_t, uint8_t> DeviceManager::i2cfd, DeviceManager::spifd;
 
 DeviceManager::DeviceManager(RobotLib &rl)
 {
-	this->robotLib = &rl;	
+	this->robotLib = &rl;
 	robotLib->Log("DeviceManager initalized");
 	initialize();
 }
@@ -30,27 +30,26 @@ DeviceManager::~DeviceManager()
 		close(i->second);
 	for (i = spifd.begin(); i != spifd.end(); i++)
 		close(i->second);
-	
 }
 
 DeviceBase* DeviceManager::addDevice(DeviceBase *device)
-{	
+{
 	DeviceEntry *de = new DeviceEntry(robotLib, device);
-	devices.push_back(de);	
+	devices.push_back(de);
 }
 
-uint8_t DeviceManager::getSerialFD(std::string dev,int baud)
+uint8_t DeviceManager::getSerialFD(std::string dev, int baud)
 {
 	std::map<std::string, uint8_t>::iterator it = serialfd.find(dev);
 	if (it != serialfd.end())
 		return serialfd[dev];
-	int fd = serialOpen(dev.c_str(),baud);
+	int fd = serialOpen(dev.c_str(), baud);
 	if (fd > 0)
 	{
 		serialfd[dev] = fd;
 		return fd;
 	}
-	
+
 	return -1;
 }
 
@@ -65,7 +64,7 @@ uint8_t DeviceManager::getI2CFD(uint8_t dev)
 		i2cfd[dev] = fd;
 		return fd;
 	}
-	
+
 	return -1;
 }
 
@@ -74,13 +73,13 @@ uint8_t DeviceManager::getSPIFD(uint8_t dev, int speed)
 	std::map<uint8_t, uint8_t>::iterator it = spifd.find(dev);
 	if (it != spifd.end())
 		return spifd[dev];
-	int fd = wiringPiSPISetup(dev,speed);
+	int fd = wiringPiSPISetup(dev, speed);
 	if (fd > 0)
 	{
 		spifd[dev] = fd;
 		return fd;
 	}
-	
+
 	return -1;
 }
 
@@ -93,7 +92,7 @@ void DeviceManager::initialize()
 	for (DeviceRegistry::it it = registry.begin(); it != registry.end(); it++)
 	{
 		device_creator func = *it;
-		DeviceBase* _ptr = func(robotLib);		
+		DeviceBase* _ptr = func(robotLib);
 		DeviceEntry *de = new DeviceEntry(robotLib, _ptr);
 		devices.push_back(de);
 	}
@@ -107,7 +106,7 @@ std::vector<DeviceEntry*> DeviceManager::getByType(device_type_t deviceType)
 	{
 		if (devices[i]->getDeviceType() == deviceType)
 		{
-			returnVal.insert(returnVal.end(),devices[i]);
+			returnVal.insert(returnVal.end(), devices[i]);
 		}
 	}
 	return returnVal;
@@ -127,7 +126,7 @@ std::vector<DeviceEntry*> DeviceManager::getByCap(sensors_type_t capability)
 				returnVal.insert(returnVal.end(), devices[i]);
 			}
 		}
-	}	
+	}
 	return returnVal;
 }
 
@@ -135,7 +134,7 @@ DeviceEntry* DeviceManager::getByName(std::string name)
 {
 	for (int i = 0; i < devices.size(); i++)
 	{
-		DeviceBase* db=devices[i]->getDevice();
+		DeviceBase* db = devices[i]->getDevice();
 		try
 		{
 			if (db->getDeviceName() == name)
@@ -143,8 +142,7 @@ DeviceEntry* DeviceManager::getByName(std::string name)
 		}
 		catch (...)
 		{
-			
-		}		
+		}
 	}
 	return NULL;
 }

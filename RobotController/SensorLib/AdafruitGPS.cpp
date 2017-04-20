@@ -15,8 +15,8 @@ volatile char *lastline;
 volatile bool recvdflag;
 volatile bool inStandbyMode;
 
-AdafruitGPS::AdafruitGPS(RobotLib *rl) :
-	SensorBase(rl)
+AdafruitGPS::AdafruitGPS(RobotLib *rl)
+	: SensorBase(rl)
 {
 	nmeaParser = new NMEAParser(robotLib);
 
@@ -24,49 +24,49 @@ AdafruitGPS::AdafruitGPS(RobotLib *rl) :
 	{
 		return;
 	}
-	
-	initialize(9600,gps_conn_t::rpi3UART);
+
+	initialize(9600, gps_conn_t::rpi3UART);
 }
 
-AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate) :
-	SensorBase(rl)
+AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate)
+	: SensorBase(rl)
 {
 	nmeaParser = new NMEAParser(robotLib);
 	if (rl->getEmulator())
 	{
 		return;
 	}
-	
-	initialize(baudRate, gps_conn_t::rpi3UART);	
+
+	initialize(baudRate, gps_conn_t::rpi3UART);
 }
 
-AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate, gps_conn_t conType) :
-	SensorBase(rl)
+AdafruitGPS::AdafruitGPS(RobotLib *rl, uint32_t baudRate, gps_conn_t conType)
+	: SensorBase(rl)
 {
 	nmeaParser = new NMEAParser(robotLib);
 	if (rl->getEmulator())
 	{
 		return;
 	}
-	initialize(baudRate,conType);
+	initialize(baudRate, conType);
 }
 
 void AdafruitGPS::initialize(uint32_t baudRate, gps_conn_t conType)
-{	
+{
 	successfulParse = false;
 	baud = baudRate;
 	connectionType = conType;
-	
+
 	paused = false;
 	currentline = line1;
 	lastline = line2;
 	receivedFlag = false;
 	paused = false;
 	serialFD = initSerial();
-			
+
 	// Turn on RMC (Recommended minimum) and GGA (fix data) including altitude
 	setRMCGGA();
-	sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // 1 Hz update rate	
+	sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // 1 Hz update rate
 }
 
 std::string AdafruitGPS::getDeviceDescription()
@@ -76,8 +76,8 @@ std::string AdafruitGPS::getDeviceDescription()
 
 void AdafruitGPS::setRMCOnly()
 {
-	sendCommand(PMTK_SET_NMEA_OUTPUT_RMCONLY);	
-	enabledStreams.clear();	
+	sendCommand(PMTK_SET_NMEA_OUTPUT_RMCONLY);
+	enabledStreams.clear();
 	enabledStreams.push_back(nmea_msg_t::NMEA_GPRMC);
 }
 
@@ -112,7 +112,7 @@ void AdafruitGPS::read(void)
 	}
 	int counter = 0;
 	int sda = serialDataAvail(serialFD);
-	while (sda==0 && counter < 10)
+	while (sda == 0 && counter < 10)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		sda = serialDataAvail(serialFD);
@@ -122,47 +122,47 @@ void AdafruitGPS::read(void)
 	{
 		robotLib->LogError("Error checking serialDataAvailable: errno==" + errno);
 	}
-	
+
 	while (c != '$')
 	{
-		c = serialGetchar(serialFD);		
+		c = serialGetchar(serialFD);
 	}
 	int a = 0;
-	while (a<MAXLINELENGTH && c != '\n')
-	{		
+	while (a < MAXLINELENGTH && c != '\n')
+	{
 		lastline[a] = c;
 		c = serialGetchar(serialFD);
 		a++;
 	}
 	lastline[a] = c;
-	
+
 	return;
 }
 
-int AdafruitGPS::initSerial(){
-		std::string dev;
-		switch (connectionType)
-		{		
-		case(gps_conn_t::usbUART):
-			//TODO: Set this correctly
-			dev = "/dev/ttyAMA0";			
-			break;
-		case(gps_conn_t::rpi3UART)			:
-			dev = "/dev/ttyS0";
-			break;
-		default:
-			dev = "/dev/ttyAMA0";
-			break;
-		}
-		int serialFD = DeviceManager::getSerialFD(dev, baud);				
-		if (serialFD == -1)
-		{
-			robotLib->LogError("Could not open serial device: " + dev);
-		}
-		else
-		{
-			robotLib->Log("Opened serial device: " + dev);
-		}
+int AdafruitGPS::initSerial() {
+	std::string dev;
+	switch (connectionType)
+	{
+	case(gps_conn_t::usbUART):
+		//TODO: Set this correctly
+		dev = "/dev/ttyAMA0";
+		break;
+	case(gps_conn_t::rpi3UART)			:
+		dev = "/dev/ttyS0";
+		break;
+	default:
+		dev = "/dev/ttyAMA0";
+		break;
+	}
+	int serialFD = DeviceManager::getSerialFD(dev, baud);
+	if (serialFD == -1)
+	{
+		robotLib->LogError("Could not open serial device: " + dev);
+	}
+	else
+	{
+		robotLib->Log("Opened serial device: " + dev);
+	}
 	return serialFD;
 }
 
@@ -171,7 +171,7 @@ void AdafruitGPS::pause(bool p)
 	paused = p;
 }
 
-char *AdafruitGPS::lastNMEA(void) 
+char *AdafruitGPS::lastNMEA(void)
 {
 	recvdflag = false;
 	return const_cast<char *>(lastline);
@@ -191,10 +191,10 @@ uint8_t AdafruitGPS::parseHex(char c)
 }
 
 void AdafruitGPS::sendCommand(const char *str)
-{	
+{
 	std::string cmd(str);
 	cmd += "\n";
-	serialPrintf(serialFD, cmd.c_str());	
+	serialPrintf(serialFD, cmd.c_str());
 }
 
 bool AdafruitGPS::newNMEAreceived(void)
@@ -206,12 +206,12 @@ void AdafruitGPS::standby()
 {
 	if (inStandbyMode)
 	{
-		return;		
+		return;
 	}
-	
+
 	inStandbyMode = true;
 	sendCommand(PMTK_STANDBY);
-	robotLib->Log("GPS put in standby mode");	
+	robotLib->Log("GPS put in standby mode");
 }
 
 bool AdafruitGPS::waitForSentence(const char *wait4me, uint8_t max)
@@ -243,8 +243,8 @@ bool AdafruitGPS::wakeup()
 		sendCommand("");		// Send a byte to wake up GPS
 		return waitForSentence(PMTK_AWAKE);
 	}
-	
-	return false;			// Not in standby mode, nothing to wakeup	
+
+	return false;			// Not in standby mode, nothing to wakeup
 }
 
 sensors_gps_t *AdafruitGPS::parse(char *nmea)
@@ -256,56 +256,56 @@ sensors_gps_t *AdafruitGPS::parse(char *nmea)
 		robotLib->LogWarn(ss.str());
 		return NULL;
 	}
-	
+
 	// We have gotten a valid NMEA sentence so set successfulParse=true
 	successfulParse = true;
 
-	return nmeaParser->Parse(nmea);	
+	return nmeaParser->Parse(nmea);
 }
 
 bool AdafruitGPS::getEvent(sensors_event_t *event)
 {
 	//memset(event, 0, sizeof(sensors_event_t));
-	
+
 	std::vector<sensors_gps_t *> eventList;
 	bool eventComplete = false;
 	sensors_gps_t *e;
-	int eventCount=0;
+	int eventCount = 0;
 	event->version = sizeof(sensors_event_t);
 	event->sensor_id = GPS_SENSOR_ID;
 	event->type = SENSOR_TYPE_GPS;
 	event->timestamp = getTimestamp();
-		
+
 	// Dont go further than 15 events to find what we need
-	while (!eventComplete && eventCount<15)
+	while (!eventComplete && eventCount < 15)
 	{
 		read();
-	
+
 #if DEBUG
 		robotLib->Log(lastNMEA());
 #else
 		robotLib->Log("Received NMEA sentance");
 #endif
-		
+
 		e = parse(lastNMEA());
-		
+
 		try
 		{
 			if (e != NULL)
 			{
 				bool streamEnabled = false;
 				for (int i = 0; i < enabledStreams.size(); i++)
-				{				
+				{
 					if (enabledStreams[i] == e->messageType[0])
 					{
-						streamEnabled = true;					
+						streamEnabled = true;
 					}
 				}
 				bool haveEvent = false;
-				
+
 		// Now, if this stream is enabled
 				if (streamEnabled)
-				{				
+				{
 					for (int i = 0; i < eventList.size(); i++)
 					{
 						if (eventList[i]->messageType[0] == e->messageType[0])
@@ -326,12 +326,12 @@ bool AdafruitGPS::getEvent(sensors_event_t *event)
 		}
 		eventCount++;
 	}
-			
+
 	// Ok, we have our event list lets merge them
 	if (eventList.size() == 0)
 		return false;
-	e = mergeGPSEvents(eventList,e);
-	
+	e = mergeGPSEvents(eventList, e);
+
 	// Now add it to our sensor event
 	event->gps.altitude = e->altitude;
 	event->gps.course = e->course;
@@ -358,7 +358,7 @@ bool AdafruitGPS::getEvent(sensors_event_t *event)
 	event->gps.time.tm_yday = e->time.tm_yday;
 	event->gps.time.tm_year = e->time.tm_year;
 	event->gps.time.tm_zone = e->time.tm_zone;
-			
+
 	return true;
 }
 
@@ -370,15 +370,15 @@ sensors_gps_t *AdafruitGPS::mergeGPSEvents(std::vector<sensors_gps_t *> eventLis
 		robotLib->LogWarn("No events in the event list, this will be an empty event");
 		return NULL;
 	}
-	
+
 	e = eventList[0];
 	for (int i = 1; i < eventList.size(); i++)
 	{
 		if (eventList[i]->messageType[0] == nmea_msg_t::NMEA_GPGGA)
 		{
 			e->messageType.emplace_back(nmea_msg_t::NMEA_GPGGA);
-			
-			// Copy GPGGA specific messages 
+
+			// Copy GPGGA specific messages
 			// Time
 			e->time.tm_gmtoff = eventList[i]->time.tm_gmtoff;
 			e->time.tm_hour = eventList[i]->time.tm_hour;
@@ -401,10 +401,10 @@ sensors_gps_t *AdafruitGPS::mergeGPSEvents(std::vector<sensors_gps_t *> eventLis
 			e->altitude = eventList[i]->altitude;
 			// GEOID
 			e->geoIDHeight = eventList[i]->geoIDHeight;
-		}	
+		}
 		if (eventList[i]->messageType[0] == nmea_msg_t::NMEA_GPRMC)
 		{
-			// Copy GPRMC specific messages 
+			// Copy GPRMC specific messages
 			// Add this message type
 			e->messageType.emplace_back(nmea_msg_t::NMEA_GPRMC);
 			// Time
@@ -426,13 +426,13 @@ sensors_gps_t *AdafruitGPS::mergeGPSEvents(std::vector<sensors_gps_t *> eventLis
 			e->speedKTS = eventList[i]->speedKTS;
 			// True Course
 			e->course = eventList[i]->course;
-		}	
+		}
 		if (eventList[i]->messageType[0] == nmea_msg_t::NMEA_GPGLL)
 		{
 			e->messageType.emplace_back(nmea_msg_t::NMEA_GPGLL);
 			// Everything else is a super set of this
 			// So this is a no op
-		}		
+		}
 	}
 	return e;
 }
@@ -452,30 +452,30 @@ device_status_t AdafruitGPS::getDeviceStatus(RobotLib *robotLib)
 	bool serialPrevOpen = false;
 	for (int i = 0; i < serialPorts->length(); i++)
 	{
-		ss << ""; 
+		ss << "";
 		ss << "Trying to connect to GPS on: " << serialPorts[i];
 		robotLib->Log(ss.str());
 		if (serialFD <= 0)
 		{
 			serialFD = serialOpen(serialPorts[i].c_str(), 9600);
 		}
-		else			
+		else
 		{
 			serialPrevOpen = true;
 		}
-			
+
 		if (serialFD > 0)
 		{
-			ss << ""; 
-			ss << "Connected to Serial: " << serialPorts[i];			
+			ss << "";
+			ss << "Connected to Serial: " << serialPorts[i];
 			robotLib->Log(ss.str());
 			ss << PMTK_Q_RELEASE << "\n";
 			serialPrintf(serialFD, ss.str().c_str());
 			std::string line;
 			char c = serialGetchar(serialFD);
-			while(c != '$' && c!=0)
+			while (c != '$' && c != 0)
 			{
-				c = serialGetchar(serialFD) ;		
+				c = serialGetchar(serialFD);
 			}
 			if (c == 0)
 			{
@@ -484,25 +484,25 @@ device_status_t AdafruitGPS::getDeviceStatus(RobotLib *robotLib)
 			line += c;
 			int a = 0;
 			while (a < MAXLINELENGTH && c != '\n')
-			{	
-				if(c!='$')
-					line+=c;
+			{
+				if (c != '$')
+					line += c;
 				c = serialGetchar(serialFD);
-				a++;				
+				a++;
 			}
 			if (line.substr(0, 3) == "$GP")
 			{
 				if (!serialPrevOpen)
 				{
 					// We opened serial port for this test, close it
-					serialClose(serialFD);					
+					serialClose(serialFD);
 				}
 				ss << "";
 				ss << "Detected GPS on " << serialPorts[i];
 				robotLib->Log(ss.str());
 				return device_status_t::DEVICE_CONNECTED;
-			}			
-		}		
+			}
+		}
 	}
 	// We tried all the serial ports and got nothing, return unavailable
 	robotLib->Log("Could not detect GPS");

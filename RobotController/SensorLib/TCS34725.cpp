@@ -27,14 +27,15 @@ TCS34725::TCS34725(RobotLib *robotLib)
 	initialize();
 }
 
-TCS34725::TCS34725(RobotLib *robotLib, uint8_t i2caddress) :
-	SensorBase(robotLib)
+TCS34725::TCS34725(RobotLib *robotLib, uint8_t i2caddress)
+	: SensorBase(robotLib)
 {
-	initialized = false;	
-	if(i2cfd>0)
+	initialized = false;
+	if (i2cfd > 0)
 	{
 		tcs34725Avail = true;
-	} else
+	}
+	else
 	{
 		tcs34725Avail = false;
 		std::stringstream ss;
@@ -54,23 +55,25 @@ void TCS34725::initialize()
 	{
 		robotLib->LogWarn("Couldnt connect to I2C address");
 	}
-		
+
 	uint8_t id = read8(TCS34725_ID);
-	if(id==0x44)
+	if (id == 0x44)
 	{
 		robotLib->Log("TCS34721/TCS34725 detected");
-	} else
+	}
+	else
 	{
-		if(id==0x4D)
+		if (id == 0x4D)
 		{
 			robotLib->Log("TCS34723/TCS34727 detected");
-		} else
+		}
+		else
 		{
 			robotLib->LogError("Failed to communicate with reg 0x16");
 			initialized = false;
 			return;
 		}
-	} 
+	}
 	initialized = true;
 	gain = TCS34725_GAIN_1X;
 	integrationTime = TCS34725_INTEGRATIONTIME_2_4MS;
@@ -90,7 +93,7 @@ void TCS34725::enable()
 			return;
 		}
 	}
-	write8(TCS34725_ENABLE, TCS34725_ENABLE_PON);	
+	write8(TCS34725_ENABLE, TCS34725_ENABLE_PON);
 	delay(3);
 	write8(TCS34725_ENABLE, TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN);
 }
@@ -99,16 +102,16 @@ void TCS34725::enable()
 void TCS34725::disable()
 {
 	uint8_t reg = 0;
-	reg = read8(TCS34725_ENABLE);	
+	reg = read8(TCS34725_ENABLE);
 	write8(TCS34725_ENABLE, reg & ~(TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN));
 }
 
 void TCS34725::setIntegrationTime(tcs34725IntegrationTime_t it)
 {
-	if(!initialized)
+	if (!initialized)
 	{
 		initialize();
-		if(!initialized)
+		if (!initialized)
 		{
 			robotLib->LogError("Cannot initialize TCS34725");
 			return;
@@ -142,7 +145,7 @@ void TCS34725::setGain(tcs34725Gain_t gain)
 /**************************************************************************/
 void TCS34725::getRawData(uint16_t* r, uint16_t* g, uint16_t* b, uint16_t* c)
 {
-	if(!initialized)
+	if (!initialized)
 	{
 		initialize();
 		if (!initialized)
@@ -155,29 +158,29 @@ void TCS34725::getRawData(uint16_t* r, uint16_t* g, uint16_t* b, uint16_t* c)
 	*c = read16(TCS34725_CDATAL);
 	*r = read16(TCS34725_RDATAL);
 	*g = read16(TCS34725_GDATAL);
-	*b = read16(TCS34725_BDATAL);	
+	*b = read16(TCS34725_BDATAL);
 
 	/* Sea a delay for the integration time */
-	switch(integrationTime)
+	switch (integrationTime)
 	{
-		case TCS34725_INTEGRATIONTIME_2_4MS:
-			delay(3);
-			break;
-		case TCS34725_INTEGRATIONTIME_24MS:
-			delay(24);
-			break;
-		case TCS34725_INTEGRATIONTIME_50MS:
-			delay(50);
-			break;
-		case TCS34725_INTEGRATIONTIME_101MS:
-			delay(101);
-			break;
-		case TCS34725_INTEGRATIONTIME_154MS:
-			delay(154);
-			break;
-		case TCS34725_INTEGRATIONTIME_700MS:
-			delay(700);
-			break;
+	case TCS34725_INTEGRATIONTIME_2_4MS:
+		delay(3);
+		break;
+	case TCS34725_INTEGRATIONTIME_24MS:
+		delay(24);
+		break;
+	case TCS34725_INTEGRATIONTIME_50MS:
+		delay(50);
+		break;
+	case TCS34725_INTEGRATIONTIME_101MS:
+		delay(101);
+		break;
+	case TCS34725_INTEGRATIONTIME_154MS:
+		delay(154);
+		break;
+	case TCS34725_INTEGRATIONTIME_700MS:
+		delay(700);
+		break;
 	}
 }
 
@@ -224,25 +227,25 @@ uint16_t TCS34725::calculateLux(uint16_t r, uint16_t g, uint16_t b)
 void TCS34725::setInterrupt(bool interruptEnable)
 {
 	uint8_t r = read8(TCS34725_ENABLE);
-	if(interruptEnable)
+	if (interruptEnable)
 	{
 		r |= TCS34725_ENABLE_AIEN;
-	} else
+	}
+	else
 	{
 		r &= ~TCS34725_ENABLE_AIEN;
 	}
-	write8(TCS34725_ENABLE, r);	
+	write8(TCS34725_ENABLE, r);
 }
 
 void TCS34725::clearInterrupt()
 {
-	
-	wiringPiI2CWrite(i2cfd,TCS34725_COMMAND_BIT | 0x66);
+	wiringPiI2CWrite(i2cfd, TCS34725_COMMAND_BIT | 0x66);
 }
 
 void TCS34725::setIntLimits(uint16_t low, uint16_t high)
 {
-	write8(0x04,low && 0xFF);
+	write8(0x04, low && 0xFF);
 	write8(0x05, low >> 8);
 	write8(0x06, high & 0xFF);
 	write8(0x07, high >> 8);
@@ -264,9 +267,9 @@ bool TCS34725::getEvent(sensors_event_t *event)
 	getRawData(&r, &g, &b, &c);
 	event->light = calculateLux(r, g, b);
 	event->color.colorTemp = calcuateColorTemperature(r, g, b);
-	event->color.b = b;	
+	event->color.b = b;
 	event->color.g = g;
-	event->color.r = r;	
+	event->color.r = r;
 	return true;
 }
 
@@ -278,25 +281,27 @@ static device_status_t getDeviceStatus(RobotLib *robotLib)
 		robotLib->LogWarn("Couldnt connect to I2C address");
 		return device_status_t::DEVICE_UNAVAILBLE;
 	}
-	
+
 	uint8_t id = wiringPiI2CReadReg8(i2cfd, (TCS34725_COMMAND_BIT | TCS34725_ID));
-	
-	if(id==0x44)
+
+	if (id == 0x44)
 	{
 		robotLib->Log("TCS34721/TCS34725 detected");
 		return device_status_t::DEVICE_AVAILABLE;
-	} else
+	}
+	else
 	{
-		if(id==0x4D)
+		if (id == 0x4D)
 		{
 			robotLib->Log("TCS34723/TCS34727 detected");
 			return device_status_t::DEVICE_AVAILABLE;
-		} else
+		}
+		else
 		{
 			robotLib->Log("no TCS3472* detected");
 			return device_status_t::DEVICE_UNAVAILBLE;
 		}
-	} 
+	}
 }
 
 void TCS34725::write8(uint8_t reg, uint8_t value)

@@ -1,7 +1,8 @@
 #include "RobotDaemon.h"
 
-RobotDaemon::RobotDaemon() : helpRequested(false)
-{	
+RobotDaemon::RobotDaemon()
+	: helpRequested(false)
+{
 }
 
 RobotDaemon::~RobotDaemon()

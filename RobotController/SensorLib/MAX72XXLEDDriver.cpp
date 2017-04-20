@@ -6,18 +6,18 @@ MAX72XXLEDDriver::MAX72XXLEDDriver(RobotLib *robotLib)
 	initialized = false;
 	if (robotLib->getEmulator())
 		return;
-	initialize(MAX_SID, MAX_SCK, MAX_A0, MAX_nRST, MAX_nCS, 0);	
+	initialize(MAX_SID, MAX_SCK, MAX_A0, MAX_nRST, MAX_nCS, 0);
 }
 
 MAX72XXLEDDriver::MAX72XXLEDDriver(RobotLib *robotLib, int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, uint8_t spiChannel)
 	: DeviceBase(robotLib, DEVICE_TYPE_T::DEVICE)
 {
-	shutdown = false;	
+	shutdown = false;
 	startDriverThread(this);
 	initialized = true;
 	if (robotLib->getEmulator())
 		return;
-	initialize(SID, SCLK, A0, RST, CS, spiChannel);	
+	initialize(SID, SCLK, A0, RST, CS, spiChannel);
 }
 
 void MAX72XXLEDDriver::initialize(int8_t SID, int8_t SCLK, int8_t A0, int8_t RST, int8_t CS, uint8_t spiChannel)
@@ -27,14 +27,13 @@ void MAX72XXLEDDriver::initialize(int8_t SID, int8_t SCLK, int8_t A0, int8_t RST
 	this->a0 = A0;
 	this->rst = RST;
 	this->cs = CS;
-	
+
 	pinMode(sid, OUTPUT);
 	pinMode(sclk, OUTPUT);
 	pinMode(a0, OUTPUT);
 	pinMode(rst, OUTPUT);
 	pinMode(cs, OUTPUT);
 	spiFD = robotLib->getDeviceManager()->getSPIFD(spiChannel, 1000000);
-	
 }
 
 MAX72XXLEDDriver::~MAX72XXLEDDriver()
@@ -122,10 +121,10 @@ void MAX72XXLEDDriver::addLED(std::string ledName, uint8_t row, uint8_t col)
 	std::pair<uint8_t, uint8_t> rcPair = std::make_pair(row, col);
 	ledMapping.emplace(ledName, rcPair);
 	ledBehavior.emplace(rcPair, LED_BEHAVIOR_T::Off);
-	
+
 	if (!initialized)
 	{
-		shutdown = false;	
+		shutdown = false;
 		startDriverThread(this);
 		initialized = true;
 	}
@@ -147,7 +146,7 @@ void MAX72XXLEDDriver::addLED(std::string ledName, uint8_t row, uint8_t col, LED
 		ledBehavior.emplace(rcPair, LED_BEHAVIOR_T::On);
 		return;
 	}
-	
+
 	// Deal with blinking
 	if (blinkInterval <= 0)
 		blinkInterval = 1;
@@ -159,7 +158,7 @@ void MAX72XXLEDDriver::addLED(std::string ledName, uint8_t row, uint8_t col, LED
 	ledBehavior.emplace(rcPair, behavior);
 	if (!initialized)
 	{
-		shutdown = false;	
+		shutdown = false;
 		startDriverThread(this);
 		initialized = true;
 	}

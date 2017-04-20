@@ -7,9 +7,8 @@ class Undocking : public Behavior
 {
 public:
 	Undocking(RobotLib *robotLib, GPSManager *gpsManager, MotionController *motionController);
-	
+
 	uint8_t run() override;
-	
+
 private:
-	
 };

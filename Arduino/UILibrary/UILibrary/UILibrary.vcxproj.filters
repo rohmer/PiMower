@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\BaseItems">
+      <UniqueIdentifier>{c94187a9-74dd-4eb4-9cfd-527e1c76a79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BaseItems">
+      <UniqueIdentifier>{4d4c6f74-7038-494f-b486-df30afcb0be3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{8e2f5b40-002e-46e0-8c75-ebb04bfc896f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{aadc6ab5-1646-4934-8050-8ede2326e970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UIElements">
+      <UniqueIdentifier>{78b19320-19dd-40ea-bf67-7d24b1752552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UIElements">
+      <UniqueIdentifier>{0e17309f-d042-4dd3-bc1c-8171d9d8f29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UIElements\Fonts">
+      <UniqueIdentifier>{7ef2581b-48a4-4f76-b7c9-d8b0762ff54c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UILibrary.ino" />
+    <None Include="src\_micro-api\libraries\UILibraryLib\library.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BaseItems\Theme.cpp">
+      <Filter>Source Files\BaseItems</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseItems\UIElement.cpp">
+      <Filter>Source Files\BaseItems</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseItems\WindowManager.cpp">
+      <Filter>Source Files\BaseItems</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIButton.cpp">
+      <Filter>Source Files\UIElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIText.cpp">
+      <Filter>Source Files\UIElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIWindow.cpp">
+      <Filter>Source Files\UIElements</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Alef_10.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Alef_14.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Alef_24.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Alef_36.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\AlefB_10.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\AlefB_14.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\AlefB_24.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\AlefB_36.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Quivira_10.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Quivira_14.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Quivira_24.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Quivira_36.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\QuiviraB_10.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\QuiviraB_14.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\QuiviraB_24.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\QuiviraB_36.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Courier_10.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Courier_14.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Courier_24.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\Courier_36.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\CourierBold_10.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\CourierBold_14.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\CourierBold_24.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\CourierBold_36.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\Fonts\DejaVuSans18.c">
+      <Filter>Source Files\UIElements\Fonts</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseItems\Theme.h">
+      <Filter>Header Files\BaseItems</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseItems\UIElement.h">
+      <Filter>Header Files\BaseItems</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseItems\WindowManager.h">
+      <Filter>Header Files\BaseItems</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIButton.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIText.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIWindow.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\font.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayConst.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="__vm\.UILibrary.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

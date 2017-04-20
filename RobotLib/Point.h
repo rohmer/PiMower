@@ -1,7 +1,7 @@
 #pragma once
 
 struct Point
-{		
+{
 	public:
 		int x, y;
 		Point()
@@ -13,5 +13,5 @@ struct Point
 			: x(x)
 			, y(y)
 		{
-		}							
+		}
 };

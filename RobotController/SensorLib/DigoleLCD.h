@@ -32,34 +32,34 @@ public:
 		rot180,
 		rot270
 	};
-	
+
 	enum eDrawMode
 	{
 		Copy,
 		Not,
 		And,
 		Xor,
-		Overwrite			
+		Overwrite
 	};
-	
+
 	enum ePosMode
 	{
 		Text,
 		Graphics
 	};
-	
+
 	enum eOrientation
 	{
 		Portrait,
 		Landscape
 	};
-	
+
 	enum LCDColor
 	{
 		BLACK       = 0x00,
 		DARK_RED    = 0x40,
 		RED         = 0xA0,
-		LIGHT_RED	= 0xE0,
+		LIGHT_RED   = 0xE0,
 		DARK_BLUE   = 0x02,
 		BLUE        = 0x03,
 		ORANGE      = 0xC4,
@@ -69,16 +69,16 @@ public:
 		BROWN       = 0x44,
 		LIGHT_BLUE  = 0x1B,
 		YELLOW      = 0xD8,
-		WHITE       = 0xFF			
+		WHITE       = 0xFF
 	};
-	
+
 	DigoleLCD(RobotLib *robotLib);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr);
 	DigoleLCD(RobotLib *robotLib, uint8_t i2cAddr, int width, int height);
 	void setup(uint8_t i2cAddr);
 	void setup(uint8_t i2cAddr, int width, int height);
-		
-	~DigoleLCD();	
+
+	~DigoleLCD();
 	device_type_t getDeviceType() override
 	{
 		return device_type_t::DEVICETYPE_IO;
@@ -91,12 +91,12 @@ public:
 	{
 		return "Digole LCD Module with touch screen";
 	}
-	static device_status_t getDeviceStatus(RobotLib *robotLib) 
+	static device_status_t getDeviceStatus(RobotLib *robotLib)
 	{
 		// We cant really autodetect this
 		return device_status_t::DEVICE_UNKNOWN;
-	}		
-	
+	}
+
 	bool setRotation(eDrawRot rotation);
 	bool setContrast(uint8_t contrast);
 	bool displayStartScreen(uint8_t screenNum);
@@ -148,15 +148,15 @@ public:
 	{
 		return lcdWidth;
 	}
-	
+
 	uint8_t getHeight()
 	{
 		return lcdHeight;
 	}
-	
+
 private:
-	uint8_t i2cAddr, i2cfd;	
-	int lcdWidth, lcdHeight;	
+	uint8_t i2cAddr, i2cfd;
+	int lcdWidth, lcdHeight;
 	bool initialized = false;
 	void initialize(int width, int height);
 	bool writeCmd(std::string command);

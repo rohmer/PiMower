@@ -63,8 +63,8 @@
 typedef enum
 {
 	TCS34725_INTEGRATIONTIME_2_4MS = 0xFF,   /**<  2.4ms - 1 cycle    - Max Count: 1024  */
-	TCS34725_INTEGRATIONTIME_24MS = 0xF6,   /**<  24ms  - 10 cycles  - Max Count: 10240 */
-	TCS34725_INTEGRATIONTIME_50MS = 0xEB,   /**<  50ms  - 20 cycles  - Max Count: 20480 */
+	TCS34725_INTEGRATIONTIME_24MS  = 0xF6,   /**<  24ms  - 10 cycles  - Max Count: 10240 */
+	TCS34725_INTEGRATIONTIME_50MS  = 0xEB,   /**<  50ms  - 20 cycles  - Max Count: 20480 */
 	TCS34725_INTEGRATIONTIME_101MS = 0xD5,   /**<  101ms - 42 cycles  - Max Count: 43008 */
 	TCS34725_INTEGRATIONTIME_154MS = 0xC0,   /**<  154ms - 64 cycles  - Max Count: 65535 */
 	TCS34725_INTEGRATIONTIME_700MS = 0x00    /**<  700ms - 256 cycles - Max Count: 65535 */
@@ -73,8 +73,8 @@ tcs34725IntegrationTime_t;
 
 typedef enum
 {
-	TCS34725_GAIN_1X = 0x00,   /**<  No gain  */
-	TCS34725_GAIN_4X = 0x01,   /**<  2x gain  */
+	TCS34725_GAIN_1X  = 0x00,   /**<  No gain  */
+	TCS34725_GAIN_4X  = 0x01,   /**<  2x gain  */
 	TCS34725_GAIN_16X = 0x02,   /**<  16x gain */
 	TCS34725_GAIN_60X = 0x03    /**<  60x gain */
 }
@@ -82,48 +82,48 @@ tcs34725Gain_t;
 
 class TCS34725 : public SensorBase
 {
-	public:
-		TCS34725(RobotLib *robotLib);
-		TCS34725(RobotLib *robotLib, uint8_t i2caddress);		
-		~TCS34725() 
-		{}
+public:
+	TCS34725(RobotLib *robotLib);
+	TCS34725(RobotLib *robotLib, uint8_t i2caddress);
+	~TCS34725()
+	{}
 
-		device_type_t getDeviceType() override
-		{
-			return device_type_t::DEVICETYPE_SENSOR;
-		}	
-		std::string getDeviceName() override
-		{
-			return "TCS34725";
-		}
-		std::string getDeviceDescription() override
-		{
-			return "TCS34725 digital color sensors";
-		}
-		static device_status_t getDeviceStatus(RobotLib *robotLib);	
-		sensors_type_t getSensorType() override
-		{
-			return SENSOR_TYPE_COLOR;
-		}
-		void setIntegrationTime(tcs34725IntegrationTime_t it);
-		void setGain(tcs34725Gain_t gain);
-		void enable();
-		void disable();
-		uint16_t calcuateColorTemperature(uint16_t r, uint16_t g, uint16_t b);
-		uint16_t calculateLux(uint16_t r, uint16_t g, uint16_t b);
-		void setInterrupt(bool interruptEnable);
-		void clearInterrupt();
-		void setIntLimits(uint16_t low, uint16_t high);
-		bool getEvent(sensors_event_t *event) override;
+	device_type_t getDeviceType() override
+	{
+		return device_type_t::DEVICETYPE_SENSOR;
+	}
+	std::string getDeviceName() override
+	{
+		return "TCS34725";
+	}
+	std::string getDeviceDescription() override
+	{
+		return "TCS34725 digital color sensors";
+	}
+	static device_status_t getDeviceStatus(RobotLib *robotLib);
+	sensors_type_t getSensorType() override
+	{
+		return SENSOR_TYPE_COLOR;
+	}
+	void setIntegrationTime(tcs34725IntegrationTime_t it);
+	void setGain(tcs34725Gain_t gain);
+	void enable();
+	void disable();
+	uint16_t calcuateColorTemperature(uint16_t r, uint16_t g, uint16_t b);
+	uint16_t calculateLux(uint16_t r, uint16_t g, uint16_t b);
+	void setInterrupt(bool interruptEnable);
+	void clearInterrupt();
+	void setIntLimits(uint16_t low, uint16_t high);
+	bool getEvent(sensors_event_t *event) override;
 
-	private:		
-		void initialize();
-		void getRawData(uint16_t *r, uint16_t *g, uint16_t *b, uint16_t *c);
-		void write8(uint8_t reg, uint8_t value);
-		static uint8_t read8(uint8_t reg);
-		uint16_t read16(uint8_t reg);
-		static bool initialized, tcs34725Avail;
-		static uint8_t i2cfd;
-		tcs34725IntegrationTime_t integrationTime;
-		tcs34725Gain_t gain;
+private:
+	void initialize();
+	void getRawData(uint16_t *r, uint16_t *g, uint16_t *b, uint16_t *c);
+	void write8(uint8_t reg, uint8_t value);
+	static uint8_t read8(uint8_t reg);
+	uint16_t read16(uint8_t reg);
+	static bool initialized, tcs34725Avail;
+	static uint8_t i2cfd;
+	tcs34725IntegrationTime_t integrationTime;
+	tcs34725Gain_t gain;
 };

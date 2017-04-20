@@ -10,10 +10,10 @@ public:
 		IDLE,
 		MAINMENU
 	};
-	PageManager();	
+	PageManager();
 	int processTouch(Point pt) override;
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
-	
+
 private:
 	UIElement *currentPage=NULL;
 	ePageDisplayed pageDisplayed;

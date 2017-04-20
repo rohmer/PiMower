@@ -5,7 +5,6 @@ bool Database::init;
 
 Database::Database()
 {
-
 }
 
 Poco::Data::Session Database::getDBSession()
@@ -23,10 +22,10 @@ void Database::initDB()
 	";auto-reconnect=true"
 	";secure-auth=true";
 	try
-	{		
+	{
 		Poco::Data::MySQL::Connector::registerConnector();
 		sessionPool = new Poco::Data::SessionPool(Poco::Data::MySQL::Connector::KEY, _dbConnString);
-		
+
 		// Check for all our tables
 		if (!tableExists("Position"))
 			createPositionTable();
@@ -42,42 +41,41 @@ void Database::initDB()
 			createLogTable();
 		if (!tableExists("Events"))
 			createEventTable();
-
 	}
 	catch (std::exception &e)
 	{
 		std::stringstream ss;
 		ss << "Exception caught: " << e.what() << std::endl;
 		Poco::Logger &logger = Poco::Logger::get("RobotLib");
-		logger.fatal(ss.str());		
-	}	
+		logger.fatal(ss.str());
+	}
 }
 
 bool Database::tableExists(std::string tableName)
 {
-	std::clog << "Getting session";		
+	std::clog << "Getting session";
 	Poco::Data::Session dbSession = getDBSession();
 	Poco::Data::Statement select(dbSession);
 	std::string name;
 	try
 	{
-		select << "SHOW TABLES LIKE '?'", 
+		select << "SHOW TABLES LIKE '?'",
 			Poco::Data::Keywords::bind(tableName),
 			Poco::Data::Keywords::into(name);
 		std::clog << "Selecting";
-		
+
 		while (!select.done())
-		{		
+		{
 			select.execute();
 			if (name == tableName)
 			{
-				std::clog << "Found";		
+				std::clog << "Found";
 				return true;
 			}
 		}
 		std::clog << "Not found";
 	}
-	catch (Poco::Data::MySQL::StatementException &e)		
+	catch (Poco::Data::MySQL::StatementException &e)
 	{
 		std::clog << e.displayText();
 	}
@@ -91,7 +89,7 @@ bool Database::createLogTable()
 		"severity INT NOT NULL, "\
 		"message TEXT, "\
 		"sessionID CHAR(36))";
-	return  Database::execSql(sql);
+	return Database::execSql(sql);
 }
 
 bool Database::createEventTable()
@@ -166,23 +164,23 @@ bool Database::createConfigTable()
 		"MapScale INT, "\
 		"EncoderTicksPerRevolution INT," \
 		"ErrorLEDPin INT)";
-		
+
 	if (!Database::execSql(sql))
 		return false;
-	
+
 	sql = "CREATE TABLE Sensors (" \
 		"SensorType INT, " \
 		"TriggerPin INT, " \
 		"EchoPin INT, " \
 		"Location CHAR(5), " \
 		"Name CHAR(32))";
-	return Database::execSql(sql);	
+	return Database::execSql(sql);
 }
 
 bool Database::createPositionTable()
 {
 	std::clog << "Creating Position Table";
-		
+
 	std::string sql = "CREATE TABLE Position ("	\
 		"sessionID CHAR(36) PRIMARY KEY NOT NULL," \
 		"posTime INT NOT NULL," \
@@ -206,13 +204,13 @@ bool Database::createPositionTable()
 		"Roll REAL, "\
 		"AccelX REAL, " \
 		"AccelY REAL, "\
-		"AccelZ REAL)";			
-	return Database::execSql(sql);		
+		"AccelZ REAL)";
+	return Database::execSql(sql);
 }
 
 bool Database::execSql(std::string sqlStmt)
 {
-	{		
+	{
 		try
 		{
 			Poco::Data::Session session = getDBSession();
@@ -224,9 +222,9 @@ bool Database::execSql(std::string sqlStmt)
 			std::stringstream ss;
 			ss << "Exception caught: " << e.what() << std::endl;
 			Poco::Logger &logger = Poco::Logger::get("RobotLib");
-			logger.fatal(ss.str());		
+			logger.fatal(ss.str());
 			return false;
-		}	
+		}
 	}
 }
 
@@ -237,6 +235,5 @@ bool Database::insertPositionEvent(sensors_event_t *event)
 }
 
 Database::~Database()
-{		
+{
 }
-

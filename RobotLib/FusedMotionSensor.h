@@ -37,25 +37,23 @@ public:
 	{
 		return currentResult;
 	}
-	
-private:	
+
+private:
 	RobotLib *robotLib;
 	Config *config;
 	std::thread motionSensorThread;
 	std::thread imagingThread;
 	bool shutdown = false;
-	PiCamera *piCamera;	
+	PiCamera *piCamera;
 	ObjectProximityDetection *opd;
 	std::vector <sBumperSensor> bumperSensors;
 	MotorController *motorController;
 	bool currentOnGrass;
-	
-	void sensorManagerThread();	
+
+	void sensorManagerThread();
 	void imageManagerThread();
 	static void startSensorThread(FusedMotionSensor *fms);
 	static void startImageThread(FusedMotionSensor *fms);
 	std::pair<bool, eSensorLocation> checkBumpers();
 	fmsResult currentResult;
 };
-
-

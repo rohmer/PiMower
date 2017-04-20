@@ -24,37 +24,36 @@
 
 class GrassDetection : public SensorBase
 {
-	public:	
-		GrassDetection(RobotLib *robotLib);
-		device_type_t getDeviceType() override
-		{
-			return DEVICETYPE_SENSOR;
-		}
-		std::string getDeviceName() override
-		{
-			return "GrassSensor";
-		}
-		std::string getDeviceDescription() override
-		{
-			return "Grass Sensor using Raspicam";
-		}
-		sensors_type_t getSensorType() override
-		{
-			return SENSOR_TYPE_IMAGING;
-		}
-		bool getEvent(sensors_event_t *event) override;
-	
-	private: 
-		double grassThreshold;
-		bool init();
-		void getThreshold();
-		SensorBase *imageSensor;
-		bool initialized;
-		std::vector<std::string> getImageFiles(std::string directory);
-		bool needRetraining(std::vector<std::string> availableFiles);
-		void writeTrainedFiles(std::vector<std::string> filesTrained);
-		raspicam::RaspiCam_Cv camera;
+public:
+	GrassDetection(RobotLib *robotLib);
+	device_type_t getDeviceType() override
+	{
+		return DEVICETYPE_SENSOR;
+	}
+	std::string getDeviceName() override
+	{
+		return "GrassSensor";
+	}
+	std::string getDeviceDescription() override
+	{
+		return "Grass Sensor using Raspicam";
+	}
+	sensors_type_t getSensorType() override
+	{
+		return SENSOR_TYPE_IMAGING;
+	}
+	bool getEvent(sensors_event_t *event) override;
+
+private:
+	double grassThreshold;
+	bool init();
+	void getThreshold();
+	SensorBase *imageSensor;
+	bool initialized;
+	std::vector<std::string> getImageFiles(std::string directory);
+	bool needRetraining(std::vector<std::string> availableFiles);
+	void writeTrainedFiles(std::vector<std::string> filesTrained);
+	raspicam::RaspiCam_Cv camera;
 };
 
 #endif
-

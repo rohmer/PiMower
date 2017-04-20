@@ -8,11 +8,11 @@
 
 class IdlePage : public UIElement
 {
-public:	
+public:
 	IdlePage();
 	void update(DigoleLCD *lcd, RobotLib *robotLib) override;
 	int processTouch(Point pt) override;
-	
+
 private:
 	time_t nextUpdate;
 	BQ34Z100G1 *batMon = NULL;

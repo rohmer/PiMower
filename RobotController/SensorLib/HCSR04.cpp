@@ -3,10 +3,10 @@
 
 /* HC-SR04 Ultrasonic Range Finder */
 
-HCSR04::HCSR04(RobotLib *robotLib) :
-	SensorBase(robotLib)
-{	
-	initialized = false;	
+HCSR04::HCSR04(RobotLib *robotLib)
+	: SensorBase(robotLib)
+{
+	initialized = false;
 	inputPin = 0;
 	triggerPin = 0;
 	shutdown = false;
@@ -24,7 +24,7 @@ HCSR04::HCSR04(RobotLib *robotLib, uint8_t triggerPin, uint8_t inputPin)
 	pinMode(triggerPin, OUTPUT);
 	pinMode(inputPin, INPUT);
 	// Default to 400cm
-	setMaxDistanceCM(400);	
+	setMaxDistanceCM(400);
 	addSensor(inputPin);
 	shutdown = false;
 	initialized = true;
@@ -32,11 +32,11 @@ HCSR04::HCSR04(RobotLib *robotLib, uint8_t triggerPin, uint8_t inputPin)
 
 HCSR04::HCSR04(RobotLib *robotLib,
 	uint8_t triggerPin,
-	uint8_t inputPin, 
+	uint8_t inputPin,
 	bool backgroundPoling,
-	uint16_t pollingInterval) :
-		SensorBase(robotLib)
-{	
+	uint16_t pollingInterval)
+	: SensorBase(robotLib)
+{
 	if (robotLib->getEmulator())
 	{
 		return;
@@ -46,7 +46,7 @@ HCSR04::HCSR04(RobotLib *robotLib,
 	pinMode(triggerPin, OUTPUT);
 	pinMode(inputPin, OUTPUT);
 	// Default to 400cm
-	setMaxDistanceCM(400);	
+	setMaxDistanceCM(400);
 	this->pollingInterval = pollingInterval;
 	this->shutdown = backgroundPolling;
 	initialized = true;
@@ -106,7 +106,7 @@ void HCSR04::pollDevice()
 		ss << "HC-SR04 is not initialized, inputPin=" << inputPin << " triggerPin=" << triggerPin << " both must be set and > 0";
 		return;
 	}
-	
+
 	int a = 0;
 	while (a < sensorResult.size())
 	{
@@ -114,26 +114,26 @@ void HCSR04::pollDevice()
 		digitalWrite(triggerPin, 1);
 		delay(10);
 		digitalWrite(triggerPin, 0);
-	
+
 		/*long now = micros();
 		volatile long startTime = 0, endTime = 0;
 		while (digitalRead(inputPin) == 0 && micros() - now < maxDistance && !shutdown)
 		{
 			startTime = micros();
 			while (digitalRead(inputPin) == 1 && !shutdown)
-			{		
+			{
 			}
-			
+
 			endTime = micros();
 		}
 		*/
 		long travelTimeUsec = 0; // = endTime - startTime;
 		if (travelTimeUsec != 0)
 		{
-			sensorResult[a] = 10000*((travelTimeUsec / 1000000.0) * 340.29) / 2;		
+			sensorResult[a] = 10000*((travelTimeUsec / 1000000.0) * 340.29) / 2;
 		}
 		a++;
-	} 
+	}
 }
 
 bool HCSR04::getEvent(sensors_event_t *event)
@@ -145,18 +145,18 @@ bool HCSR04::getEvent(sensors_event_t *event)
 		robotLib->Log(ss.str());
 		return false;
 	}
-	
+
 	if (sensorResult.size() == 0)
 	{
 		robotLib->LogWarn("No sensors defined, define one first with addSensor()");
 		return false;
 	}
-	if(!backgroundPolling)
+	if (!backgroundPolling)
 		pollDevice();
-		
+
 	event->distanceCM = sensorResult[0];
-	event->distanceIN = sensorResult[0]/2.54;
-	
+	event->distanceIN = sensorResult[0] / 2.54;
+
 	return true;
 }
 
@@ -169,7 +169,7 @@ bool HCSR04::getEvent(int sensorNum, sensors_event_t *event)
 		robotLib->Log(ss.str());
 		return false;
 	}
-	
+
 	if (sensorResult.size() == 0)
 	{
 		robotLib->LogWarn("No sensors defined, define one first with addSensor()");
@@ -184,10 +184,10 @@ bool HCSR04::getEvent(int sensorNum, sensors_event_t *event)
 	}
 	if (!backgroundPolling)
 		pollDevice();
-		
+
 	event->distanceCM = sensorResult[sensorNum];
 	event->distanceIN = sensorResult[sensorNum] / 2.54;
-	
+
 	return true;
 }
 
@@ -197,7 +197,7 @@ void HCSR04::bgPollingThread()
 	{
 		pollDevice();
 		delay(pollingInterval);
-	}	
+	}
 }
 
 void HCSR04::setTriggerPin(uint8_t triggerPin)

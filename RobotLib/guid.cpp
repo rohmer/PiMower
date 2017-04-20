@@ -125,7 +125,6 @@ Guid::Guid(const string &fromString)
 			lookingForFirstChar = true;
 		}
 	}
-
 }
 
 // create empty guid
@@ -168,7 +167,7 @@ Guid GuidGenerator::newGuid()
 	return id;
 }
 
-// this is the mac and ios version 
+// this is the mac and ios version
 #ifdef GUID_CFUUID
 Guid GuidGenerator::newGuid()
 {
@@ -206,7 +205,7 @@ Guid GuidGenerator::newGuid()
 	GUID newId;
 	CoCreateGuid(&newId);
 
-	const unsigned char bytes[16] = 
+	const unsigned char bytes[16] =
 	{
 		(newId.Data1 >> 24) & 0xFF,
 		(newId.Data1 >> 16) & 0xFF,
@@ -250,7 +249,7 @@ Guid GuidGenerator::newGuid()
 	jlong mostSignificant = _env->CallLongMethod(javaUuid, _mostSignificantBitsMethod);
 	jlong leastSignificant = _env->CallLongMethod(javaUuid, _leastSignificantBitsMethod);
 
-	unsigned char bytes[16] = 
+	unsigned char bytes[16] =
 	{
 		(mostSignificant >> 56) & 0xFF,
 		(mostSignificant >> 48) & 0xFF,

@@ -1,6 +1,6 @@
 #include "UITouchArea.h"
 
-UITouchArea::UITouchArea(Point position, 
+UITouchArea::UITouchArea(Point position,
 	uint width,
 	uint height)
 	: UIElement(position, false, true)

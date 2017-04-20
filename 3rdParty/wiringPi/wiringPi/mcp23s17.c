@@ -33,23 +33,21 @@
 
 #define	MCP_SPEED	4000000
 
-
-
 /*
  * writeByte:
  *	Write a byte to a register on the MCP23s17 on the SPI bus.
  *********************************************************************************
  */
 
-static void writeByte (uint8_t spiPort, uint8_t devId, uint8_t reg, uint8_t data)
+static void writeByte(uint8_t spiPort, uint8_t devId, uint8_t reg, uint8_t data)
 {
-  uint8_t spiData [4] ;
+	uint8_t spiData[4];
 
-  spiData [0] = CMD_WRITE | ((devId & 7) << 1) ;
-  spiData [1] = reg ;
-  spiData [2] = data ;
+	spiData[0] = CMD_WRITE | ((devId & 7) << 1);
+	spiData[1] = reg;
+	spiData[2] = data;
 
-  wiringPiSPIDataRW (spiPort, spiData, 3) ;
+	wiringPiSPIDataRW(spiPort, spiData, 3);
 }
 
 /*
@@ -58,149 +56,144 @@ static void writeByte (uint8_t spiPort, uint8_t devId, uint8_t reg, uint8_t data
  *********************************************************************************
  */
 
-static uint8_t readByte (uint8_t spiPort, uint8_t devId, uint8_t reg)
+static uint8_t readByte(uint8_t spiPort, uint8_t devId, uint8_t reg)
 {
-  uint8_t spiData [4] ;
+	uint8_t spiData[4];
 
-  spiData [0] = CMD_READ | ((devId & 7) << 1) ;
-  spiData [1] = reg ;
+	spiData[0] = CMD_READ | ((devId & 7) << 1);
+	spiData[1] = reg;
 
-  wiringPiSPIDataRW (spiPort, spiData, 3) ;
+	wiringPiSPIDataRW(spiPort, spiData, 3);
 
-  return spiData [2] ;
+	return spiData[2] ;
 }
-
 
 /*
  * myPinMode:
  *********************************************************************************
  */
 
-static void myPinMode (struct wiringPiNodeStruct *node, int pin, int mode)
+static void myPinMode(struct wiringPiNodeStruct *node, int pin, int mode)
 {
-  int mask, old, reg ;
+	int mask, old, reg;
 
-  pin -= node->pinBase ;
+	pin -= node->pinBase;
 
-  if (pin < 8)		// Bank A
-    reg  = MCP23x17_IODIRA ;
-  else
-  {
-    reg  = MCP23x17_IODIRB ;
-    pin &= 0x07 ;
-  }
+	if (pin < 8)		// Bank A
+		reg  = MCP23x17_IODIRA;
+	else
+	{
+		reg  = MCP23x17_IODIRB;
+		pin &= 0x07;
+	}
 
-  mask = 1 << pin ;
-  old  = readByte (node->data0, node->data1, reg) ;
+	mask = 1 << pin;
+	old  = readByte(node->data0, node->data1, reg);
 
-  if (mode == OUTPUT)
-    old &= (~mask) ;
-  else
-    old |=   mask ;
+	if (mode == OUTPUT)
+		old &= (~mask);
+	else
+		old |=   mask;
 
-  writeByte (node->data0, node->data1, reg, old) ;
+	writeByte(node->data0, node->data1, reg, old);
 }
-
 
 /*
  * myPullUpDnControl:
  *********************************************************************************
  */
 
-static void myPullUpDnControl (struct wiringPiNodeStruct *node, int pin, int mode)
+static void myPullUpDnControl(struct wiringPiNodeStruct *node, int pin, int mode)
 {
-  int mask, old, reg ;
+	int mask, old, reg;
 
-  pin -= node->pinBase ;
+	pin -= node->pinBase;
 
-  if (pin < 8)		// Bank A
-    reg  = MCP23x17_GPPUA ;
-  else
-  {
-    reg  = MCP23x17_GPPUB ;
-    pin &= 0x07 ;
-  }
+	if (pin < 8)		// Bank A
+		reg  = MCP23x17_GPPUA;
+	else
+	{
+		reg  = MCP23x17_GPPUB;
+		pin &= 0x07;
+	}
 
-  mask = 1 << pin ;
-  old  = readByte (node->data0, node->data1, reg) ;
+	mask = 1 << pin;
+	old  = readByte(node->data0, node->data1, reg);
 
-  if (mode == PUD_UP)
-    old |=   mask ;
-  else
-    old &= (~mask) ;
+	if (mode == PUD_UP)
+		old |=   mask;
+	else
+		old &= (~mask);
 
-  writeByte (node->data0, node->data1, reg, old) ;
+	writeByte(node->data0, node->data1, reg, old);
 }
-
 
 /*
  * myDigitalWrite:
  *********************************************************************************
  */
 
-static void myDigitalWrite (struct wiringPiNodeStruct *node, int pin, int value)
+static void myDigitalWrite(struct wiringPiNodeStruct *node, int pin, int value)
 {
-  int bit, old ;
+	int bit, old;
 
-  pin -= node->pinBase ;	// Pin now 0-15
+	pin -= node->pinBase;	// Pin now 0-15
 
-  bit = 1 << (pin & 7) ;
+	bit = 1 << (pin & 7);
 
-  if (pin < 8)			// Bank A
-  {
-    old = node->data2 ;
+	if (pin < 8)			// Bank A
+	{
+		old = node->data2;
 
-    if (value == LOW)
-      old &= (~bit) ;
-    else
-      old |=   bit ;
+		if (value == LOW)
+			old &= (~bit);
+		else
+			old |=   bit;
 
-    writeByte (node->data0, node->data1, MCP23x17_GPIOA, old) ;
-    node->data2 = old ;
-  }
-  else				// Bank B
-  {
-    old = node->data3 ;
+		writeByte(node->data0, node->data1, MCP23x17_GPIOA, old);
+		node->data2 = old;
+	}
+	else				// Bank B
+	{
+		old = node->data3;
 
-    if (value == LOW)
-      old &= (~bit) ;
-    else
-      old |=   bit ;
+		if (value == LOW)
+			old &= (~bit);
+		else
+			old |=   bit;
 
-    writeByte (node->data0, node->data1, MCP23x17_GPIOB, old) ;
-    node->data3 = old ;
-  }
+		writeByte(node->data0, node->data1, MCP23x17_GPIOB, old);
+		node->data3 = old;
+	}
 }
-
 
 /*
  * myDigitalRead:
  *********************************************************************************
  */
 
-static int myDigitalRead (struct wiringPiNodeStruct *node, int pin)
+static int myDigitalRead(struct wiringPiNodeStruct *node, int pin)
 {
-  int mask, value, gpio ;
+	int mask, value, gpio;
 
-  pin -= node->pinBase ;
+	pin -= node->pinBase;
 
-  if (pin < 8)		// Bank A
-    gpio  = MCP23x17_GPIOA ;
-  else
-  {
-    gpio  = MCP23x17_GPIOB ;
-    pin  &= 0x07 ;
-  }
+	if (pin < 8)		// Bank A
+		gpio  = MCP23x17_GPIOA;
+	else
+	{
+		gpio  = MCP23x17_GPIOB;
+		pin  &= 0x07;
+	}
 
-  mask  = 1 << pin ;
-  value = readByte (node->data0, node->data1, gpio) ;
+	mask  = 1 << pin;
+	value = readByte(node->data0, node->data1, gpio);
 
-  if ((value & mask) == 0)
-    return LOW ;
-  else 
-    return HIGH ;
+	if ((value & mask) == 0)
+		return LOW ;
+	else
+		return HIGH ;
 }
-
 
 /*
  * mcp23s17Setup:
@@ -210,26 +203,26 @@ static int myDigitalRead (struct wiringPiNodeStruct *node, int pin)
  *********************************************************************************
  */
 
-int mcp23s17Setup (const int pinBase, const int spiPort, const int devId)
+int mcp23s17Setup(const int pinBase, const int spiPort, const int devId)
 {
-  struct wiringPiNodeStruct *node ;
+	struct wiringPiNodeStruct *node ;
 
-  if (wiringPiSPISetup (spiPort, MCP_SPEED) < 0)
-    return FALSE ;
+	if (wiringPiSPISetup(spiPort, MCP_SPEED) < 0)
+		return FALSE ;
 
-  writeByte (spiPort, devId, MCP23x17_IOCON,  IOCON_INIT | IOCON_HAEN) ;
-  writeByte (spiPort, devId, MCP23x17_IOCONB, IOCON_INIT | IOCON_HAEN) ;
+	writeByte(spiPort, devId, MCP23x17_IOCON, IOCON_INIT | IOCON_HAEN);
+	writeByte(spiPort, devId, MCP23x17_IOCONB, IOCON_INIT | IOCON_HAEN);
 
-  node = wiringPiNewNode (pinBase, 16) ;
+	node = wiringPiNewNode(pinBase, 16);
 
-  node->data0           = spiPort ;
-  node->data1           = devId ;
-  node->pinMode         = myPinMode ;
-  node->pullUpDnControl = myPullUpDnControl ;
-  node->digitalRead     = myDigitalRead ;
-  node->digitalWrite    = myDigitalWrite ;
-  node->data2           = readByte (spiPort, devId, MCP23x17_OLATA) ;
-  node->data3           = readByte (spiPort, devId, MCP23x17_OLATB) ;
+	node->data0           = spiPort;
+	node->data1           = devId;
+	node->pinMode         = myPinMode;
+	node->pullUpDnControl = myPullUpDnControl;
+	node->digitalRead     = myDigitalRead;
+	node->digitalWrite    = myDigitalWrite;
+	node->data2           = readByte(spiPort, devId, MCP23x17_OLATA);
+	node->data3           = readByte(spiPort, devId, MCP23x17_OLATB);
 
-  return TRUE ;
+	return TRUE ;
 }

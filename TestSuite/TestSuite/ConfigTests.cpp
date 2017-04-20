@@ -5,7 +5,7 @@ ConfigTests::ConfigTests(RobotLib *robotLib, PiRobotTestLib *testLib)
 {
 	this->robotLib = robotLib;
 	this->testLib = testLib;
-	
+
 	// Write our configuration test
 	std::ofstream fs("/tmp/testConfig.xml");
 	if (!fs)

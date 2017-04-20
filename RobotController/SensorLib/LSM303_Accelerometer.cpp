@@ -3,16 +3,16 @@
 static float _lsm303Accel_MG_LSB     = 0.001F;   // 1, 2, 4 or 12 mg per lsb
 bool LSM303_Accelerometer::accelInit = false;
 bool LSM303_Accelerometer::accelAttached = false;
-int LSM303_Accelerometer::i2cfd_Accel=0;
+int LSM303_Accelerometer::i2cfd_Accel = 0;
 
-LSM303_Accelerometer::LSM303_Accelerometer(RobotLib* rl) :
-	SensorBase(rl)
+LSM303_Accelerometer::LSM303_Accelerometer(RobotLib* rl)
+	: SensorBase(rl)
 {
 	if (rl->getEmulator())
 		return;
 	i2cfd_Accel = -1;
-	accelInit = false;	
-	
+	accelInit = false;
+
 	try
 	{
 		i2cfd_Accel = DeviceManager::getI2CFD(LSM303_ADDRESS_ACCEL);
@@ -39,7 +39,7 @@ LSM303_Accelerometer::LSM303_Accelerometer(RobotLib* rl) :
 
 	// Enable the accelerometer (100mhz)
 	wiringPiI2CWriteReg16(i2cfd_Accel, LSM303_REGISTER_ACCEL_CTRL_REG1_A, 0x57);
-	
+
 	// LSM303DLHC has no WHOAMI register so read CTRL_REG1_A back to check
 	// if we are connected or not
 	uint8_t reg1_a = wiringPiI2CReadReg8(i2cfd_Accel, LSM303_REGISTER_ACCEL_CTRL_REG1_A);
@@ -49,7 +49,7 @@ LSM303_Accelerometer::LSM303_Accelerometer(RobotLib* rl) :
 		robotLib->LogError("Failed to communicate with Accelerometer");
 		return;
 	}
-	
+
 	robotLib->Log("Communicating with accelerometer");
 	accelInit = true;
 	raw.x = 0;
@@ -60,7 +60,7 @@ LSM303_Accelerometer::LSM303_Accelerometer(RobotLib* rl) :
 void LSM303_Accelerometer::getSensor(sensor_t *sensor)
 {
 //	memset(sensor, 0, sizeof(sensor_t));
-	strncpy(sensor->name, "LSM303_Accelerometer", sizeof(sensor->name)-1);
+	strncpy(sensor->name, "LSM303_Accelerometer", sizeof(sensor->name) - 1);
 	sensor->name[sizeof(sensor->name) - 1] = 0;
 	sensor->version = 1;
 	sensor->sensor_id = LSM303_ADDRESS_ACCEL;
@@ -68,16 +68,16 @@ void LSM303_Accelerometer::getSensor(sensor_t *sensor)
 	sensor->min_delay = 0;
 	sensor->max_value = 0.0F;		// TBD;
 	sensor->min_value = 0.0F;		// TBD;
-	sensor->resolution = 0.0F;		// TBD;	
+	sensor->resolution = 0.0F;		// TBD;
 }
 
 bool LSM303_Accelerometer::getEvent(sensors_event_t* event)
-{	
+{
 	//memset(event, 0, sizeof(sensors_event_t));
-	
+
 	/* Read new data */
 	read();
-	
+
 	event->version = sizeof(sensors_event_t);
 	event->sensor_id = LSM303_ADDRESS_ACCEL;
 	event->type = SENSOR_TYPE_ACCELEROMETER;
@@ -85,7 +85,7 @@ bool LSM303_Accelerometer::getEvent(sensors_event_t* event)
 	event->acceleration.x = static_cast<float>(raw.x)* _lsm303Accel_MG_LSB * SENSORS_GRAVITY_STANDARD;
 	event->acceleration.y = static_cast<float>(raw.y)* _lsm303Accel_MG_LSB * SENSORS_GRAVITY_STANDARD;
 	event->acceleration.z = static_cast<float>(raw.z)* _lsm303Accel_MG_LSB * SENSORS_GRAVITY_STANDARD;
-	
+
 	return true;
 }
 
@@ -94,9 +94,9 @@ void LSM303_Accelerometer::read()
 	wiringPiI2CWrite(i2cfd_Accel, LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80);
 	int a = 0;
 	uint8_t xlo, xhi, ylo, yhi, zlo, zhi;
-		
+
 	while (a < 6)
-	{			
+	{
 		int data = 0;
 		data = wiringPiI2CReadReg8(i2cfd_Accel, LSM303_ADDRESS_ACCEL);
 		if (data < 0)
@@ -127,7 +127,7 @@ void LSM303_Accelerometer::read()
 		}
 		a++;
 	}
-	
+
 	raw.x = (int16_t)(xlo | (xhi << 8)) >> 4;
 	raw.y = (int16_t)(ylo | (yhi << 8)) >> 4;
 	raw.z = (int16_t)(zlo | (zhi << 8)) >> 4;
@@ -150,19 +150,19 @@ void LSM303_Accelerometer::calibrate()
 	float AccelMinX, AccelMaxX;
 	float AccelMinY, AccelMaxY;
 	float AccelMinZ, AccelMaxZ;
-	
+
 	while (a < 30)
-	{		
+	{
 		getEvent(event);
 		if (event->acceleration.x < AccelMinX)
 		{
-			AccelMinX = event->acceleration.x;			
+			AccelMinX = event->acceleration.x;
 		}
 		if (event->acceleration.x > AccelMaxX)
 		{
-			AccelMaxX = event->acceleration.x;			
+			AccelMaxX = event->acceleration.x;
 		}
-		if (event->acceleration.y < AccelMinY) 
+		if (event->acceleration.y < AccelMinY)
 		{
 			AccelMinY = event->acceleration.y;
 		}
@@ -170,11 +170,11 @@ void LSM303_Accelerometer::calibrate()
 		{
 			AccelMaxY = event->acceleration.y;
 		}
-		if (event->acceleration.z < AccelMinZ) 
+		if (event->acceleration.z < AccelMinZ)
 		{
 			AccelMinZ = event->acceleration.z;
 		}
-		if (event->acceleration.z > AccelMaxZ) 
+		if (event->acceleration.z > AccelMaxZ)
 		{
 			AccelMaxZ = event->acceleration.z;
 		}
@@ -199,11 +199,11 @@ device_status_t LSM303_Accelerometer::getDeviceStatus(RobotLib *robotLib)
 	int i2cfd = i2cfd_Accel;
 	if (i2cfd <= 0)
 	{
-		i2cfd = DeviceManager::getI2CFD(LSM303_ADDRESS_ACCEL);		
-	} 
+		i2cfd = DeviceManager::getI2CFD(LSM303_ADDRESS_ACCEL);
+	}
 	if (i2cfd < 0)
 	{
-		return device_status_t::DEVICE_UNAVAILBLE;		
+		return device_status_t::DEVICE_UNAVAILBLE;
 	}
 	return device_status_t::DEVICE_CONNECTED;
 }
@@ -214,7 +214,7 @@ std::string LSM303_Accelerometer::getDeviceDescription()
 }
 
 LSM303_Accelerometer::~LSM303_Accelerometer()
-{	
+{
 }
 
 // Add to auto registry so the device manager can know about it

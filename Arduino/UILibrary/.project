@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>UILibrary</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>io.sloeber.core.inoToCpp</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<triggers>clean,full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+		<nature>io.sloeber.arduinonature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>core/core</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</location>
+		</link>
+		<link>
+			<name>core/variant</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</location>
+		</link>
+		<link>
+			<name>libraries/SD</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/SD/1.1.1</locationURI>
+		</link>
+		<link>
+			<name>libraries/SPI</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI</location>
+		</link>
+		<link>
+			<name>libraries/SerialDebugger</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SerialDebugger</location>
+		</link>
+		<link>
+			<name>libraries/SerialFlash</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/teensy/avr/libraries/SerialFlash</location>
+		</link>
+		<link>
+			<name>libraries/StandardCplusplus</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/StandardCplusplus</location>
+		</link>
+		<link>
+			<name>libraries/Wire</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire</location>
+		</link>
+	</linkedResources>
+</projectDescription>

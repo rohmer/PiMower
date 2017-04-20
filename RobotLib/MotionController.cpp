@@ -27,24 +27,23 @@ void MotionController::initialize()
 {
 	// To start with lets get our location, velocity vectors and heading/pitch/roll
 	location = new sensors_event_t();
-	location=gpsManager->getLocation();	
-	
+	location = gpsManager->getLocation();
+
 	// Initialize the structures for the sensors
 	for (int a = 0; a < config->getBumperSensors().size(); a++)
 	{
-		bumperSensors.push_back(config->getBumperSensors()[a]);	
+		bumperSensors.push_back(config->getBumperSensors()[a]);
 		pinMode(config->getBumperSensors()[a].gpioPin, INPUT);
 	}
-	
-	std::pair<uint8_t, uint8_t> encoderPins = config->getMotorEncoderPins();	
+
+	std::pair<uint8_t, uint8_t> encoderPins = config->getMotorEncoderPins();
 	odometer = new LS7366R(robotLib, encoderPins.first, encoderPins.second);
 	float wheelDiameter = config->getDriveWheelDiameter();
 	float driveRatio = config->getDriveGearRatio();
 	// So, now we find out how far each rotation of the motor translates to
 	// linear travel
 	// which is circumferance*driveRatio
-	distancePerWheelRotation = wheelDiameter * 2 * 3.14159265*driveRatio/config->getEncoderTicksPerRevolution();
-
+	distancePerWheelRotation = wheelDiameter * 2 * 3.14159265*driveRatio / config->getEncoderTicksPerRevolution();
 }
 
 void MotionController::allStop()
@@ -57,20 +56,20 @@ void MotionController::allStop()
 
 void MotionController::motionStop()
 {
-	std::pair<int,int> prevSpeed=motorController->currentDriveMotorRPM();
+	std::pair<int, int> prevSpeed = motorController->currentDriveMotorRPM();
 	motorController->SetSpeed(0, 0);
-	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);	
+	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
 }
 
 eMotionResult MotionController::rotateToHeading(int heading)
 {
 	motionStop();
 	Point originalPoint = Point(robotLib->getCurrentXLoc(), robotLib->getCurrentYLoc());
-	
+
 	int currentHeading = gpsManager->getHeading();
 	if (currentHeading == -1)
 	{
-		robotLib->LogError("Gyro is unavailable, motion controls disabled");		
+		robotLib->LogError("Gyro is unavailable, motion controls disabled");
 		motorController->AllStop();
 	}
 	RobotEvents::headingChangeEvent(currentHeading, heading);
@@ -82,9 +81,9 @@ eMotionResult MotionController::rotateToHeading(int heading)
 			clockwise = true;
 		else
 			if (potentialHeading - 360 < 180)
-				clockwise = true;
+			clockwise = true;
 	}
-	
+
 	if (clockwise)
 	{
 		motorController->SetSpeed(config->getRotationRPM(), (-1)*config->getRotationRPM());
@@ -120,9 +119,9 @@ eMotionResult MotionController::rotateToHeading(int heading)
 				else
 				{
 					motorController->SetSpeed((-1)*config->getRotationRPM() * 0.25, config->getRotationRPM() * 0.25);
-				}	
+				}
 			}
-		
+
 			else
 			{
 				if (clockwise)
@@ -132,7 +131,7 @@ eMotionResult MotionController::rotateToHeading(int heading)
 				else
 				{
 					motorController->SetSpeed((-1)*config->getRotationRPM() * 0.25, config->getRotationRPM());
-				}	
+				}
 			}
 		}
 		fmsResult sensorResult = fmSensor->getCurrentState();
@@ -141,13 +140,13 @@ eMotionResult MotionController::rotateToHeading(int heading)
 			std::stringstream ss;
 			ss << "Collision detected on: ";
 			if (sensorResult.location == eSensorLocation::FRONT)
-			{					
+			{
 				ss << " Front Bumper";
 				robotLib->Log(ss.str());
-				std::pair <int,int> prevSpeed=motorController->currentDriveMotorRPM();				
-				motorController->SetSpeed(0, 0);				
+				std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();
+				motorController->SetSpeed(0, 0);
 				RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
-				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));				
+				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));
 				int currentHeading = gpsManager->getHeading();
 				RobotEvents::headingChangedEvent(currentHeading);
 				RobotEvents::bumperActivatedEvent(eSensorLocation::FRONT);
@@ -157,44 +156,44 @@ eMotionResult MotionController::rotateToHeading(int heading)
 			{
 				ss << " Rear Bumper";
 				robotLib->Log(ss.str());
-				std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();				
-				motorController->SetSpeed(0, 0);				
+				std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();
+				motorController->SetSpeed(0, 0);
 				RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
-				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));								
+				robotLib->getMap()->setNode(originalPoint.x, originalPoint.y, map_node_t::BLOCK_BUMP, PositionalMath::decPointFromPos(location));
 				RobotEvents::headingChangedEvent(currentHeading);
-				RobotEvents::bumperActivatedEvent(eSensorLocation::BACK);				
+				RobotEvents::bumperActivatedEvent(eSensorLocation::BACK);
 				return eMotionResult::BUMPER_BACK;
 			}
 		}
-		delay(10);		
+		delay(10);
 		currentHeading = gpsManager->getHeading();
 	}
-	RobotEvents::headingChangedEvent(currentHeading);				
+	RobotEvents::headingChangedEvent(currentHeading);
 	// Stop motors, the next behavior will move us forward or reverse as needed
 	std::pair<int, int> prevSpeed = motorController->currentDriveMotorRPM();
 	motorController->SetSpeed(0, 0);
-	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);	
-	
+	RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
+
 	// Store in DB the location info
 	gpsManager->getLocation();
 }
 
 eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward, bool cutting)
-{	
+{
 	RobotEvents::requestMoveEvent(inchesToTravel, forward);
 	// First find the odometer
 	std::pair<long, long> initialOdVal = odometer->readCounters();
 	Point originalPoint = Point(robotLib->getCurrentXLoc(), robotLib->getCurrentYLoc());
-	Point originalPointAbs = Point(originalPoint.x*config->getMapScale() + (config->getMapScale() * 0.5), 
+	Point originalPointAbs = Point(originalPoint.x*config->getMapScale() + (config->getMapScale() * 0.5),
 		originalPoint.y*config->getMapScale() + (config->getMapScale() * 0.5));
-	
+
 	int revolutionsToTravel = std::round((float)inchesToTravel / distancePerWheelRotation)*config->getEncoderTicksPerRevolution();
 	// We will check the map every time we travel 12 inches to see if we are in a different
 	// map sector (Defined as 3x3 feet)
 	// RevolutionsToTravel represents how many turns of the motors we need
-	
+
 	int heading = gpsManager->getHeading();
-	
+
 	int rpm;
 	if (forward)
 		rpm = config->getForwardRPM();
@@ -213,7 +212,7 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			heading -= 360;
 	}
 	if (cutting)
-	{		
+	{
 		motorController->SetSpeed(0, 0, 100);
 		RobotEvents::turnOnBladeEvent();
 	}
@@ -221,17 +220,17 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 	// TODO: Find out the # encoder ticks per full wheel rotation
 	while (currentOdVal < (initialOdVal.first + revolutionsToTravel))
 	{
-		currentOdVal=odometer->readCounters().first;
-			
-		float distanceTraveled = (currentOdVal - initialOdVal.first)*distancePerWheelRotation/config->getEncoderTicksPerRevolution();
+		currentOdVal = odometer->readCounters().first;
+
+		float distanceTraveled = (currentOdVal - initialOdVal.first)*distancePerWheelRotation / config->getEncoderTicksPerRevolution();
 		fmsResult sensorResult = fmSensor->getCurrentState();
-		
+
 		// First a hard result, i.e. bumper
 		if (sensorResult.result == fmsResultType::HARD_RESULT)
 		{
 			// Stop
-			std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();				
-			motorController->SetSpeed(0, 0);				
+			std::pair <int, int> prevSpeed = motorController->currentDriveMotorRPM();
+			motorController->SetSpeed(0, 0);
 			RobotEvents::speedChangeEvent(prevSpeed.first, prevSpeed.second, 0, 0);
 			location = gpsManager->getLocation();
 			Point currentPoint = getCurrentMapLocation(originalPoint, heading, distanceTraveled);
@@ -240,9 +239,8 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			if (sensorResult.location == eSensorLocation::BACK)
 				return eMotionResult::BUMPER_BACK;
 			return eMotionResult::BUMPER_FRONT;
-			
 		}
-		
+
 		// Now an object detected result
 		if (sensorResult.result == fmsResultType::OBJECT_DETECTED)
 		{
@@ -254,7 +252,7 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			rpmCounter = 0;
 			RobotEvents::proximityActivatedEvent(sensorResult.location, sensorResult.distance);
 		}
-		
+
 		// We found a non-grass section
 		if (sensorResult.result == fmsResultType::NOT_GRASS)
 		{
@@ -275,19 +273,19 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 		{
 			// Mark map
 			Point currentPoint = getCurrentMapLocation(originalPoint, heading, distanceTraveled);
-			robotLib->getMap()->setNode(currentPoint.x, currentPoint.y, map_node_t::BLOCK_NOT_GRASS, PositionalMath::decPointFromPos(location));			
+			robotLib->getMap()->setNode(currentPoint.x, currentPoint.y, map_node_t::BLOCK_NOT_GRASS, PositionalMath::decPointFromPos(location));
 			if (forward)
-			{				
+			{
 				rpm = config->getForwardRPM();
 				initialRPM = motorController->currentDriveMotorRPM().first;
 			}
 			else
-			{				
+			{
 				rpm = config->getReverseRPM();
 				initialRPM = motorController->currentDriveMotorRPM().first;
 			}
 		}
-		
+
 		// Now set RPM based on acceleration (And maybe deceleration)
 		if (rpm > motorController->currentDriveMotorRPM().first)
 		{
@@ -301,10 +299,10 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 			RobotEvents::speedChangeEvent(pRPM.first, pRPM.second, setRPM, setRPM);
 		}
 		delay(50);
-	}	
+	}
 	// we got there! :)
 	// Stop
-	std::pair<int, int> pRPM = motorController->currentDriveMotorRPM();	
+	std::pair<int, int> pRPM = motorController->currentDriveMotorRPM();
 	motorController->SetSpeed(0, 0);
 	RobotEvents::speedChangeEvent(pRPM.first, pRPM.second, 0, 0);
 	return eMotionResult::SUCCESS;
@@ -313,14 +311,14 @@ eMotionResult MotionController::travelDistance(int inchesToTravel, bool forward,
 Point MotionController::getCurrentMapLocation(Point initialPoint, int heading, float distanceTraveledInches)
 {
 	Point pt = PositionalMath::getPointByAngleDist(initialPoint, heading, distanceTraveledInches);
-	// That gave us # of inches we traveled from the original point, now we need to 
+	// That gave us # of inches we traveled from the original point, now we need to
 	// convert that to map squares
-	int mapSqInch=config->getMapScale();
-	if (pt.x < (mapSqInch / 2)) 
+	int mapSqInch = config->getMapScale();
+	if (pt.x < (mapSqInch / 2))
 		pt.x = 0;
 	else
 		pt.x = trunc((pt.y - mapSqInch / 2) / mapSqInch) + 1;
-	if (pt.y < (mapSqInch / 2)) 
+	if (pt.y < (mapSqInch / 2))
 		pt.y = 0;
 	else
 		pt.y = trunc((pt.y - mapSqInch / 2) / mapSqInch) + 1;
@@ -332,7 +330,7 @@ Point MotionController::getCurrentMapLocation(Point initialPoint, int heading, f
 float MotionController::inchesPerSecond()
 {
 	float wheelDiameter = config->getDriveWheelDiameter();
-	float driveRatio = config->getDriveGearRatio();	
+	float driveRatio = config->getDriveGearRatio();
 	float distancePerRotation = wheelDiameter * 2 * 3.14159265*driveRatio;
-	return (distancePerRotation / 60);	
+	return (distancePerRotation / 60);
 }

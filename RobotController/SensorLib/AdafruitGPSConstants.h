@@ -48,10 +48,10 @@
 
 // ask for the release and version
 #define PMTK_Q_RELEASE "$PMTK605*31"
-	
-// request for updates on antenna status 
-#define PGCMD_ANTENNA "$PGCMD,33,1*6C" 
-#define PGCMD_NOANTENNA "$PGCMD,33,0*6D" 
+
+// request for updates on antenna status
+#define PGCMD_ANTENNA "$PGCMD,33,1*6C"
+#define PGCMD_NOANTENNA "$PGCMD,33,0*6D"
 
 // how long to wait when we're looking for a response
 #define MAXWAITSENTENCE 5
@@ -64,6 +64,6 @@
 typedef enum
 {
 	gpioUART = (0),
-	usbUART = (1),
+	usbUART  = (1),
 	rpi3UART = (2)
 } gps_conn_t;

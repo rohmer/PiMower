@@ -31,7 +31,7 @@ public:
 	float inchesPerSecond();
 	void allStop();
 	void motionStop();
-	
+
 private:
 	Point getCurrentMapLocation(Point initialPoint, int heading, float distanceTraveledInches);
 	std::vector <sBumperSensor> bumperSensors;

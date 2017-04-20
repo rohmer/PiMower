@@ -1,21 +1,21 @@
 #include "PiCamera.h"
 
 PiCamera::PiCamera(RobotLib *robotLib)
-	: DeviceBase(robotLib,DEVICE)
+	: DeviceBase(robotLib, DEVICE)
 {
 	initialized = init();
 }
 
 // Loads the current dictionary, generates any dictionary if needed
-// Also gets the image sensor 
+// Also gets the image sensor
 bool PiCamera::init()
 {
 	getThreshold();
 	// Set camera parameters
-	camera.set(CV_CAP_PROP_FORMAT, CV_8UC1);	
+	camera.set(CV_CAP_PROP_FORMAT, CV_8UC1);
 	camera.set(CV_CAP_PROP_FRAME_HEIGHT, IMAGE_HEIGHT);
 	camera.set(CV_CAP_PROP_FRAME_WIDTH, IMAGE_WIDTH);
-	
+
 	return true;
 }
 
@@ -35,11 +35,11 @@ std::vector<std::string> PiCamera::getImageFiles(std::string directory)
 			if (idx != std::string::npos)
 			{
 				std::string ext = fname.substr(idx + 1);
-				std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+				std::transform(ext.begin(), ext.end(), ext.begin(),::tolower);
 				for (int i = 0; i < graphicFileTypes.size(); i++)
 				{
 					if (graphicFileTypes[i] == ext)
-					{						
+					{
 						files.push_back(fname);
 						i = graphicFileTypes.size() + 1;
 					}
@@ -52,17 +52,17 @@ std::vector<std::string> PiCamera::getImageFiles(std::string directory)
 
 bool PiCamera::needRetraining(std::vector<std::string> availableFiles)
 {
-	// First we load the trainedFiles.xml	
+	// First we load the trainedFiles.xml
 	std::ifstream trainingFile(TRAINING_FILE);
 	if (!trainingFile.good())
 	{
 		robotLib->Log("Training file does not exist, regenerating");
 		return true;
 	}
-	
+
 	rapidxml::xml_document<> doc;
 	rapidxml::xml_node<> *rootNode;
-	
+
 	std::vector<char> buffer((std::istreambuf_iterator<char>(trainingFile)), std::istreambuf_iterator<char>());
 	buffer.push_back('\0');
 	doc.parse<0>(&buffer[0]);
@@ -76,14 +76,13 @@ bool PiCamera::needRetraining(std::vector<std::string> availableFiles)
 	if (!fileNode)
 	{
 		robotLib->Log("Training file does not have File node(s)");
-		return true;		
+		return true;
 	}
 	if (rootNode->first_attribute("GrassTheshold"))
 		grassThreshold = atof(rootNode->first_attribute("GrassThreshold")->value());
 	else
 		grassThreshold = 0.01f;
-	
-	
+
 	for (rapidxml::xml_node<> *fn = rootNode->first_node("File"); fn; fn = rootNode->next_sibling())
 	{
 		if (fn->first_attribute("Name"))
@@ -140,7 +139,7 @@ void PiCamera::getThreshold()
 		return;
 	}
 	cv::Mat input;
-	std::vector<cv::KeyPoint> keypoints;	
+	std::vector<cv::KeyPoint> keypoints;
 	cv::Mat descriptor, featuresUnclustered;
 	float lowestPct = 1;
 	for (int a = 0; a < trainingFiles.size(); a++)
@@ -156,7 +155,7 @@ void PiCamera::getThreshold()
 		cv::inRange(input, cv::Scalar(44, 90, 30), cv::Scalar(76, 255, 255), HSV);
 		int num = cv::countNonZero(HSV);
 		int total = HSV.rows*HSV.cols;
-		double pct = static_cast<double>(num) / static_cast<double>(total);	
+		double pct = static_cast<double>(num) / static_cast<double>(total);
 		if (pct < lowestPct)
 			lowestPct = pct;
 	}
@@ -171,11 +170,11 @@ bool PiCamera::isGrass()
 		init();
 		if (!initialized)
 		{
-			robotLib->LogError("Cannot initialize PiCamera");			
+			robotLib->LogError("Cannot initialize PiCamera");
 			return false;
-		}		
+		}
 	}
-	
+
 	if (!camera.isOpened())
 	{
 		if (!camera.open())
@@ -193,9 +192,8 @@ bool PiCamera::isGrass()
 	cv::inRange(image, cv::Scalar(44, 90, 30), cv::Scalar(76, 255, 255), HSV);
 	int num = cv::countNonZero(HSV);
 	int total = HSV.rows*HSV.cols;
-	double pct = static_cast<double>(num) / static_cast<double>(total);	
+	double pct = static_cast<double>(num) / static_cast<double>(total);
 	if (pct > grassThreshold)
 		return true;
 	return false;
-	
 }

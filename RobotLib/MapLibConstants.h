@@ -1,6 +1,6 @@
 #pragma once
 
-typedef enum map_block 
+typedef enum map_block
 {
 	BLOCK_UNKNOWN,
 	BLOCK_GRASS,

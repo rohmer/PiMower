@@ -1,24 +1,25 @@
 #include "MotorController.h"
 
-MotorController::MotorController(RobotLib *robotLib, 
-	Config *config)	
+MotorController::MotorController(RobotLib *robotLib,
+	Config *config)
 {
 	this->robotLib = robotLib;
 	this->config = config;
-	this->leftMotorChannel = config->getPWMControllerConfig().leftDriveChannel;;
+	this->leftMotorChannel = config->getPWMControllerConfig().leftDriveChannel;
+	;
 	this->rightMotorChannel = config->getPWMControllerConfig().rightDriveChannel;
 	this->bladeChannel = config->getPWMControllerConfig().bladeChannel;
-	pca9685 = reinterpret_cast<PCA9685 *>(robotLib->getDeviceManager()->getByName("PCA9685"));	
-	pca9685->pca9685PWMFreq(PCAFREQ);	
+	pca9685 = reinterpret_cast<PCA9685 *>(robotLib->getDeviceManager()->getByName("PCA9685"));
+	pca9685->pca9685PWMFreq(PCAFREQ);
 	AllStop();
 	leftMotorSpeed = 0;
-	rightMotorSpeed = 0; 
+	rightMotorSpeed = 0;
 	bladeSpeed = 0;
 }
 
 eTravelDirection MotorController::currentMotion()
 {
-	if (leftMotorSpeed == 0 && rightMotorSpeed == 0)	
+	if (leftMotorSpeed == 0 && rightMotorSpeed == 0)
 		return eTravelDirection::STOPPED;
 	if (leftMotorSpeed == rightMotorSpeed && leftMotorSpeed > 0)
 		return eTravelDirection::FORWARD;
@@ -56,10 +57,10 @@ void MotorController::SetSpeed(int leftMotorSpeedPct, int rightMotorSpeedPct, in
 	leftMotorSpeed = leftMotorSpeedPct;
 	rightMotorSpeed = rightMotorSpeedPct;
 	bladeSpeed = bladeSpeedPct;
-	
+
 	// Set the values to 1500 = stop, 1250=full rev, 1750=full forward
 	int leftMotorSpeedAbs = MOTOR_STOP + ((leftMotorSpeedPct / 100) * 250);
-	int rightMotorSpeedAbs = MOTOR_STOP + ((rightMotorSpeedPct/ 100) * 250);
+	int rightMotorSpeedAbs = MOTOR_STOP + ((rightMotorSpeedPct / 100) * 250);
 	int bladeSpeedAbs = MOTOR_STOP + ((bladeSpeedPct / 100) * 250);
 	pca9685->pca9685SetPin(leftMotorChannel, leftMotorSpeedPct);
 	pca9685->pca9685SetPin(rightMotorChannel, rightMotorSpeedAbs);
@@ -86,12 +87,12 @@ void MotorController::SetSpeed(int leftMotorSpeedPct, int rightMotorSpeedPct)
 	}
 	leftMotorSpeed = leftMotorSpeedPct;
 	rightMotorSpeed = rightMotorSpeedPct;
-	
+
 	// Set the values to 1500 = stop, 1250=full rev, 1750=full forward
 	int leftMotorSpeedAbs = MOTOR_STOP + ((leftMotorSpeedPct / 100) * 250);
 	int rightMotorSpeedAbs = MOTOR_STOP + ((rightMotorSpeedPct / 100) * 250);
 	pca9685->pca9685SetPin(leftMotorChannel, leftMotorSpeedAbs);
-	pca9685->pca9685SetPin(rightMotorChannel, rightMotorSpeedAbs);	
+	pca9685->pca9685SetPin(rightMotorChannel, rightMotorSpeedAbs);
 }
 
 void MotorController::AllStop()
@@ -100,7 +101,7 @@ void MotorController::AllStop()
 		pca9685->pca9685SetPin(a, MOTOR_STOP);
 }
 
-std::pair<int,int> MotorController::currentDriveMotorRPM()
+std::pair<int, int> MotorController::currentDriveMotorRPM()
 {
 	int leftRPM = config->getMaxDriveRPM()*config->getDriveGearRatio()*(leftMotorSpeed / 100);
 	int rightRPM = config->getMaxDriveRPM()*config->getDriveGearRatio()*(rightMotorSpeed / 100);

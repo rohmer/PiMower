@@ -29,8 +29,8 @@ public:
 	std::string lightmagenta();
 	std::string lightcyan();
 	std::string white();
-	
+
 private:
 	std::map<std::string, std::vector<sTestContainer> > results;
-	std::map<std::string, std::string> colors;	
+	std::map<std::string, std::string> colors;
 };
