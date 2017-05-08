@@ -3,7 +3,7 @@
 #include <sstream>
 #include <SPI.h>
 
-#include <RA8875.h>
+#include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
 #include "../UIElements/Fonts.h"
 #include "../Color.h"
 

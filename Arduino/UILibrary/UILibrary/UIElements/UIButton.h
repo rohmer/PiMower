@@ -3,7 +3,7 @@
 #include "../Color.h"
 #include "../BaseItems/UIElement.h"
 #include "../BaseItems/Theme.h"
-#include <RA8875.h>
+#include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
 #include "../UIElements/UIText.h"
 
 class UIButton : public UIElement
@@ -23,7 +23,7 @@ public:
 		uint16_t clickableIconColor, Theme *theme);
 
 	void setTouchArea() override;
-	void update(RA8875 *lcd) override;
+	void update(Adafruit_RA8875 *lcd) override;
 	void setButtonText(std::string buttonText, sThemeSettings currentSettings);
 
 private:
@@ -33,9 +33,9 @@ private:
 	bool touched = false;
 	sThemeSettings active, clickable;
 
-	void drawBorder(RA8875 *lcd, sThemeSettings themeSettings);
-	void drawShadow(RA8875 *lcd, sThemeSettings themeSettings);
-	void fillButton(RA8875 *lcd, sThemeSettings themeSettings);
+	void drawBorder(Adafruit_RA8875 *lcd, sThemeSettings themeSettings);
+	void drawShadow(Adafruit_RA8875 *lcd, sThemeSettings themeSettings);
+	void fillButton(Adafruit_RA8875 *lcd, sThemeSettings themeSettings);
 
 	UIText *buttonTextObj;
 	Theme *theme;

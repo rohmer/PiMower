@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\aileron-SemiBold9");
+#define AILERON_SEMIBOLD_HANDLE 0
+#define AILERON_SEMIBOLD_WIDTH 9
+#define AILERON_SEMIBOLD_HEIGHT 11
+#define AILERON_SEMIBOLD_CELLS 96
+#define ASSETS_END 5428UL
+static const shape_t AILERON_SEMIBOLD_SHAPE = {0, 9, 11, 0};

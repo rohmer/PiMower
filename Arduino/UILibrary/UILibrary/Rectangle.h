@@ -40,7 +40,7 @@ public:
 		, height(0)
 	{
 	}
-
+	
 	bool hasArea()
 	{
 		if (x1 == x2 && y1 == y2)
@@ -54,5 +54,6 @@ public:
 	}
 	void update();
 	bool contains(Point pt) const;
+	bool occludes(Rectangle backgroundRect);
 	int x1, y1, x2, y2, width, height;
 };

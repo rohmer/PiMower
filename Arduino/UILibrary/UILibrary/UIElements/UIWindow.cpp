@@ -6,7 +6,9 @@ UIWindow::UIWindow(Rectangle location, Theme *theme) :
 	elementArea = location;
 	this->hasCloseIcon = false;
 	this->hasChrome = false;
-	this->hasTitleBar = false;	
+	this->hasTitleBar = false;		
+	this->isModal = false;
+                            
 }
 
 UIWindow::UIWindow(Rectangle location, std::string titleText, Theme *theme,
@@ -19,7 +21,15 @@ UIWindow::UIWindow(Rectangle location, std::string titleText, Theme *theme,
 	this->hasChrome = hasChrome;
 	this->isModal = isModal;
 	elementArea = location;
-	debugPrint("Creating UI Window", "UIWindow()");
+	Logger::Trace("UIWindow((%d,%d,%d,%d),%T,%T,%T,%T) created",
+		location.x1,
+		location.y1,
+		location.x2,
+		location.y2,
+		hasCloseIcon,
+		hasChrome,
+		hasTitleBar,
+		isModal);
 }
 
 UIWindow::UIWindow(Rectangle location, std::string titleText, Theme *theme,
@@ -37,7 +47,20 @@ UIWindow::UIWindow(Rectangle location, std::string titleText, Theme *theme,
 	this->windowColor = windowColor;
 	this->hasChrome = hasChrome;
 	elementArea = location;
-	debugPrint("Creating UI Window", "UIWindow()");
+	Logger::Trace("UIWindow((%d,%d,%d,%d),%T,%T,%T,%T,%d,%d,%d,%d,%T) created",
+		location.x1,
+		location.y1,
+		location.x2,
+		location.y2,
+		hasCloseIcon,
+		hasChrome,
+		hasTitleBar,
+		isModal,
+		titleBarColor,
+		titleTextColor,
+		chromeColor,
+		windowColor,
+		hasChrome);
 }
 
 void UIWindow::setTouchArea()
@@ -80,7 +103,7 @@ void UIWindow::addElement(UIElement *element)
 	element->Invalidate();
 }
 
-void UIWindow::drawChrome(RA8875 *lcd)
+void UIWindow::drawChrome(Adafruit_RA8875 *lcd)
 {
 	// Draw Chrome
 
@@ -105,8 +128,7 @@ void UIWindow::drawChrome(RA8875 *lcd)
 			unsigned int closeSize = (abs(textRect.x2 - textRect.x1));
 			closeIcon = new Rectangle(elementArea.x2 - 2 - closeSize, elementArea.y1 + 2, elementArea.x2 - 2, elementArea.y1 + 2 + closeSize);
 		}
-		// Now draw a square with an X in it
-		lcd->setColor(chromeColor, titleBarColor);
+		// Now draw a square with an X in it		
 		lcd->drawRect(closeIcon->x1, closeIcon->y1, closeIcon->x2, closeIcon->y2, chromeColor);
 		lcd->drawLine(closeIcon->x1, closeIcon->y1, closeIcon->x2, closeIcon->y2, chromeColor);
 		lcd->drawLine(closeIcon->x2, closeIcon->y1, closeIcon->x1, closeIcon->y2, chromeColor);
@@ -125,12 +147,12 @@ void UIWindow::drawChrome(RA8875 *lcd)
 		int startX = (abs(elementArea.x2 - elementArea.x1) / 2) - (abs(textRect.x2 - textRect.x1) / 2);
 		FontHelper::setLCDFont(lcd, titleBarFont);
 		lcd->setTextColor(titleTextColor);
-		lcd->setCursor(startX, elementArea.y1 + 2, false);
+		lcd->setCursor(startX, elementArea.y1 + 2);
 		lcd->write(titleText.c_str());
 	}
 }
 
-void UIWindow::update(RA8875 *lcd)
+void UIWindow::update(Adafruit_RA8875 *lcd)
 {
 	if (hasChrome && needsUpdate)
 	{
@@ -169,6 +191,7 @@ void UIWindow::addChildElement(Point location, UIElement *element)
 		element->getPosition().x + childWidth, element->getPosition().y + childHeight));
 	UIElement::addChildElement(element->getPosition(), element);
 	WindowManager::instance()->RegisterElement(element->elementID, element);
+	element->parentElement = this;
 }
 
 // Returns:

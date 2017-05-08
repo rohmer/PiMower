@@ -112,15 +112,15 @@ sThemeSettings Theme::LoadTheme(eThemeObjType objType, eThemeObjState objState)
 	if (val != -1)
 	{
 		if (val == 0)
-			themeSettings.textScale = RA8875tsize::X16;
+			themeSettings.textScale = 1;
 		else
 			if (val == 1)
-				themeSettings.textScale = RA8875tsize::X24;
+				themeSettings.textScale = 2;
 			else
 				if (val == 2)
-					themeSettings.textScale = RA8875tsize::X32;
+					themeSettings.textScale = 3;
 				else
-					themeSettings.textScale = RA8875tsize::X24;
+					themeSettings.textScale = 2;
 	}
 	val = GetThemeAttribute(objType, objState, eThemeObjAttribute::textSpacing);
 	if (val != -1)
@@ -230,7 +230,7 @@ sThemeSettings Theme::LoadTheme(eThemeObjType objType, eThemeObjState objState)
 	}
 	else
 	{
-		themeSettings.textFont = eUITextFont::Alef14;
+		themeSettings.textFont = eUITextFont::AileronRegular12;
 	}
 	val = GetThemeAttribute(objType, objState, eThemeObjAttribute::cornerType);
 	if (val != -1)

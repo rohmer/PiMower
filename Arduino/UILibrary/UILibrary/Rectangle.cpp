@@ -21,3 +21,11 @@ void Rectangle::update()
 	else
 		this->height = y1 - y2;
 }
+
+bool Rectangle::occludes(Rectangle backgroundRect)
+{
+	if (this->x1<backgroundRect.x2 && this->x2>backgroundRect.x1 &&
+		this->y1 > backgroundRect.y2 && this->y2 < backgroundRect.y1)
+		return true;
+	return false;
+}

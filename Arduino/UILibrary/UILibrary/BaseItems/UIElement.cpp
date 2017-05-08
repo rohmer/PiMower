@@ -10,6 +10,7 @@ UIElement::UIElement(Point position, bool needsUpdate, bool uiTarget, Theme *the
 	touchArea = new Rectangle(-1, -1, -1, -1);
 	this->theme = theme;
 	needsUpdate = true;
+	Logger::Trace("UIElement((%d,%d),%T,%T) created", position.x, position.y, needsUpdate, uiTarget);
 }
 
 bool UIElement::ptInElement(Point pt)

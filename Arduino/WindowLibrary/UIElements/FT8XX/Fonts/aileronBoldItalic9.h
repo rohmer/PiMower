@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\aileron-boldItalic9");
+#define AILERON_BOLDITALIC_HANDLE 0
+#define AILERON_BOLDITALIC_WIDTH 10
+#define AILERON_BOLDITALIC_HEIGHT 11
+#define AILERON_BOLDITALIC_CELLS 96
+#define ASSETS_END 5428UL
+static const shape_t AILERON_BOLDITALIC_SHAPE = {0, 10, 11, 0};

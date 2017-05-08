@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\CourierPrimeBold24");
+#define COURIER PRIME BOLD_HANDLE 0
+#define COURIER PRIME BOLD_WIDTH 15
+#define COURIER PRIME BOLD_HEIGHT 24
+#define COURIER PRIME BOLD_CELLS 96
+#define ASSETS_END 18580UL
+static const shape_t COURIER PRIME BOLD_SHAPE = {0, 15, 24, 0};

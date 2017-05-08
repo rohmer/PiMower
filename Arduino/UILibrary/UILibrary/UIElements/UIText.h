@@ -6,8 +6,9 @@
 #include "../BaseItems/UIElement.h"
 #include "../BaseItems/Theme.h"
 #include <SPI.h>
-#include <RA8875.h>
+#include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
 #include "Fonts.h"
+#include "FontHelper.h"
 
 class UIText : public UIElement
 {
@@ -19,7 +20,7 @@ public:
 	static Rectangle GetFontRect(std::string text, eUITextFont font, uint8_t interlineSpacing, uint8_t textSpacing);
 
 	void setTouchArea() override;
-	void update(RA8875 *lcd) override;
+	void update(Adafruit_RA8875 *lcd) override;
 
 	void setText(std::string text);
 	void setObjectState(eThemeObjState state);

@@ -221,7 +221,7 @@ void UIText::loadFonts()
 #endif
 }
 
-void UIText::update(RA8875 *lcd)
+void UIText::update(Adafruit_RA8875 *lcd)
 {
 	if (!needsUpdate)
 		return;
@@ -267,9 +267,9 @@ void UIText::update(RA8875 *lcd)
 			break;
 		}
 		lcd->setTextColor(themeSettings.textColor);
-		lcd->setFontScale(themeSettings.textScale);
+		lcd->textEnlarge(themeSettings.textScale);
 		lcd->setCursor(x, y);
-		lcd->write(buttonTextLines[i].c_str());
+		lcd->textWrite(buttonTextLines[i].c_str());
 	}
 	needsUpdate = false;
 }

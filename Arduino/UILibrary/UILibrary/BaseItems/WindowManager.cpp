@@ -1,40 +1,41 @@
 #include "WindowManager.h"
-WindowManager *WindowManager::s_instance;
-Theme *WindowManager::theme;
+WindowManager *WindowManager::s_instance=0;
 UIWindow *WindowManager::baseWindow;
 std::map<unsigned long, UIElement *> WindowManager::elementMap;
 
-WindowManager::WindowManager(const uint8_t CS, const uint8_t RST, const uint8_t MOSI, const uint8_t SCLK, const uint8_t MISO)
+WindowManager::WindowManager(const uint8_t CS, const uint8_t RST, 
+	const uint8_t MOSI, const uint8_t SCLK, const uint8_t MISO,
+	RA8875sizes lcdSize)
 {
-	debugPrint("Creating WindowManager", "WindowManager()");
-
 #ifdef TEENSY3X
-	lcd = new RA8875(CS, RST, MOSI, SCLK, MISO);
+	lcd = new Adafruit_RA8875(CS, RST, MOSI, SCLK, MISO);
 #else
-	lcd = new RA8875(CS, RST);
+	lcd = new Adafruit_RA8875(CS, RST);
 #endif
-	displaySize = Rectangle(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-	theme = new Theme();
+	int width = 800, height = 480;
+	if (lcdSize == RA8875sizes::RA8875_480x272)
+	{
+		width = 480;
+		height = 272;
+	}
 	lcd->touchEnable(true);
-	lcd->touchBegin();
+	lcd->begin(lcdSize);
+	setDefaultTheme();
 	createBaseWindow();
-}
+	Logger::Trace("Creating WindowManager", "WindowManager()");
 
-WindowManager::WindowManager(Rectangle displaySize, const uint8_t CS, const uint8_t RST, const uint8_t MOSI, const uint8_t SCLK, const uint8_t MISO)
-{
-	debugPrint("Creating WindowManager", "WindowManager()");
-#ifdef TEENSY3X
-	lcd = new RA8875(CS, RST, MOSI, SCLK, MISO);
-#else
-	lcd = new RA8875(CS, RST);
-#endif
-	this->displaySize = displaySize;
-	createBaseWindow();
 }
 
 void WindowManager::createBaseWindow()
-{
+{	
+#ifndef DEBUG
+	Logger::initLogger(Logger::WARN);
+#endif
+		
 	baseWindow = new UIWindow(displaySize, theme);
+	// The base window does not have a parent
+	baseWindow->parentElement = NULL;	
+	Logger::Trace("WindowManager Init");
 }
 
 WindowManager::~WindowManager()
@@ -43,6 +44,7 @@ WindowManager::~WindowManager()
 	{
 		delete(childElements[i]);
 	}
+	delete theme;
 }
 
 int WindowManager::GetThemeAttribute(eThemeObjType objType, eThemeObjState objState,
@@ -59,6 +61,8 @@ void WindowManager::SetThemeAttribute(eThemeObjType objType, eThemeObjState objS
 
 void WindowManager::setDefaultTheme()
 {
+	if (theme == NULL)
+		theme = new Theme();
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::bgColor, Color::Color32To565(16185078));
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::borderColor, Color::Color32To565(12961221));
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::textColor, Color::Color32To565(4539717));
@@ -66,6 +70,7 @@ void WindowManager::setDefaultTheme()
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::textScale, 1);
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::textInterlineSpacing, 0);
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::textSpacing, 0);
+	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::defaultState, eThemeObjAttribute::textFont, eUITextFont::AileronRegular12);
 
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::activeState, eThemeObjAttribute::bgColor, Color::Color32To565(32767));
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::activeState, eThemeObjAttribute::borderColor, Color::Color32To565(16127));
@@ -74,6 +79,7 @@ void WindowManager::setDefaultTheme()
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::activeState, eThemeObjAttribute::textScale, 1);
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::activeState, eThemeObjAttribute::textInterlineSpacing, 0);
 	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::activeState, eThemeObjAttribute::textSpacing, 0);
+	SetThemeAttribute(eThemeObjType::clickable, eThemeObjState::activeState, eThemeObjAttribute::textFont, eUITextFont::AileronRegular12);
 
 	SetThemeAttribute(eThemeObjType::highlight, eThemeObjState::defaultState, eThemeObjAttribute::bgColor, Color::Color32To565(16775824));
 	SetThemeAttribute(eThemeObjType::highlight, eThemeObjState::defaultState, eThemeObjAttribute::borderColor, Color::Color32To565(14341470));
@@ -82,6 +88,7 @@ void WindowManager::setDefaultTheme()
 	SetThemeAttribute(eThemeObjType::highlight, eThemeObjState::defaultState, eThemeObjAttribute::textScale, 1);
 	SetThemeAttribute(eThemeObjType::highlight, eThemeObjState::defaultState, eThemeObjAttribute::textInterlineSpacing, 0);
 	SetThemeAttribute(eThemeObjType::highlight, eThemeObjState::defaultState, eThemeObjAttribute::textSpacing, 0);
+	SetThemeAttribute(eThemeObjType::highlight, eThemeObjState::defaultState, eThemeObjAttribute::textFont, eUITextFont::AileronRegular12);
 
 	SetThemeAttribute(eThemeObjType::error, eThemeObjState::defaultState, eThemeObjAttribute::bgColor, Color::Color32To565(16637919));
 	SetThemeAttribute(eThemeObjType::error, eThemeObjState::defaultState, eThemeObjAttribute::borderColor, Color::Color32To565(15837337));
@@ -90,6 +97,7 @@ void WindowManager::setDefaultTheme()
 	SetThemeAttribute(eThemeObjType::error, eThemeObjState::defaultState, eThemeObjAttribute::textScale, 1);
 	SetThemeAttribute(eThemeObjType::error, eThemeObjState::defaultState, eThemeObjAttribute::textInterlineSpacing, 0);
 	SetThemeAttribute(eThemeObjType::error, eThemeObjState::defaultState, eThemeObjAttribute::textSpacing, 0);
+	SetThemeAttribute(eThemeObjType::error, eThemeObjState::defaultState, eThemeObjAttribute::textFont, eUITextFont::AileronRegular12);
 
 	SetThemeAttribute(eThemeObjType::window, eThemeObjState::defaultState, eThemeObjAttribute::windowBGColor, Color::Color32To565(16777215));
 	SetThemeAttribute(eThemeObjType::window, eThemeObjState::defaultState, eThemeObjAttribute::windowHeadingBGColor, Color::Color32To565(32767));
@@ -97,6 +105,7 @@ void WindowManager::setDefaultTheme()
 	SetThemeAttribute(eThemeObjType::window, eThemeObjState::defaultState, eThemeObjAttribute::windowChromeColor, Color::Color32To565(6242111));
 	SetThemeAttribute(eThemeObjType::window, eThemeObjState::defaultState, eThemeObjAttribute::windowFrameColor, Color::Color32To565(16777215));
 	SetThemeAttribute(eThemeObjType::window, eThemeObjState::defaultState, eThemeObjAttribute::textScale, 2);
+	SetThemeAttribute(eThemeObjType::window, eThemeObjState::defaultState, eThemeObjAttribute::textFont, eUITextFont::AileronRegular12);
 
 	SetThemeAttribute(eThemeObjType::modalWindow, eThemeObjState::defaultState, eThemeObjAttribute::windowBGColor, Color::Color32To565(11184810));
 	SetThemeAttribute(eThemeObjType::modalWindow, eThemeObjState::defaultState, eThemeObjAttribute::windowHeadingBGColor, Color::Color32To565(32767));
@@ -104,6 +113,7 @@ void WindowManager::setDefaultTheme()
 	SetThemeAttribute(eThemeObjType::modalWindow, eThemeObjState::defaultState, eThemeObjAttribute::windowChromeColor, Color::Color32To565(0));
 	SetThemeAttribute(eThemeObjType::modalWindow, eThemeObjState::defaultState, eThemeObjAttribute::windowFrameColor, Color::Color32To565(16777215));
 	SetThemeAttribute(eThemeObjType::modalWindow, eThemeObjState::defaultState, eThemeObjAttribute::textScale, 2);
+	SetThemeAttribute(eThemeObjType::modalWindow, eThemeObjState::defaultState, eThemeObjAttribute::textFont, eUITextFont::AileronRegular12);
 
 	SetThemeAttribute(eThemeObjType::dropShadow, eThemeObjState::defaultState, eThemeObjAttribute::shadowColor, Color::Color32To565(11184810));
 	SetThemeAttribute(eThemeObjType::dropShadow, eThemeObjState::defaultState, eThemeObjAttribute::shadowOpacity, 30);
@@ -165,7 +175,7 @@ Point WindowManager::GetTouch()
 		return Point(-1, -1);
 	}
 	uint16_t x, y;
-	lcd->touchReadPixel(&x, &y);
+	lcd->touchRead(&x, &y);
 	return Point(x, y);
 }
 
@@ -174,10 +184,14 @@ void WindowManager::DeleteElement(unsigned long elementID)
 	UIElement *elementToDelete = elementMap[elementID];
 	if (!elementToDelete)
 	{
-		debugPrint("Attempt to delete non registered element", "WindowManager");
+		Logger::Crit("Attempt to delete non registered element", "WindowManager");
 		return;
 	}
+	// Now find what this item occluded
+	std::vector<UIElement *> occludedElements = ElementOccludes(elementToDelete);
 	std::vector<UIElement *> elements = getChildUIElements(elementToDelete);
+	// Add the original element to the delete list, not just the children of it
+	elements.push_back(elementToDelete);
 	// We delete them in reverse order, to delete children then parents
 	for (int i = elements.size(); i >= 0; i--)
 	{
@@ -185,6 +199,58 @@ void WindowManager::DeleteElement(unsigned long elementID)
 		delete(elements[i]);				
 	}
 
-	// Now invalidate the base window to redraw everything
-	baseWindow->Invalidate();
+	for (int i = 0; i < occludedElements.size(); i++)
+	{
+		// Invalidate the elements so that they can be redrawn on next update
+		occludedElements[i]->Invalidate();
+	}	
+}
+
+// Returns a list of UIElements occluded by the Element element
+std::vector<UIElement *> WindowManager::ElementOccludes(UIElement *element)
+{
+	std::vector<UIElement *> occludedElements;
+	std::vector<unsigned long> elementsChecked;
+	for (unsigned int i = 0; i < elementMap.size(); i++)
+	{
+		if (element->getElementArea().occludes(elementMap[i]->getElementArea()))
+		{
+			if (std::find(elementsChecked.begin(), 
+				elementsChecked.end(), 
+				elementMap[i]->elementID)!=elementsChecked.end())
+
+			{
+				// First add all our children to the checked list
+				for (int j = 0; j < elementMap[i]->getChildElements().size(); j++)
+				{
+					if (std::find(elementsChecked.begin(),
+						elementsChecked.end(),
+						elementMap[j]->elementID) != elementsChecked.end())
+					{
+						elementsChecked.push_back(elementMap[j]->elementID);
+					}
+				}
+				// Lets work our way up and find the highest parent that occludes and isnt the 
+				// window manager base window
+				UIElement *currentPtr = elementMap[i];
+				while (currentPtr->parentElement->parentElement != NULL &&	// Check that the parent isnt the base window
+					element->getElementArea().occludes(currentPtr->parentElement->getElementArea()))
+				{
+					currentPtr = currentPtr->parentElement;
+					// Add all those children if they dont exist
+					for (int j = 0; j < currentPtr->getChildElements().size(); j++)
+					{
+						if (std::find(elementsChecked.begin(),
+							elementsChecked.end(),
+							currentPtr->elementID) != elementsChecked.end())
+						{
+							elementsChecked.push_back(currentPtr->elementID);
+						}
+					}				
+				}
+				occludedElements.push_back(currentPtr);
+			}
+		}
+	}
+	return (occludedElements);
 }

@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\CrimsonText-Bold12");
+#define CRIMSONTEXT_BOLD_HANDLE 0
+#define CRIMSONTEXT_BOLD_WIDTH 13
+#define CRIMSONTEXT_BOLD_HEIGHT 23
+#define CRIMSONTEXT_BOLD_CELLS 96
+#define ASSETS_END 15604UL
+static const shape_t CRIMSONTEXT_BOLD_SHAPE = {0, 13, 23, 0};

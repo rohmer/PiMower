@@ -34,10 +34,43 @@
     <Filter Include="Source Files\UIElements\Fonts">
       <UniqueIdentifier>{7ef2581b-48a4-4f76-b7c9-d8b0762ff54c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UIElements\Editors">
+      <UniqueIdentifier>{ff9ce51d-7d6b-42c4-a190-de3e9c847761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\External">
+      <UniqueIdentifier>{a958d3bf-c0b6-4a85-8ea9-61d8edbf9a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\External\Adafruit_RA8875">
+      <UniqueIdentifier>{b88dd4c7-8531-4e37-9612-905d841decae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\External\Adafruit_GFX_Library">
+      <UniqueIdentifier>{1b575a7c-fe03-4bda-8373-d1825b7aba24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\External\Adafruit_GFX_Library\Fonts">
+      <UniqueIdentifier>{06352ad0-5c8b-4f11-a6c9-0596b5b811a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\External">
+      <UniqueIdentifier>{e860c681-37cd-4008-b92a-c8d82cc4c43a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\External\Adafruit_RA8875">
+      <UniqueIdentifier>{786ac1b7-87fc-4a81-bf86-5c5540ba73cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\External\Adafruit_GFX_Library">
+      <UniqueIdentifier>{26226585-56eb-4b04-9ff6-51063ede57bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\External\Adafruit_GFX_Library\Fonts">
+      <UniqueIdentifier>{be95dd4d-3f0d-490c-a65f-73f061f424cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UIElements\Fonts">
+      <UniqueIdentifier>{1302bd94-a521-4bc9-aca6-eb8e4ecdc57c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="UILibrary.ino" />
     <None Include="src\_micro-api\libraries\UILibraryLib\library.properties" />
+    <None Include="UIElements\Fonts\ConvertFonts.sh">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseItems\Theme.cpp">
@@ -61,80 +94,20 @@
     <ClCompile Include="Rectangle.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Alef_10.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
+    <ClCompile Include="Utility\Logger.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Alef_14.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
+    <ClCompile Include="External\Adafruit_GFX_Library\Adafruit_GFX.cpp">
+      <Filter>Source Files\External\Adafruit_GFX_Library</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Alef_24.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
+    <ClCompile Include="External\Adafruit_GFX_Library\glcdfont.c">
+      <Filter>Source Files\External\Adafruit_GFX_Library</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Alef_36.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
+    <ClCompile Include="External\Adafruit_RA8875\Adafruit_RA8875.cpp">
+      <Filter>Source Files\External\Adafruit_RA8875</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\Fonts\AlefB_10.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\AlefB_14.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\AlefB_24.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\AlefB_36.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Quivira_10.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Quivira_14.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Quivira_24.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Quivira_36.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\QuiviraB_10.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\QuiviraB_14.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\QuiviraB_24.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\QuiviraB_36.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Courier_10.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Courier_14.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Courier_24.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\Courier_36.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\CourierBold_10.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\CourierBold_14.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\CourierBold_24.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\CourierBold_36.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\Fonts\DejaVuSans18.c">
-      <Filter>Source Files\UIElements\Fonts</Filter>
+    <ClCompile Include="UIElements\FontHelper.cpp">
+      <Filter>Source Files\UIElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,13 +132,7 @@
     <ClInclude Include="UIElements\UIWindow.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
-    <ClInclude Include="UIElements\Fonts\font.h">
-      <Filter>Header Files\UIElements</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="DisplayConst.h">
@@ -182,6 +149,558 @@
     </ClInclude>
     <ClInclude Include="Options.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\RadioButton.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\RadioGroup.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ToggleSwitch.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\IntSpinner.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Editors\NumericEditor.h">
+      <Filter>Header Files\UIElements\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Editors\AlphaNumericEditor.h">
+      <Filter>Header Files\UIElements\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Image.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Logger.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_RA8875\Adafruit_RA8875.h">
+      <Filter>Header Files\External\Adafruit_RA8875</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Adafruit_GFX.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\gfxfont.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMono9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMono12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMono18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMono24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBold9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBold12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBold18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBold24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoOblique9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoOblique12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoOblique18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeMonoOblique24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSans9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSans12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSans18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSans24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBold9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBold12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBold18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBold24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansOblique9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansOblique12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansOblique18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSansOblique24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerif9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerif12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerif18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerif24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBold9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBold12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBold18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBold24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifItalic9pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifItalic12pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifItalic18pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\FreeSerifItalic24pt7b.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\Org_01.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\Picopixel.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="External\Adafruit_GFX_Library\Fonts\TomThumb.h">
+      <Filter>Header Files\External\Adafruit_GFX_Library\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlack9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlack12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlack18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlack24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlack36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlackItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlackItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlackItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlackItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBlackItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBold9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBold12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBold18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBold24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBold36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBoldItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBoldItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBoldItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBoldItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronBoldItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavy9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavy12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavy18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavy24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavy36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavyItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavyItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavyItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavyItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronHeavyItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronLight9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronLight12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronLight18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronLight24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronLight36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronRegular9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronRegular12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronRegular18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronRegular24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronRegular36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBold9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBold12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBold18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBold24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBold36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBoldItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBoldItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBoldItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBoldItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronSemiBoldItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThin9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThin12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThin18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThin24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThin36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThinItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThinItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThinItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThinItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronThinItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLight9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLight12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLight18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLight24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLight36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLightItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLightItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLightItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLightItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\AileronUltraLightItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrime9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrime12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrime18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrime24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrime36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBold9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBold12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBold18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBold24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBold36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBoldItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBoldItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBoldItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBoldItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeBoldItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CourierPrimeItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBold9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBold12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBold18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBold24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBold36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBoldItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBoldItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBoldItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBoldItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonBoldItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonRoman9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonRoman12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonRoman18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonRoman24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonRoman36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBold9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBold12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBold18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBold24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBold36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBoldItalic9.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBoldItalic12.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBoldItalic18.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBoldItalic24.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\Fonts\CrimsonSemiBoldItalic36.h">
+      <Filter>Header Files\UIElements\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\FontHelper.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="FontHelper.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

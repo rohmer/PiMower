@@ -4,16 +4,15 @@
 #include "../Rectangle.h"
 #include "../BaseItems/Theme.h"
 #include "Arduino.h"
+#include "../Utility/Logger.h"
 #include <SPI.h>
-
-class RA8875;
 
 class UIElement
 {
 public:
 	UIElement(Point position, bool needsUpdate, bool uiTarget, Theme *theme);
 	bool ptInElement(Point pt);
-	virtual void update(RA8875 *lcd) = 0;
+	virtual void update(Adafruit_RA8875 *lcd) = 0;
 	bool updateRequired()
 	{
 		return needsUpdate;
@@ -58,6 +57,7 @@ public:
 	}
 
 public:
+	UIElement *parentElement;
 	bool needsUpdate, uiTarget;
 	unsigned long elementID;
 	std::vector<UIElement *> getChildElements()
@@ -69,6 +69,7 @@ public:
 	{
 		childElements.push_back(element);
 		position = location;
+		element->parentElement = this;
 	}
 
 	Rectangle getElementArea()
@@ -101,5 +102,5 @@ protected:
 	Rectangle elementArea;
 	bool enabled = true;
 	uint16_t backgroundColor, borderColor, textColor, iconColor, borderSize;
-	std::vector<UIElement *> childElements;
+	std::vector<UIElement *> childElements;	
 };

@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\aileron-Regular36");
+#define AILERON_REGULAR_HANDLE 0
+#define AILERON_REGULAR_WIDTH 34
+#define AILERON_REGULAR_HEIGHT 43
+#define AILERON_REGULAR_CELLS 96
+#define ASSETS_END 70324UL
+static const shape_t AILERON_REGULAR_SHAPE = {0, 34, 43, 0};

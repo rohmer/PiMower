@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\aileron-ThinItalic9");
+#define AILERON_THINITALIC_HANDLE 0
+#define AILERON_THINITALIC_WIDTH 9
+#define AILERON_THINITALIC_HEIGHT 11
+#define AILERON_THINITALIC_CELLS 96
+#define ASSETS_END 5428UL
+static const shape_t AILERON_THINITALIC_SHAPE = {0, 9, 11, 0};

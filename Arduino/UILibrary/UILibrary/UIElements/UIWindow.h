@@ -4,10 +4,10 @@
 #include "../BaseItems/UIElement.h"
 #include "../BaseItems/WindowManager.h"
 #include "../Rectangle.h"
-#include <RA8875.h>
-#include "../Debug.h"
+#include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
 #include "Fonts.h"
 #include "UIText.h"
+#include "../Utility/Logger.h"
 
 class UIWindow : public UIElement
 {
@@ -23,7 +23,7 @@ public:
 
 	void addElement(UIElement *uiElement);
 
-	void update(RA8875 *lcd) override;
+	void update(Adafruit_RA8875 *lcd) override;
 
 	void setTouchArea() override;
 
@@ -47,5 +47,5 @@ private:
 	std::string titleText;
 	Rectangle location;
 	void setDefaults();
-	void drawChrome(RA8875 *lcd);	
+	void drawChrome(Adafruit_RA8875 *lcd);	
 };

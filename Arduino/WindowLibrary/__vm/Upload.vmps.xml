@@ -1,0 +1,761 @@
+<VisualMicro>
+  <Program Name="WindowLibrary" Ext=".ino" Location="C:\Users\rohme\Source\Repos\PiMower\Arduino\WindowLibrary">
+    <Compile IsDebugStart="1" IsGdb="0" CompilerErrors="0" ConfigurationName="Debug" UseConfigurationNameInBuildFolder="True" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\rohme\AppData\Local\Temp\VMBuilds\WindowLibrary\arduino_due_x_dbg\Debug" ReCompileIfSourceIsNewer="1" SketchName="WindowLibrary" ReportDigitalPins="0" ReportAnalogPins="0" ReportI2C="0" ReportFreeMemory="0" IncludeDebug="1" LastDebugPreProcessorDefinitions="VM_DEBUG;VM_DEBUG_ENABLE 1;VM_DEBUGGER_TYPE_HARDWARESERIAL 0;VM_DEBUGGER_TYPE_SOFTWARESERIAL 1;VM_DEBUGGER_TYPE_FASTSERIAL 2;VM_DEBUGGER_TYPE_USB 3;VM_DEBUGGER_TYPE_TEENSY 4;VM_DEBUGGER_TYPE_UART 5;VM_DEBUGGER_TYPE_USART 6;VM_DEBUGGER_TYPE_USBSERIAL 7;VM_DEBUGGER_TYPE_TTYUART 8;VM_DEBUGGER_TYPE_NET_CONSOLE 9;VM_DEBUGGER_TYPE_Uart 10;VM_DEBUGGER_TYPE_COSA 11;VM_DEBUGGER_TYPE_CDCSerialClass 12;VM_DEBUGGER_TYPE_HARDWARESERIAL1 13;VM_DEBUGGER_TYPE_HARDWARESERIAL2 14;VM_DEBUGGER_TYPE_HARDWARESERIAL3 15;VM_DEBUGGER_TYPE_NET_UDP 16;VM_DEBUGGER_TYPE_USBAPI 17;VM_DEBUGGER_TYPE VM_DEBUGGER_TYPE_UART;VM_DEBUG_BREAKPAUSE;" IncludesDebug="1" IsCompiled="1" />
+    <Platform Name="visualmicro" Package="arduino" Platform="sam" Architecture="4.8.3-2014q1">
+      <Board Name="arduino_due_x_dbg" Description="Arduino Due (Programming Port)" CoreFolder="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores\arduino" VariantFullPath="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\variants\arduino_due_x" McuIdePath="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\Extensions\aqmcmkqx.h5c\Micro Platforms\visualmicro\ide" McuSketchBookPath="C:\Users\rohme\Documents\Arduino" name="Arduino Due (Programming Port)" vid.0="0x2341" pid.0="0x003d" vid.1="0x2A03" pid.1="0x003d" upload.tool="bossac" upload.protocol="sam-ba" upload.maximum_size="524288" upload.use_1200bps_touch="true" upload.wait_for_upload_port="false" upload.native_usb="false" build.mcu="cortex-m3" build.f_cpu="84000000L" build.usb_manufacturer="&quot;Arduino LLC&quot;" build.usb_product="&quot;Arduino Due&quot;" build.board="SAM_DUE" build.core="arduino" build.extra_flags="-D__SAM3X8E__ -mthumb {build.usb_flags}" build.ldscript="linker_scripts/gcc/flash.ld" build.variant="arduino_due_x" build.variant_system_lib="libsam_sam3x8e_gcc_rel.a" build.vid="0x2341" build.pid="0x003e" runtime.ide.path="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\Extensions\aqmcmkqx.h5c\Micro Platforms\visualmicro\ide" runtime.os="windows" build.system.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system" runtime.ide.version="10801" target_package="arduino" target_platform="sam" runtime.hardware.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam" originalid="arduino_due_x_dbg" intellisense.tools.path="{runtime.ide.path}/hardware/tools/g++_arm_none_eabi" intellisense.include.paths="{runtime.tools.arm-none-eabi-gcc.path}/arm-none-eabi\include\c++\4.8.3;{runtime.tools.arm-none-eabi-gcc.path}/arm-none-eabi/include/c++/4.8.3/arm-none-eabi/;{runtime.tools.arm-none-eabi-gcc.path}/arm-none-eabi/include/;{runtime.tools.arm-none-eabi-gcc.path}\lib\gcc\arm-none-eabi\4.8.3\include;{build.core.coresparentfolder.vmresolved}\system\CMSIS\Device\ATMEL\;{build.core.coresparentfolder.vmresolved}\system\libsam;{build.core.coresparentfolder.vmresolved}\system\libsam\include;{build.core.coresparentfolder.vmresolved}\system\CMSIS\CMSIS\Include\;{build.core.coresparentfolder.vmresolved}\system\CMSIS\CMSIS\Include\;{vm.boardsource.path}\system\CMSIS\CMSIS\Include\;{vm.boardsource.path}\system\CMSIS\Device\ATMEL\;{vm.boardsource.path}\system\libsam;{vm.boardsource.path}\system\libsam\include;{intellisense.tools.path}\arm-none-eabi\include;{intellisense.tools.path}\arm_none_eabi\include\;{intellisense.tools.path}\lib\gcc\arm-none-eabi\4.4.1\include;{intellisense.tools.path}\lib\gcc\arm-none-eabi\4.4.1\include\;{build.core.coresparentfolder.vmresolved}/system/CMSIS/Device/ATMEL/sam3xa/include/pio;{build.core.coresparentfolder.vmresolved}/system/libsam/include;{build.core.coresparentfolder.vmresolved}/CMSIS/CMSIS/Include/;{build.core.coresparentfolder.vmresolved}/system/CMSIS/Device/ATMEL/sam3xa/include;{build.core.coresparentfolder.vmresolved}\system/libsam;{build.core.coresparentfolder.vmresolved}\system/CMSIS/Device/ATMEL;{build.core.coresparentfolder.vmresolved}\system/CMSIS/Device/ATMEL/sam3xa/include;" tools.atprogram.cmd.path="%AVRSTUDIO_EXE_PATH%\atbackend\atprogram" tools.atprogram.cmd.setwinpath="true" tools.atprogram.program.params.verbose="-v" tools.atprogram.program.params.quiet="-q" tools.atprogram.program.pattern="&quot;{cmd.path}&quot; -d {build.mcu} {program.verbose} {program.extra_params} program -c -f &quot;{build.path}\{build.project_name}.hex&quot;" tools.atprogram.program.xpattern="&quot;{cmd.path}&quot; {AVRSTUDIO_BACKEND_CONNECTION} -d {build.mcu} {program.verbose} {program.extra_params} program -c -f &quot;{build.path}\{build.project_name}.hex&quot;" version="1.6.11" compiler.warning_flags="-w" compiler.warning_flags.none="-w" compiler.warning_flags.default="" compiler.warning_flags.more="-Wall" compiler.warning_flags.all="-Wall -Wextra" compiler.path="{runtime.tools.arm-none-eabi-gcc.path}/bin/" compiler.c.cmd="arm-none-eabi-gcc" compiler.c.flags="-c -g -Os {compiler.warning_flags} -std=gnu11 -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -Dprintf=iprintf -MMD" compiler.c.elf.cmd="arm-none-eabi-gcc" compiler.c.elf.flags="-Os -Wl,--gc-sections" compiler.S.cmd="arm-none-eabi-gcc" compiler.S.flags="-c -g -x assembler-with-cpp -MMD" compiler.cpp.cmd="arm-none-eabi-g++" compiler.cpp.flags="-c -g -Os {compiler.warning_flags} -std=gnu++11 -ffunction-sections -fdata-sections -nostdlib -fno-threadsafe-statics --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -Dprintf=iprintf -MMD" compiler.ar.cmd="arm-none-eabi-ar" compiler.ar.flags="rcs" compiler.objcopy.cmd="arm-none-eabi-objcopy" compiler.objcopy.eep.flags="-O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0" compiler.elf2hex.flags="-O binary" compiler.elf2hex.cmd="arm-none-eabi-objcopy" compiler.ldflags="" compiler.size.cmd="arm-none-eabi-size" compiler.define="-DARDUINO=" compiler.combine.flags="-u _sbrk -u link -u _close -u _fstat -u _isatty -u _lseek -u _read -u _write -u _exit -u kill -u _getpid" compiler.c.extra_flags="" compiler.c.elf.extra_flags="" compiler.cpp.extra_flags="" compiler.S.extra_flags="" compiler.ar.extra_flags="" compiler.elf2hex.extra_flags="" compiler.libsam.c.flags="&quot;-I{build.system.path}/libsam&quot; &quot;-I{build.system.path}/CMSIS/CMSIS/Include/&quot; &quot;-I{build.system.path}/CMSIS/Device/ATMEL/&quot;" build.usb_flags="-DUSB_VID={build.vid} -DUSB_PID={build.pid} -DUSBCON '-DUSB_MANUFACTURER={build.usb_manufacturer}' '-DUSB_PRODUCT={build.usb_product}'" recipe.c.o.pattern="&quot;{compiler.path}{compiler.c.cmd}&quot; {compiler.c.flags} -mcpu={build.mcu} -mthumb -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {compiler.libsam.c.flags} {includes} &quot;{source_file}&quot; -o &quot;{object_file}&quot;" recipe.cpp.o.pattern="&quot;{compiler.path}{compiler.cpp.cmd}&quot; {compiler.cpp.flags} -mcpu={build.mcu} -mthumb -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {compiler.libsam.c.flags} {includes} &quot;{source_file}&quot; -o &quot;{object_file}&quot;" recipe.S.o.pattern="&quot;{compiler.path}{compiler.S.cmd}&quot; {compiler.S.flags} -mcpu={build.mcu} -mthumb -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.S.extra_flags} {build.extra_flags} {compiler.libsam.c.flags} {includes} &quot;{source_file}&quot; -o &quot;{object_file}&quot;" archive_file_path="{build.path}/{archive_file}" recipe.ar.pattern="&quot;{compiler.path}{compiler.ar.cmd}&quot; {compiler.ar.flags} {compiler.ar.extra_flags} &quot;{archive_file_path}&quot; &quot;{object_file}&quot;" recipe.c.combine.pattern="&quot;{compiler.path}{compiler.c.elf.cmd}&quot; -mcpu={build.mcu} -mthumb {compiler.c.elf.flags} &quot;-T{build.variant.path}/{build.ldscript}&quot; &quot;-Wl,-Map,{build.path}/{build.project_name}.map&quot; {compiler.c.elf.extra_flags} -o &quot;{build.path}/{build.project_name}.elf&quot; &quot;-L{build.path}&quot; -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--entry=Reset_Handler -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align -Wl,--start-group {compiler.combine.flags} {object_files} &quot;{build.variant.path}/{build.variant_system_lib}&quot; &quot;{build.path}/{archive_file}&quot; -Wl,--end-group -lm -gcc" recipe.objcopy.bin.pattern="&quot;{compiler.path}{compiler.elf2hex.cmd}&quot; {compiler.elf2hex.flags} {compiler.elf2hex.extra_flags} &quot;{build.path}/{build.project_name}.elf&quot; &quot;{build.path}/{build.project_name}.bin&quot;" recipe.output.tmp_file="{build.project_name}.bin" recipe.output.save_file="{build.project_name}.{build.variant}.bin" recipe.size.pattern="&quot;{compiler.path}{compiler.size.cmd}&quot; -A &quot;{build.path}/{build.project_name}.elf&quot;" recipe.size.regex="\.text\s+([0-9]+).*" tools.bossac.path="{runtime.tools.bossac.path}" tools.bossac.cmd="bossac.exe" tools.bossac.cmd.windows="bossac.exe" tools.bossac.upload.params.verbose="-i -d" tools.bossac.upload.params.quiet="" tools.bossac.upload.params.verify="-v" tools.bossac.upload.pattern="&quot;{path}/{cmd}&quot; {upload.verbose} --port={serial.port.file} -U {upload.native_usb} -e -w {upload.verify} -b &quot;{build.path}/{build.project_name}.bin&quot; -R" tools.bossac_remote.upload.pattern="/usr/bin/run-bossac {upload.verbose} --port=ttyATH0 -U {upload.native_usb} -e -w -v -b /tmp/sketch.bin -R" vm.platform.root.path="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\Extensions\aqmcmkqx.h5c\Micro Platforms\arduino16x" runtime.tools.avr-gcc.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2" runtime.tools.avr-gcc-4.8.1-arduino5.path="C:\Users\rohme\AppData\Local\arduino15\packages\Cosa\tools\avr-gcc\4.8.1-arduino5" runtime.tools.avrdude.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9" runtime.tools.avrdude-6.0.1-arduino5.path="C:\Users\rohme\AppData\Local\arduino15\packages\Cosa\tools\avrdude\6.0.1-arduino5" runtime.tools.avr-gcc-4.9.2-atmel3.5.4-arduino2.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2" runtime.tools.avrdude-6.3.0-arduino9.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9" runtime.tools.arduinoOTA.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\arduinoOTA\1.1.1" runtime.tools.arduinoOTA-1.1.1.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\arduinoOTA\1.1.1" runtime.tools.arm-none-eabi-gcc.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1" runtime.tools.arm-none-eabi-gcc-4.8.3-2014q1.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1" runtime.tools.bossac.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\bossac\1.6.1-arduino" runtime.tools.bossac-1.6.1-arduino.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\bossac\1.6.1-arduino" runtime.vm.boardinfo.id="arduino_due_x_dbg" runtime.vm.boardinfo.name="arduino_due_x_dbg" runtime.vm.boardinfo.desc="Arduino Due (Programming Port)" runtime.vm.boardinfo.src_location="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11" ide.hint="Ready-To-Go IDE: Use the Board and Library managers to install." ide.location.key="visualmicro" ide.location.ide.auto="true" ide.location.ide.winreg="Arduino Default Application" ide.location.sketchbook.winreg="Arduino Default Sketchbook" ide.location.sketchbook.preferences="sketchbook.path" ide.default.revision_name="1.8.2" ide.default.version="10802" ide.platforms.basedon="arduino16x" ide.default.package="arduino" ide.default.platform="avr" ide.multiplatform="true" ide.includes="arduino.h" ide.exe_name="arduino" ide.platformswithoutpackage="false" ide.includes.fallback="wprogram.h" ide.extension="ino" ide.extension.fallback="pde" ide.versionGTEQ="160" ide.hosts="atmel" vm.debug="true" software="ARDUINO" ssh.user.name="root" ssh.user.default.password="arduino" ssh.host.wwwfiles.path="/www/sd" ide.location.preferences.arduinoData="{runtime.sketchbook.path}\ArduinoData" ide.location.preferences="%VM_APPDATA_LOCAL%\arduino15\preferences.txt" ide.location.preferences_fallback="%VM_APPDATA_ROAMING%\arduino15\preferences.txt" ide.location.contributions="%VM_APPDATA_LOCAL%\arduino15" ide.location.contributions_fallback="%VM_APPDATA_ROAMING%\arduino15" ide.contributions.boards.allow="true" ide.contributions.boards.ignore_unless_rewrite_found="true" ide.contributions.libraries.allow="true" ide.contributions.boards.support.urls.wiki="https://github.com/arduino/Arduino/wiki/Unofficial-list-of-3rd-party-boards-support-urls" ide.create_platforms_from_boardsTXT.teensy="build.core" ide.appid="visualmicro" location.sketchbook="C:\Users\rohme\Documents\Arduino" build.core.vmresolved="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores\arduino" build.core.parentfolder.vmresolved="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores" build.core.coresparentfolder.vmresolved="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11" build.core.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores\arduino" vm.core.include="arduino.h" vm.boardsource.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11" runtime.platform.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11" vm.platformname.name="sam" build.arch="SAM" build.vm.extra_cpp_flags="-fpermissive" builder.noino="false" build.variant.vmresolved="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\variants\arduino_due_x" build.architecture="4.8.3-2014q1" vmresolved.compiler.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1\bin\" vmresolved.tools.path="C:\Users\rohme\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1" vm.runtime.compiler.showwarnings="false" vm.runtime.upload.verbose="false" vm.runtime.upload.verify="false" serial.port.file="COM4" serial.port="COM4" serial.port.num="4" serial.port.caption="COM4   - Arduino Due Programming Port" serial.Caption="Arduino Due Programming Port (COM4)" serial.ClassGuid="{4d36e978-e325-11ce-bfc1-08002be10318}" serial.CompatibleID.value0="USB\Class_02" serial.ConfigManagerErrorCode="0" serial.ConfigManagerUserConfig="False" serial.CreationClassName="Win32_PnPEntity" serial.Description="Arduino Due Programming Port" serial.DeviceID="USB\VID_2A03&amp;PID_003D\95530343734351908191" serial.HardwareID.value0="USB\VID_2A03&amp;PID_003D" serial.Manufacturer="Arduino Srl (www.arduino.org)" serial.Name="Arduino Due Programming Port (COM4)" serial.PNPClass="Ports" serial.PNPDeviceID="USB\VID_2A03&amp;PID_003D\95530343734351908191" serial.Present="True" serial.Service="usbser" serial.Status="OK" serial.SystemCreationClassName="Win32_ComputerSystem" serial.SystemName="DESKTOP-ILJLV48" serial.vid="0x2A03" serial.pid="0x003D" serial.iserial="95530343734351908191" serial.port.iserial="95530343734351908191" build.path="C:\Users\rohme\AppData\Local\Temp\VMBuilds\WindowLibrary\arduino_due_x_dbg\Debug" build.project_name="WindowLibrary.ino" build.project_path="C:\Users\rohme\Source\Repos\PiMower\Arduino\WindowLibrary" ProjectDir="C:\Users\rohme\Source\Repos\PiMower\Arduino\WindowLibrary\" vm.runtime.compiler.auto_discover_includes="true" vm.runtime.compiler.auto_discover_includes_cache="true" build.vm.build.vmdebug="1" build.vm.build.isgdb="0" build.vm.build.optimised="1" vm.last.buildpath="C:\Users\rohme\AppData\Local\Temp\VMBuilds\WindowLibrary\arduino_due_x_dbg\Debug" />
+    </Platform>
+    <Debug EnableBreak="1" DebugEnabled="1" BandWidthThrottleEnabled="0" InBreakLiveView="1" PerfStats="1" IsGdb="0" RemotePortSpeedWrittenToDebugSource="115200" />
+    <VCCodeModel>
+      <VCCodeMacros />
+    </VCCodeModel>
+    <BreakPoints>
+      <BreakPoint Index="1" Name="WindowManager.cpp, line 21" Id="447302e0-df47-469a-a736-8a8f06ec7e96" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\uilibrary\uilibrary\baseitems\windowmanager.cpp" FileLine="21" FileColumn="1" FunctionName="" FunctionLineOffset="1" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="" LocationType="3" Tag="&lt;vmbp Id='447302e0-df47-469a-a736-8a8f06ec7e96'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>14	#endif
+15		int width = 800, height = 480;
+16		if (lcdSize == RA8875sizes::RA8875_480x272)
+17		{
+18			width = 480;
+19			height = 272;
+20		}
+--&gt;21		lcd-&gt;touchEnable(true);
+22		lcd-&gt;begin(lcdSize);
+23		setDefaultTheme();
+24		createBaseWindow();
+25		Logger::Trace("Creating WindowManager", "WindowManager()");
+26	
+27	}
+28	
+29	void WindowManager::createBaseWindow()
+30	{	
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="2" Name="WindowManager.cpp, line 16" Id="f22c30d8-042b-4948-963e-5a3064f89ca1" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\uilibrary\uilibrary\baseitems\windowmanager.cpp" FileLine="16" FileColumn="1" FunctionName="" FunctionLineOffset="1" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="" LocationType="3" Tag="&lt;vmbp Id='f22c30d8-042b-4948-963e-5a3064f89ca1'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>9	{
+10	#ifdef TEENSY3X
+11		lcd = new Adafruit_RA8875(CS, RST, MOSI, SCLK, MISO);
+12	#else
+13		lcd = new Adafruit_RA8875(CS, RST);
+14	#endif
+15		int width = 800, height = 480;
+--&gt;16		if (lcdSize == RA8875sizes::RA8875_480x272)
+17		{
+18			width = 480;
+19			height = 272;
+20		}
+21		lcd-&gt;touchEnable(true);
+22		lcd-&gt;begin(lcdSize);
+23		setDefaultTheme();
+24		createBaseWindow();
+25		Logger::Trace("Creating WindowManager", "WindowManager()");
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="3" Name="UIText.cpp, line 70" Id="c9cc4424-cf6e-436c-bbec-f8ea71b6742b" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uitext.cpp" FileLine="70" FileColumn="1" FunctionName="Update()" FunctionLineOffset="15" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='c9cc4424-cf6e-436c-bbec-f8ea71b6742b'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>63		Logger::Trace("Text Scale: %d", this-&gt;textScale);
+64		Logger::Trace("Text Color: %d", this-&gt;textColor);
+65	#endif
+66		FontHelper::setLCDFont(tft, this-&gt;textFont);
+67		tft.setTextColor(this-&gt;textColor);
+68		tft.setCursor(location.x1, location.y1);
+69		tft.print(text.c_str());
+--&gt;70		Logger::Trace("Writing \"%s\" at (%d,%d)", text.c_str(), location.x1, location.y1);
+71		
+72		updatePending= false;
+73	}
+74	
+75	void UIText::SetText(std::string text)
+76	{
+77		this-&gt;text = text;
+78		setButtonLines();
+79		location = FontHelper::GetTextRect(tft, text, themeSettings.textFont, Point(location.x1, location.y1));
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="4" Name="UIText.cpp, line 39" Id="cdad5ccb-a44b-497a-a690-4e398e03ba93" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uitext.cpp" FileLine="39" FileColumn="1" FunctionName="setButtonLines()" FunctionLineOffset="6" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='cdad5ccb-a44b-497a-a690-4e398e03ba93'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>32	
+33	void UIText::setButtonLines()
+34	{
+35		textLines.clear();	
+36		std::string::size_type pos = 0;
+37		std::string::size_type prev = 0;
+38		while((pos=text.find('\n',prev))!=std::string::npos)
+--&gt;39		{
+40			std::string token = text.substr(prev, pos - prev);
+41	#ifdef DEBUG
+42			Logger::Trace("Adding: %s to line list", token.c_str());
+43	#endif
+44			textLines.push_back(token);
+45		}
+46		
+47		textLines.push_back(text.substr(prev));
+48	#ifdef DEBUG
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="5" Name="UIText.cpp, line 45" Id="ed749f5f-1a27-4244-9c88-623832aaa7d9" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uitext.cpp" FileLine="45" FileColumn="1" FunctionName="setButtonLines()" FunctionLineOffset="12" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ed749f5f-1a27-4244-9c88-623832aaa7d9'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>38		while((pos=text.find('\n',prev))!=std::string::npos)
+39		{
+40			std::string token = text.substr(prev, pos - prev);
+41	#ifdef DEBUG
+42			Logger::Trace("Adding: %s to line list", token.c_str());
+43	#endif
+44			textLines.push_back(token);
+--&gt;45		}
+46		
+47		textLines.push_back(text.substr(prev));
+48	#ifdef DEBUG
+49		std::string s = text.substr(prev);
+50		Logger::Trace("Adding: %s to line list", s.c_str());
+51	#endif
+52	
+53	}
+54	
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="6" Name="Theme.cpp, line 112" Id="631612dd-619a-4df3-88b1-c5754c89b06c" Enabled="1" Message="{themeSettings.textScale}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\theme.cpp" FileLine="112" FileColumn="1" FunctionName="LoadTheme(eThemeObjType objType, eThemeObjState objState)" FunctionLineOffset="78" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='631612dd-619a-4df3-88b1-c5754c89b06c'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>105					themeSettings.textScale = 2;
+106				else
+107					if (val == 2)
+108						themeSettings.textScale = 3;
+109					else
+110						themeSettings.textScale = 1;
+111		}
+--&gt;112		val = GetThemeAttribute(objType, objState, eThemeObjAttribute::textSpacing);
+113		if (val != -1)
+114		{
+115			themeSettings.textSpacing = val;
+116		}
+117		else
+118		{
+119			themeSettings.textSpacing = 0;
+120		}
+121		val = GetThemeAttribute(objType, objState, eThemeObjAttribute::textInterlineSpacing);
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="themeSettings.textScale" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="7" Name="Theme.cpp, line 48" Id="f1177007-ae4b-465b-9e3e-e692a26e9167" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\theme.cpp" FileLine="48" FileColumn="1" FunctionName="LoadTheme(eThemeObjType objType, eThemeObjState objState)" FunctionLineOffset="14" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='f1177007-ae4b-465b-9e3e-e692a26e9167'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>41			themeSettings.bgColor = val;
+42		}
+43		else
+44		{
+45			themeSettings.bgColor = Color::Color32To565(16185078);
+46		}
+47	
+--&gt;48		val = GetThemeAttribute(objType, objState, eThemeObjAttribute::textColor);
+49		if (val != -1)
+50		{
+51			themeSettings.textColor = val;
+52		}
+53		else
+54		{
+55			themeSettings.textColor = Color::Color32To565(4539717);
+56		}
+57	
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="8" Name="Theme.cpp, line 98" Id="576ac0a2-433a-43cd-948f-52d512ad777c" Enabled="1" Message="{val}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\theme.cpp" FileLine="98" FileColumn="1" FunctionName="LoadTheme(eThemeObjType objType, eThemeObjState objState)" FunctionLineOffset="64" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='576ac0a2-433a-43cd-948f-52d512ad777c'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>91		{
+92			themeSettings.shadowThickness = val;
+93		}
+94		else
+95		{
+96			themeSettings.shadowThickness = 5;
+97		}
+--&gt;98		val = GetThemeAttribute(objType, objState, eThemeObjAttribute::textScale);
+99		if (val != -1)
+100		{
+101			if (val == 0)
+102				themeSettings.textScale = 1;
+103			else
+104				if (val == 1)
+105					themeSettings.textScale = 2;
+106				else
+107					if (val == 2)
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="val" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="9" Name="Theme.cpp, line 31" Id="0fda0742-cbdc-42ce-9e87-62319c1d8b30" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\theme.cpp" FileLine="31" FileColumn="1" FunctionName="GetThemeAttribute(eThemeObjType objType, eThemeObjState objState, eThemeObjAttribute objAttribute)" FunctionLineOffset="14" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='0fda0742-cbdc-42ce-9e87-62319c1d8b30'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>24		if (themeSettings.find(setting) == themeSettings.end())
+25		{
+26	#ifdef DEBUG
+27			Logger::Trace("Theme setting for %d,%d,%d not found", objType, objState, objAttribute);
+28	#endif
+29			return -1;
+30		}
+--&gt;31		return themeSettings[setting];
+32	}
+33	
+34	sThemeSettings Theme::LoadTheme(eThemeObjType objType, eThemeObjState objState)
+35	{
+36		sThemeSettings themeSettings;
+37		int val;
+38		val = GetThemeAttribute(objType, objState, eThemeObjAttribute::bgColor);
+39		if (val != -1)
+40		{
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="10" Name="Theme.cpp, line 24" Id="29301bca-b94e-4aa5-9cd8-9812e247b65a" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\theme.cpp" FileLine="24" FileColumn="1" FunctionName="GetThemeAttribute(eThemeObjType objType, eThemeObjState objState, eThemeObjAttribute objAttribute)" FunctionLineOffset="7" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='29301bca-b94e-4aa5-9cd8-9812e247b65a'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>17	int Theme::GetThemeAttribute(eThemeObjType objType, eThemeObjState objState, eThemeObjAttribute objAttribute)
+18	{
+19		std::string setting;
+20		setting.clear();
+21		setting += objType;
+22		setting += objState;
+23		setting += objAttribute;
+--&gt;24		if (themeSettings.find(setting) == themeSettings.end())
+25		{
+26	#ifdef DEBUG
+27			Logger::Trace("Theme setting for %d,%d,%d not found", objType, objState, objAttribute);
+28	#endif
+29			return -1;
+30		}
+31		return themeSettings[setting];
+32	}
+33	
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="11" Name="UIWindow.cpp, line 57" Id="097caa79-edc3-462e-a3ad-bcc3376e8aa4" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="57" FileColumn="1" FunctionName="UIWindow(Adafruit_RA8875 &amp;tft, Rectangle location, eUITextFont titleBarFont,&#xD;&#xA;	std::string titleText, bool hasTitleBar, bool hasCloseIcon, bool hasChrome, bool isModal, &#xD;&#xA;	bool hasRoundCorners, bool hasShadow, uint16_t shadowColor,	uint16_t titleBarColor,	&#xD;&#xA;	uint16_t titleTextColor, uint16_t chromeColor, uint16_t windowColor, uint8_t cornerRadius)" FunctionLineOffset="18" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='097caa79-edc3-462e-a3ad-bcc3376e8aa4'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>50		this-&gt;hasRoundCorners = hasRoundCorners;
+51		this-&gt;titleBarFont = titleBarFont;	
+52		this-&gt;shadowColor = shadowColor;
+53		this-&gt;shadowThickness = 4;
+54		this-&gt;hasShadow = hasShadow;
+55		this-&gt;cornerRadius = cornerRadius;
+56	#ifdef DEBUG
+--&gt;57		Logger::Trace("UIWindow(TFT, (%d,%d,%d,%d), %d, %s, %s, %s, %s, %s, %s, %s, %d, %d, %d, %d,%d)",location.x1, location.y1, location.x2, location.y2, (int)titleBarFont,titleText.c_str(), Logger::BoolToStr(hasTitleBar).c_str(),Logger::BoolToStr(hasCloseIcon).c_str(), Logger::BoolToStr(hasChrome).c_str(),Logger::BoolToStr(isModal).c_str(), Logger::BoolToStr(hasRoundCorners).c_str(),Logger::BoolToStr(hasShadow).c_str(), shadowColor, titleBarColor, titleTextColor, chromeColor, windowColor);
+58	#endif
+59	}
+60	
+61	void UIWindow::SetWindowTitle(std::string title)
+62	{
+63		this-&gt;titleText = title;
+64		if (titleLocation)
+65			delete(titleLocation);
+66		Invalidate();
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="12" Name="UIWindow.cpp, line 182" Id="d4f8f1c7-a929-467b-846b-176fc02379c2" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="182" FileColumn="1" FunctionName="Update()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='d4f8f1c7-a929-467b-846b-176fc02379c2'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>175		}
+176	
+177		updatePending = false;
+178	}
+179	
+180	void UIWindow::Update()
+181	{
+--&gt;182		if (!updatePending)
+183		{
+184	#ifdef DEBUG
+185			Logger::Trace("Update not pending");
+186	#endif
+187			return;
+188		}
+189		if (hasChrome)
+190		{
+191			drawChrome();
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="13" Name="UIWindow.cpp, line 132" Id="15d7dfb4-7082-451c-9aa5-44c2f4b22883" Enabled="1" Message="{height}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="132" FileColumn="1" FunctionName="drawChrome()" FunctionLineOffset="33" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='15d7dfb4-7082-451c-9aa5-44c2f4b22883'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>125		else
+126		{
+127			tft.fillRect(location.x1 + 2, location.y1 + 2, location.width-4, location.height-4, windowBGColor);
+128		}
+129	
+130		if (hasTitleBar)
+131		{
+--&gt;132			uint8_t height = getFontHeight();
+133			if (!hasRoundCorners)
+134				tft.fillRect(location.x1+1, location.y1+1, location.width-2, height+1, titleBarColor);
+135			else
+136			{
+137				tft.fillRoundRect(location.x1+1, location.y1+1, location.width-2, 
+138					height+cornerRadius+1, cornerRadius, titleBarColor);
+139			}
+140	
+141			if (hasCloseIcon)
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="height" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="14" Name="UIWindow.cpp, line 145" Id="1cd0dce5-b544-4927-82b2-d9b16f844bb8" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="145" FileColumn="1" FunctionName="drawChrome()" FunctionLineOffset="46" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='1cd0dce5-b544-4927-82b2-d9b16f844bb8'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>138					height+cornerRadius+1, cornerRadius, titleBarColor);
+139			}
+140	
+141			if (hasCloseIcon)
+142			{
+143				if (closeIcon==NULL)
+144				{				
+--&gt;145					closeIcon = new Rectangle(location.x2 - height-2, location.y1+3, location.x2-2 , location.y1 + height+3);
+146				}
+147				// Now draw a square with an X in it		
+148				tft.drawRect(closeIcon-&gt;x1, closeIcon-&gt;y1, height, height, chromeColor);
+149				tft.drawLine(closeIcon-&gt;x1, closeIcon-&gt;y1, closeIcon-&gt;x2, closeIcon-&gt;y2, chromeColor);
+150				tft.drawLine(closeIcon-&gt;x2, closeIcon-&gt;y1, closeIcon-&gt;x1, closeIcon-&gt;y2, chromeColor);
+151			}
+152	
+153			FontHelper::setLCDFont(tft, titleBarFont);
+154			// TODO: Get width, and height and center it in the titleRect.
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="15" Name="UIWindow.cpp, line 148" Id="a2ee4470-37c2-4af4-bfc0-f3320f6c5819" Enabled="1" Message="{closeIcon-&gt;x1}{closeIcon-&gt;y1}{closeIcon-&gt;x2}{closeIcon-&gt;y2}" MessageTextType="2" PreProcessedMessage="{0}{1}{2}{3}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="148" FileColumn="1" FunctionName="drawChrome()" FunctionLineOffset="49" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='a2ee4470-37c2-4af4-bfc0-f3320f6c5819'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>141			if (hasCloseIcon)
+142			{
+143				if (closeIcon==NULL)
+144				{				
+145					closeIcon = new Rectangle(location.x2 - height-2, location.y1+3, location.x2-2 , location.y1 + height+3);
+146				}
+147				// Now draw a square with an X in it		
+--&gt;148				tft.drawRect(closeIcon-&gt;x1, closeIcon-&gt;y1, height, height, chromeColor);
+149				tft.drawLine(closeIcon-&gt;x1, closeIcon-&gt;y1, closeIcon-&gt;x2, closeIcon-&gt;y2, chromeColor);
+150				tft.drawLine(closeIcon-&gt;x2, closeIcon-&gt;y1, closeIcon-&gt;x1, closeIcon-&gt;y2, chromeColor);
+151			}
+152	
+153			FontHelper::setLCDFont(tft, titleBarFont);
+154			// TODO: Get width, and height and center it in the titleRect.
+155			if (titleLocation==NULL)
+156			{
+157				Rectangle r = FontHelper::GetTextRect(tft, titleText, titleBarFont, Point(0, 0));			
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="closeIcon-&gt;x1" Index="1" />
+          <MessageVariable Name="closeIcon-&gt;y1" Index="2" />
+          <MessageVariable Name="closeIcon-&gt;x2" Index="3" />
+          <MessageVariable Name="closeIcon-&gt;y2" Index="4" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="16" Name="UIWindow.cpp, line 149" Id="be34d355-d19b-4ce9-b0a7-ca7dec7f51c5" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="149" FileColumn="1" FunctionName="drawChrome()" FunctionLineOffset="50" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='be34d355-d19b-4ce9-b0a7-ca7dec7f51c5'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>142			{
+143				if (closeIcon==NULL)
+144				{				
+145					closeIcon = new Rectangle(location.x2 - height-2, location.y1+3, location.x2-2 , location.y1 + height+3);
+146				}
+147				// Now draw a square with an X in it		
+148				tft.drawRect(closeIcon-&gt;x1, closeIcon-&gt;y1, height, height, chromeColor);
+--&gt;149				tft.drawLine(closeIcon-&gt;x1, closeIcon-&gt;y1, closeIcon-&gt;x2, closeIcon-&gt;y2, chromeColor);
+150				tft.drawLine(closeIcon-&gt;x2, closeIcon-&gt;y1, closeIcon-&gt;x1, closeIcon-&gt;y2, chromeColor);
+151			}
+152	
+153			FontHelper::setLCDFont(tft, titleBarFont);
+154			// TODO: Get width, and height and center it in the titleRect.
+155			if (titleLocation==NULL)
+156			{
+157				Rectangle r = FontHelper::GetTextRect(tft, titleText, titleBarFont, Point(0, 0));			
+158				uint16_t startX = location.center.x-(abs(r.x2-r.x1)/4);
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="17" Name="UIWindow.cpp, line 161" Id="6f483c84-6539-4f93-a3d7-ffc2684c2f07" Enabled="1" Message="{titleLocation-&gt;x}{titleLocation-&gt;y}" MessageTextType="2" PreProcessedMessage="{0}{1}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="161" FileColumn="1" FunctionName="drawChrome()" FunctionLineOffset="62" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='6f483c84-6539-4f93-a3d7-ffc2684c2f07'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>154			// TODO: Get width, and height and center it in the titleRect.
+155			if (titleLocation==NULL)
+156			{
+157				Rectangle r = FontHelper::GetTextRect(tft, titleText, titleBarFont, Point(0, 0));			
+158				uint16_t startX = location.center.x-(abs(r.x2-r.x1)/4);
+159				titleLocation = new Point(startX, location.center.y);
+160			}
+--&gt;161			tft.setCursor(titleLocation-&gt;x, titleLocation-&gt;y);
+162			tft.setTextColor(titleTextColor);
+163			tft.print(titleText.c_str());
+164	
+165			// Finally draw the border
+166			if (hasRoundCorners)
+167			{
+168				tft.drawRoundRect(location.x1, location.y1, location.width, location.height, cornerRadius, windowChromeColor);
+169			}
+170			else
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="titleLocation-&gt;x" Index="1" />
+          <MessageVariable Name="titleLocation-&gt;y" Index="2" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="18" Name="UIWindow.cpp, line 159" Id="9b33b50a-26f2-4b33-8e88-9efa2bdc7aeb" Enabled="1" Message="{startX}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="159" FileColumn="1" FunctionName="drawChrome()" FunctionLineOffset="60" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='9b33b50a-26f2-4b33-8e88-9efa2bdc7aeb'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>152	
+153			FontHelper::setLCDFont(tft, titleBarFont);
+154			// TODO: Get width, and height and center it in the titleRect.
+155			if (titleLocation==NULL)
+156			{
+157				Rectangle r = FontHelper::GetTextRect(tft, titleText, titleBarFont, Point(0, 0));			
+158				uint16_t startX = location.center.x-(abs(r.x2-r.x1)/4);
+--&gt;159				titleLocation = new Point(startX, location.center.y);
+160			}
+161			tft.setCursor(titleLocation-&gt;x, titleLocation-&gt;y);
+162			tft.setTextColor(titleTextColor);
+163			tft.print(titleText.c_str());
+164	
+165			// Finally draw the border
+166			if (hasRoundCorners)
+167			{
+168				tft.drawRoundRect(location.x1, location.y1, location.width, location.height, cornerRadius, windowChromeColor);
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="startX" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="19" Name="UIButton.cpp, line 96" Id="88446749-8898-47f1-8ed7-ace6da6e4317" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="96" FileColumn="1" FunctionName="Update()" FunctionLineOffset="22" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='88446749-8898-47f1-8ed7-ace6da6e4317'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>89			shadowColor = buttonActiveShadowColor;
+90			shadowSize = buttonActiveShadowSize;
+91		}
+92	#ifdef DEBUG
+93		Logger::Trace("Drawing UIButton.  Location(%d,%d,%d,%d)", location.x1, location.y1, location.x2, location.y2);
+94		Logger::Trace("Shadow Color: %d, Shadow Size: %d, borderSize: %d", shadowColor, shadowSize, buttonBorderSize);
+95	#endif
+--&gt;96	
+97		int x1 = location.x1 + shadowSize;
+98		int y1 = location.y1 + shadowSize;
+99		int x2 = location.width;
+100		int y2 = location.height;
+101		
+102	#ifdef DEBUG
+103		Logger::Trace("Drawing shadow box: (%d,%d,%d,%d)", x1, y1, x2, y2);
+104	#endif
+105		if (hasRoundCorners)
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="20" Name="UIButton.cpp, line 122" Id="8aca5332-1d1b-4b6e-a32a-8c174c01dc7d" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="122" FileColumn="1" FunctionName="Update()" FunctionLineOffset="48" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='8aca5332-1d1b-4b6e-a32a-8c174c01dc7d'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>115		if (objectThemeState == eThemeObjState::activeState)
+116			color = buttonActiveColor;
+117	
+118		if (hasRoundCorners)
+119		{
+120			tft.fillRoundRect(location.x1, location.y1 ,
+121				location.width, location.height,
+--&gt;122				cornerRadius, color);
+123		}
+124		else
+125		{
+126			tft.fillRect(location.x1, location.y1,
+127				location.width, location.height,
+128				color);
+129		}
+130		// Draw border
+131		x1 = location.x1;
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="21" Name="UIRadioButton.cpp, line 83" Id="97a0c6c9-bfd9-4703-8e2f-12c6ab80a79c" Enabled="1" Message="{textRect.x2}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiradiobutton.cpp" FileLine="83" FileColumn="1" FunctionName="Update()" FunctionLineOffset="23" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='97a0c6c9-bfd9-4703-8e2f-12c6ab80a79c'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>76	#ifdef DEBUG
+77			Logger::Trace("Text Rect: (%d,%d,%d,%d), buttonText length: %d", textRect.x1, 
+78				textRect.y1, textRect.x2, textRect.y2, buttonText.size());
+79	#endif
+80			int x1, y1, x2, y2;
+81			x1 = location.x1;
+82			y1 = location.y1;
+--&gt;83			x2 = textRect.x1+textRect.x2 / buttonText.size()+location.x1;
+84			y2 = textRect.y2+location.y2;
+85			if (checkRect == NULL)
+86			{
+87				checkRect = new Rectangle(x1, y1, x2, y2);
+88				checkRect-&gt;update();
+89			}
+90			else
+91			{
+92				checkRect-&gt;x1 = x1;
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="textRect.x2" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="22" Name="UIButton.cpp, line 161" Id="57c09234-bf6d-4687-bde8-652a9b6160e5" Enabled="1" Message="{buttonText.c_str()}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="161" FileColumn="1" FunctionName="Update()" FunctionLineOffset="87" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='57c09234-bf6d-4687-bde8-652a9b6160e5'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>154		// Finally draw the text
+155		color = textColor;
+156		if (objectThemeState == eThemeObjState::activeState)
+157			color = buttonActiveTextColor;
+158	
+159		if (textLocation == NULL)
+160		{
+--&gt;161			Rectangle r = FontHelper::GetTextRect(tft, buttonText, textFont, Point(0, 0));
+162	#ifdef DEBUG
+163			Logger::Trace("Text Rect (%d,%d,%d,%d)", r.x1, r.y1, r.x2, r.y2);
+164			Logger::Trace("Location Rect (%d,%d,%d,%d)", location.x1, location.y1, location.x2, location.y2);
+165			Logger::Trace("Location Center(%d,%d)", location.center.x, location.center.y);
+166	#endif
+167			uint16_t startX = location.center.x-(r.width/2);
+168			uint16_t startY = location.center.y-(r.height/2);
+169	textLocation = new Point(startX, startY);
+170	#ifdef DEBUG
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="buttonText.c_str()" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="23" Name="UIButton.cpp, line 164" Id="11a9afa0-9c1e-408a-a003-e6a7cb31c042" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="164" FileColumn="1" FunctionName="Update()" FunctionLineOffset="90" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='11a9afa0-9c1e-408a-a003-e6a7cb31c042'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>157			color = buttonActiveTextColor;
+158	
+159		if (textLocation == NULL)
+160		{
+161			Rectangle r = FontHelper::GetTextRect(tft, buttonText, textFont, Point(0, 0));
+162	#ifdef DEBUG
+163			Logger::Trace("Text Rect (%d,%d,%d,%d)", r.x1, r.y1, r.x2, r.y2);
+--&gt;164			Logger::Trace("Location Rect (%d,%d,%d,%d)", location.x1, location.y1, location.x2, location.y2);
+165			Logger::Trace("Location Center(%d,%d)", location.center.x, location.center.y);
+166	#endif
+167			uint16_t startX = location.center.x-(r.width/2);
+168			uint16_t startY = location.center.y-(r.height/2);
+169	textLocation = new Point(startX, startY);
+170	#ifdef DEBUG
+171			Logger::Trace("Text Location (%d,%d)", textLocation-&gt;x, textLocation-&gt;y);
+172	#endif
+173		}
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="24" Name="UIButton.cpp, line 169" Id="65316adc-5af4-4950-9a51-30d1c909cc15" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="169" FileColumn="1" FunctionName="Update()" FunctionLineOffset="95" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='65316adc-5af4-4950-9a51-30d1c909cc15'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>162	#ifdef DEBUG
+163			Logger::Trace("Text Rect (%d,%d,%d,%d)", r.x1, r.y1, r.x2, r.y2);
+164			Logger::Trace("Location Rect (%d,%d,%d,%d)", location.x1, location.y1, location.x2, location.y2);
+165			Logger::Trace("Location Center(%d,%d)", location.center.x, location.center.y);
+166	#endif
+167			uint16_t startX = location.center.x-(r.width/2);
+168			uint16_t startY = location.center.y-(r.height/2);
+--&gt;169	textLocation = new Point(startX, startY);
+170	#ifdef DEBUG
+171			Logger::Trace("Text Location (%d,%d)", textLocation-&gt;x, textLocation-&gt;y);
+172	#endif
+173		}
+174	
+175		tft.setCursor(textLocation-&gt;x, textLocation-&gt;y);
+176		tft.setTextColor(color);
+177		tft.print(buttonText.c_str());
+178		updatePending = false;
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="25" Name="UIButton.cpp, line 83" Id="cdeaec1d-1257-49e6-9881-989b675c0eac" Enabled="1" Message="{textScale}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="83" FileColumn="1" FunctionName="Update()" FunctionLineOffset="9" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='cdeaec1d-1257-49e6-9881-989b675c0eac'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>76		if (!updatePending)
+77		{
+78	#ifdef DEBUG
+79			Logger::Trace("No update pending, exiting");
+80	#endif
+81			return;
+82		}
+--&gt;83		tft.setTextSize(textScale);
+84		// Draw shadow
+85		uint16_t shadowColor = buttonShadowColor;
+86		uint8_t shadowSize = buttonShadowSize;
+87		if (objectThemeState == eThemeObjState::activeState)
+88		{
+89			shadowColor = buttonActiveShadowColor;
+90			shadowSize = buttonActiveShadowSize;
+91		}
+92	#ifdef DEBUG
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="textScale" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="26" Name="UICheckBox.cpp, line 36" Id="e3d82d64-93bd-44b3-b664-c27690b90337" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uicheckbox.cpp" FileLine="36" FileColumn="1" FunctionName="" FunctionLineOffset="1" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='e3d82d64-93bd-44b3-b664-c27690b90337'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>29	}
+30	
+31	UICheckBox::UICheckBox(Adafruit_RA8875 &amp;tft, Rectangle location, std::string boxText, bool checked,
+32		eUITextFont textFont, uint16_t textColor, uint8_t textScale, uint16_t boxColor,
+33		uint16_t boxShadowColor, uint8_t boxShadowSize, uint8_t boxBorderSize,
+34		uint16_t boxCheckColor, bool hasRoundCorners, uint8_t cornerRadius) :
+35		UIElement(tft, location, eThemeObjState::defaultState)
+--&gt;36	{	
+37		this-&gt;isChecked = checked;
+38		this-&gt;buttonText = boxText;
+39		this-&gt;textFont = textFont;
+40		this-&gt;textColor = textColor;
+41		this-&gt;textScale = textScale;
+42		this-&gt;boxColor = boxColor;
+43		this-&gt;boxShadowColor = boxShadowColor;
+44		this-&gt;shadowSize = boxShadowSize;
+45		this-&gt;boxBorderSize = boxBorderSize;
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="27" Name="UICheckBox.cpp, line 48" Id="98b084e0-2865-4311-87d9-2460d0a9e412" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uicheckbox.cpp" FileLine="48" FileColumn="1" FunctionName="UICheckBox(Adafruit_RA8875 &amp;tft, Rectangle location, std::string boxText, bool checked,&#xD;&#xA;	eUITextFont textFont, uint16_t textColor, uint8_t textScale, uint16_t boxColor,&#xD;&#xA;	uint16_t boxShadowColor, uint8_t boxShadowSize, uint8_t boxBorderSize,&#xD;&#xA;	uint16_t boxCheckColor, bool hasRoundCorners, uint8_t cornerRadius)" FunctionLineOffset="13" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='98b084e0-2865-4311-87d9-2460d0a9e412'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>41		this-&gt;textScale = textScale;
+42		this-&gt;boxColor = boxColor;
+43		this-&gt;boxShadowColor = boxShadowColor;
+44		this-&gt;shadowSize = boxShadowSize;
+45		this-&gt;boxBorderSize = boxBorderSize;
+46		this-&gt;boxCheckColor = boxCheckColor;
+47		this-&gt;hasRoundCorners = hasRoundCorners;
+--&gt;48		this-&gt;cornerRadius = cornerRadius;
+49	
+50	#ifdef DEBUG
+51		Logger::Trace("UICheckBox(TFT,(%d,%d,%d,%d),%s,%s,%d,%d,%d,%d,%d,%d,%d,%d,%s,%d)",location.x1,location.y1,
+52			location.x2,location.y2,buttonText.c_str(), Logger::BoolToStr(checked).c_str(),textFont, textColor, 
+53			textScale, boxColor, boxShadowColor, shadowSize, boxBorderSize, boxCheckColor, 
+54			Logger::BoolToStr(hasRoundCorners).c_str(), cornerRadius);
+55	#endif
+56	}
+57	
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="28" Name="UICheckBox.cpp, line 60" Id="51628a57-a2bb-45e7-8756-89438df8efc8" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uicheckbox.cpp" FileLine="60" FileColumn="1" FunctionName="Update()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='51628a57-a2bb-45e7-8756-89438df8efc8'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>53			textScale, boxColor, boxShadowColor, shadowSize, boxBorderSize, boxCheckColor, 
+54			Logger::BoolToStr(hasRoundCorners).c_str(), cornerRadius);
+55	#endif
+56	}
+57	
+58	void UICheckBox::Update()
+59	{
+--&gt;60		if (!updatePending)
+61		{
+62	#ifdef DEBUG
+63			Logger::Trace("No update pending");
+64	#endif
+65			return;
+66		}
+67	
+68		tft.setTextSize(textScale);
+69		if (checkRect==NULL)
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="29" Name="UICheckBox.cpp, line 72" Id="688248d0-d624-452d-a1c6-cb37ca48c208" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uicheckbox.cpp" FileLine="72" FileColumn="1" FunctionName="Update()" FunctionLineOffset="14" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='688248d0-d624-452d-a1c6-cb37ca48c208'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>65			return;
+66		}
+67	
+68		tft.setTextSize(textScale);
+69		if (checkRect==NULL)
+70		{
+71			// Figure out the size of the control
+--&gt;72			Rectangle textRect = FontHelper::GetTextRect(tft, buttonText, textFont, Point(0, 0));
+73	
+74	#ifdef DEBUG
+75			Logger::Trace("Text Rect: (%d,%d,%d,%d), buttonText length: %d", textRect.x1,
+76				textRect.y1, textRect.x2, textRect.y2, buttonText.size());
+77	#endif
+78			int x1, y1, x2, y2;
+79			x1 = location.x1;
+80			y1 = location.y1;
+81			x2 = textRect.x1 + (textRect.x2/buttonText.size())  + location.x1;		
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="30" Name="UICheckBox.cpp, line 85" Id="94df4735-550c-4ac8-ae20-a8f664342390" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uicheckbox.cpp" FileLine="85" FileColumn="1" FunctionName="Update()" FunctionLineOffset="27" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='94df4735-550c-4ac8-ae20-a8f664342390'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>78			int x1, y1, x2, y2;
+79			x1 = location.x1;
+80			y1 = location.y1;
+81			x2 = textRect.x1 + (textRect.x2/buttonText.size())  + location.x1;		
+82			y2 = textRect.y2 + location.y1;
+83			Logger::Trace("(textRect):x1:%d, y1:%d, x2:%d, y2:%d, (location)x1:%d, y1:%d, x2:%d, y2:%d",
+84				x1, y1, x2, y2, location.x1, location.y1, location.x2, location.y2);
+--&gt;85			checkRect = new Rectangle(x1, y1, x2, y2);
+86			checkRect-&gt;update();
+87			
+88			// So the total width is: checkRect.x2*1.5+textRect.x2
+89			location.x2 = location.x1 + (checkRect-&gt;x2*1.5) + textRect.x2;
+90			// Height is textRect.y2 + 2
+91			location.y2 = textRect.y2 + 2;
+92			location.update();
+93		}
+94	#ifdef DEBUG 
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="31" Name="UICheckBox.cpp, line 108" Id="43706b7f-e977-4bc1-854b-280973c56e76" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uicheckbox.cpp" FileLine="108" FileColumn="1" FunctionName="Update()" FunctionLineOffset="50" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='43706b7f-e977-4bc1-854b-280973c56e76'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>101		{
+102			if (checkRect-&gt;width &gt;= 8)
+103				checkLineWidth = 2;
+104			else
+105				checkLineWidth = 1;
+106		}	
+107		for (int i = 0; i &lt; checkLineWidth; i++)
+--&gt;108			tft.drawRect(checkRect-&gt;x1+i, checkRect-&gt;y1+i, checkRect-&gt;width-i, checkRect-&gt;height-i, boxColor);
+109	
+110		// Is it checked?
+111		if (isChecked)
+112		{
+113			tft.drawLine(checkRect-&gt;x1, checkRect-&gt;y1, checkRect-&gt;x2, checkRect-&gt;y2, boxCheckColor);
+114			tft.drawLine(checkRect-&gt;x1+1, checkRect-&gt;y1, checkRect-&gt;x2, checkRect-&gt;y2-1, boxCheckColor);
+115			tft.drawLine(checkRect-&gt;x1 + 1, checkRect-&gt;y1+1, checkRect-&gt;x2-1, checkRect-&gt;y2, boxCheckColor);
+116	
+117			tft.drawLine(checkRect-&gt;x2, checkRect-&gt;y1, checkRect-&gt;x1, checkRect-&gt;y2, boxCheckColor);
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="32" Name="BatteryIcon.cpp, line 47" Id="8d0ff422-4c9d-49cc-b302-eddd7bcfeb19" Enabled="1" Message="{location.width}{positiveChargeRect.x1}" MessageTextType="2" PreProcessedMessage="{0}{1}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\batteryicon.cpp" FileLine="47" FileColumn="1" FunctionName="Update()" FunctionLineOffset="13" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='8d0ff422-4c9d-49cc-b302-eddd7bcfeb19'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>40	#endif
+41		}
+42	
+43		Rectangle positiveChargeRect(location.x2 - location.width / 10, location.center.y - location.width / 8, location.x2 - 1, location.center.y + location.width / 8);	
+44		tft.fillRoundRect(positiveChargeRect.x1, positiveChargeRect.y1,
+45			positiveChargeRect.width, positiveChargeRect.height, location.height/50,
+46			RA8875_WHITE);
+--&gt;47		uint16_t batteryBodyWidth = location.width - positiveChargeRect.width+(location.height/50*2);
+48		Rectangle batteryBodyRect(location.x1 + 1, location.y1 + 1, batteryBodyWidth, location.height - 2);
+49		for (int i = 0; i &lt; location.height/50; i++)
+50			tft.drawRoundRect(batteryBodyRect.x1 + i, batteryBodyRect.y1 + i,
+51				batteryBodyRect.width - 2 * i, batteryBodyRect.height - 2 * i,
+52				location.height / 50,
+53				RA8875_WHITE);
+54	
+55		Rectangle batterySliceRect(0, 0, (batteryBodyRect.width / chargeBars)-location.width/50, batteryBodyRect.height - (location.height / 50));
+56		uint8_t chargeBarsToShow;
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="location.width" Index="1" />
+          <MessageVariable Name="positiveChargeRect.x1" Index="2" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="33" Name="BatteryIcon.cpp, line 62" Id="f335c1ab-0ee6-40c1-b9f5-38e48b96766f" Enabled="1" Message="{chargeBarsToShow}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\batteryicon.cpp" FileLine="62" FileColumn="1" FunctionName="Update()" FunctionLineOffset="28" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='f335c1ab-0ee6-40c1-b9f5-38e48b96766f'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>55		Rectangle batterySliceRect(0, 0, (batteryBodyRect.width / chargeBars)-location.width/50, batteryBodyRect.height - (location.height / 50));
+56		uint8_t chargeBarsToShow;
+57		if (pctCharged &gt; 0)
+58			chargeBarsToShow = chargeBars*(100 / pctCharged);
+59		else
+60			chargeBarsToShow = 0;
+61	
+--&gt;62		uint8_t briteRedThresh = chargeBars*0.1;
+63		uint8_t orangeThresh = chargeBars*.2;
+64		uint8_t yellowThresh = chargeBars*.8;
+65		uint8_t darkGreenThresh = chargeBars*.9;
+66		
+67		for (int i = 1; i &lt;= chargeBarsToShow; i++)
+68		{
+69			uint16_t color = 0x7E0;
+70				if (i &lt; briteRedThresh)
+71					color = 0XF800;
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="chargeBarsToShow" Index="1" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="34" Name="BatteryIcon.cpp, line 83" Id="979dd0ba-5f3a-4143-90c0-de64e0e89112" Enabled="1" Message="{startX}{width}" MessageTextType="2" PreProcessedMessage="{0}{1}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\batteryicon.cpp" FileLine="83" FileColumn="1" FunctionName="Update()" FunctionLineOffset="49" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='979dd0ba-5f3a-4143-90c0-de64e0e89112'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>76						if (i &lt; yellowThresh)
+77							color = RA8875_YELLOW;
+78						else
+79							if (i &lt; darkGreenThresh)
+80								color = 0x87E0;
+81				uint16_t startX = (batterySliceRect.width)*(i - 1) + location.width / 45;
+82				uint16_t width = batterySliceRect.width - location.width / 50;
+--&gt;83				tft.fillRect(startX, batteryBodyRect.y1 + location.width / 50,width,batteryBodyRect.height - location.width / 25, color);
+84		}
+85		updatePending = false;
+86	}
+87	
+88	sTouchResponse BatteryIcon::ProcessTouch(Point pt)
+89	{
+90	
+91	}
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="startX" Index="1" />
+          <MessageVariable Name="width" Index="2" />
+        </MessageVariables>
+      </BreakPoint>
+      <BreakPoint Index="35" Name="BatteryIcon.cpp, line 67" Id="60ce5e88-e39d-4d14-a0a0-3ac570add651" Enabled="1" Message="{briteRedThresh}{orangeThresh}{yellowThresh}{darkGreenThresh}" MessageTextType="2" PreProcessedMessage="{0}{1}{2}{3}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\batteryicon.cpp" FileLine="67" FileColumn="1" FunctionName="Update()" FunctionLineOffset="33" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='60ce5e88-e39d-4d14-a0a0-3ac570add651'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>60			chargeBarsToShow = 0;
+61	
+62		uint8_t briteRedThresh = chargeBars*0.1;
+63		uint8_t orangeThresh = chargeBars*.2;
+64		uint8_t yellowThresh = chargeBars*.8;
+65		uint8_t darkGreenThresh = chargeBars*.9;
+66		
+--&gt;67		for (int i = 1; i &lt;= chargeBarsToShow; i++)
+68		{
+69			uint16_t color = 0x7E0;
+70				if (i &lt; briteRedThresh)
+71					color = 0XF800;
+72				else
+73					if (i &lt; orangeThresh)
+74						color = 0xFC00;
+75					else
+76						if (i &lt; yellowThresh)
+</Source>
+        <MessageVariables>
+          <MessageVariable Name="briteRedThresh" Index="1" />
+          <MessageVariable Name="orangeThresh" Index="2" />
+          <MessageVariable Name="yellowThresh" Index="3" />
+          <MessageVariable Name="darkGreenThresh" Index="4" />
+        </MessageVariables>
+      </BreakPoint>
+    </BreakPoints>
+  </Program>
+</VisualMicro>

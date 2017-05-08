@@ -1,0 +1,7 @@
+#define LOAD_ASSETS()  GD.safeload("GD2Files\aileron-UltraLight9");
+#define AILERON_ULTRALIGHT_HANDLE 0
+#define AILERON_ULTRALIGHT_WIDTH 8
+#define AILERON_ULTRALIGHT_HEIGHT 11
+#define AILERON_ULTRALIGHT_CELLS 96
+#define ASSETS_END 4372UL
+static const shape_t AILERON_ULTRALIGHT_SHAPE = {0, 8, 11, 0};

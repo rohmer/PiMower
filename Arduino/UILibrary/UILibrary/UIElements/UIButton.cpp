@@ -17,13 +17,13 @@ void UIButton::setTouchArea()
 		touchArea = new Rectangle(-1, -1, -1, -1);
 }
 
-void UIButton::update(RA8875 *lcd)
+void UIButton::update(Adafruit_RA8875 *lcd)
 {
 	sThemeSettings currentSettings = clickable;
 	if (lcd->touched())
 	{
 		uint16_t *x, *y;
-		lcd->touchReadPixel(x, y);
+		lcd->touchRead(x, y);
 		if (touchArea->contains(Point((int)x, (int)y)))
 		{
 			if (!touched)
@@ -79,7 +79,7 @@ void UIButton::update(RA8875 *lcd)
 	needsUpdate = false;
 }
 
-void UIButton::drawBorder(RA8875 *lcd, sThemeSettings themeSettings)
+void UIButton::drawBorder(Adafruit_RA8875 *lcd, sThemeSettings themeSettings)
 {
 	uint16_t buttonBorderColor = themeSettings.borderColor;
 	// First draw border
@@ -108,7 +108,7 @@ void UIButton::drawBorder(RA8875 *lcd, sThemeSettings themeSettings)
 	}
 }
 
-void UIButton::drawShadow(RA8875 *lcd, sThemeSettings themeSettings)
+void UIButton::drawShadow(Adafruit_RA8875 *lcd, sThemeSettings themeSettings)
 {
 	int shadowOffsetX = 5;
 	int shadowOffsetY = 5;
@@ -154,7 +154,7 @@ void UIButton::drawShadow(RA8875 *lcd, sThemeSettings themeSettings)
 	}
 }
 
-void UIButton::fillButton(RA8875 *lcd, sThemeSettings themeSettings)
+void UIButton::fillButton(Adafruit_RA8875 *lcd, sThemeSettings themeSettings)
 {
 	uint16_t bgColor = themeSettings.bgColor;
 	if (themeSettings.cornerType == eButtonCornerType::Square)
