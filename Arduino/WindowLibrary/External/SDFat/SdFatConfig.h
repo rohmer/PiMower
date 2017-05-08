@@ -56,21 +56,21 @@
  * These classes used extended multi-block SD I/O for better performance.
  * the SPI bus may not be shared with other devices in this mode.
  */
-#define ENABLE_EXTENDED_TRANSFER_CLASS 0
+#define ENABLE_EXTENDED_TRANSFER_CLASS 1
 //-----------------------------------------------------------------------------
 /**
  * If the symbol USE_STANDARD_SPI_LIBRARY is nonzero, the classes SdFat and
  * SdFatEX use the standard Arduino SPI.h library. If USE_STANDARD_SPI_LIBRARY
  * is zero, an optimized custom SPI driver is used if it exists.
  */ 
-#define USE_STANDARD_SPI_LIBRARY 0
+#define USE_STANDARD_SPI_LIBRARY 1
 //-----------------------------------------------------------------------------
 /**
  * If the symbol ENABLE_SOFTWARE_SPI_CLASS is nonzero, the class SdFatSoftSpi
  * will be defined. If ENABLE_EXTENDED_TRANSFER_CLASS is also nonzero,
  * the class SdFatSoftSpiEX will be defined.
  */
-#define ENABLE_SOFTWARE_SPI_CLASS 0
+//#define ENABLE_SOFTWARE_SPI_CLASS 0
 //------------------------------------------------------------------------------
 /** 
  * Set MAINTAIN_FREE_CLUSTER_COUNT nonzero to keep the count of free clusters

@@ -198,7 +198,7 @@ void UIWindow::Update()
 /// </summary>
 /// <param name="element">The element to be added</param>
 void UIWindow::AddChildElement(UIElement *element)
-{
+{	
 	Rectangle elementLocation = element->GetLocation();
 	elementLocation.x1 += location.x1;
 	elementLocation.x2 += location.x2;

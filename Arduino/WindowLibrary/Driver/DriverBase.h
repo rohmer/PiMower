@@ -125,7 +125,7 @@ public:
 	}
 
 	virtual void textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t textColor,
-		uint16_t justification, std::string text);
+		uint16_t justification, std::string text)=0;
 
 protected:
 	eDriverType driverType;

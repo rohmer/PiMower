@@ -1,13 +1,14 @@
 #pragma once
 #include "../Options.h"
-#ifdef RA8875
-#include "RA8875/BatteryIcon.h"
-#include "RA8875/UIAlphaNumericEditor.h"
-#include "RA8875/UIButton.h"
-#include "RA8875/UICheckBox.h"
-#include "RA8875/UIImage.h"
-#include "RA8875/UINumericEditor.h"
-#include "RA8875/UIRadioButton.h"
-#include "RA8875/UIText.h"
-#include "RA8875/UIWindow.h"
-#endif
+
+//TODO: Have this respect "Options" for which ones are included
+#include "BatteryIcon.h"
+#include "UIAlphaNumericEditor.h"
+#include "UIButton.h"
+#include "UICheckBox.h"
+#include "UIImage.h"
+#include "UINumericEditor.h"
+#include "UIRadioButton.h"
+#include "UIText.h"
+#include "UIWindow.h"
+

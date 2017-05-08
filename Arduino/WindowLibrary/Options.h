@@ -60,7 +60,7 @@
 #endif
 
 // Will include code for reading off SD card, right now for images
-#define SDENABLED
+//#define SDENABLED
 
 // The following defines will use all fonts from a specific pt size
 // Using a smaller point size saves memory, you can expand them but it can get blocky
@@ -69,6 +69,9 @@
 //#define use18PtFonts
 //#define use24PtFonts
 //#define use36PtFonts
+
+// This is the default font, you really shouldnt remove this
+#define useAileronRegular12
 
 #ifdef use9PtFonts
 #define useAileronBlack9

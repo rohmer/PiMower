@@ -217,7 +217,7 @@ sThemeSettings Theme::LoadTheme(eThemeObjType objType, eThemeObjState objState)
 	}
 	else
 	{
-		themeSettings.textFont = eUITextFont::Default;
+		themeSettings.textFont = eUITextFont::AileronRegular12;
 	}
 	val = GetThemeAttribute(objType, objState, eThemeObjAttribute::cornerType);
 	if (val != -1)

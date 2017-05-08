@@ -15,3 +15,16 @@ public:
 };
 
 #endif
+
+#ifdef FT8XX
+#include "../Utility/Rectangle.h"
+#include "../Utility/Logger.h"
+#include "../UIElements/FT8XX/Fonts.h"
+#include "../Driver/DriverBase.h"
+class FontHelper
+{
+public:
+	static Rectangle GetTextRect(DriverBase &tft, std::string text, eUITextFont font, Point textLoc);
+};
+
+#endif
