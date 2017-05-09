@@ -3,7 +3,6 @@
 #include <map>
 #include <vector>
 #include "../UIElements/UIElement.h"
-#include "Theme.h"
 
 enum eLCDSizes
 {
@@ -40,8 +39,6 @@ public:
 		}
 		return s_instance;
 	}
-	void SetThemeAttribute(eThemeObjType objType, eThemeObjState objState, eThemeObjAttribute objAttribute, uint16_t value);
-	int GetThemeAttribute(eThemeObjType objType, eThemeObjState objState, eThemeObjAttribute objAttribute);
 
 	void MoveControlToFront(unsigned long controlID);
 	static void DeleteElement(unsigned long elementID);

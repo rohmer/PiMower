@@ -94,6 +94,18 @@
     <Filter Include="Source Files\UIElements\Editors">
       <UniqueIdentifier>{4239e7da-b7a0-4a71-a988-99d3e9e410ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UIElements\FT8XX">
+      <UniqueIdentifier>{12a8d8ef-bdca-4ea1-bfab-c12e66365f6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UIElements\RA8875">
+      <UniqueIdentifier>{003ba59d-bc7e-4405-997f-dd1fe7c48f5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UIElements\ControlDisplay">
+      <UniqueIdentifier>{6eca79c7-4d51-41e6-80fa-abc460c470f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UIElements\ControlDisplay">
+      <UniqueIdentifier>{59d3dd1a-4375-4852-a8fa-bee6105218fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.WindowLibrary.vsarduino.h">
@@ -122,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="Utility\Logger.h">
       <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowManager\Theme.h">
-      <Filter>Header Files\WindowManager</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Color.h">
       <Filter>Header Files\Utility</Filter>
@@ -1200,28 +1209,13 @@
     <ClInclude Include="UIElements\FT8XX\Fonts\aileronLight36.h">
       <Filter>Header Files\UIElements\FT8XX\Fonts</Filter>
     </ClInclude>
-    <ClInclude Include="UIElements\UIAlphaNumericEditor.h">
-      <Filter>Header Files\UIElements\Editors</Filter>
-    </ClInclude>
-    <ClInclude Include="UIElements\UINumericEditor.h">
-      <Filter>Header Files\UIElements\Editors</Filter>
-    </ClInclude>
     <ClInclude Include="UIElements\BatteryIcon.h">
-      <Filter>Header Files\UIElements</Filter>
-    </ClInclude>
-    <ClInclude Include="UIElements\UIButton.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
     <ClInclude Include="UIElements\UICheckBox.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
-    <ClInclude Include="UIElements\UIImage.h">
-      <Filter>Header Files\UIElements</Filter>
-    </ClInclude>
     <ClInclude Include="UIElements\UIRadioButton.h">
-      <Filter>Header Files\UIElements</Filter>
-    </ClInclude>
-    <ClInclude Include="UIElements\UIText.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
     <ClInclude Include="UIElements\UIWindow.h">
@@ -1229,6 +1223,18 @@
     </ClInclude>
     <ClInclude Include="Images\Image.h">
       <Filter>Header Files\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\FT8XX\UIPrimitives.h">
+      <Filter>Header Files\UIElements\FT8XX</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\RA8875\UIPrimitives.h">
+      <Filter>Header Files\UIElements\RA8875</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\RadioButton.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\CheckBox.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1246,9 +1252,6 @@
     </ClCompile>
     <ClCompile Include="Utility\Logger.cpp">
       <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager\Theme.cpp">
-      <Filter>Source Files\WindowManager</Filter>
     </ClCompile>
     <ClCompile Include="Utility\FontHelper.cpp">
       <Filter>Source Files\Utility</Filter>
@@ -1325,35 +1328,26 @@
     <ClCompile Include="Driver\FT8XXDriver.cpp">
       <Filter>Source Files\Driver</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\UIElement.cpp">
-      <Filter>Source Files\UIElements</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\UIAlphaNumericEditor.cpp">
-      <Filter>Source Files\UIElements\Editors</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElements\UINumericEditor.cpp">
-      <Filter>Source Files\UIElements\Editors</Filter>
-    </ClCompile>
     <ClCompile Include="UIElements\UIWindow.cpp">
       <Filter>Source Files\UIElements</Filter>
     </ClCompile>
     <ClCompile Include="UIElements\BatteryIcon.cpp">
       <Filter>Source Files\UIElements</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\UIButton.cpp">
-      <Filter>Source Files\UIElements</Filter>
-    </ClCompile>
     <ClCompile Include="UIElements\UICheckBox.cpp">
       <Filter>Source Files\UIElements</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\UIImage.cpp">
-      <Filter>Source Files\UIElements</Filter>
+    <ClCompile Include="UIElements\FT8XX\UIPrimitives.cpp">
+      <Filter>Source Files\UIElements\FT8XX</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\UIRadioButton.cpp">
-      <Filter>Source Files\UIElements</Filter>
+    <ClCompile Include="UIElements\RA8875\UIPrimitives.cpp">
+      <Filter>Source Files\UIElements\RA8875</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\UIText.cpp">
-      <Filter>Source Files\UIElements</Filter>
+    <ClCompile Include="UIElements\ControlDisplay\RadioButton.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

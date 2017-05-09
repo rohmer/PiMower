@@ -189,6 +189,8 @@
     <ClInclude Include="Images\Image.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="UIElements\BatteryIcon.h" />
+    <ClInclude Include="UIElements\ControlDisplay\CheckBox.h" />
+    <ClInclude Include="UIElements\ControlDisplay\RadioButton.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts\aileronBlack12.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts\aileronBlack18.h" />
@@ -315,6 +317,7 @@
     <ClInclude Include="UIElements\FT8XX\Fonts\CrimsonText24.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts\CrimsonText36.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts\CrimsonText9.h" />
+    <ClInclude Include="UIElements\FT8XX\UIPrimitives.h" />
     <ClInclude Include="UIElements\RA8875\Fonts.h" />
     <ClInclude Include="UIElements\RA8875\Fonts\AileronBlack12.h" />
     <ClInclude Include="UIElements\RA8875\Fonts\AileronBlack18.h" />
@@ -436,15 +439,11 @@
     <ClInclude Include="UIElements\RA8875\Fonts\CrimsonSemiBoldItalic24.h" />
     <ClInclude Include="UIElements\RA8875\Fonts\CrimsonSemiBoldItalic36.h" />
     <ClInclude Include="UIElements\RA8875\Fonts\CrimsonSemiBoldItalic9.h" />
-    <ClInclude Include="UIElements\UIAlphaNumericEditor.h" />
-    <ClInclude Include="UIElements\UIButton.h" />
+    <ClInclude Include="UIElements\RA8875\UIPrimitives.h" />
     <ClInclude Include="UIElements\UICheckBox.h" />
     <ClInclude Include="UIElements\UIElement.h" />
     <ClInclude Include="UIElements\UIElements.h" />
-    <ClInclude Include="UIElements\UIImage.h" />
-    <ClInclude Include="UIElements\UINumericEditor.h" />
     <ClInclude Include="UIElements\UIRadioButton.h" />
-    <ClInclude Include="UIElements\UIText.h" />
     <ClInclude Include="UIElements\UIWindow.h" />
     <ClInclude Include="Utility\Color.h" />
     <ClInclude Include="Utility\FontHelper.h" />
@@ -452,7 +451,6 @@
     <ClInclude Include="Utility\Logger.h" />
     <ClInclude Include="Utility\Point.h" />
     <ClInclude Include="Utility\Rectangle.h" />
-    <ClInclude Include="WindowManager\Theme.h" />
     <ClInclude Include="WindowManager\WindowManager.h" />
     <ClInclude Include="__vm\.WindowLibrary.vsarduino.h" />
   </ItemGroup>
@@ -483,20 +481,16 @@
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSTM32F1.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiTeensy3.cpp" />
     <ClCompile Include="UIElements\BatteryIcon.cpp" />
-    <ClCompile Include="UIElements\UIAlphaNumericEditor.cpp" />
-    <ClCompile Include="UIElements\UIButton.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\RadioButton.cpp" />
+    <ClCompile Include="UIElements\FT8XX\UIPrimitives.cpp" />
+    <ClCompile Include="UIElements\RA8875\UIPrimitives.cpp" />
     <ClCompile Include="UIElements\UICheckBox.cpp" />
-    <ClCompile Include="UIElements\UIElement.cpp" />
-    <ClCompile Include="UIElements\UIImage.cpp" />
-    <ClCompile Include="UIElements\UINumericEditor.cpp" />
-    <ClCompile Include="UIElements\UIRadioButton.cpp" />
-    <ClCompile Include="UIElements\UIText.cpp" />
     <ClCompile Include="UIElements\UIWindow.cpp" />
     <ClCompile Include="Utility\FontHelper.cpp" />
     <ClCompile Include="Utility\ImageHelper.cpp" />
     <ClCompile Include="Utility\Logger.cpp" />
     <ClCompile Include="Utility\Rectangle.cpp" />
-    <ClCompile Include="WindowManager\Theme.cpp" />
     <ClCompile Include="WindowManager\WindowMananger.cpp" />
   </ItemGroup>
   <ItemGroup>

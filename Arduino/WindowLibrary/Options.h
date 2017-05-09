@@ -48,6 +48,15 @@
 #define FT_813_ENABLE		0
 #endif
 
+#if defined(FT_810) || defined(FT_811) || defined(FT_812) || defined(FT_813)
+#define FT81X
+#endif
+
+// ATM this is the same as ifndef FT81X, but who knows if/when there will be a FT820
+#if defined(FT_800) || defined(FT_801)
+#define FT80X
+#endif
+
 #ifdef RA8875
 #define USE_RA8875_TOUCH
 #endif
@@ -320,3 +329,5 @@
 //TODO: IFDEF enable all UIElements except windows
 #define useButtons
 #define useText
+
+#undef abs

@@ -2,8 +2,14 @@
 #include <vector>
 #include "../Utility/Rectangle.h"
 #include "../Utility/Logger.h"
-#include "../WindowManager/Theme.h"
 #include "../Driver/DriverBase.h"
+
+#ifdef FT8XX
+#include "FT8XX/UIPrimitives.h"
+#endif
+#ifdef RA8875
+#include "RA8875/UIPrimitives.h"
+#endif
 
 enum eTouchResponse
 {
@@ -28,7 +34,7 @@ struct sTouchResponse
 class UIElement
 {
 public:
-	UIElement(DriverBase &tft, Rectangle location, eThemeObjState themeState);
+	UIElement(DriverBase &tft, Rectangle location);
 	virtual void Update() = 0;
 	bool UpdatePending()
 	{
@@ -62,14 +68,7 @@ public:
 	{
 		location = newLoc;
 	}
-	void virtual SetObjectState(eThemeObjState objState)
-	{
-		if (objectThemeState == objState)
-			return;
-		this->objectThemeState = objState;
-		Invalidate();
-	}
-
+	
 	std::vector<UIElement *> GetChildElements()
 	{
 		return childElements;
@@ -89,8 +88,7 @@ public:
 	virtual sTouchResponse ProcessTouch(Point touchPoint)=0;
 
 protected:
-	sThemeSettings themeSettings;
-
+	
 private:
 	std::vector<UIElement *> getChildElements()
 	{
@@ -98,8 +96,6 @@ private:
 	}
 	
 protected:
-	Theme &theme;
-	eThemeObjState objectThemeState;
 	Rectangle location;
 	UIElement *parentElement;
 	bool updatePending, enabled;

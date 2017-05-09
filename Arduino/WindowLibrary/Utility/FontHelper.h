@@ -10,7 +10,7 @@
 class FontHelper
 {
 public:
-	static void setLCDFont(Adafruit_RA8875 &lcd, eUITextFont font);	
+	static void setLCDFont(DriverBase &lcd, eUITextFont font);	
 	static Rectangle GetTextRect(Adafruit_RA8875 &tft,std::string text, eUITextFont font, Point textLoc);	
 };
 
@@ -24,7 +24,7 @@ public:
 class FontHelper
 {
 public:
-	static Rectangle GetTextRect(DriverBase &tft, std::string text, eUITextFont font, Point textLoc);
+	static Rectangle GetTextRect(DriverBase &lcd, std::string text, eUITextFont font, Point textLoc);
 };
 
 #endif

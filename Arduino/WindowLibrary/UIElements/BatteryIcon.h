@@ -5,7 +5,6 @@
 #include <vector>
 #include "../Utility/Color.h"
 #include "UIElement.h"
-#include "../WindowManager/Theme.h"
 #include <SPI.h>
 #ifdef RA8875 
 #include "../External/Adafruit_RA8875/Adafruit_RA8875.h"

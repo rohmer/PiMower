@@ -601,7 +601,7 @@ Rectangle FontHelper::GetTextRect(Adafruit_RA8875 &tft, std::string text, eUITex
 #endif
 
 #ifdef FT8XX
-Rectangle FontHelper::GetTextRect(DriverBase &tft, std::string text, eUITextFont font, Point textLoc)
+Rectangle FontHelper::GetTextRect(DriverBase &lcd, std::string text, eUITextFont font, Point textLoc)
 {
 	Point *charRect;
 	switch (font)

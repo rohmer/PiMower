@@ -14,17 +14,14 @@
 #include "../External/GD3/GD3.h"
 #include "FT8XX/Fonts.h"
 #endif
-#include "UIText.h"
 #include "../Utility/Logger.h"
 #include "../Options.h"
 #include "../Utility/FontHelper.h"
+#include "../Utility/Color.h"
 
 class UIWindow : public UIElement
 {
 public:
-	UIWindow(DriverBase &tft, Rectangle location, Theme &theme, eThemeObjState state,
-		std::string titleText = "", bool hasTitleBar = false, bool hasCloseIcon = false,
-		bool hasChrome = false, bool isModal = false, bool hasRoundCorners = false);
 	UIWindow(DriverBase &tft, Rectangle location, eUITextFont titleBarFont,
 		std::string titleText = "",	bool hasTitleBar = false, bool hasCloseIcon = false, 
 		bool hasChrome = false, bool isModal = false, bool hasRoundCorners=false, 

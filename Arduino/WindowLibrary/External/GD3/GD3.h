@@ -1,3 +1,4 @@
+#pragma once
 /*
  * Copyright (C) 2013-2016 by James Bowman <jamesb@excamera.com>
  * Gameduino 2 library for Arduino, Arduino Due, Raspberry Pi.
@@ -106,7 +107,7 @@ public:
   }
 };
 static class ASPI_t ASPI;
-#define SPI ASPI
+//#define SPI ASPI
 
 #endif
 

@@ -2,7 +2,7 @@
 #include "BatteryIcon.h"
 
 BatteryIcon::BatteryIcon(DriverBase &tft, Rectangle location, uint8_t pctCharged, bool charging)
-	: UIElement(tft, location, eThemeObjState::defaultState)
+	: UIElement(tft, location)
 {
 	this->pctCharged = pctCharged;
 	this->charging = charging;
