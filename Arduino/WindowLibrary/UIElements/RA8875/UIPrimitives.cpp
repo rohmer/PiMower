@@ -113,4 +113,11 @@ Rectangle UIPrimitives::Text(DriverBase & tft, uint32_t color, uint8_t alpha, ui
 	return (baseRect);
 }
 
+Rectangle UIPrimitives::Polygon(DriverBase &tft, std::vector<Point> points, uint16_t color, uint8_t alpha)
+{
+	// Lazy hack for now
+	if (points.size() != 3)
+		return;
+	tft.fillTriangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, Color::Color32To565(color));
+}
 #endif

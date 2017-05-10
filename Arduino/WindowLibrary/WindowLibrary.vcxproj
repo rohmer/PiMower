@@ -191,6 +191,7 @@
     <ClInclude Include="UIElements\BatteryIcon.h" />
     <ClInclude Include="UIElements\ControlDisplay\Button.h" />
     <ClInclude Include="UIElements\ControlDisplay\CheckBox.h" />
+    <ClInclude Include="UIElements\ControlDisplay\DropDownList.h" />
     <ClInclude Include="UIElements\ControlDisplay\ProgressBar.h" />
     <ClInclude Include="UIElements\ControlDisplay\RadioButton.h" />
     <ClInclude Include="UIElements\ControlDisplay\Slider.h" />
@@ -486,6 +487,7 @@
     <ClCompile Include="UIElements\BatteryIcon.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Button.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\DropDownList.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\ProgressBar.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\RadioButton.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Slider.cpp" />
@@ -502,6 +504,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PicoWindows.ino" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UIElements\ControlDisplay\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

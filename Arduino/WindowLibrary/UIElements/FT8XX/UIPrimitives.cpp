@@ -24,6 +24,7 @@ Rectangle UIPrimitives::SunkenPanel(DriverBase &tft, uint16_t x, uint16_t y, uin
 	GD.Vertex2f(x0 - 2, y0 - 2);
 	GD.Vertex2f(x1 + 2, y1 + 2);
 	GD.End();
+	GD.swap();
 	return (Rectangle(x0 - 5, y0 - 5, x1 + 2, y1 + 2));
 }
 
@@ -50,6 +51,7 @@ Rectangle  UIPrimitives::RaisedPanel(DriverBase &tft, uint16_t x, uint16_t y, ui
 	GD.Vertex2f(x0 - 3, y0 - 3);
 	GD.Vertex2f(x1 + 3, y1 + 3);
 	GD.End();
+	GD.swap();
 	return (Rectangle(x0 - 5, y0 - 5, x1 + 3, y1 + 3));
 }
 
@@ -64,6 +66,7 @@ Rectangle UIPrimitives::FlatPanel(DriverBase &tft, uint16_t x, uint16_t y, uint1
 	GD.Vertex2f(x + width, y + height);
 	GD.Vertex2f(x, y + height);
 	GD.End();
+	GD.swap();
 	return Rectangle(x, y, x + width, y + height);
 }
 
@@ -85,6 +88,7 @@ Rectangle  UIPrimitives::CircleSunken(DriverBase &tft, uint32_t color, uint8_t a
 	GD.ColorRGB(color);
 	GD.Vertex2f(x2, y2);
 	GD.End();
+	GD.swap();
 	return (Rectangle(x2 - 3 - ps, y2 - 3 - ps, x2 + 2 + ps, y2 + 2 + ps));
 }
 
@@ -106,6 +110,7 @@ Rectangle  UIPrimitives::CircleRaised(DriverBase &tft, uint32_t color, uint8_t a
 	GD.ColorRGB(color);
 	GD.Vertex2f(x2, y2);
 	GD.End();
+	GD.swap();
 	return (Rectangle(x2 - 2 - ps, y2 - 2 - ps, x2 + 4 + ps, y2 + 4 + ps));
 }
 
@@ -123,6 +128,7 @@ Rectangle  UIPrimitives::CircleFlat(DriverBase &tft, uint32_t color, uint8_t alp
 	GD.ColorRGB(color);
 	GD.Vertex2f(x2, y2);
 	GD.End();
+	GD.swap();
 	return (Rectangle(x2 - ps, y2 - ps, x2 + ps, y2 + ps));
 }
 
@@ -140,7 +146,30 @@ Rectangle  UIPrimitives::Text(DriverBase &tft, uint32_t color, uint8_t alpha, ui
 	Rectangle baseRect = FontHelper::GetTextRect(tft, text, (eUITextFont)font, Point(x, y));
 	baseRect.x2 += 2;
 	baseRect.y2 += 2;
+	GD.swap();
 	return (baseRect);
 }
 
+Rectangle Polygon(DriverBase &tft, std::vector<Point> points, uint16_t color, uint8_t alpha)
+{
+	Rectangle s(0,0,0,0);
+	GD.ColorA(alpha);
+	GD.ColorRGB(color);
+	Poly po;
+	po.begin();
+	for (int i = 0; i < points.size(); i++)
+	{
+		if (points[i].x < s.x1)
+			s.x1 = points[i].x;
+		if (points[i].x > s.x2)
+			s.x2 = points[i].x;
+		if (points[i].y < s.y1)
+			s.y1 = points[i].x;
+		if (points[i].y > s.y2)
+			s.y2 = points[i].y;
+		po.v(16 * points[i].x, 16 * points[i].y);
+	}
+	po.draw();
+	GD.swap();
+}
 #endif

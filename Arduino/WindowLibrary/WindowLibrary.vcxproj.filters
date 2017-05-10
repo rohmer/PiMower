@@ -1245,6 +1245,9 @@
     <ClInclude Include="UIElements\ControlDisplay\ProgressBar.h">
       <Filter>Header Files\UIElements\ControlDisplay</Filter>
     </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\DropDownList.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\Adafruit_GFX_Library\Adafruit_GFX.cpp">
@@ -1370,8 +1373,16 @@
     <ClCompile Include="UIElements\ControlDisplay\ProgressBar.cpp">
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\DropDownList.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PicoWindows.ino" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UIElements\ControlDisplay\ReadMe.txt">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </Text>
   </ItemGroup>
 </Project>

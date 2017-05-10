@@ -25,6 +25,7 @@ public:
 	static Rectangle CircleFlat(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint16_t radius);
 	static Rectangle Text(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint8_t font,
 		bool dropShadow, std::string text);
+	static Rectangle Polygon(DriverBase &tft, std::vector<Point> points, uint16_t color, uint8_t alpha);
 };
 
 #endif
