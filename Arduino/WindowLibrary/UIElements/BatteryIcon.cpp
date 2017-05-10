@@ -41,7 +41,7 @@ void BatteryIcon::Update()
 #endif
 	}
 
-	Rectangle positiveChargeRect(location.x2 - location.width / 10, location.center.y - location.width / 8, location.x2 - 1, location.center.y + location.width / 8);	
+	Rectangle positiveChargeRect(location.x2 - location.width / 10, location.center().y - location.width / 8, location.x2 - 1, location.center().y + location.width / 8);	
 	tft.fillRoundRect(positiveChargeRect.x1, positiveChargeRect.y1,
 		positiveChargeRect.width, positiveChargeRect.height, location.height/50,
 		Color::GetColor(Color::White));

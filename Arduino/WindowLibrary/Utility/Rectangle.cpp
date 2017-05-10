@@ -14,8 +14,6 @@ void Rectangle::update()
 {
 	this->width = abs(x2 - x1);
 	this->height = abs(y2 - y1);
-	center.x = x1 + width / 2;
-	center.y = y1 + height / 2;
 }
 
 bool Rectangle::occludes(Rectangle backgroundRect)

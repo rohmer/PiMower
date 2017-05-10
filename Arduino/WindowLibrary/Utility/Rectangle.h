@@ -23,8 +23,7 @@ public:
 			y2 = t;
 		}
 		width = abs(x2 - x1);
-		height = abs(y2 - y1);
-		center = Point(x1 + width / 2, y1 + height / 2);
+		height = abs(y2 - y1);		
 	}
 	Rectangle()
 		: x1(0)
@@ -43,9 +42,13 @@ public:
 		return true;
 	}
 
+	Point center()
+	{
+		return Point((abs(x2 - x1) / 2), (abs(y2 - y1) / 2));
+	}
+
 	void update();
 	bool contains(Point pt) const;
 	bool occludes(Rectangle backgroundRect);
-	int x1, y1, x2, y2, width, height;
-	Point center;
+	int x1, y1, x2, y2, width, height;	
 };

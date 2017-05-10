@@ -1236,6 +1236,15 @@
     <ClInclude Include="UIElements\ControlDisplay\CheckBox.h">
       <Filter>Header Files\UIElements\ControlDisplay</Filter>
     </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\Button.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\Slider.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\ProgressBar.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\Adafruit_GFX_Library\Adafruit_GFX.cpp">
@@ -1347,6 +1356,18 @@
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
     <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIRadioButton.cpp">
+      <Filter>Source Files\UIElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\Button.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\Slider.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\ProgressBar.cpp">
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
   </ItemGroup>

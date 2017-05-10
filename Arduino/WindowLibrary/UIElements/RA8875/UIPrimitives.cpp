@@ -96,14 +96,18 @@ Rectangle UIPrimitives::CircleFlat(DriverBase &tft, uint32_t color, uint16_t x, 
 	return (Rectangle(x2 - ps, y2 - ps, x2 + ps, y2 + ps));
 }
 
-Rectangle UIPrimitives::Text(DriverBase & tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint8_t font, bool dropShadow, std::string text)
+Rectangle UIPrimitives::Text(DriverBase & tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, 
+	uint8_t font, bool dropShadow, std::string text)
 {
+	// We need to center the text on x,y
+	Rectangle baseRect = FontHelper::GetTextRect(tft, text, (eUITextFont)font, Point(x, y));
+	Point centerPt = baseRect.center();
 	if (dropShadow)
 	{
-		tft.textWrite(x + 2, y + 2, (eUITextFont)font, Color::Color32To565(0x000000), 0, text);
+		tft.textWrite(centerPt.x + 2, centerPt.y + 2, (eUITextFont)font, Color::Color32To565(0x000000), 0, text);
 	}
-	tft.textWrite(x, y, (eUITextFont)font, Color::Color32To565(color), 0, text);
-	Rectangle baseRect = FontHelper::GetTextRect(text, (eUITextFont)font, Point(x, y));
+	tft.textWrite(centerPt.x, centerPt.y, (eUITextFont)font, Color::Color32To565(color), 0, text);
+	
 	baseRect.x2 += 2;
 	baseRect.y2 += 2;
 	return (baseRect);

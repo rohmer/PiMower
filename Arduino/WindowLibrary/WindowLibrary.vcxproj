@@ -189,8 +189,11 @@
     <ClInclude Include="Images\Image.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="UIElements\BatteryIcon.h" />
+    <ClInclude Include="UIElements\ControlDisplay\Button.h" />
     <ClInclude Include="UIElements\ControlDisplay\CheckBox.h" />
+    <ClInclude Include="UIElements\ControlDisplay\ProgressBar.h" />
     <ClInclude Include="UIElements\ControlDisplay\RadioButton.h" />
+    <ClInclude Include="UIElements\ControlDisplay\Slider.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts\aileronBlack12.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts\aileronBlack18.h" />
@@ -481,11 +484,15 @@
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSTM32F1.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiTeensy3.cpp" />
     <ClCompile Include="UIElements\BatteryIcon.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\Button.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\ProgressBar.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\RadioButton.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\Slider.cpp" />
     <ClCompile Include="UIElements\FT8XX\UIPrimitives.cpp" />
     <ClCompile Include="UIElements\RA8875\UIPrimitives.cpp" />
     <ClCompile Include="UIElements\UICheckBox.cpp" />
+    <ClCompile Include="UIElements\UIRadioButton.cpp" />
     <ClCompile Include="UIElements\UIWindow.cpp" />
     <ClCompile Include="Utility\FontHelper.cpp" />
     <ClCompile Include="Utility\ImageHelper.cpp" />

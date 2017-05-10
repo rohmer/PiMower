@@ -11,7 +11,10 @@ Rectangle CheckBox::Draw(DriverBase &tft, bool sunken, bool isChecked, uint16_t 
 	Rectangle boxR;
 	if (is3D)
 	{
-		boxR = UIPrimitives::SunkenPanel(tft, x, y, radius, radius, cornerRadius, uncheckedColor, 255);
+		if(sunken)
+			boxR = UIPrimitives::SunkenPanel(tft, x, y, radius, radius, cornerRadius, uncheckedColor, 255);
+		else
+			boxR = UIPrimitives::RaisedPanel(tft, x, y, radius, radius, cornerRadius, uncheckedColor, 255);
 	}
 	else
 	{		

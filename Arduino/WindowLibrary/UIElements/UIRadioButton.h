@@ -6,23 +6,16 @@
 #include "../Utility/Color.h"
 #include "UIElement.h"
 #include <SPI.h>
-#ifdef RA8875 
-#include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
-#include "RA8875/Fonts.h"
-#endif
-#ifdef FT8XX
-#include "../External/GD3/GD3.h"
-#include "FT8XX/Fonts.h"
-#endif
-#include "../Utility/FontHelper.h"
 #include "../Utility/Rectangle.h"
+#include "ControlDisplay/RadioButton.h"
 
 
 class UIRadioButton : public UIElement
 {
 public:
 	UIRadioButton(DriverBase &tft, Rectangle location, std::string text, bool checked, eUITextFont textFont, 
-		uint16_t textColor, uint8_t textScale, uint16_t controlColor, uint16_t checkColor);
+		uint16_t textColor, uint8_t textScale, uint16_t controlColor, uint16_t checkColor, bool is3D=true, 
+		bool textToRight=true);
 
 	void Update() override;
 	void SetText(std::string text);
@@ -32,11 +25,10 @@ public:
 		return isChecked;
 	}
 	sTouchResponse ProcessTouch(Point touchPoint) override;
-	~UIRadioButton();
-
-private:
+	
+private:	
 	std::string buttonText;
-	bool isChecked;
+	bool isChecked, is3D, textRight;
 	eUITextFont textFont;
 	uint16_t textColor, controlColor, checkColor;
 	uint8_t textScale;	
