@@ -7,9 +7,9 @@
 //#define FT_801
 //#define FT_810
 //#define FT_811
-#define FT_812
+//#define FT_812
 //#define FT_813
-//#define RA8875
+#define RA8875
 
 #ifdef FT_800
 #define FT_800_ENABLE		1
@@ -21,7 +21,7 @@
 #define FT_801_ENABLE		1
 #define FT8XX
 #else
-#define FT8XX
+#define FT_801_ENABLE		0
 #endif
 #ifdef FT_810
 #define FT8XX
@@ -62,7 +62,7 @@
 #endif
 
 // Will remove logging, otherwise the logging is set to WARNING
-#define NOLOGGING
+//#define NOLOGGING
 
 #ifndef NOLOGGING
 	#define DEBUG_ENABLED

@@ -25,7 +25,7 @@ public:
 	UIWindow(DriverBase &tft, Rectangle location, eUITextFont titleBarFont,
 		std::string titleText = "",	bool hasTitleBar = false, bool hasCloseIcon = false, 
 		bool hasChrome = false, bool isModal = false, bool hasRoundCorners=false, 
-		bool hasShadow=true, uint16_t shadowColor=Color::GetColor(Color::DimGray), 
+		bool hasShadow=true, uint16_t shadowColor=Color::GetColor(Color::DarkGray), 
 		uint16_t titleBarColor= Color::GetColor(Color::Blue),
 		uint16_t titleTextColor= Color::GetColor(Color::White), 
 		uint16_t chromeColor= Color::GetColor(Color::White),

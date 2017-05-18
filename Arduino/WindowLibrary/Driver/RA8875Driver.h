@@ -7,7 +7,11 @@
 class RA8875Driver : public DriverBase
 {
 public:
+	RA8875Driver();
 	RA8875Driver(uint16_t width, uint16_t height, 
+		uint8_t cs = 10, uint8_t rst = 9);
+
+	void Init(uint16_t width, uint16_t height,
 		uint8_t cs = 10, uint8_t rst = 9);
 
 	eDriverType getDriverType()
@@ -85,8 +89,8 @@ public:
 	uint8_t readStatus() override;
 	bool waitPoll(uint8_t r, uint8_t f) override;
 
-	void virtual textWrite(uint16_t x, uint16_t y, uint32_t textColor, eUITextFont font,
-		uint16_t justification, std::string text);
+	void textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t textColor,
+		uint16_t justification, std::string text) override;
 
 	// RA8875 Specific functions
 	inline uint16_t Color565(uint8_t r, uint8_t g, uint8_t b) { return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3); }

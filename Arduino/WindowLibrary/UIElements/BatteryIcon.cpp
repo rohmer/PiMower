@@ -65,20 +65,36 @@ void BatteryIcon::Update()
 	uint8_t yellowThresh = chargeBars*.8;
 	uint8_t darkGreenThresh = chargeBars*.9;
 	
+	uint16_t brightRed, orange, yellow, darkGreen, lightGreen;
+#ifdef FT8XX
+	brightRed = Color::Crimson;
+	orange = Color::OrangeRed;
+	yellow = Color::Yellow;
+	darkGreen = Color::DarkGreen;
+	lightGreen = Color::LightGreen;
+#endif
+#ifdef RA8875
+	brightRed = Color::BrightRed;
+	orange = Color::LightOrange;
+	yellow = Color::Yellow;
+	darkGreen = Color::Green;
+	lightGreen = Color::LightGreen;
+#endif
+
 	for (int i = 1; i <= chargeBarsToShow; i++)
 	{
-		uint32_t color = Color::GetColor(Color::Green);
+		uint32_t color = lightGreen;
 		if (i < briteRedThresh)
-			color = Color::GetColor(Color::Crimson);
+			color = brightRed;
 		else
 			if (i < orangeThresh)
-				color = Color::GetColor(Color::OrangeRed);
+				color = orange;
 			else
 				if (i < yellowThresh)
-					color = Color::GetColor(Color::Yellow);
+					color = yellow;
 				else
 					if (i < darkGreenThresh)
-						color = Color::DarkGreen;
+						color = darkGreen;
 			uint16_t startX = (batterySliceRect.width)*(i - 1) + location.width / 45;
 			uint16_t width = batterySliceRect.width - location.width / 50;
 #ifdef FT8XX

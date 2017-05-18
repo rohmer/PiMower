@@ -1376,6 +1376,9 @@
     <ClCompile Include="UIElements\ControlDisplay\DropDownList.cpp">
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\Color.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PicoWindows.ino" />

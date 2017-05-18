@@ -1,12 +1,61 @@
 #pragma once
 #include <stdint.h>
 #include "../Options.h"
+#include "Logger.h"
 
 ///Implements definition and operations with color
 class Color
 {
 public:
 	/// Common color constants
+#ifdef RA8875
+	enum ColorDefs
+	{
+		Black			= 0x0000,
+		White			= 0xFFFF,
+		BrightRed		= 0xF800,
+		BrightGreen		= 0x07E0,
+		BrightBlue		= 0x001F,
+		BrightCyan		= 0x07FF,
+		BrightMagenta	= 0xF81F,
+		Yellow			= 0xFFF0,
+		BrightYellow	= 0xFFE0,
+		LightYellow		= 0xFFF2,
+		Gold			= 0xFEA0,
+		Blue			= 0x0010,
+		Green			= 0x0400,
+		Cyan			= 0x0410,
+		Red				= 0x8000,
+		Magenta			= 0x8010,
+		Brown			= 0xFC00,
+		LightGray		= 0x8410,
+		DarkGray		= 0x4208,
+		LightBlue		= 0x841F,
+		LightGreen		= 0x87F0,
+		LightCyan		= 0x87FF,
+		LightRed		= 0xFC10,
+		LightMagenta	= 0xFC1F,
+		SaddleBrown		= 0x8A22,
+		Sienna			= 0xA285,
+		Peru			= 0xCC27,
+		Burlywood		= 0xDDD0,
+		Wheat			= 0xF7BB,
+		Tan				= 0xD5B1,
+		Orange			= 0xFDC9,
+		DarkOrange		= 0xFC60,
+		LightOrange		= 0xFE40,
+		Gray242			= 0xF79E,
+		Gray229			= 0xE73C,
+		Gray204			= 0xCE79,
+		Gray192			= 0xC618,
+		Gray160			= 0xA514,
+		Gray128			= 0x8410,
+		Gray96			= 0x630C,
+		Gray32			= 0x2104,
+		Gray10			= 0x0841
+	};
+#endif
+#ifdef FT8XX
 	enum ColorDefs
 	{
 		AliceBlue = 0xFFF0F8FF,
@@ -151,10 +200,11 @@ public:
 		Yellow = 0xFFFFFF00,
 		YellowGreen = 0xFF9ACD32
 	};
+#endif
 
 	inline static uint16_t Color565(uint8_t r, uint8_t g, uint8_t b) { return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3); }
-	inline static uint16_t GetColor565(ColorDefs color) { return (uint16_t)(((color & 0xF80000) >> 8) | ((color & 0x00FC00) >> 5) | ((color & 0x0000F8) >> 3)); }
-	inline static uint16_t Color32To565(int32_t color) { return ((((color >> 16) & 0xFF) / 8) << 11) | ((((color >> 8) & 0xFF) / 4) << 5) | (((color) & 0xFF) / 8); }
+	static uint16_t GetColor565(ColorDefs color);	
+	static uint16_t Color32To565(int32_t color);	 
 	inline static  void 	Color565ToRGB(uint16_t color, uint8_t &r, uint8_t &g, uint8_t &b) { r = (((color & 0xF800) >> 11) * 527 + 23) >> 6; g = (((color & 0x07E0) >> 5) * 259 + 33) >> 6; b = ((color & 0x001F) * 527 + 23) >> 6; }
 	static ColorDefs GetColor(ColorDefs color)
 	{

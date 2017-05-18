@@ -2,101 +2,69 @@
 
 Rectangle Slider::Draw(DriverBase &tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 	uint32_t textColor, uint32_t sliderBarColor, uint32_t sliderControlColor, eUITextFont font,
-	int16_t value, int16_t minValue, int16_t maxValue, bool is3D, uint8_t cornerRadius,
+	int16_t value, int16_t minValue, int16_t maxValue, bool is3D,
 	uint8_t alpha)
 {
 	bool horiz = (width >= height);
-	Rectangle barRect;
-	if (is3D)
-	{
-		if (horiz)
-		{
-			barRect = UIPrimitives::RaisedPanel(tft, x, (height / 5) + y, width, height*0.4, cornerRadius, sliderBarColor, alpha);
-		}
-		else
-		{
-			barRect = UIPrimitives::RaisedPanel(tft, (width / 5) + 5, y, width*0.4, height, cornerRadius, sliderBarColor, alpha);
-		}
-	}
-	else
-	{
-		if (horiz)
-		{
-			barRect = UIPrimitives::FlatPanel(tft, x, (height / 5) + y, width, height*0.4, cornerRadius, sliderBarColor, alpha);
-		}
-		else
-		{
-			barRect = UIPrimitives::FlatPanel(tft, (width / 5) + 5, y, width*0.4, height, cornerRadius, sliderBarColor, alpha);
-		}
-	}
-
-	// Next draw the slider control
-
-	// Find out where we are
-	float pct = (value + abs(minValue)) / abs(minValue) + abs(maxValue);
-	uint16_t centerX, centerY;
+	
+	uint16_t fifth;
 	if (horiz)
-	{
-		centerX = barRect.x1 + (barRect.width*pct);
-		centerY = barRect.center().y;
-	}
+		fifth = height / 5;
 	else
-	{
-		centerX = barRect.center().x;
-		centerY = barRect.y1 + (barRect.height*pct);
-	}
+		fifth = width / 5;
 
-	// Now draw the actual slider control
+	if (fifth < 1)
+		fifth = 1;
+
+	Logger::Trace("0");
+	// Draw the main bar
 	if (horiz)
 	{
 		if (is3D)
-		{
-			UIPrimitives::RaisedPanel(tft, centerX - 5, centerY - (barRect.height), 10, barRect.height * 2, 
-				cornerRadius, sliderControlColor, alpha);
-		}
+			UIPrimitives::RaisedPanel(tft, x, y + fifth, width, fifth, 0, sliderBarColor, alpha);
 		else
-		{
-			UIPrimitives::FlatPanel(tft, centerX - 5, centerY - (barRect.height), 10, barRect.height * 2,
-				cornerRadius, sliderControlColor, alpha);
-		}
+			UIPrimitives::FlatPanel(tft, x, y + fifth, width, fifth, sliderBarColor, alpha);
 	}
 	else
 	{
 		if (is3D)
-		{
-			UIPrimitives::RaisedPanel(tft, centerY - (barRect.width), centerY - 5, barRect.width*2, 10,
-				cornerRadius, sliderControlColor, alpha);
-		}
+			UIPrimitives::RaisedPanel(tft, x + fifth, y, fifth, height, 0, sliderBarColor, alpha);
 		else
-		{
-			UIPrimitives::FlatPanel(tft, centerY - (barRect.width), centerY - 5, barRect.width * 2, 10,
-				cornerRadius, sliderControlColor, alpha);
-		}
+			UIPrimitives::FlatPanel(tft, x + fifth, y, fifth, height, 0, sliderBarColor, alpha);
 	}
-	std::ostringstream s;
-	s << value;
-	// Now draw the value below or to the right of it
+	// Get the percentage	
+	double pct;	
+	
+	int denom = minValue + maxValue;
+	int num = minValue + value;
+	if (denom > 0)
+		pct = ((double)num / (double)denom);
+	else
+		pct = 0.0;
+	
+	// Draw the slider control
+	uint16_t startX = x + (width*pct);
+	uint16_t startY = y + (width*pct);
 	if (horiz)
 	{
-		UIPrimitives::Text(tft, textColor, alpha, barRect.center().x, barRect.center().y + barRect.height * 3, font, is3D, s.str());
+		if (is3D)
+			UIPrimitives::RaisedPanel(tft, startX, y, 10, fifth * 3, 0, sliderControlColor, alpha);
+		else
+			UIPrimitives::FlatPanel(tft, startX, y, 10, fifth * 3, 0, sliderControlColor, alpha);		
 	}
 	else
 	{
-		UIPrimitives::Text(tft, textColor, alpha, barRect.center().x + barRect.width * 3, barRect.center().y, font, is3D, s.str());
+		if (is3D)
+			UIPrimitives::RaisedPanel(tft, x, startY, fifth * 3, 10, 0, sliderControlColor, alpha);
+		else
+			UIPrimitives::FlatPanel(tft, x, startY, fifth * 3, 10, 0, sliderControlColor, alpha);
 	}
 
-	// Return the total size
-	if (horiz)
-	{
-		return Rectangle(barRect.x1, 
-			centerY - (barRect.width), 
-			barRect.x2, 
-			barRect.center().y + barRect.height * 3 + FontHelper::GetTextRect(tft, "1234567890", font, Point(0, 0)).height*0.5);
-	}
-	return Rectangle(centerX-(barRect.height),
-		barRect.y1,
-		barRect.center().x+barRect.width*3+ FontHelper::GetTextRect(tft, "1234567890", font, Point(0, 0)).width*0.5,
-		barRect.y1);
+	// Now draw the value
+	std::stringstream ss;
+	ss << (pct * 100);
+	int halfWidth = FontHelper::GetTextRect(tft, ss.str(), font, Point(0, 0)).width / 2;
+	UIPrimitives::Text(tft, textColor, alpha, x + (width*0.5)-halfWidth, y+fifth * 4, font, is3D, ss.str());
 }
 
 // Figures out what the value should be based on a touchpoint

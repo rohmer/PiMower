@@ -1,7 +1,7 @@
 #include "FT8XXDriver.h"
-
+#ifdef FT8XX
 FT8XXDriver::FT8XXDriver(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9) :
-	DriverBase(width, height,eDriverType::FT81XX)
+	DriverBase(width, height,eDriverType::FT8XXDriver)
 {
 	GD.begin();
 #ifdef DEBUG
@@ -423,3 +423,4 @@ void FT8XXDriver::textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t t
 	GD.cmd_text(x, y, font, justification, text.c_str());
 	GD.swap();
 }
+#endif

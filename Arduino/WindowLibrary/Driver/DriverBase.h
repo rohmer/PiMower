@@ -25,8 +25,8 @@ enum eDisplayRotation
 
 enum eDriverType
 {
-	RA8875 = 0,
-	FT81XX = 1
+	DriverRA8875 = 0,
+	DriverFT8XX = 1	
 };
 
 class DriverBase

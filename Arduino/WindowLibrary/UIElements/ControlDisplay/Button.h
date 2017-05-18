@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Options.h"
-
+#include "../../Utility/Color.h"
 #ifdef FT8XX
 #include "../FT8XX/UIPrimitives.h"
 #endif

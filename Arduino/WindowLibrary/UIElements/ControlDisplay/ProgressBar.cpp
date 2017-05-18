@@ -11,52 +11,36 @@ Rectangle ProgressBar::Draw(DriverBase &tft, uint16_t x, uint16_t y, uint16_t wi
 		{
 			// First background
 			UIPrimitives::SunkenPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-			// Then used part
-			float pct = progress / 100;
-			UIPrimitives::RaisedPanel(tft, x, y, width*pct, height, cornerRadius, barProgressColor, alpha);
-			// Now the text
-			std::ostringstream s;
-			s << progress;
-			UIPrimitives::Text(tft, textColor, alpha, x + ((width*pct) / 2), y + (height / 2), font, true, s.str());
 		}
 		else
 		{
 			// First background
 			UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-			// Then used part
-			float pct = progress / 100;
-			UIPrimitives::FlatPanel(tft, x, y, width*pct, height, cornerRadius, barProgressColor, alpha);
-			// Now the text
-			std::ostringstream s;
-			s << progress;
-			UIPrimitives::Text(tft, textColor, alpha, x + ((width*pct) / 2), y + (height / 2), font,false, s.str());
 		}
-	}
-
-	if (is3D)
-	{
-		// First background
-		UIPrimitives::SunkenPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-		// Then used part
-		float pct = progress / 100;
-		UIPrimitives::RaisedPanel(tft, x, y, width, height*pct, cornerRadius, barProgressColor, alpha);
-		// Now the text
-		std::ostringstream s;
-		s << progress;
-		UIPrimitives::Text(tft, textColor, alpha, x + (width / 2), y + ((height*pct) / 2), font, true, s.str());
 	}
 	else
 	{
-		// First background
-		UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-		// Then used part
-		float pct = progress / 100;
-		UIPrimitives::FlatPanel(tft, x, y, width, height*pct, cornerRadius, barProgressColor, alpha);
-		// Now the text
-		std::ostringstream s;
-		s << progress;
-		UIPrimitives::Text(tft, textColor, alpha, x + (width / 2), y + ((height*pct) / 2), font, false, s.str());
+		if (is3D)
+		{
+			// First background
+			UIPrimitives::SunkenPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
+		}
+		else
+		{
+			// First background
+			UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
+		}
 	}
+	float pct = 0;
+	if (progress>0)
+		pct = static_cast<float>((static_cast<float>(progress * 100) / 10000.0));
+	Logger::Trace("Progress Bar: pct: %d,  %d,%d,%d,%d", pct, x, y, width*pct, height);
+	Rectangle progressRect = UIPrimitives::FlatPanel(tft, x + 5, y + 5, width*pct - 10, height - 10,
+		cornerRadius, barProgressColor, alpha);	
+	std::stringstream ss;
+	ss << (pct*100) << " %";
+	UIPrimitives::Text(tft, textColor, alpha, x+5+(width*pct)/2-10, y+height/2,
+		font, is3D, ss.str());
 	return (Rectangle(x, y, x + width, y + height));
 }
 
@@ -64,6 +48,11 @@ Rectangle ProgressBar::Draw(DriverBase &tft, uint16_t x, uint16_t y, uint16_t wi
 	uint16_t height, uint8_t progress, uint32_t barBGColor, uint32_t barProgressColor,
 	bool is3D = true, uint8_t cornerRadius = 4, uint8_t alpha = 255)
 {
+#ifdef DEBUG
+	Logger::Trace("ProgressBar::Dar(TFT,%d,%d,%d,%d,%d,%d,%d,%s,%d,%d)",
+		x, y, width, height, progress, barBGColor, barProgressColor, Logger::BoolToStr(is3D).c_str(),
+		cornerRadius, alpha);
+#endif
 	bool horiz = (width >= height);
 	if (horiz)
 	{
@@ -71,35 +60,37 @@ Rectangle ProgressBar::Draw(DriverBase &tft, uint16_t x, uint16_t y, uint16_t wi
 		{
 			// First background
 			UIPrimitives::SunkenPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-			// Then used part
-			float pct = progress / 100;
-			UIPrimitives::RaisedPanel(tft, x, y, width*pct, height, cornerRadius, barProgressColor, alpha);			
+			// Then used part			
 		}
 		else
 		{
 			// First background
 			UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
 			// Then used part
-			float pct = progress / 100;
-			UIPrimitives::FlatPanel(tft, x, y, width*pct, height, cornerRadius, barProgressColor, alpha);			
 		}
-	}
-
-	if (is3D)
-	{
-		// First background
-		UIPrimitives::SunkenPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-		// Then used part
-		float pct = progress / 100;
-		UIPrimitives::RaisedPanel(tft, x, y, width, height*pct, cornerRadius, barProgressColor, alpha);		
 	}
 	else
 	{
-		// First background
-		UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
-		// Then used part
-		float pct = progress / 100;
-		UIPrimitives::FlatPanel(tft, x, y, width, height*pct, cornerRadius, barProgressColor, alpha);		
+
+		if (is3D)
+		{
+			// First background
+			UIPrimitives::SunkenPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
+			// Then used part
+		}
+		else
+		{
+			// First background
+			UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, barBGColor, alpha);
+			// Then used part
+		}
 	}
+	float pct = 0;
+	if (progress>0)
+		pct = static_cast<float>((static_cast<float>(progress * 100) / 10000.0));
+	Logger::Trace("Progress Bar: pct: %d,  %d,%d,%d,%d", pct, x, y, width*pct, height);
+	Rectangle progressRect= UIPrimitives::FlatPanel(tft, x + 5, y + 5, width*pct - 10, height - 10, 
+		cornerRadius, barProgressColor, alpha);
+
 	return (Rectangle(x, y, x + width, y + height));
 }

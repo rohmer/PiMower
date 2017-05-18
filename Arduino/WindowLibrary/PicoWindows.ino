@@ -9,52 +9,68 @@
 #include <system_configuration.h>
 #include <StandardCplusplus.h>
 #include "Options.h"
-#include "External\Adafruit_RA8875\Adafruit_RA8875.h"
-#include "UIElements\UIElements.h"
+#include "Driver\DriverBase.h"
+#include "Driver\RA8875Driver.h"
+#include "UIElements\ControlDisplay\Button.h"
+#include "UIElements\ControlDisplay\CheckBox.h"
+#include "UIElements\ControlDisplay\DropDownList.h"
+#include "UIElements\ControlDisplay\ProgressBar.h"
+#include "UIElements\ControlDisplay\RadioButton.h"
+#include "UIElements\ControlDisplay\Slider.h"
+#include "Utility\Logger.h"
+#include "Utility\Color.h"
+bool updated = false;
+uint8_t prog = 0;
 
-void createTheme()
-{
-}
-
+RA8875Driver lcd;
 // the setup function runs once when you press reset or power the board
 void setup() {
-	/*if (!lcd.begin(RA8875_800x480))
-	{
-		Serial.println("RA8875 not found");
-		while (1);
-	}
-
-	Serial.println("Found RA8875");
-	lcd.displayOn(true);	
-	lcd.GPIOX(true);
-	lcd.PWM1config(true, RA8875_PWM_CLK_DIV1024); // PWM output for backlight
-	lcd.PWM1out(128);
 	
-	lcd.graphicsMode();
-	lcd.fillScreen(RA8875_BLACK);
-	
-	//uiWindow = new UIWindow(lcd, Rectangle(50, 50, 350, 350), eUITextFont::AileronLight12, "Test Window!", true, true, true, false, true);
-	//rButton1 = new UIRadioButton(lcd, Rectangle(10, 10, 0, 0), "Checked Button", true, eUITextFont::AileronBlack12, Color::White, 2, Color::White, Color::Yellow);
-	//rButton2 = new UIRadioButton(lcd, Rectangle(10, 50, 0, 0), "Button", false, eUITextFont::AileronBlack12, Color::White, 1, Color::White, Color::LightGreen);
-	//button = new UIButton(lcd, Rectangle(50, 50, 300, 150), "Test Button!", eUITextFont::AileronBlack12,RA8875_WHITE, 2,Color::DarkGoldenrod, RA8875_WHITE, 4, Color::Goldenrod, Color::Aqua, Color::Gray, 4, Color::Gray, 4, false, true, 6);
-	//cb1 = new UICheckBox(lcd, Rectangle(400, 100, 0, 0), "Checked Box!", true, eUITextFont::AileronBoldItalic12, RA8875_WHITE, 3, RA8875_WHITE, Color::DarkGray, 4, 3, RA8875_RED, true, 4);
-	//editor = new UIAlphaNumericEditor(lcd, "", eUITextFont::AileronRegular12, RA8875_BLACK, Color::DarkGray, RA8875_WHITE, 2, Color::Black, 4,3);
-	//image = new UIImage(lcd, Rectangle(100, 100, 63, 34), Battery15pct);
-	batteryIcon = new BatteryIcon(lcd, Rectangle(10, 10, 790, 470), 100, true);
-	*/
 }
 
 // the loop function runs over and over again until power down or reset
-void loop() {
-	/*uiWindow->Update();
-	//rButton1->Update();
-	//rButton2->Update();
-	//button->Update();
-	//editor->Update();
-	//cb1->Update();
-	//image->Update();
-	batteryIcon->Update();
-	*/
+void loop() 
+{
+
+	if (!updated)
+	{
+		lcd.Init(800, 480);		
+		lcd.fillScreen(Color::Color32To565(Color::White));
+		Button::Draw(lcd, true, 50, 50, 200, 100, Color::White, Color::Red
+			, eUITextFont::AileronRegular12, "Button", true);
+		Button::Draw(lcd, false, 300, 50, 200, 100, Color::Red, Color::Yellow
+			, eUITextFont::AileronRegular12, "Button Two", true);
+		CheckBox::Draw(lcd, false, false, 50, 200, Color::Black, Color::White
+			, Color::Red, eUITextFont::AileronRegular12, "Not Checked");
+		CheckBox::Draw(lcd, false, true, 275, 200, Color::Black, Color::White
+			, Color::Red, eUITextFont::AileronRegular12, "Checked");
+		updated = true;
+		RadioButton::Draw(lcd, false, false, 50, 175, Color::White, Color::White, Color::Black,
+			eUITextFont::AileronRegular12, "Unchecked Radio");
+		RadioButton::Draw(lcd, false, true, 275, 175, Color::White, Color::White, Color::Black,
+			eUITextFont::AileronRegular12, "Checked Radio");
+		std::vector<std::string> dropDownItems;
+		dropDownItems.push_back("Item #1");
+		dropDownItems.push_back("Item #2");
+		dropDownItems.push_back("Item #3");
+		dropDownItems.push_back("Item #4");
+		dropDownItems.push_back("Item #5");
+		DropDownList::Draw(lcd, 50, 235, 125, 20, Color::Black, Color::White, Color::White, 255, 4, eUITextFont::AileronRegular12,
+			dropDownItems, 0, true);
+
+		DropDownList::DrawExpanded(lcd, 275, 235, 125, 20, Color::Black, Color::White, Color::White, 255, 4, eUITextFont::AileronRegular12,
+			dropDownItems, 0, true);
+		ProgressBar::Draw(lcd, 50, 400, 300, 30, 75, RA8875_WHITE, Color::Red,
+			Color::Green, eUITextFont::AileronRegular12, true, 4, 255);
+
+		Slider::Draw(lcd, 50, 285, 125, 30, Color::Black, Color::White, Color::Orange, eUITextFont::AileronRegular12,
+			50, 0, 100);
+
+		Logger::Trace("Stuff Drawn");
+	}
+	
+		
+	
 }
 
 /*

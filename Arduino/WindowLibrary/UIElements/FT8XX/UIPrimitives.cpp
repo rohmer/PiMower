@@ -133,16 +133,29 @@ Rectangle  UIPrimitives::CircleFlat(DriverBase &tft, uint32_t color, uint8_t alp
 }
 
 Rectangle  UIPrimitives::Text(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint8_t font,
-	bool dropShadow, std::string text)
+		bool dropShadow, std::string text, eTextHJustify justify)
 {
 	GD.ColorA(alpha);
+	uint16_t just;
+	switch (justify)
+	{
+	case(eTextHJustify::Left):
+		just = 0;
+		break;
+	case(eTextHJustify::Center):
+		just = OPT_CENTERX;
+		break;
+	case(eTextHJustify::Right):
+		just = OPT_RIGHTX;
+		break;
+	}
 	if (dropShadow)
 	{
 		GD.ColorRGB(0x000000);
-		GD.cmd_text(x+2, y+2, font, OPT_CENTER, text.c_str());		
+		GD.cmd_text(x+2, y+2, font, just, text.c_str());		
 	}
 	GD.ColorRGB(color);
-	GD.cmd_text(x, y, font, OPT_CENTER, text.c_str());
+	GD.cmd_text(x, y, font, just, text.c_str());
 	Rectangle baseRect = FontHelper::GetTextRect(tft, text, (eUITextFont)font, Point(x, y));
 	baseRect.x2 += 2;
 	baseRect.y2 += 2;

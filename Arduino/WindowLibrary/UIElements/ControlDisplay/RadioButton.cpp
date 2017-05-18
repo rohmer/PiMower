@@ -6,12 +6,20 @@ Rectangle RadioButton::Draw(DriverBase &tft, bool sunken, bool isChecked, uint16
 {
 	// We need the size of the text, to get the size of the radio button
 	Rectangle r=FontHelper::GetTextRect(tft, text, font, Point(x, y));
-	uint16_t radius = r.height;
-
+	uint16_t radius = r.height/2;
+	x = x + radius;
+	y = y + radius;
 	Rectangle circleR;
 	if (is3D)
 	{
-		circleR=UIPrimitives::CircleSunken(tft, uncheckedColor, 255, x, y, radius);
+		if (sunken)
+		{
+			circleR = UIPrimitives::CircleSunken(tft, uncheckedColor, 255, x, y, radius);
+		}
+		else
+		{
+			circleR = UIPrimitives::CircleRaised(tft, uncheckedColor, 255, x, y, radius);
+		}
 	}
 	else
 	{
@@ -26,7 +34,7 @@ Rectangle RadioButton::Draw(DriverBase &tft, bool sunken, bool isChecked, uint16
 	int16_t textX;
 	if (textRight)
 	{
-		textX = circleR.x2 + (radius / 2);
+		textX = circleR.x2 + (radius);
 	}
 	else
 	{

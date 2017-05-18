@@ -9,11 +9,19 @@
 #include "../../Utility/Rectangle.h"
 #include "../../Driver/DriverBase.h"
 #include "Arduino.h"
+#include "../../Utility/Color.h"
 
 // Defines different drawing primitives used in a bunch of other elements
 class UIPrimitives
 {
 public:
+	enum eTextHJustify
+	{
+		Left,
+		Center,
+		Right
+	};
+
 	static Rectangle SunkenPanel(DriverBase &tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 		uint8_t cornerRadius, uint32_t color, uint8_t alpha=255);
 	static Rectangle RaisedPanel(DriverBase &tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,
@@ -24,7 +32,8 @@ public:
 	static Rectangle CircleRaised(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint16_t radius);
 	static Rectangle CircleFlat(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint16_t radius);
 	static Rectangle Text(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint8_t font,
-		bool dropShadow, std::string text);
+		bool dropShadow, std::string text, eTextHJustify justify=eTextHJustify::Center);
+
 	static Rectangle Polygon(DriverBase &tft, std::vector<Point> points, uint16_t color, uint8_t alpha);
 };
 
