@@ -103,6 +103,7 @@ Rectangle NumericEntry::Draw(DriverBase &tft, uint16_t x, uint16_t y, uint16_t c
 	UIPrimitives::FlatPanel(tft, x + 6, y + 60 + 300 + 24, 240, 75, 0, controlBGColor);
 	UIPrimitives::Text(tft, textColor, 255, x + 6 + 120 - keyTWidth / 2, y + 60 + 300 + 24 + 37, font, is3D, "Close");
 
+	return (Rectangle(x, y, x + 250, y + 462));
 }
 
 void NumericEntry::UpdateInput(DriverBase &tft, uint16_t x, uint16_t y, uint16_t controlBGColor,

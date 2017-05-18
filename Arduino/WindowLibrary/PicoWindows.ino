@@ -18,6 +18,8 @@
 #include "UIElements\ControlDisplay\RadioButton.h"
 #include "UIElements\ControlDisplay\Slider.h"
 #include "UIElements\ControlDisplay\NumericEntryRA8875.h"
+#include "UIElements\ControlDisplay\TextEntryRA8875.h"
+
 #include "Utility\Logger.h"
 #include "Utility\Color.h"
 bool updated = false;
@@ -68,7 +70,7 @@ void loop()
 		Slider::Draw(lcd, 50, 285, 125, 30, Color::Black, Color::White, Color::Orange, eUITextFont::AileronRegular12,
 			50, 0, 100);
 		*/
-		NumericEntry::Draw(lcd, 0, 0, Color::Gray204, Color::Gray128, Color::White, eUITextFont::AileronRegular12, "100");
+		TextEntry::Draw(lcd, TextEntry::eKeyboardState::normal, 0, 0, Color::Gray204, Color::Gray128, Color::White, eUITextFont::AileronRegular12, "Some Text To Edit");
 		Logger::Trace("Stuff Drawn");
 	}
 	updated = true;
