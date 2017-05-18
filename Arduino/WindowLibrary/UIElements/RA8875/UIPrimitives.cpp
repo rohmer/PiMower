@@ -20,17 +20,17 @@ Rectangle UIPrimitives::SunkenPanel(DriverBase &tft, uint16_t x, uint16_t y, uin
 	if (cornerRadius > 0)
 	{
 		drawHLine(tft, x + cornerRadius + shadowOffset, y + shadowOffset, 
-			width - 2 * (cornerRadius + shadowOffset), Color::Color32To565(0x111111)); // Top
+			width - 2 * (cornerRadius + shadowOffset), Color::Gray192); // Top
 		drawHLine(tft, x + cornerRadius + shadowOffset, y + shadowOffset+1, 
-			width - 2 * (cornerRadius + shadowOffset), Color::Color32To565(0x111111)); // Top
+			width - 2 * (cornerRadius + shadowOffset), Color::Gray192); // Top
 		drawHLine(tft, x + cornerRadius + shadowOffset, y + shadowOffset+2, 
-			width - 2 * (cornerRadius + shadowOffset), Color::Color32To565(0x111111)); // Top
+			width - 2 * (cornerRadius + shadowOffset), Color::Gray192); // Top
 		
 		drawHLine(tft, x+ cornerRadius + shadowOffset  , y+height-(1+shadowOffset),
-			width-2*(cornerRadius+shadowOffset), Color::Color32To565(0xAAAAAA)); // Bottom
+			width-2*(cornerRadius+shadowOffset), Color::Gray160); // Bottom
 
 		// Ok, we need to average the color on the vertical from 0x111111 to 0xAAAAAA on the right and left
-		float diffPerPixel = (0x999999 - 0x111111) / (height - 2 * (cornerRadius + shadowOffset));
+		float diffPerPixel = (Color::Gray160 - Color::Gray192) / (height - 2 * (cornerRadius + shadowOffset));
 		
 		uint32_t lineColor = 0x111111;
 		for (int i = 0; i < (height - 2 * (cornerRadius + shadowOffset)); i++)
@@ -43,10 +43,10 @@ Rectangle UIPrimitives::SunkenPanel(DriverBase &tft, uint16_t x, uint16_t y, uin
 		 // Now draw the curves
 		// Upper Left
 		drawCircleHelper(tft, x + cornerRadius + shadowOffset, y + cornerRadius + shadowOffset, 
-			cornerRadius, 1, Color::Color32To565(0x111111));		
+			cornerRadius, 1, Color::Gray192);		
 		// Upper Right
 		drawCircleHelper(tft, x + width - cornerRadius - shadowOffset -1, y + cornerRadius + shadowOffset, 
-			cornerRadius, 1, Color::Color32To565(0x111111));		
+			cornerRadius, 1, Color::Gray192);		
 		// Lower Right
 		drawCircleHelper(tft, x + width - cornerRadius - shadowOffset -1, 
 			y + height-cornerRadius-shadowOffset-1,	cornerRadius, 1, 
@@ -59,15 +59,15 @@ Rectangle UIPrimitives::SunkenPanel(DriverBase &tft, uint16_t x, uint16_t y, uin
 	{
 		// Square Corners
 		drawHLine(tft, x + shadowOffset, y+shadowOffset, 
-			width - 2 * shadowOffset, Color::Color32To565(0x111111)); // Top
+			width - 2 * shadowOffset, Color::Gray192); // Top
 		drawHLine(tft, x + shadowOffset, y+shadowOffset+1, 
-			width - 2 * shadowOffset, Color::Color32To565(0x111111)); // Top
+			width - 2 * shadowOffset, Color::Gray192); // Top
 		drawHLine(tft, x + shadowOffset, y+shadowOffset+2, 
-			width - 2 * shadowOffset, Color::Color32To565(0x111111)); // Top
+			width - 2 * shadowOffset, Color::Gray192); // Top
 		drawHLine(tft, x+ shadowOffset  , y+height-(1+shadowOffset),
-			width-2*shadowOffset, Color::Color32To565(0xAAAAAA)); // Bottom
+			width-2*shadowOffset, Color::Gray160); // Bottom
 		// Ok, we need to average the color on the vertical from 0x111111 to 0xAAAAAA on the right and left
-		float diffPerPixel = (0xAAAAAA - 0x111111) / (height - 2 * (cornerRadius + shadowOffset));
+		float diffPerPixel = (Color::Gray160 - Color::Gray192) / (height - 2 * (cornerRadius + shadowOffset));
 		
 		uint32_t lineColor = 0x111111;
 		for (int i = 0; i < (height - 2 * shadowOffset); i++)
@@ -77,6 +77,12 @@ Rectangle UIPrimitives::SunkenPanel(DriverBase &tft, uint16_t x, uint16_t y, uin
 			lineColor += diffPerPixel;
 		}
 	}
+	// Draw BG
+	if (cornerRadius > 0)
+		tft.fillRoundRect(x + shadowOffset, y + shadowOffset, width - shadowOffset * 2, height - shadowOffset * 2, cornerRadius, color);
+	else
+		tft.fillRect(x +shadowOffset, y + shadowOffset, width-shadowOffset*2, height - shadowOffset * 2, color);
+
 	Rectangle r = Rectangle(x, y, x + width + shadowOffset, y + height + shadowOffset);
 	return (r);
 	

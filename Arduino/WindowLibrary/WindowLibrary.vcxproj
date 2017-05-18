@@ -192,6 +192,7 @@
     <ClInclude Include="UIElements\ControlDisplay\Button.h" />
     <ClInclude Include="UIElements\ControlDisplay\CheckBox.h" />
     <ClInclude Include="UIElements\ControlDisplay\DropDownList.h" />
+    <ClInclude Include="UIElements\ControlDisplay\NumericEntryRA8875.h" />
     <ClInclude Include="UIElements\ControlDisplay\ProgressBar.h" />
     <ClInclude Include="UIElements\ControlDisplay\RadioButton.h" />
     <ClInclude Include="UIElements\ControlDisplay\Slider.h" />
@@ -488,6 +489,7 @@
     <ClCompile Include="UIElements\ControlDisplay\Button.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\DropDownList.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\NumericEntryRA8875.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\ProgressBar.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\RadioButton.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Slider.cpp" />

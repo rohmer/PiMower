@@ -17,6 +17,7 @@
 #include "UIElements\ControlDisplay\ProgressBar.h"
 #include "UIElements\ControlDisplay\RadioButton.h"
 #include "UIElements\ControlDisplay\Slider.h"
+#include "UIElements\ControlDisplay\NumericEntryRA8875.h"
 #include "Utility\Logger.h"
 #include "Utility\Color.h"
 bool updated = false;
@@ -36,6 +37,7 @@ void loop()
 	{
 		lcd.Init(800, 480);		
 		lcd.fillScreen(Color::Color32To565(Color::White));
+		/*
 		Button::Draw(lcd, true, 50, 50, 200, 100, Color::White, Color::Red
 			, eUITextFont::AileronRegular12, "Button", true);
 		Button::Draw(lcd, false, 300, 50, 200, 100, Color::Red, Color::Yellow
@@ -65,10 +67,11 @@ void loop()
 
 		Slider::Draw(lcd, 50, 285, 125, 30, Color::Black, Color::White, Color::Orange, eUITextFont::AileronRegular12,
 			50, 0, 100);
-
+		*/
+		NumericEntry::Draw(lcd, 0, 0, Color::Gray204, Color::Gray128, Color::White, eUITextFont::AileronRegular12, "100");
 		Logger::Trace("Stuff Drawn");
 	}
-	
+	updated = true;
 		
 	
 }
