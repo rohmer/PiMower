@@ -1254,6 +1254,9 @@
     <ClInclude Include="UIElements\ControlDisplay\TextEntryRA8875.h">
       <Filter>Header Files\UIElements\ControlDisplay</Filter>
     </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\RingMeter.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\Adafruit_GFX_Library\Adafruit_GFX.cpp">
@@ -1389,6 +1392,9 @@
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
     <ClCompile Include="UIElements\ControlDisplay\TextEntryRA8875.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\RingMeter.cpp">
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
   </ItemGroup>

@@ -121,6 +121,7 @@ public:
 	virtual void    writeCommand(uint8_t d) = 0;
 	virtual uint8_t readStatus() = 0;
 	virtual bool waitPoll(uint8_t r, uint8_t f) = 0;
+	virtual void fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t color, bool triangled = true)=0;
 	uint16_t width()
 	{
 		return tftWidth;
@@ -132,6 +133,52 @@ public:
 
 	virtual void textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t textColor,
 		uint16_t justification, std::string text)=0;
+
+	uint16_t Color565(uint8_t r, uint8_t g, uint8_t b)
+	{
+		return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
+	}
+
+	uint16_t Color24To565(int32_t color_)
+	{
+		return ((((color_ >> 16) & 0xFF) / 8) << 11) | ((((color_ >> 8) & 0xFF) / 4) << 5) | (((color_) & 0xFF) / 8);
+	}
+
+	uint16_t htmlTo565(int32_t color_)
+	{
+		return (uint16_t)(((color_ & 0xF80000) >> 8) | ((color_ & 0x00FC00) >> 5) | ((color_ & 0x0000F8) >> 3));
+	}
+
+	void Color565ToRGB(uint16_t color, uint8_t &r, uint8_t &g, uint8_t &b)
+	{
+		r = (((color & 0xF800) >> 11) * 527 + 23) >> 6; g = (((color & 0x07E0) >> 5) * 259 + 33) >> 6; b = ((color & 0x001F) * 527 + 23) >> 6;
+	}
+
+	uint16_t colorInterpolation565(uint16_t color1, uint16_t color2, uint16_t pos,
+		uint16_t div)
+	{
+		if (pos == 0)
+			return color1;
+		if (pos >= div)
+			return color2;
+		uint8_t r1, g1, b1;
+		Color565ToRGB(color1, r1, g1, b1);
+		uint8_t r2, g2, b2;
+		Color565ToRGB(color2, r2, g2, b2);
+		return colorInterpolation565(r1, g1, b1, r2, g2, b2, pos, div);
+	}
+
+	uint16_t colorInterpolation565(uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2, uint16_t pos, uint16_t div)
+	{
+		if (pos == 0) return Color565(r1, g1, b1);
+		if (pos >= div) return Color565(r2, g2, b2);
+		float pos2 = (float)pos / div;
+		return Color565(
+			(uint8_t)(((1.0 - pos2) * r1) + (pos2 * r2)),
+			(uint8_t)((1.0 - pos2) * g1 + (pos2 * g2)),
+			(uint8_t)(((1.0 - pos2) * b1) + (pos2 * b2))
+		);
+	}
 
 protected:
 	eDriverType driverType;

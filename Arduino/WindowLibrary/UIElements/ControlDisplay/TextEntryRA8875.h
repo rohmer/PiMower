@@ -22,6 +22,7 @@ public:
 	static void UpdateInput(DriverBase &tft, uint16_t x, uint16_t y, uint16_t controlBGColor,
 		uint16_t textColor, eUITextFont font, std::string inputValue);
 private:
+	//TODO: Add any other pages
 	std::string standard[5] = {
 		"1234567890",
 		"abcdefghij",

@@ -19,11 +19,16 @@
 #include "UIElements\ControlDisplay\Slider.h"
 #include "UIElements\ControlDisplay\NumericEntryRA8875.h"
 #include "UIElements\ControlDisplay\TextEntryRA8875.h"
+#include "UIElements\ControlDisplay\RingMeter.h"
 
 #include "Utility\Logger.h"
 #include "Utility\Color.h"
 bool updated = false;
 uint8_t prog = 0;
+uint32_t runTime = millis();
+int reading = 0;
+
+int d = 0;
 
 RA8875Driver lcd;
 // the setup function runs once when you press reset or power the board
@@ -37,7 +42,7 @@ void loop()
 
 	if (!updated)
 	{
-		lcd.Init(800, 480);		
+		lcd.Init(800, 480);
 		lcd.fillScreen(Color::Color32To565(Color::White));
 		/*
 		Button::Draw(lcd, true, 50, 50, 200, 100, Color::White, Color::Red
@@ -69,12 +74,41 @@ void loop()
 
 		Slider::Draw(lcd, 50, 285, 125, 30, Color::Black, Color::White, Color::Orange, eUITextFont::AileronRegular12,
 			50, 0, 100);
-		*/
+
 		TextEntry::Draw(lcd, TextEntry::eKeyboardState::normal, 0, 0, Color::Gray204, Color::Gray128, Color::White, eUITextFont::AileronRegular12, "Some Text To Edit");
 		Logger::Trace("Stuff Drawn");
+		*/
+		updated = true;
 	}
-	updated = true;
-		
+
+		if (millis() - runTime >= 100L)
+		{
+			runTime = millis();
+			d += 5;
+			if (d >= 360)
+				d = 0;
+			// Set the position, gap between meters, and inner radius of the meters
+			int16_t xpos = 0;
+			int16_t ypos = 0;
+			uint16_t radius = 52;
+			int16_t distance = 4;
+			// Draw meter and get back x position of next meter
+
+			// Test with Sine wave function, normally reading will be from a sensor
+			reading = 250 + 250 * sin((d+60)*0.0174532925);
+			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, 0, 500, xpos, ypos,
+				radius, "mA", 4, Color::Black, 150, 10, Color::White);
+			reading=20+30* sin(d*0.0174532925);
+			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, -10, 50, xpos+(radius*2)+distance, ypos,
+				radius, "C", 3, Color::Yellow, 150, 10, Color::White);
+			reading=1000+150* sin((d+90)*0.0174532925);
+			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, 0,30, 0, ypos+(radius*2)+distance,
+				72, "V", 6, Color::Blue, 90, 10, Color::White);
+			reading = 20 + 10 * sin((d + 180)*0.174532925);
+			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, 0, 40, 150,120,
+				120, "W", 7, Color::Black, 150, 5, Color::White);
+
+	}		
 	
 }
 

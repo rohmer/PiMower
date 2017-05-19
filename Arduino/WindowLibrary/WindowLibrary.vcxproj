@@ -195,6 +195,7 @@
     <ClInclude Include="UIElements\ControlDisplay\NumericEntryRA8875.h" />
     <ClInclude Include="UIElements\ControlDisplay\ProgressBar.h" />
     <ClInclude Include="UIElements\ControlDisplay\RadioButton.h" />
+    <ClInclude Include="UIElements\ControlDisplay\RingMeter.h" />
     <ClInclude Include="UIElements\ControlDisplay\Slider.h" />
     <ClInclude Include="UIElements\ControlDisplay\TextEntryRA8875.h" />
     <ClInclude Include="UIElements\FT8XX\Fonts.h" />
@@ -493,6 +494,7 @@
     <ClCompile Include="UIElements\ControlDisplay\NumericEntryRA8875.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\ProgressBar.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\RadioButton.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\RingMeter.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Slider.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\TextEntryRA8875.cpp" />
     <ClCompile Include="UIElements\FT8XX\UIPrimitives.cpp" />

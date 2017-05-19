@@ -95,4 +95,9 @@ void TextEntry::UpdateInput(DriverBase &tft, uint16_t x, uint16_t y, uint16_t co
 	UIPrimitives::Text(tft, textColor, 255, x + 240 - strWidth / 2, y + 50, font, false,
 		inputValue.substr(strPtr, inputValue.size() - strPtr));
 }
+
+std::map<std::string, Rectangle> TextEntry::GetKeyRects(uint16_t x, uint16_t y)
+{
+	//TODO: Do this method
+}
 #endif

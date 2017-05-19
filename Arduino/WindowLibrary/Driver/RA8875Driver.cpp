@@ -472,3 +472,97 @@ void RA8875Driver::textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t 
 	tft->setCursor(x, y);
 	tft->print(text.c_str());
 }
+
+void RA8875Driver::fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t color, bool triangled)
+
+{
+	fillTriangle(x0, y0, x1, y1, x2, y2, color);
+	if (triangled)
+		fillTriangle(x2, y2, x3, y3, x0, y0, color);
+	fillTriangle(x1, y1, x2, y2, x3, y3,color);	
+}
+
+void RA8875Driver::drawQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t color)
+
+{
+	drawLine(x0, y0, x1, y1, color);//low 1
+	drawLine(x1, y1, x2, y2, color);//high 1
+	drawLine(x2, y2, x3, y3, color);//high 2
+	drawLine(x3, y3, x0, y0, color);//low 2
+}
+
+void RA8875Driver::_triangle_helper(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color, bool filled)
+{
+	if (x0 >= tftWidth || x1 >= tftWidth || x2 >= tftWidth) return;
+	if (y0 >= tftHeight|| y1 >= tftHeight || y2 >= tftHeight) return;
+	if (rotation==eDisplayRotation::Portrait ||
+		rotation==eDisplayRotation::PortraitInverted ||
+		rotation == eDisplayRotation::PortraitMirrored ||
+		rotation == eDisplayRotation::PortraitMirroredInveted)
+	{ 
+		swapvals(x0, y0); 
+		swapvals(x1, y1); 
+		swapvals(x2, y2); 
+	}
+
+	if (x0 == x1 && y0 == y1) {
+		drawLine(x0, y0, x2, y2, color);
+		return;
+	}
+	else if (x0 == x2 && y0 == y2) {
+		drawLine(x0, y0, x1, y1, color);
+		return;
+	}
+	else if (x0 == x1 && y0 == y1 && x0 == x2 && y0 == y2) {//new
+		drawPixel(x0, y0, color);
+		return;
+	}
+
+	if (y0 > y1) { swapvals(y0, y1); swapvals(x0, x1); }
+	if (y1 > y2) { swapvals(y2, y1); swapvals(x2, x1); }
+	if (y0 > y1) { swapvals(y0, y1); swapvals(x0, x1); }
+	if (y0 == y2) { // Handle awkward all-on-same-line case as its own thing
+		int16_t a, b;
+		a = b = x0;
+		if (x1 < a) {
+			a = x1;
+		}
+		else if (x1 > b) {
+			b = x1;
+		}
+		if (x2 < a) {
+			a = x2;
+		}
+		else if (x2 > b) {
+			b = x2;
+		}
+		drawLine(a, y0, b - a + 1, y0, color);
+		return;
+	}
+
+	_line_addressing(x0, y0, x1, y1);
+	//p2
+	writeReg(RA8875_DTPH0, x2 & 0xFF);
+	writeReg(RA8875_DTPH0 + 1, x2 >> 8);
+	writeReg(RA8875_DTPV0, y2 & 0xFF);
+	writeReg(RA8875_DTPV0 + 1, y2 >> 8);
+	writeCommand(RA8875_DCR);
+	filled == true ? writeData(0xA1) : writeData(0x81);
+	waitPoll(RA8875_DCR, RA8875_DCR_LINESQUTRI_STATUS);
+}
+
+void RA8875Driver::_line_addressing(int16_t x0, int16_t y0, int16_t x1, int16_t y1)
+{
+	//X0
+	writeReg(RA8875_DLHSR0, x0 & 0xFF);
+	writeReg(RA8875_DLHSR0 + 1, x0 >> 8);
+	//Y0
+	writeReg(RA8875_DLVSR0, y0 & 0xFF);
+	writeReg(RA8875_DLVSR0 + 1, y0 >> 8);
+	//X1
+	writeReg(RA8875_DLHER0, x1 & 0xFF);
+	writeReg(RA8875_DLHER0 + 1, x1 >> 8);
+	//Y1
+	writeReg(RA8875_DLVER0, y1 & 0xFF);
+	writeReg(RA8875_DLVER0 + 1, y1 >> 8);
+}

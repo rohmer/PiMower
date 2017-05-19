@@ -4,6 +4,14 @@
 #include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
 #include "../Utility/FontHelper.h"
 
+#define swapvals(a, b) { int16_t t=a; a=b; b=t; }
+#define RA8875_DLHSR0         		  0x91//Draw Line/Square Horizontal Start Address Register0
+#define RA8875_DLVSR0         		  0x93//Draw Line/Square Vertical Start Address Register0
+#define RA8875_DLHER0         		  0x95//Draw Line/Square Horizontal End Address Register0
+#define RA8875_DLVER0         		  0x97//Draw Line/Square Vertical End Address Register0
+#define RA8875_DTPH0         		  0xA9//Draw Triangle Point 2 Horizontal Address Register0
+#define RA8875_DTPV0         		  0xAB//Draw Triangle Point 2 Vertical Address Register0
+
 class RA8875Driver : public DriverBase
 {
 public:
@@ -92,12 +100,11 @@ public:
 	void textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t textColor,
 		uint16_t justification, std::string text) override;
 
-	// RA8875 Specific functions
-	inline uint16_t Color565(uint8_t r, uint8_t g, uint8_t b) { return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3); }
-	inline uint16_t Color24To565(int32_t color_) { return ((((color_ >> 16) & 0xFF) / 8) << 11) | ((((color_ >> 8) & 0xFF) / 4) << 5) | (((color_) & 0xFF) / 8); }
-	inline uint16_t htmlTo565(int32_t color_) { return (uint16_t)(((color_ & 0xF80000) >> 8) | ((color_ & 0x00FC00) >> 5) | ((color_ & 0x0000F8) >> 3)); }
-	inline void 	Color565ToRGB(uint16_t color, uint8_t &r, uint8_t &g, uint8_t &b) { r = (((color & 0xF800) >> 11) * 527 + 23) >> 6; g = (((color & 0x07E0) >> 5) * 259 + 33) >> 6; b = ((color & 0x001F) * 527 + 23) >> 6; }	
-
+	void drawQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t color);
+	void fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t color, bool triangled = true);
+	void _triangle_helper(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color, bool filled);
+	void _line_addressing(int16_t x0, int16_t y0, int16_t x1, int16_t y1);
+	void _writeRegister(const uint8_t reg, uint8_t val);
 	~RA8875Driver();
 
 private:
