@@ -82,7 +82,7 @@ void RA8875Driver::drawPixel(int16_t x, int16_t y, uint32_t color)
 	tft->drawPixel(x, y, c);
 }
 
-void RA8875Driver::RA8875Driver::drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t color)
+void RA8875Driver::drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t color)
 {
 	if(!checkInit())
 		return;	
@@ -90,7 +90,7 @@ void RA8875Driver::RA8875Driver::drawLine(int16_t x0, int16_t y0, int16_t x1, in
 	tft->drawLine(x0, y0, x1, y1, c);
 }
 
-void RA8875Driver::RA8875Driver::setRotation(eDisplayRotation rotation)
+void RA8875Driver::setRotation(eDisplayRotation rotation)
 {
 	if (!checkInit())
 		return;
@@ -124,7 +124,7 @@ void RA8875Driver::RA8875Driver::setRotation(eDisplayRotation rotation)
 	}
 }
 
-void RA8875Driver::RA8875Driver::invertDisplay()
+void RA8875Driver::invertDisplay()
 {
 	if (!checkInit())
 		return;
@@ -145,7 +145,7 @@ void RA8875Driver::RA8875Driver::invertDisplay()
 	}
 }
 
-void RA8875Driver::RA8875Driver::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t color)
+void RA8875Driver::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t color)
 {
 	if (!checkInit())
 		return;
@@ -153,15 +153,16 @@ void RA8875Driver::RA8875Driver::fillRect(int16_t x, int16_t y, int16_t w, int16
 	tft->fillRect(x, y, w, h, c);
 }
 
-void RA8875Driver::RA8875Driver::fillScreen(uint32_t color)
+void RA8875Driver::fillScreen(uint32_t color)
 {
 	if (!checkInit())
 		return;
 	uint16_t c = Color::Color32To565(color);
 	tft->fillScreen(c);
+	backgroundColor = color;
 }
 
-void RA8875Driver::RA8875Driver::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t color)
+void RA8875Driver::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t color)
 {
 	if (!checkInit())
 		return;
@@ -169,7 +170,7 @@ void RA8875Driver::RA8875Driver::drawRect(int16_t x, int16_t y, int16_t w, int16
 	tft->drawRect(x, y, w, h, c);
 }
 
-void RA8875Driver::RA8875Driver::drawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
+void RA8875Driver::drawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
 {
 	if (!checkInit())
 		return;
@@ -177,7 +178,7 @@ void RA8875Driver::RA8875Driver::drawCircle(int16_t x0, int16_t y0, int16_t r, u
 	tft->drawCircle(x0, y0, r, c);
 }
 
-void RA8875Driver::RA8875Driver::fillCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
+void RA8875Driver::fillCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
 {
 	if (!checkInit())
 		return;
@@ -185,7 +186,7 @@ void RA8875Driver::RA8875Driver::fillCircle(int16_t x0, int16_t y0, int16_t r, u
 	tft->fillCircle(x0, y0, r, c);
 }
 
-void RA8875Driver::RA8875Driver::fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+void RA8875Driver::fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
 	int16_t x2, int16_t y2, uint32_t color)
 {
 	if (!checkInit())
@@ -194,7 +195,7 @@ void RA8875Driver::RA8875Driver::fillTriangle(int16_t x0, int16_t y0, int16_t x1
 	tft->fillTriangle(x0, y0, x1, y1, x2, y2, c);
 }
 
-void RA8875Driver::RA8875Driver::drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+void RA8875Driver::drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
 	int16_t x2, int16_t y2, uint32_t color) 
 {
 	if (!checkInit())
@@ -203,7 +204,7 @@ void RA8875Driver::RA8875Driver::drawTriangle(int16_t x0, int16_t y0, int16_t x1
 	tft->drawTriangle(x0, y0, x1, y1, x2, y2, c);
 }
 
-void RA8875Driver::RA8875Driver::drawRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
+void RA8875Driver::drawRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
 	int16_t radius, uint32_t color)
 {
 	if (!checkInit())
@@ -212,7 +213,7 @@ void RA8875Driver::RA8875Driver::drawRoundRect(int16_t x0, int16_t y0, int16_t w
 	tft->drawRoundRect(x0, y0, w, h, radius, c);
 }
 
-void RA8875Driver::RA8875Driver::fillRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
+void RA8875Driver::fillRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
 	int16_t radius, uint32_t color)
 {
 	if (!checkInit())
@@ -221,7 +222,7 @@ void RA8875Driver::RA8875Driver::fillRoundRect(int16_t x0, int16_t y0, int16_t w
 	tft->fillRoundRect(x0, y0, w, h, radius, c);
 }
 
-void RA8875Driver::RA8875Driver::drawChar(int16_t x, int16_t y, unsigned char c, uint32_t color,
+void RA8875Driver::drawChar(int16_t x, int16_t y, unsigned char c, uint32_t color,
 	uint16_t bg, uint8_t size)
 {
 	if (!checkInit())
@@ -230,14 +231,14 @@ void RA8875Driver::RA8875Driver::drawChar(int16_t x, int16_t y, unsigned char c,
 	tft->drawChar(x, y, c, clr, bg, size);
 }
 
-void RA8875Driver::RA8875Driver::setCursor(int16_t x, int16_t y)
+void RA8875Driver::setCursor(int16_t x, int16_t y)
 {
 	if (!checkInit())
 		return;
 	tft->setCursor(x, y);
 }
 
-void RA8875Driver::RA8875Driver::setTextColor(uint32_t color)
+void RA8875Driver::setTextColor(uint32_t color)
 {
 	if (!checkInit())
 		return;
@@ -245,21 +246,21 @@ void RA8875Driver::RA8875Driver::setTextColor(uint32_t color)
 	tft->setTextColor(c);
 }
 
-void RA8875Driver::RA8875Driver::setTextColor(uint32_t color, uint32_t bgColor)
+void RA8875Driver::setTextColor(uint32_t color, uint32_t bgColor)
 {
 	if (!checkInit())
 		return;
 	tft->setTextColor(Color::Color32To565(color), Color::Color32To565(bgColor));
 }
 
-void RA8875Driver::RA8875Driver::setTextSize(uint8_t s)
+void RA8875Driver::setTextSize(uint8_t s)
 {
 	if (!checkInit())
 		return;
 	tft->setTextSize(s);
 }
 
-void RA8875Driver::RA8875Driver::getTextBounds(std::string str, int16_t x, int16_t y,
+void RA8875Driver::getTextBounds(std::string str, int16_t x, int16_t y,
 	int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h)
 {
 	if (!checkInit())
@@ -270,7 +271,7 @@ void RA8875Driver::RA8875Driver::getTextBounds(std::string str, int16_t x, int16
 	delete[] cstr;
 }
 
-void RA8875Driver::RA8875Driver::drawEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875Driver::drawEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
 	int16_t shortAxis, uint32_t color)
 {
 	if (!checkInit())
@@ -278,7 +279,7 @@ void RA8875Driver::RA8875Driver::drawEllipse(int16_t xCenter, int16_t yCenter, i
 	tft->drawEllipse(xCenter, yCenter, longAxis, shortAxis, Color::Color32To565(color));
 }
 
-void RA8875Driver::RA8875Driver::fillEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875Driver::fillEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
 	int16_t shortAxis, uint32_t color)
 {
 	if (!checkInit())
@@ -286,7 +287,7 @@ void RA8875Driver::RA8875Driver::fillEllipse(int16_t xCenter, int16_t yCenter, i
 	tft->fillEllipse(xCenter, yCenter, longAxis, shortAxis, Color::Color32To565(color));
 }
 
-void RA8875Driver::RA8875Driver::drawCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875Driver::drawCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
 	int16_t shortAxis, uint8_t curvePart, uint32_t color)
 {
 	if (!checkInit())
@@ -294,7 +295,7 @@ void RA8875Driver::RA8875Driver::drawCurve(int16_t xCenter, int16_t yCenter, int
 	tft->drawCurve(xCenter, yCenter, longAxis, shortAxis, curvePart, Color::Color32To565(color));
 }
 
-void RA8875Driver::RA8875Driver::fillCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875Driver::fillCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
 	int16_t shortAxis, uint8_t curvePart, uint32_t color)
 {
 	if (!checkInit())
@@ -302,21 +303,21 @@ void RA8875Driver::RA8875Driver::fillCurve(int16_t xCenter, int16_t yCenter, int
 	tft->fillCurve(xCenter, yCenter, longAxis, shortAxis, curvePart, Color::Color32To565(color));
 }
 
-void RA8875Driver::RA8875Driver::softReset()
+void RA8875Driver::softReset()
 {
 	if (!checkInit())
 		return;
 	tft->softReset();
 }
 
-void RA8875Driver::RA8875Driver::displayPower(bool powerMode)
+void RA8875Driver::displayPower(bool powerMode)
 {
 	if (!checkInit())
 		return;
 	tft->displayOn(powerMode);
 }
 
-void RA8875Driver::RA8875Driver::displaySleep(bool sleepModeOn)
+void RA8875Driver::displaySleep(bool sleepModeOn)
 {
 	if (!checkInit())
 		return;

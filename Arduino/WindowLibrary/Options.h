@@ -2,6 +2,13 @@
 // define if you want debug printing to the Serial port
 #define DEBUG
 
+/*	These are the different UIElements that can be included, comment any out you
+	do not intend to use
+*/
+
+#define useButton
+#define useActiveButton
+
 // Define which controller you are going to use.  Uncomment one of these
 //#define FT_800
 //#define FT_801
@@ -325,9 +332,5 @@
 //	#define useCrimsonSemiBoldItalic24
 //	#define useCrimsonSemiBoldItalic36
 #endif
-
-//TODO: IFDEF enable all UIElements except windows
-#define useButtons
-#define useText
 
 #undef abs

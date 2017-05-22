@@ -44,7 +44,7 @@ public:
 
 	Point center()
 	{
-		return Point((abs(x2 - x1) / 2), (abs(y2 - y1) / 2));
+		return Point((abs(x2 - x1) / 2)+x1, (abs(y2 - y1) / 2)+y1);
 	}
 
 	void update();

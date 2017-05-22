@@ -7,7 +7,7 @@
 
 void RingMeter::Draw(DriverBase &tft, eUITextFont font, int value, int minValue, int maxValue,
 	int16_t x, int16_t y, int16_t radius, std::string units, uint16_t colorScheme, uint16_t segmentColor,
-	int16_t angle, uint8_t increment, uint16_t textColor)
+	int16_t angle, uint8_t increment, uint16_t textColor, int textShiftY)		// TODO: Make yShift shift the text, up or down
 {
 	if (increment < 5)
 		increment = 5;
@@ -93,6 +93,46 @@ void RingMeter::Draw(DriverBase &tft, eUITextFont font, int value, int minValue,
 			// Fill in blank segments
 			tft.fillQuad(x0, y0, x1, y1, x2, y2, x3, y3, segmentColor, false);
 		}	
+	}
+	// text
+
+	if (units!="none") 
+	{
+		//erase internal background
+		if (angle > 90) 
+		{
+			tft.fillCircle(x, y, radius - w, tft.getBackgroundColor());
+		}
+		else
+		{
+			tft.fillCurve(x, y + FontHelper::GetTextRect(tft,"T",font,Point(0,0)).height / 2, radius - w, radius - w, 1, tft.getBackgroundColor());
+			tft.fillCurve(x, y + FontHelper::GetTextRect(tft, "T", font, Point(0, 0)).height / 2, radius - w, radius - w, 2, tft.getBackgroundColor());
+		}
+
+		//prepare for write text
+		if (radius > 84) 
+		{
+			tft.setTextSize(1);
+		}
+		else 
+		{
+			tft.setTextSize(0);
+		}
+		std::stringstream ss;
+		ss << value;
+		ss << " ";
+		ss << units;
+
+		uint16_t width = FontHelper::GetTextRect(tft, ss.str(), font, Point(0, 0)).width / 2;
+
+		if (!tft.isLandscape()) 
+		{
+			UIPrimitives::Text(tft, textColor, 255, y-width-textShiftY, x, font, true, ss.str());
+		}
+		else 
+		{
+			UIPrimitives::Text(tft, textColor, 255, x-width, y-textShiftY, font, true, ss.str());
+		}
 	}
 }
  

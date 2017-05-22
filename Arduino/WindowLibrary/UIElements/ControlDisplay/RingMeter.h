@@ -11,7 +11,7 @@ class RingMeter
 public:
 	static void Draw(DriverBase &tft, eUITextFont font, int value, int minValue, int maxValue,
 		int16_t x, int16_t y, int16_t radius, std::string units, uint16_t colorScheme, uint16_t segmentColor,
-		int16_t angle, uint8_t increment, uint16_t textColor);
+		int16_t angle, uint8_t increment, uint16_t textColor, int textShiftY=0);
 
 private:
 	static uint16_t RingMeter::gradient(uint8_t val);	

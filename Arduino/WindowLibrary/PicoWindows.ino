@@ -20,9 +20,10 @@
 #include "UIElements\ControlDisplay\NumericEntryRA8875.h"
 #include "UIElements\ControlDisplay\TextEntryRA8875.h"
 #include "UIElements\ControlDisplay\RingMeter.h"
-
+#include "UIElements\UIButton.h"
 #include "Utility\Logger.h"
 #include "Utility\Color.h"
+
 bool updated = false;
 uint8_t prog = 0;
 uint32_t runTime = millis();
@@ -32,84 +33,57 @@ int d = 0;
 
 RA8875Driver lcd;
 // the setup function runs once when you press reset or power the board
-void setup() {
-	
+void setup() {	
 }
+
+void TextEntry()
+{
+	TextEntry::Draw(lcd, TextEntry::eKeyboardState::normal, 0, 0, Color::Gray204, Color::Gray128, Color::White, eUITextFont::AileronRegular12, "Some Text To Edit");
+}
+
+void ControlPage1()
+{
+	Button::Draw(lcd, true, 50, 50, 200, 100, Color::White, Color::Red
+		, eUITextFont::AileronRegular12, "Button", true);
+	Button::Draw(lcd, false, 300, 50, 200, 100, Color::Red, Color::Yellow
+		, eUITextFont::AileronRegular12, "Button Two", true);
+	CheckBox::Draw(lcd, false, false, 50, 200, Color::Black, Color::White
+		, Color::Red, eUITextFont::AileronRegular12, "Not Checked");
+	CheckBox::Draw(lcd, false, true, 275, 200, Color::Black, Color::White
+		, Color::Red, eUITextFont::AileronRegular12, "Checked");
+	updated = true;
+	RadioButton::Draw(lcd, false, false, 50, 175, Color::White, Color::White, Color::Black,
+		eUITextFont::AileronRegular12, "Unchecked Radio");
+	RadioButton::Draw(lcd, false, true, 275, 175, Color::White, Color::White, Color::Black,
+		eUITextFont::AileronRegular12, "Checked Radio");
+	std::vector<std::string> dropDownItems;
+	dropDownItems.push_back("Item #1");
+	dropDownItems.push_back("Item #2");
+	dropDownItems.push_back("Item #3");
+	dropDownItems.push_back("Item #4");
+	dropDownItems.push_back("Item #5");
+	DropDownList::Draw(lcd, 50, 235, 125, 20, Color::Black, Color::White, Color::White, 255, 4, eUITextFont::AileronRegular12,
+		dropDownItems, 0, true);
+
+	DropDownList::DrawExpanded(lcd, 275, 235, 125, 20, Color::Black, Color::White, Color::White, 255, 4, eUITextFont::AileronRegular12,
+		dropDownItems, 0, true);
+	ProgressBar::Draw(lcd, 50, 400, 300, 30, 75, RA8875_WHITE, Color::Red,
+		Color::Green, eUITextFont::AileronRegular12, true, 4, 255);
+
+	Slider::Draw(lcd, 50, 285, 125, 30, Color::Black, Color::White, Color::Orange, eUITextFont::AileronRegular12,
+		50, 0, 100);
+}
+
 
 // the loop function runs over and over again until power down or reset
 void loop() 
 {
-
 	if (!updated)
 	{
 		lcd.Init(800, 480);
-		lcd.fillScreen(Color::Color32To565(Color::White));
-		/*
-		Button::Draw(lcd, true, 50, 50, 200, 100, Color::White, Color::Red
-			, eUITextFont::AileronRegular12, "Button", true);
-		Button::Draw(lcd, false, 300, 50, 200, 100, Color::Red, Color::Yellow
-			, eUITextFont::AileronRegular12, "Button Two", true);
-		CheckBox::Draw(lcd, false, false, 50, 200, Color::Black, Color::White
-			, Color::Red, eUITextFont::AileronRegular12, "Not Checked");
-		CheckBox::Draw(lcd, false, true, 275, 200, Color::Black, Color::White
-			, Color::Red, eUITextFont::AileronRegular12, "Checked");
-		updated = true;
-		RadioButton::Draw(lcd, false, false, 50, 175, Color::White, Color::White, Color::Black,
-			eUITextFont::AileronRegular12, "Unchecked Radio");
-		RadioButton::Draw(lcd, false, true, 275, 175, Color::White, Color::White, Color::Black,
-			eUITextFont::AileronRegular12, "Checked Radio");
-		std::vector<std::string> dropDownItems;
-		dropDownItems.push_back("Item #1");
-		dropDownItems.push_back("Item #2");
-		dropDownItems.push_back("Item #3");
-		dropDownItems.push_back("Item #4");
-		dropDownItems.push_back("Item #5");
-		DropDownList::Draw(lcd, 50, 235, 125, 20, Color::Black, Color::White, Color::White, 255, 4, eUITextFont::AileronRegular12,
-			dropDownItems, 0, true);
-
-		DropDownList::DrawExpanded(lcd, 275, 235, 125, 20, Color::Black, Color::White, Color::White, 255, 4, eUITextFont::AileronRegular12,
-			dropDownItems, 0, true);
-		ProgressBar::Draw(lcd, 50, 400, 300, 30, 75, RA8875_WHITE, Color::Red,
-			Color::Green, eUITextFont::AileronRegular12, true, 4, 255);
-
-		Slider::Draw(lcd, 50, 285, 125, 30, Color::Black, Color::White, Color::Orange, eUITextFont::AileronRegular12,
-			50, 0, 100);
-
-		TextEntry::Draw(lcd, TextEntry::eKeyboardState::normal, 0, 0, Color::Gray204, Color::Gray128, Color::White, eUITextFont::AileronRegular12, "Some Text To Edit");
-		Logger::Trace("Stuff Drawn");
-		*/
-		updated = true;
+		ControlPage1();
 	}
-
-		if (millis() - runTime >= 100L)
-		{
-			runTime = millis();
-			d += 5;
-			if (d >= 360)
-				d = 0;
-			// Set the position, gap between meters, and inner radius of the meters
-			int16_t xpos = 0;
-			int16_t ypos = 0;
-			uint16_t radius = 52;
-			int16_t distance = 4;
-			// Draw meter and get back x position of next meter
-
-			// Test with Sine wave function, normally reading will be from a sensor
-			reading = 250 + 250 * sin((d+60)*0.0174532925);
-			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, 0, 500, xpos, ypos,
-				radius, "mA", 4, Color::Black, 150, 10, Color::White);
-			reading=20+30* sin(d*0.0174532925);
-			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, -10, 50, xpos+(radius*2)+distance, ypos,
-				radius, "C", 3, Color::Yellow, 150, 10, Color::White);
-			reading=1000+150* sin((d+90)*0.0174532925);
-			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, 0,30, 0, ypos+(radius*2)+distance,
-				72, "V", 6, Color::Blue, 90, 10, Color::White);
-			reading = 20 + 10 * sin((d + 180)*0.174532925);
-			RingMeter::Draw(lcd, eUITextFont::AileronRegular12, reading, 0, 40, 150,120,
-				120, "W", 7, Color::Black, 150, 5, Color::White);
-
-	}		
-	
+	updated = true;
 }
 
 /*

@@ -180,8 +180,25 @@ public:
 		);
 	}
 
+#ifdef RA8875
+	uint16_t getBackgroundColor()
+	{
+		return backgroundColor;
+	}
+#else
+	uint32_t getBackgroundColor()
+	{
+		return backgroundColor;
+	}
+#endif
+
 protected:
 	eDriverType driverType;
 	uint16_t tftWidth, tftHeight;
 	eDisplayRotation rotation = eDisplayRotation::Landscape;
+#ifdef RA8875
+	uint16_t backgroundColor;
+#else
+	uint32_t backgroundColor;
+#endif
 };

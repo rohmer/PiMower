@@ -188,7 +188,7 @@
     <ClInclude Include="Images\Battery85pct.h" />
     <ClInclude Include="Images\Image.h" />
     <ClInclude Include="Options.h" />
-    <ClInclude Include="UIElements\BatteryIcon.h" />
+    <ClInclude Include="UIElements\UIActiveButton.h" />
     <ClInclude Include="UIElements\ControlDisplay\Button.h" />
     <ClInclude Include="UIElements\ControlDisplay\CheckBox.h" />
     <ClInclude Include="UIElements\ControlDisplay\DropDownList.h" />
@@ -447,6 +447,7 @@
     <ClInclude Include="UIElements\RA8875\Fonts\CrimsonSemiBoldItalic36.h" />
     <ClInclude Include="UIElements\RA8875\Fonts\CrimsonSemiBoldItalic9.h" />
     <ClInclude Include="UIElements\RA8875\UIPrimitives.h" />
+    <ClInclude Include="UIElements\UIButton.h" />
     <ClInclude Include="UIElements\UICheckBox.h" />
     <ClInclude Include="UIElements\UIElement.h" />
     <ClInclude Include="UIElements\UIElements.h" />
@@ -487,7 +488,7 @@
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSAM3X.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSTM32F1.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiTeensy3.cpp" />
-    <ClCompile Include="UIElements\BatteryIcon.cpp" />
+    <ClCompile Include="UIElements\UIActiveButton.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Button.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\DropDownList.cpp" />
@@ -499,6 +500,7 @@
     <ClCompile Include="UIElements\ControlDisplay\TextEntryRA8875.cpp" />
     <ClCompile Include="UIElements\FT8XX\UIPrimitives.cpp" />
     <ClCompile Include="UIElements\RA8875\UIPrimitives.cpp" />
+    <ClCompile Include="UIElements\UIButton.cpp" />
     <ClCompile Include="UIElements\UICheckBox.cpp" />
     <ClCompile Include="UIElements\UIRadioButton.cpp" />
     <ClCompile Include="UIElements\UIWindow.cpp" />

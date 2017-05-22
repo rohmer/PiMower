@@ -34,7 +34,11 @@ struct sTouchResponse
 class UIElement
 {
 public:
-	UIElement(DriverBase &tft, Rectangle location);
+	UIElement(DriverBase &tft, Rectangle location) :
+		tft(tft)
+	{
+		this->location = location;
+	}
 	virtual void Update() = 0;
 	bool UpdatePending()
 	{

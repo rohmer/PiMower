@@ -1209,9 +1209,6 @@
     <ClInclude Include="UIElements\FT8XX\Fonts\aileronLight36.h">
       <Filter>Header Files\UIElements\FT8XX\Fonts</Filter>
     </ClInclude>
-    <ClInclude Include="UIElements\BatteryIcon.h">
-      <Filter>Header Files\UIElements</Filter>
-    </ClInclude>
     <ClInclude Include="UIElements\UICheckBox.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
@@ -1256,6 +1253,12 @@
     </ClInclude>
     <ClInclude Include="UIElements\ControlDisplay\RingMeter.h">
       <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIActiveButton.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIButton.h">
+      <Filter>Header Files\UIElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1352,9 +1355,6 @@
     <ClCompile Include="UIElements\UIWindow.cpp">
       <Filter>Source Files\UIElements</Filter>
     </ClCompile>
-    <ClCompile Include="UIElements\BatteryIcon.cpp">
-      <Filter>Source Files\UIElements</Filter>
-    </ClCompile>
     <ClCompile Include="UIElements\UICheckBox.cpp">
       <Filter>Source Files\UIElements</Filter>
     </ClCompile>
@@ -1396,6 +1396,12 @@
     </ClCompile>
     <ClCompile Include="UIElements\ControlDisplay\RingMeter.cpp">
       <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIButton.cpp">
+      <Filter>Source Files\UIElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIActiveButton.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
