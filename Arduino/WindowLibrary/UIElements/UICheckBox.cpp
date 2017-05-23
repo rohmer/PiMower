@@ -1,10 +1,18 @@
 #include "UICheckBox.h"
 
+#ifdef RA8875
 UICheckBox::UICheckBox(DriverBase &tft, Rectangle location, std::string boxText, bool checked,
 	eUITextFont textFont, uint16_t textColor, uint8_t textScale, uint16_t boxColor,
 	uint16_t boxShadowColor, uint8_t boxShadowSize, uint8_t boxBorderSize,
-	uint16_t boxCheckColor, bool hasRoundCorners, uint8_t cornerRadius) :
-	UIElement(tft, location)
+	uint16_t boxCheckColor, bool hasRoundCorners, uint8_t cornerRadius, std::string elementName = "") :
+#endif
+#ifdef FT8XX
+	UICheckBox::UICheckBox(DriverBase &tft, Rectangle location, std::string boxText, bool checked,
+		eUITextFont textFont, uint32_t textColor, uint8_t textScale, uint32_t boxColor,
+		uint32_t boxShadowColor, uint8_t boxShadowSize, uint8_t boxBorderSize,
+		uint32_t boxCheckColor, bool hasRoundCorners, uint8_t cornerRadius, std::string elementName = "") :
+#endif
+	UIElement(tft, location, elementName, eElementType::CheckBox)
 {	
 	this->isChecked = checked;
 	this->buttonText = boxText;
@@ -34,10 +42,11 @@ void UICheckBox::Update()
 #ifdef DEBUG
 		Logger::Trace("No update pending");
 #endif
+		UIElement::Update();
 		return;
 	}
 
-#ifdef FT8XX
+#ifdef RA8875
 	tft.setTextSize(textScale);
 #endif
 
@@ -66,4 +75,3 @@ sTouchResponse UICheckBox::ProcessTouch(Point touchPoint)
 	Invalidate();
 	return sTouchResponse(this->elementID, eTouchResponse::ControlTouched);
 }
-

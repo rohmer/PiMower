@@ -188,6 +188,7 @@
     <ClInclude Include="Images\Battery85pct.h" />
     <ClInclude Include="Images\Image.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="UIElements\ControlDisplay\Window.h" />
     <ClInclude Include="UIElements\UIActiveButton.h" />
     <ClInclude Include="UIElements\ControlDisplay\Button.h" />
     <ClInclude Include="UIElements\ControlDisplay\CheckBox.h" />
@@ -452,6 +453,7 @@
     <ClInclude Include="UIElements\UIElement.h" />
     <ClInclude Include="UIElements\UIElements.h" />
     <ClInclude Include="UIElements\UIRadioButton.h" />
+    <ClInclude Include="UIElements\UIRadioGroup.h" />
     <ClInclude Include="UIElements\UIWindow.h" />
     <ClInclude Include="Utility\Color.h" />
     <ClInclude Include="Utility\FontHelper.h" />
@@ -488,6 +490,7 @@
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSAM3X.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSTM32F1.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiTeensy3.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\Window.cpp" />
     <ClCompile Include="UIElements\UIActiveButton.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Button.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\CheckBox.cpp" />
@@ -503,6 +506,7 @@
     <ClCompile Include="UIElements\UIButton.cpp" />
     <ClCompile Include="UIElements\UICheckBox.cpp" />
     <ClCompile Include="UIElements\UIRadioButton.cpp" />
+    <ClCompile Include="UIElements\UIRadioGroup.cpp" />
     <ClCompile Include="UIElements\UIWindow.cpp" />
     <ClCompile Include="Utility\Color.cpp" />
     <ClCompile Include="Utility\FontHelper.cpp" />

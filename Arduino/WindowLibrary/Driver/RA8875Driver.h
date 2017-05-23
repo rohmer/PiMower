@@ -20,7 +20,7 @@ public:
 		uint8_t cs = 10, uint8_t rst = 9);
 
 	void Init(uint16_t width, uint16_t height,
-		uint8_t cs = 10, uint8_t rst = 9);
+		uint8_t cs = 10, uint8_t rst = 9) override;
 
 	eDriverType getDriverType()
 	{

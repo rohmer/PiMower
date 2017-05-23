@@ -1,5 +1,8 @@
 #pragma once
 #include "../../Options.h"
+
+#if defined(useButton) || defined(useActiveButton)
+
 #include "../../Utility/Color.h"
 #ifdef FT8XX
 #include "../FT8XX/UIPrimitives.h"
@@ -16,3 +19,4 @@ public:
 		bool is3D = true, uint8_t cornerRadius = 4, uint8_t alpha=255);
 };
 
+#endif

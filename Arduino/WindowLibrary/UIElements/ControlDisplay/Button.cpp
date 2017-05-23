@@ -1,5 +1,7 @@
 #include "Button.h"
 
+#if defined(useButton) || defined(useActiveButton)
+
 Rectangle Button::Draw(DriverBase &tft, bool sunken, uint16_t x, uint16_t y, uint16_t width,
 	uint16_t height, int32_t textColor, uint32_t buttonColor, eUITextFont font, std::string text,
 	bool is3D, uint8_t cornerRadius, uint8_t alpha)
@@ -27,3 +29,5 @@ Rectangle Button::Draw(DriverBase &tft, bool sunken, uint16_t x, uint16_t y, uin
 	UIPrimitives::Text(tft, textColor, alpha, x+width/4, y+height/2, font, 
 		is3D, text, UIPrimitives::Center);	
 }
+
+#endif

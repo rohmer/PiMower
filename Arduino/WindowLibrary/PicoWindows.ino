@@ -20,6 +20,7 @@
 #include "UIElements\ControlDisplay\NumericEntryRA8875.h"
 #include "UIElements\ControlDisplay\TextEntryRA8875.h"
 #include "UIElements\ControlDisplay\RingMeter.h"
+#include "UIElements\ControlDisplay\Window.h"
 #include "UIElements\UIButton.h"
 #include "Utility\Logger.h"
 #include "Utility\Color.h"
@@ -74,6 +75,10 @@ void ControlPage1()
 		50, 0, 100);
 }
 
+void WindowTest()
+{
+	Window::Draw(lcd, 0, 0, 400, 240, Color::White, Color::Yellow, Color::Green, Color::White, Color::Black, "Test Window", eUITextFont::AileronRegular12, true, true, true, true, 4, 255);	
+}
 
 // the loop function runs over and over again until power down or reset
 void loop() 
@@ -81,7 +86,7 @@ void loop()
 	if (!updated)
 	{
 		lcd.Init(800, 480);
-		ControlPage1();
+		WindowTest();
 	}
 	updated = true;
 }

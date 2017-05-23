@@ -1,10 +1,14 @@
 #include "UIWindow.h"
 
 UIWindow::UIWindow(DriverBase &tft, Rectangle location, eUITextFont titleBarFont,
-	std::string titleText, bool hasTitleBar, bool hasCloseIcon, bool hasChrome, bool isModal, 
-	bool hasRoundCorners, bool hasShadow, uint16_t shadowColor,	uint16_t titleBarColor,	
-	uint16_t titleTextColor, uint16_t chromeColor, uint16_t windowColor, uint8_t cornerRadius) :
-	UIElement(tft, location)
+	std::string titleText = "", bool hasTitleBar = false, bool hasCloseIcon = false,
+	bool hasChrome = false, bool isModal = false, bool is3D = true,
+	uint32_t titleBarColor = Color::GetColor(Color::Blue),
+	uint32_t titleTextColor = Color::GetColor(Color::White),
+	uint32_t chromeColor = Color::GetColor(Color::White),
+	uint32_t windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
+	std::string elementName = "")
+	: UIElement(tft, location, elementName, eElementType::Window)
 {
 	this->titleText = titleText;
 	this->hasTitleBar = hasTitleBar;
@@ -15,34 +19,27 @@ UIWindow::UIWindow(DriverBase &tft, Rectangle location, eUITextFont titleBarFont
 	this->titleBarColor = titleBarColor;
 	this->chromeColor = chromeColor;
 	this->windowColor = windowColor;
-	this->hasRoundCorners = hasRoundCorners;
 	this->titleBarFont = titleBarFont;	
-	this->shadowColor = shadowColor;
-	this->shadowThickness = 4;
-	this->hasShadow = hasShadow;
 	this->cornerRadius = cornerRadius;
+	this->is3D = is3D;
 #ifdef DEBUG
-	Logger::Trace("UIWindow(TFT, (%d,%d,%d,%d), %d, %s, %s, %s, %s, %s, %s, %s, %d, %d, %d, %d,%d)",location.x1, location.y1, location.x2, location.y2, (int)titleBarFont,titleText.c_str(), Logger::BoolToStr(hasTitleBar).c_str(),Logger::BoolToStr(hasCloseIcon).c_str(), Logger::BoolToStr(hasChrome).c_str(),Logger::BoolToStr(isModal).c_str(), Logger::BoolToStr(hasRoundCorners).c_str(),Logger::BoolToStr(hasShadow).c_str(), shadowColor, titleBarColor, titleTextColor, chromeColor, windowColor);
+	Logger::Trace("UIWindow(TFT, (%d,%d,%d,%d), %s,%s,%s,%s,%s,%d,%d,%d,%d",
+		location.x1, location.y1, location.x2, location.y2, (int)titleBarFont,titleText.c_str(), 
+		Logger::BoolToStr(hasTitleBar).c_str(),Logger::BoolToStr(hasCloseIcon).c_str(), 
+		Logger::BoolToStr(hasChrome).c_str(),Logger::BoolToStr(isModal).c_str(), 
+		titleBarColor, titleTextColor, chromeColor, windowColor);
 #endif
 }
 
 void UIWindow::SetWindowTitle(std::string title)
 {
 	this->titleText = title;
-	if (titleLocation)
-		delete(titleLocation);
 	Invalidate();
 }
 
 void UIWindow::SetTitleBar(bool titleBar)
 {
 	this->hasTitleBar = titleBar;
-	Invalidate();
-}
-
-void UIWindow::SetHasRoundCorners(bool RoundCorners)
-{
-	this->hasRoundCorners = RoundCorners;
 	Invalidate();
 }
 
@@ -64,15 +61,6 @@ void UIWindow::SetModal(bool isModal)
 	Invalidate();
 }
 
-void UIWindow::drawChrome()
-{
-#ifdef DEBUG
-	Logger::Trace("Drawing Window");
-#endif
-
-	updatePending = false;
-}
-
 void UIWindow::Update()
 {
 	if (!updatePending)
@@ -82,18 +70,10 @@ void UIWindow::Update()
 #endif
 		return;
 	}
-	if (hasChrome)
-	{
-		drawChrome();
-	}
-
-	// Now draw children
-	for (int i = 0; i < childElements.size(); i++)
-	{
-		// Invalidate children, they need to be drawn
-		childElements[i]->Invalidate();
-		childElements[i]->Update();
-	}
+	Window::Draw(tft, location.x1, location.y1, location.width, location.height, titleBarColor,
+		titleTextColor, chromeColor, chromeColor, windowColor, titleText, titleBarFont, hasChrome,
+		hasTitleBar, hasCloseIcon, true, 4, 255);
+	UIElement::Update();
 }
 
 /// <summary>
@@ -125,7 +105,7 @@ sTouchResponse UIWindow::ProcessTouch(Point touchPoint)
 		return sTouchResponse(this->elementID, eTouchResponse::NoOp);
 	}
 
-	if (!closeIcon == NULL)
+	if (!closeIcon == NULL && hasCloseIcon)
 	{
 		// We have a close icon, did we touch it?
 		if (closeIcon->contains(touchPoint))

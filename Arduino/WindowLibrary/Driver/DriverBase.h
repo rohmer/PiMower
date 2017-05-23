@@ -39,6 +39,8 @@ public:
 		this->driverType = driverType;
 	}
 
+	virtual void Init(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9);
+	
 	/* Standard functions used by all drivers
 	 * Some drivers may have specific functions that they can do beyond these
 	 */

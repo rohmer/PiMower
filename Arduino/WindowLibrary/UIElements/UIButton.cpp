@@ -5,15 +5,15 @@
 #ifdef RA8875
 
 UIButton::UIButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
-	uint16_t textColor, uint8_t textScale, uint16_t buttonBGColor, uint8_t cornerRadius,
-	bool is3D, bool raised) :
-	UIElement(tft, location)
+	uint16_t textColor, uint8_t textScale, uint16_t buttonBGColor, uint8_t cornerRadius = 4,
+	bool is3D = true, bool raised = true, std::string elementName = "") :
+	UIElement(tft, location,elementName, eElementType::Button)
 #endif
 #ifdef FT8XX
 UIButton::UIButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
 	uint32_t textColor, uint32_t buttonBGColor, uint8_t cornerRadius, bool is3D, bool raised,
-	uint8_t alpha) :
-	UIElement(tft, location)
+	uint8_t alpha, std::string elementName = "") :
+	UIElement(tft, location,elementName, eElementType::Button)
 #endif
 {
 	this->buttonText = buttonText;
@@ -41,8 +41,7 @@ sTouchResponse UIButton::ProcessTouch(Point pt)
 {
 	if (!this->enabled)
 		return sTouchResponse(this->elementID, eTouchResponse::NoOp);
-	if (this->location.contains(pt))
-		return sTouchResponse(this->elementID, eTouchResponse::ControlTouched);
+	return sTouchResponse(this->elementID, eTouchResponse::ControlTouched);
 }
 
 void UIButton::SetButtonText(std::string text)
@@ -51,7 +50,7 @@ void UIButton::SetButtonText(std::string text)
 		return;
 	this->buttonText = text;
 	this->is3D = is3D;
-	this->updatePending = true;	
+	Invalidate();
 }
 
 void UIButton::Update()
@@ -64,7 +63,6 @@ void UIButton::Update()
 		return;
 	}
 
-	// First draw the box
 	if (is3D)
 	{
 		Button::Draw(tft, !raised, location.x1, location.y1, location.width, location.height,
@@ -75,6 +73,7 @@ void UIButton::Update()
 		Button::Draw(tft, !raised, location.x1, location.y1, location.width, location.height,
 			textColor, buttonBGColor, font, buttonText, false, cornerRadius, alpha);
 	}
-	this->updatePending = false;
+
+	UIElement::Update();
 }
 #endif

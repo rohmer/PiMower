@@ -16,12 +16,12 @@ class UIActiveButton : public UIElement
 #ifdef RA8875
 	UIActiveButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
 		uint16_t textColor, uint8_t textScale, uint16_t buttonBGColor, uint8_t cornerRadius = 4,
-		bool is3D = true, bool raised = true, uint16_t updateInMillis=1000);
+		bool is3D = true, bool raised = true, uint16_t updateInMillis=1000, std::string elementName="");
 #endif
 #ifdef FT8XX
 	UIActiveButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
 		uint32_t textColor, uint32_t buttonBGColor, uint8_t cornerRadius = 4, bool is3D = true,
-		bool raised = true, uint8_t alpha = 255, uint16_t updateInMillis = 1000);
+		bool raised = true, uint8_t alpha = 255, uint16_t updateInMillis = 1000, std::string elementName = "");
 #endif
 	sTouchResponse ProcessTouch(Point touchPoint) override;
 	virtual void Update() override;

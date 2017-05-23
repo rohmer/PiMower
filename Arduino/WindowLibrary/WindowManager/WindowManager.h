@@ -1,12 +1,19 @@
 #pragma once
-#include "../Driver/DriverBase.h"
+#include "../UIElements/UIWindow.h"
 #include <map>
 #include <vector>
-#include "../UIElements/UIElement.h"
+#include <algorithm>
+
+#ifdef FT8XX
+#include "../Driver/FT8XXDriver.h"
+#endif
+#ifdef RA8875 
+#include "../Driver/RA8875Driver.h"
+#endif
 
 enum eLCDSizes
 {
-	lcd800x400,
+	lcd800x480,
 	lcd480x272
 };
 
@@ -18,11 +25,6 @@ enum eLCDSizes
 /// </summary>
 class WindowManager
 {
-	static WindowManager *s_instance;
-	WindowManager(const uint8_t cs, const uint8_t rst = 255, const uint8_t mosi = 11,
-		const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x400);
-	static std::map<unsigned long, UIElement *> elementMap;
-
 public:
 	static WindowManager *instance()
 	{
@@ -31,7 +33,7 @@ public:
 
 	static WindowManager *instance(const uint8_t cs, const uint8_t rst = 255,
 		const uint8_t mosi = 11, const uint8_t sclk = 13, const uint8_t miso = 12,
-		eLCDSizes lcdSize = eLCDSizes::lcd800x400)
+		eLCDSizes lcdSize = eLCDSizes::lcd800x480)
 	{
 		if (!s_instance)
 		{
@@ -42,15 +44,36 @@ public:
 
 	void MoveControlToFront(unsigned long controlID);
 	static void DeleteElement(unsigned long elementID);
-	static void RegisterElement(unsigned long elementID, UIElement *element)
-	{
-		elementMap.insert(std::make_pair(elementID, element));
-	}
+	
+	static void RegisterElement(UIElement *element);
 
-	Point GetTouch();
+	static void Update()
+	{
+		processTouch();
+		wmCanvas->Update();
+	}
+	
 
 private:
+	static UIWindow *wmCanvas;
+	static WindowManager *s_instance;
+	WindowManager(const uint8_t cs, const uint8_t rst = 255, const uint8_t mosi = 11,
+		const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480);
+
 	~WindowManager();
-	DriverBase &tft;
-	std::vector<UIElement *> childElements;
+	static void processTouch();
+
+#ifdef RA8875
+	static RA8875Driver tft;
+#endif
+#ifdef FT8875
+	static FT8XXDriver tft;
+#endif
+	
+	static void updateOccluded(unsigned long id);
+	
+	static std::map<unsigned long, UIElement *> elementMap;
+	static std::vector<unsigned long> elementOrder;
+	
+	static sTouchResponse lastTouchEvent;
 };

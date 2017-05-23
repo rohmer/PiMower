@@ -1260,6 +1260,12 @@
     <ClInclude Include="UIElements\UIButton.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\Window.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIRadioGroup.h">
+      <Filter>Header Files\UIElements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\Adafruit_GFX_Library\Adafruit_GFX.cpp">
@@ -1400,7 +1406,13 @@
     <ClCompile Include="UIElements\UIButton.cpp">
       <Filter>Source Files\UIElements</Filter>
     </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\Window.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
     <ClCompile Include="UIElements\UIActiveButton.cpp">
+      <Filter>Source Files\UIElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIRadioGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

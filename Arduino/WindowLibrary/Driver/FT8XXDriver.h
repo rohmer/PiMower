@@ -1,5 +1,6 @@
 #pragma once
 #include "../Options.h"
+
 #ifdef FT8XX
 #include "DriverBase.h"
 #include "../Utility/Logger.h"
@@ -7,8 +8,9 @@
 
 class FT8XXDriver : public DriverBase
 {
+	FT8XXDriver();
 	FT8XXDriver(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9);
-
+	void Init(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9) override;
 	void drawPixel(int16_t x, int16_t y, uint32_t color) override;
 	void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t color) override;
 	void setRotation(eDisplayRotation rotation) override;
@@ -82,4 +84,5 @@ class FT8XXDriver : public DriverBase
 private:
 	uint8_t currentFont = 31;
 };
+
 #endif

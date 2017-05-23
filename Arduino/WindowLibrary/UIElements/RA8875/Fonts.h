@@ -467,6 +467,7 @@
 
 enum eUITextFont
 {
+	None,
 #if defined(useAileronBlack9) || defined(useAllFonts)
 AileronBlack9,
 #endif
