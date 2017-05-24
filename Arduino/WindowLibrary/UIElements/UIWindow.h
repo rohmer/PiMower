@@ -14,10 +14,10 @@ public:
 	UIWindow(DriverBase &tft, Rectangle location, eUITextFont titleBarFont,
 		std::string titleText = "",	bool hasTitleBar = false, bool hasCloseIcon = false, 
 		bool hasChrome = false, bool isModal = false, bool is3D=true, 
-		uint32_t titleBarColor= Color::GetColor(Color::Blue),
-		uint32_t titleTextColor= Color::GetColor(Color::White), 
-		uint32_t chromeColor= Color::GetColor(Color::White),
-		uint32_t windowColor= Color::GetColor(Color::Black), uint8_t cornerRadius=5, 
+		tColor  titleBarColor= Color::GetColor(Color::Blue),
+		tColor  titleTextColor= Color::GetColor(Color::White),
+		tColor  chromeColor= Color::GetColor(Color::White),
+		tColor  windowColor= Color::GetColor(Color::Black), uint8_t cornerRadius=5,
 		std::string elementName = "");
 	void Update() override;	
 	void SetWindowTitle(std::string title);

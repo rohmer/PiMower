@@ -1,15 +1,8 @@
 #include "UIRadioButton.h"
 
-#ifdef RA8875
 UIRadioButton::UIRadioButton(DriverBase &tft, Rectangle location, std::string text, bool checked, eUITextFont textFont,
-	uint16_t textColor, uint8_t textScale, uint16_t controlColor, uint16_t checkColor, bool is3D = true,
+	tColor textColor, uint8_t textScale, tColor controlColor, tColor checkColor, bool is3D = true,
 	bool textToRight = true, std::string elementName = "")
-#endif
-#ifdef FT8XX
-UIRadioButton::UIRadioButton(DriverBase &tft, Rectangle location, std::string text, bool checked, eUITextFont textFont,
-	uint32_t textColor, uint32_t controlColor, uint32_t checkColor, bool is3D = true,
-	bool textToRight = true, std::string elementName = "")
-#endif
 	: UIElement(tft,location,elementName, eElementType::RadioButton)
 {
 	this->buttonText = text;

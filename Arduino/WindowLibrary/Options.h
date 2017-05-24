@@ -66,7 +66,12 @@
 
 #ifdef RA8875
 #define USE_RA8875_TOUCH
+#define tColor uint16_t
 #endif
+
+#ifdef FT8XX
+#define tColor uint32_t
+#endif 
 
 // Will remove logging, otherwise the logging is set to WARNING
 //#define NOLOGGING

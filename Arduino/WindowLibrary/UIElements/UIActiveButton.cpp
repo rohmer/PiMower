@@ -2,18 +2,10 @@
 
 #ifdef useActiveButton
 
-#ifdef RA8875
 UIActiveButton::UIActiveButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
-	uint16_t textColor, uint8_t textScale, uint16_t buttonBGColor, uint8_t cornerRadius,
+	tColor textColor, uint8_t textScale, tColor buttonBGColor, uint8_t cornerRadius,
 	bool is3D, bool raised, uint16_t updateInMillis, std::string elementName = "") :
 	UIElement(tft, location, elementName, eElementType::ActiveButton)
-#endif
-#ifdef FT8XX
-UIButton::UIButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
-	uint32_t textColor, uint32_t buttonBGColor, uint8_t cornerRadius, bool is3D, bool raised,
-	uint8_t alpha, std::string elementName = "") :
-	UIElement(tft, location, elementName, eElementType::ActiveButton)
-#endif
 {
 	this->buttonText = buttonText;
 	this->font = font;

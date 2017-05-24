@@ -30,10 +30,10 @@
 </Source>
       </BreakPoint>
       <BreakPoint Index="2" Name="UIWindow.cpp, line 13" Id="fe12eed8-3ee5-4b89-b696-6353c6bcdd4a" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="13" FileColumn="1" FunctionName="UIWindow(DriverBase &amp;tft, Rectangle location, eUITextFont titleBarFont,&#xD;&#xA;	std::string titleText = &quot;&quot;, bool hasTitleBar = false, bool hasCloseIcon = false,&#xD;&#xA;	bool hasChrome = false, bool isModal = false, bool is3D = true,&#xD;&#xA;	uint32_t titleBarColor = Color::GetColor(Color::Blue),&#xD;&#xA;	uint32_t titleTextColor = Color::GetColor(Color::White),&#xD;&#xA;	uint32_t chromeColor = Color::GetColor(Color::White),&#xD;&#xA;	uint32_t windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,&#xD;&#xA;	std::string elementName = &quot;&quot;)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='fe12eed8-3ee5-4b89-b696-6353c6bcdd4a'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>6		uint32_t titleBarColor = Color::GetColor(Color::Blue),
-7		uint32_t titleTextColor = Color::GetColor(Color::White),
-8		uint32_t chromeColor = Color::GetColor(Color::White),
-9		uint32_t windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
+        <Source>6		tColor  titleBarColor = Color::GetColor(Color::Blue),
+7		tColor  titleTextColor = Color::GetColor(Color::White),
+8		tColor  chromeColor = Color::GetColor(Color::White),
+9		tColor  windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
 10		std::string elementName = "")
 11		: UIElement(tft, location, elementName, eElementType::Window)
 12	{

@@ -2,19 +2,10 @@
 
 #ifdef useButton
 
-#ifdef RA8875
-
 UIButton::UIButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
-	uint16_t textColor, uint8_t textScale, uint16_t buttonBGColor, uint8_t cornerRadius = 4,
+	tColor textColor, uint8_t textScale, tColor buttonBGColor, uint8_t cornerRadius = 4,
 	bool is3D = true, bool raised = true, std::string elementName = "") :
 	UIElement(tft, location,elementName, eElementType::Button)
-#endif
-#ifdef FT8XX
-UIButton::UIButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
-	uint32_t textColor, uint32_t buttonBGColor, uint8_t cornerRadius, bool is3D, bool raised,
-	uint8_t alpha, std::string elementName = "") :
-	UIElement(tft, location,elementName, eElementType::Button)
-#endif
 {
 	this->buttonText = buttonText;
 	this->font = font;
