@@ -24,6 +24,7 @@
 #include "UIElements\UIButton.h"
 #include "Utility\Logger.h"
 #include "Utility\Color.h"
+#include "WindowManager\WindowManager.h"
 
 bool updated = false;
 uint8_t prog = 0;
@@ -31,10 +32,12 @@ uint32_t runTime = millis();
 int reading = 0;
 
 int d = 0;
+WindowManager *wm=NULL;
 
 RA8875Driver lcd;
 // the setup function runs once when you press reset or power the board
 void setup() {	
+	
 }
 
 void TextEntry()
@@ -83,12 +86,9 @@ void WindowTest()
 // the loop function runs over and over again until power down or reset
 void loop() 
 {
-	if (!updated)
-	{
-		lcd.Init(800, 480);
-		WindowTest();
-	}
-	updated = true;
+	if(!wm)
+		wm = WindowManager::instance(10, 9, 11, 13, 12, eLCDSizes::lcd800x480);
+	wm->Update();
 }
 
 /*

@@ -1,6 +1,8 @@
 #include "WindowManager.h"
 
-WindowManager::WindowManager(const uint8_t cs, const uint8_t rst = 255, const uint8_t mosi = 11,
+WindowManager *WindowManager::s_instance;
+
+WindowManager::WindowManager(const uint8_t cs, const uint8_t rst, const uint8_t mosi = 11,
 	const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480) 
 {
 	if (lcdSize == eLCDSizes::lcd800x480)
@@ -8,17 +10,29 @@ WindowManager::WindowManager(const uint8_t cs, const uint8_t rst = 255, const ui
 	else
 		tft.Init(480, 282, cs, rst);
 
-	wmCanvas = new UIWindow(tft, Rectangle(0, 0, tft.width(), tft.height()), eUITextFont::None, "", false, false, false, false, false,
-		0, 0, 0, 0, 0);
-	RegisterElement(wmCanvas);
+ 
+	{
+		wmCanvas = new UIWindow(tft, Rectangle(0, 0, tft.width(), tft.height()), eUITextFont::None, "", false, false, false, false, false,
+			0, 0, 0, 0, 0);		
+	}
+#ifdef DEBUG
+	Logger::Trace("WindowManager Initialized, wmCanvas: %d", wmCanvas->getElementID());
+#endif
+}
+
+void WindowManager::Update()
+{
+	Logger::Trace("WindowManager::Update()");
+	processTouch();
+	wmCanvas->Update();
 }
 
 void WindowManager::RegisterElement(UIElement *element)
 {
+	Logger::Trace("Entering RegisterElement");
 	elementMap.insert(std::make_pair(element->getElementID(), element));
 	elementOrder.push_back(element->getElementID());
-	wmCanvas->AddChildElement(element);
-	element->Update();
+	WindowManager::wmCanvas->AddChildElement(element);	
 }
 
 void WindowManager::DeleteElement(unsigned long elementID)
@@ -101,6 +115,7 @@ void WindowManager::processTouch()
 {
 	if (!tft.touched())
 	{
+		Logger::Trace("TFT not touched");
 		return;
 	}
 

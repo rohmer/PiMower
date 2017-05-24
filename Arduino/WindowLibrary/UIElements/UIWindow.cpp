@@ -67,13 +67,13 @@ void UIWindow::Update()
 	{
 #ifdef DEBUG
 		Logger::Trace("Update not pending");
-#endif
+#endif		
 		return;
 	}
 	Window::Draw(tft, location.x1, location.y1, location.width, location.height, titleBarColor,
 		titleTextColor, chromeColor, chromeColor, windowColor, titleText, titleBarFont, hasChrome,
-		hasTitleBar, hasCloseIcon, true, 4, 255);
-	UIElement::Update();
+		hasTitleBar, hasCloseIcon, true, 4, 255);	
+	this->updatePending = false;
 }
 
 /// <summary>

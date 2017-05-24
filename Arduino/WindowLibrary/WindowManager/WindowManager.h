@@ -31,7 +31,7 @@ public:
 		return s_instance;
 	}
 
-	static WindowManager *instance(const uint8_t cs, const uint8_t rst = 255,
+	static WindowManager *instance(const uint8_t cs=10, const uint8_t rst = 9,
 		const uint8_t mosi = 11, const uint8_t sclk = 13, const uint8_t miso = 12,
 		eLCDSizes lcdSize = eLCDSizes::lcd800x480)
 	{
@@ -43,37 +43,33 @@ public:
 	}
 
 	void MoveControlToFront(unsigned long controlID);
-	static void DeleteElement(unsigned long elementID);
+	void DeleteElement(unsigned long elementID);
 	
-	static void RegisterElement(UIElement *element);
+	void RegisterElement(UIElement *element);
 
-	static void Update()
-	{
-		processTouch();
-		wmCanvas->Update();
-	}
+	void Update();
 	
 
 private:
-	static UIWindow *wmCanvas;
+	UIWindow *wmCanvas;
 	static WindowManager *s_instance;
 	WindowManager(const uint8_t cs, const uint8_t rst = 255, const uint8_t mosi = 11,
 		const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480);
 
 	~WindowManager();
-	static void processTouch();
+	void processTouch();
 
 #ifdef RA8875
-	static RA8875Driver tft;
+	RA8875Driver tft;
 #endif
 #ifdef FT8875
-	static FT8XXDriver tft;
+	FT8XXDriver tft;
 #endif
 	
-	static void updateOccluded(unsigned long id);
+	void updateOccluded(unsigned long id);
 	
-	static std::map<unsigned long, UIElement *> elementMap;
-	static std::vector<unsigned long> elementOrder;
+	std::map<unsigned long, UIElement *> elementMap;
+	std::vector<unsigned long> elementOrder;
 	
-	static sTouchResponse lastTouchEvent;
+	sTouchResponse lastTouchEvent;
 };

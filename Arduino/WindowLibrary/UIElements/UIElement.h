@@ -36,6 +36,10 @@ struct sTouchResponse
 	{
 		controlID = cID;
 		touchReponse = tr;
+	}	
+	sTouchResponse()
+	{
+		controlID = 0;
 	}
 	unsigned long controlID;
 	eTouchResponse touchReponse;
@@ -54,19 +58,16 @@ public:
 			this->elementName = elementName;
 		this->location = location;
 		this->elementType = elementType;
+#ifdef DEBUG
+		Logger::Trace("UIElement(TFT,(%d,%d,%d,%d), %s, %s)",
+			location.x1, location.y1, location.x2, location.y2,
+			elementName.c_str(), elementType);
+#endif
 	}
 
 	// All inherited UI classes should call this update after they draw 
 	// This puts children on top of parents
-	virtual void Update()
-	{
-		for (int i = 0; i < childElements.size(); i++)
-		{
-			if (childElements[i]->UpdatePending())
-				childElements[i]->Update();
-		}
-		this->updatePending = false;
-	}
+	virtual void Update()=0;
 	
 	eElementType GetElementType()
 	{
