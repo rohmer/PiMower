@@ -49,6 +49,20 @@ public:
 
 	void Update();
 	
+#ifdef RA8875
+	RA8875Driver *GetDriver()
+	{
+		return tft;
+	}
+#endif
+
+#ifdef FT8XX
+	FT8XXDriver *GetDriver()
+	{
+		return tft;
+	}
+#endif
+
 
 private:
 	UIWindow *wmCanvas;
@@ -60,10 +74,10 @@ private:
 	void processTouch();
 
 #ifdef RA8875
-	RA8875Driver tft;
+	RA8875Driver *tft;
 #endif
 #ifdef FT8875
-	FT8XXDriver tft;
+	FT8XXDriver *tft;
 #endif
 	
 	void updateOccluded(unsigned long id);

@@ -33,6 +33,7 @@ int reading = 0;
 
 int d = 0;
 WindowManager *wm=NULL;
+UIWindow *win = NULL;
 
 RA8875Driver lcd;
 // the setup function runs once when you press reset or power the board
@@ -47,6 +48,7 @@ void TextEntry()
 
 void ControlPage1()
 {
+	lcd.Init(800, 480);
 	Button::Draw(lcd, true, 50, 50, 200, 100, Color::White, Color::Red
 		, eUITextFont::AileronRegular12, "Button", true);
 	Button::Draw(lcd, false, 300, 50, 200, 100, Color::Red, Color::Yellow
@@ -86,8 +88,16 @@ void WindowTest()
 // the loop function runs over and over again until power down or reset
 void loop() 
 {
+	//ControlPage1();
+
 	if(!wm)
 		wm = WindowManager::instance(10, 9, 11, 13, 12, eLCDSizes::lcd800x480);
+	if (!win)
+	{
+		win = new UIWindow(*wm->GetDriver(), Rectangle(100, 40, 600, 400), eUITextFont::AileronRegular12, "Test Window",
+			true, true, true, false, true);
+		wm->RegisterElement(win);
+	}
 	wm->Update();
 }
 

@@ -5,14 +5,23 @@ WindowManager *WindowManager::s_instance;
 WindowManager::WindowManager(const uint8_t cs, const uint8_t rst, const uint8_t mosi = 11,
 	const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480) 
 {
+#ifdef RA8875
 	if (lcdSize == eLCDSizes::lcd800x480)
-		tft.Init(800, 480, cs, rst);
+		tft=new RA8875Driver(800, 480, cs, rst);
 	else
-		tft.Init(480, 282, cs, rst);
+		tft = new RA8875Driver(480, 282, cs, rst);
+#endif
+
+#ifdef FT8XX
+	if (lcdSize == eLCDSizes::lcd800x480)
+		tft = new FT8XXDriver(800, 480, cs, rst);
+	else
+		tft = new FT8XXDriver(480, 282, cs, rst);
+#endif
 
  
 	{
-		wmCanvas = new UIWindow(tft, Rectangle(0, 0, tft.width(), tft.height()), eUITextFont::None, "", false, false, false, false, false,
+		wmCanvas = new UIWindow(*tft, Rectangle(0, 0, tft->width(), tft->height()), eUITextFont::None, "", false, false, false, false, false,
 			0, 0, 0, 0, 0);		
 	}
 #ifdef DEBUG
@@ -113,14 +122,14 @@ void WindowManager::MoveControlToFront(unsigned long controlID)
 
 void WindowManager::processTouch()
 {
-	if (!tft.touched())
+	if (!tft->touched())
 	{
 		Logger::Trace("TFT not touched");
 		return;
 	}
 
 	uint16_t x, y;
-	tft.touchRead(&x, &y);
+	tft->touchRead(&x, &y);
 #ifdef DEBUG
 	Logger::Trace("TFT touched (%d,%d)", x, y);
 #endif

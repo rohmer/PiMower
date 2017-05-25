@@ -29,11 +29,11 @@
 49	
 </Source>
       </BreakPoint>
-      <BreakPoint Index="2" Name="UIWindow.cpp, line 13" Id="fe12eed8-3ee5-4b89-b696-6353c6bcdd4a" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="13" FileColumn="1" FunctionName="UIWindow(DriverBase &amp;tft, Rectangle location, eUITextFont titleBarFont,&#xD;&#xA;	std::string titleText = &quot;&quot;, bool hasTitleBar = false, bool hasCloseIcon = false,&#xD;&#xA;	bool hasChrome = false, bool isModal = false, bool is3D = true,&#xD;&#xA;	uint32_t titleBarColor = Color::GetColor(Color::Blue),&#xD;&#xA;	uint32_t titleTextColor = Color::GetColor(Color::White),&#xD;&#xA;	uint32_t chromeColor = Color::GetColor(Color::White),&#xD;&#xA;	uint32_t windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,&#xD;&#xA;	std::string elementName = &quot;&quot;)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='fe12eed8-3ee5-4b89-b696-6353c6bcdd4a'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>6		uint32_t titleBarColor = Color::GetColor(Color::Blue),
-7		uint32_t titleTextColor = Color::GetColor(Color::White),
-8		uint32_t chromeColor = Color::GetColor(Color::White),
-9		uint32_t windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
+      <BreakPoint Index="2" Name="UIWindow.cpp, line 13" Id="fe12eed8-3ee5-4b89-b696-6353c6bcdd4a" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="13" FileColumn="1" FunctionName="UIWindow(DriverBase &amp;tft, Rectangle location, eUITextFont titleBarFont,&#xD;&#xA;	std::string titleText = &quot;&quot;, bool hasTitleBar = false, bool hasCloseIcon = false,&#xD;&#xA;	bool hasChrome = false, bool isModal = false, bool is3D = true,&#xD;&#xA;	tColor  titleBarColor = Color::GetColor(Color::Blue),&#xD;&#xA;	tColor  titleTextColor = Color::GetColor(Color::White),&#xD;&#xA;	tColor  chromeColor = Color::GetColor(Color::White),&#xD;&#xA;	tColor  windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,&#xD;&#xA;	std::string elementName = &quot;&quot;)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='fe12eed8-3ee5-4b89-b696-6353c6bcdd4a'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>6		tColor  titleBarColor = Color::GetColor(Color::Blue),
+7		tColor  titleTextColor = Color::GetColor(Color::White),
+8		tColor  chromeColor = Color::GetColor(Color::White),
+9		tColor  windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
 10		std::string elementName = "")
 11		: UIElement(tft, location, elementName, eElementType::Window)
 12	{
@@ -69,27 +69,7 @@
 63				location.x1, location.y1, location.x2, location.y2,
 </Source>
       </BreakPoint>
-      <BreakPoint Index="4" Name="PicoWindows.ino, line 91" Id="a8631a39-4f83-40d3-a502-3b91a860f676" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\picowindows.ino" FileLine="91" FileColumn="1" FunctionName="loop()" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='a8631a39-4f83-40d3-a502-3b91a860f676'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>84	}
-85	
-86	// the loop function runs over and over again until power down or reset
-87	void loop() 
-88	{
-89		if(!wm)
-90			wm = WindowManager::instance(10, 9, 11, 13, 12, eLCDSizes::lcd800x480);
---&gt;91		wm-&gt;Update();
-92	}
-93	
-94	/*
-95	
-96	// Library only supports hardware SPI at this time
-97	// Connect SCLK to UNO Digital #13 (Hardware SPI clock)
-98	// Connect MISO to UNO Digital #12 (Hardware SPI MISO)
-99	// Connect MOSI to UNO Digital #11 (Hardware SPI MOSI)
-100	#define RA8875_INT 3
-</Source>
-      </BreakPoint>
-      <BreakPoint Index="5" Name="RA8875Driver.cpp, line 406" Id="aa821fa5-8814-4f74-8cbd-eb2c04012e51" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\driver\ra8875driver.cpp" FileLine="406" FileColumn="1" FunctionName="touched()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='aa821fa5-8814-4f74-8cbd-eb2c04012e51'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+      <BreakPoint Index="4" Name="RA8875Driver.cpp, line 406" Id="aa821fa5-8814-4f74-8cbd-eb2c04012e51" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\driver\ra8875driver.cpp" FileLine="406" FileColumn="1" FunctionName="touched()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='aa821fa5-8814-4f74-8cbd-eb2c04012e51'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
         <Source>399		if (!checkInit())
 400			return;
 401		tft-&gt;touchEnable(value);
@@ -109,7 +89,7 @@
 415		return(tft-&gt;touchRead(x, y));
 </Source>
       </BreakPoint>
-      <BreakPoint Index="6" Name="RA8875Driver.cpp, line 408" Id="ff7deba2-9d3b-4265-acfd-82a32b8786d8" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\driver\ra8875driver.cpp" FileLine="408" FileColumn="1" FunctionName="touched()" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ff7deba2-9d3b-4265-acfd-82a32b8786d8'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+      <BreakPoint Index="5" Name="RA8875Driver.cpp, line 408" Id="ff7deba2-9d3b-4265-acfd-82a32b8786d8" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\driver\ra8875driver.cpp" FileLine="408" FileColumn="1" FunctionName="touched()" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ff7deba2-9d3b-4265-acfd-82a32b8786d8'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
         <Source>401		tft-&gt;touchEnable(value);
 402	}
 403	
@@ -129,7 +109,7 @@
 417	
 </Source>
       </BreakPoint>
-      <BreakPoint Index="7" Name="Adafruit_RA8875.cpp, line 1151" Id="ff126c80-fdbe-4a10-976b-d9ff13f55296" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\external\adafruit_ra8875\adafruit_ra8875.cpp" FileLine="1151" FileColumn="1" FunctionName="touched(void)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ff126c80-fdbe-4a10-976b-d9ff13f55296'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+      <BreakPoint Index="6" Name="Adafruit_RA8875.cpp, line 1151" Id="ff126c80-fdbe-4a10-976b-d9ff13f55296" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\external\adafruit_ra8875\adafruit_ra8875.cpp" FileLine="1151" FileColumn="1" FunctionName="touched(void)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ff126c80-fdbe-4a10-976b-d9ff13f55296'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
         <Source>1144	      
 1145	      @returns  True is a touch event has occured (reading it via
 1146	                touchRead() will clear the interrupt in memory)
@@ -149,44 +129,104 @@
 1160	      @args y[out]  Pointer to the uint16_t field to assign the raw Y value
 </Source>
       </BreakPoint>
-      <BreakPoint Index="8" Name="WindowMananger.cpp, line 27" Id="3d2a6fbc-6c94-4771-867d-e36546c10e3c" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\windowmananger.cpp" FileLine="27" FileColumn="1" FunctionName="Update()" FunctionLineOffset="3" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='3d2a6fbc-6c94-4771-867d-e36546c10e3c'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>20	#endif
-21	}
-22	
-23	void WindowManager::Update()
-24	{
-25		Logger::Trace("WindowManager::Update()");
-26		processTouch();
---&gt;27		wmCanvas-&gt;Update();
-28	}
-29	
-30	void WindowManager::RegisterElement(UIElement *element)
-31	{
-32		Logger::Trace("Entering RegisterElement");
-33		elementMap.insert(std::make_pair(element-&gt;getElementID(), element));
-34		elementOrder.push_back(element-&gt;getElementID());
-35		WindowManager::wmCanvas-&gt;AddChildElement(element);	
-36	}
+      <BreakPoint Index="7" Name="UIPrimitives.cpp, line 105" Id="41d3cb8c-9a78-4d7b-baf3-46eddc91efae" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\ra8875\uiprimitives.cpp" FileLine="105" FileColumn="1" FunctionName="RaisedPanel(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,&#xD;&#xA;	uint8_t cornerRadius, uint32_t color, uint8_t alpha)" FunctionLineOffset="13" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='41d3cb8c-9a78-4d7b-baf3-46eddc91efae'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>98		uint8_t shadowOffset = height / 5;
+99		if (height &gt; width)
+100			shadowOffset = width / 5;
+101		if (shadowOffset &gt; 4)
+102			shadowOffset = 4;
+103		if (shadowOffset &lt; 1)
+104			shadowOffset = 1;
+--&gt;105		if (cornerRadius &gt; 0)
+106		{		
+107			tft.fillRect(x + shadowOffset, y + shadowOffset, width, height, Color::Black);		
+108		}
+109		else
+110			tft.fillRect(x+shadowOffset,y+shadowOffset,width,height,  Color::Black);
+111		if (cornerRadius&gt;0)
+112			tft.fillRoundRect(x,y, width,height, cornerRadius,
+113				color);
+114		else
 </Source>
       </BreakPoint>
-      <BreakPoint Index="9" Name="UIWindow.cpp, line 66" Id="c525bdc8-71a3-4a7c-a8d4-590b3b60dfa9" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="66" FileColumn="1" FunctionName="Update()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='c525bdc8-71a3-4a7c-a8d4-590b3b60dfa9'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>59	{
-60		this-&gt;isModal = isModal;
-61		Invalidate();
-62	}
-63	
-64	void UIWindow::Update()
-65	{
---&gt;66		if (!updatePending)
-67		{
-68	#ifdef DEBUG
-69			Logger::Trace("Update not pending");
-70	#endif		
-71			return;
-72		}
-73		Window::Draw(tft, location.x1, location.y1, location.width, location.height, titleBarColor,
-74			titleTextColor, chromeColor, chromeColor, windowColor, titleText, titleBarFont, hasChrome,
-75			hasTitleBar, hasCloseIcon, true, 4, 255);	
+      <BreakPoint Index="8" Name="UIPrimitives.cpp, line 117" Id="00c46d52-c357-4fa9-9e64-c229b77d6701" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\ra8875\uiprimitives.cpp" FileLine="117" FileColumn="1" FunctionName="RaisedPanel(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,&#xD;&#xA;	uint8_t cornerRadius, uint32_t color, uint8_t alpha)" FunctionLineOffset="25" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='00c46d52-c357-4fa9-9e64-c229b77d6701'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>110			tft.fillRect(x+shadowOffset,y+shadowOffset,width,height,  Color::Black);
+111		if (cornerRadius&gt;0)
+112			tft.fillRoundRect(x,y, width,height, cornerRadius,
+113				color);
+114		else
+115			tft.fillRect(x,y,width,height,
+116				color);	
+--&gt;117		Rectangle r = Rectangle(x, y, x + width+shadowOffset, y + height+shadowOffset);
+118		return (r);
+119	}
+120	
+121	Rectangle UIPrimitives::FlatPanel(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,
+122		uint8_t cornerRadius, uint32_t color, uint8_t alpha)
+123	{
+124		if (cornerRadius &gt; 0)
+125			tft.fillRoundRect(x, y, width, height, cornerRadius, color);
+126		else
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="9" Name="Window.cpp, line 24" Id="d227a1d0-edb4-468d-adec-ccce96986d8f" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\controldisplay\window.cpp" FileLine="24" FileColumn="1" FunctionName="Draw(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,&#xD;&#xA;		uint32_t titleBarBGColor, uint16_t titleBarTextColor, uint32_t controlColor, uint32_t borderColor,&#xD;&#xA;		uint32_t windowBGColor,&#xD;&#xA;		std::string titleText, eUITextFont font, bool hasChrome, bool hasTitleBar, bool hasCloseIcon,&#xD;&#xA;		bool is3D = true, uint8_t cornerRadius = 4, uint8_t alpha = 255)" FunctionLineOffset="8" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='d227a1d0-edb4-468d-adec-ccce96986d8f'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>17	{
+18		Rectangle r;
+19		if (is3D)
+20			r = UIPrimitives::RaisedPanel(tft, x, y, width, height, cornerRadius, windowBGColor, alpha);
+21		else
+22			r = UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, windowBGColor, alpha);
+23	
+--&gt;24		if (hasChrome)
+25		{
+26			if (hasTitleBar)
+27			{
+28				Rectangle txtRect = FontHelper::GetTextRect(tft, titleText, font, Point(0, 0));
+29				uint8_t fontHeight = txtRect.height;
+30				uint8_t fontWidth = txtRect.width;
+31				Rectangle titleBarRect = UIPrimitives::FlatPanel(tft, x + 1, y + 1, width - 2, fontHeight*3, cornerRadius,
+32					titleBarBGColor, alpha);
+33				// Now center the text in that
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="10" Name="PicoWindows.ino, line 99" Id="f3cc3a83-e400-4129-8872-7d0e08e64514" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\picowindows.ino" FileLine="99" FileColumn="1" FunctionName="loop()" FunctionLineOffset="10" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='f3cc3a83-e400-4129-8872-7d0e08e64514'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>92	
+93		if(!wm)
+94			wm = WindowManager::instance(10, 9, 11, 13, 12, eLCDSizes::lcd800x480);
+95		if (!win)
+96		{
+97			win = new UIWindow(*wm-&gt;GetDriver(), Rectangle(100, 40, 600, 400), eUITextFont::AileronRegular12, "Test Window",
+98				true, true, true, false, true);
+--&gt;99			wm-&gt;RegisterElement(win);
+100		}
+101		wm-&gt;Update();
+102	}
+103	
+104	/*
+105	
+106	// Library only supports hardware SPI at this time
+107	// Connect SCLK to UNO Digital #13 (Hardware SPI clock)
+108	// Connect MISO to UNO Digital #12 (Hardware SPI MISO)
+</Source>
+      </BreakPoint>
+      <BreakPoint Index="11" Name="UIWindow.cpp, line 94" Id="62a8be3f-e82d-413d-882d-8af15abc8b42" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="94" FileColumn="1" FunctionName="AddChildElement(UIElement *element)" FunctionLineOffset="10" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='62a8be3f-e82d-413d-882d-8af15abc8b42'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>87		elementLocation.x1 += location.x1;
+88		elementLocation.x2 += location.x2;
+89		elementLocation.y1 += location.y1;
+90		elementLocation.y2 += location.y2;
+91		elementLocation.update();
+92		element-&gt;SetLocation(elementLocation);
+93		childElements.push_back(element);
+--&gt;94		element-&gt;SetParent(this);
+95	}
+96	
+97	
+98	sTouchResponse UIWindow::ProcessTouch(Point touchPoint)
+99	{
+100		if (!location.contains(touchPoint))
+101		{
+102	#ifdef DEBUG
+103			Logger::Trace("Touch point(%d,%d) not in this control", touchPoint.x, touchPoint.y);
 </Source>
       </BreakPoint>
     </BreakPoints>
