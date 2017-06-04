@@ -9,225 +9,181 @@
       <VCCodeMacros />
     </VCCodeModel>
     <BreakPoints>
-      <BreakPoint Index="1" Name="WindowManager.h, line 40" Id="52175f67-0e87-4920-adfb-73aaf04e213b" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\windowmanager.h" FileLine="40" FileColumn="1" FunctionName="class WindowManager::instance(const uint8_t cs=10, const uint8_t rst = 9,&#xD;&#xA;		const uint8_t mosi = 11, const uint8_t sclk = 13, const uint8_t miso = 12,&#xD;&#xA;		eLCDSizes lcdSize = eLCDSizes::lcd800x480)" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='52175f67-0e87-4920-adfb-73aaf04e213b'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>33	
-34		static WindowManager *instance(const uint8_t cs=10, const uint8_t rst = 9,
-35			const uint8_t mosi = 11, const uint8_t sclk = 13, const uint8_t miso = 12,
-36			eLCDSizes lcdSize = eLCDSizes::lcd800x480)
-37		{
-38			if (!s_instance)
-39			{
---&gt;40				s_instance = new WindowManager(cs, rst, mosi, sclk, miso, lcdSize);
-41			}
-42			return s_instance;
-43		}
-44	
-45		void MoveControlToFront(unsigned long controlID);
-46		void DeleteElement(unsigned long elementID);
-47		
-48		void RegisterElement(UIElement *element);
-49	
+      <BreakPoint Index="1" Name="UIElement.h, line 169" Id="2ce9ddb7-b0ca-412c-9690-61441cb943d6" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uielement.h" FileLine="169" FileColumn="1" FunctionName="class UIElement::UpdateChildren()" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='2ce9ddb7-b0ca-412c-9690-61441cb943d6'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>162			return this-&gt;elementName;
+163		}
+164		
+165		void UpdateChildren()
+166		{
+167			for (int i = 0; i &lt; childElements.size(); i++)
+168			{
+--&gt;169				UIElement &amp;uie = *childElements[i];			
+170				uie.Update();
+171			}
+172		}
+173	
+174		~UIElement()
+175		{
+176		}
+177	
+178	private:
 </Source>
       </BreakPoint>
-      <BreakPoint Index="2" Name="UIWindow.cpp, line 13" Id="fe12eed8-3ee5-4b89-b696-6353c6bcdd4a" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="13" FileColumn="1" FunctionName="UIWindow(DriverBase &amp;tft, Rectangle location, eUITextFont titleBarFont,&#xD;&#xA;	std::string titleText = &quot;&quot;, bool hasTitleBar = false, bool hasCloseIcon = false,&#xD;&#xA;	bool hasChrome = false, bool isModal = false, bool is3D = true,&#xD;&#xA;	tColor  titleBarColor = Color::GetColor(Color::Blue),&#xD;&#xA;	tColor  titleTextColor = Color::GetColor(Color::White),&#xD;&#xA;	tColor  chromeColor = Color::GetColor(Color::White),&#xD;&#xA;	tColor  windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,&#xD;&#xA;	std::string elementName = &quot;&quot;)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='fe12eed8-3ee5-4b89-b696-6353c6bcdd4a'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>6		tColor  titleBarColor = Color::GetColor(Color::Blue),
-7		tColor  titleTextColor = Color::GetColor(Color::White),
-8		tColor  chromeColor = Color::GetColor(Color::White),
-9		tColor  windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
-10		std::string elementName = "")
-11		: UIElement(tft, location, elementName, eElementType::Window)
-12	{
---&gt;13		this-&gt;titleText = titleText;
-14		this-&gt;hasTitleBar = hasTitleBar;
-15		this-&gt;hasChrome = hasChrome;
-16		this-&gt;hasCloseIcon = hasCloseIcon;
-17		this-&gt;isModal = isModal;
-18		this-&gt;titleTextColor = titleTextColor;
-19		this-&gt;titleBarColor = titleBarColor;
-20		this-&gt;chromeColor = chromeColor;
-21		this-&gt;windowColor = windowColor;
-22		this-&gt;titleBarFont = titleBarFont;	
+      <BreakPoint Index="2" Name="WindowMananger.cpp, line 131" Id="76e30bd7-4754-45cc-bbdf-fad667f01727" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\windowmananger.cpp" FileLine="131" FileColumn="1" FunctionName="processTouch()" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='76e30bd7-4754-45cc-bbdf-fad667f01727'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>124		updateOccluded(controlID);
+125	}
+126	
+127	void WindowManager::processTouch()
+128	{
+129		// Check power state triggers
+130		uint32_t now = millis();
+--&gt;131		if (now &gt; screenOffTrigger &amp;&amp; powerState!=ScreenOff)
+132		{
+133	#ifdef DEBUG
+134			Logger::Trace("Switching TFT to Off State");
+135	#endif
+136			powerState = ePowerState::ScreenOff;
+137			tft-&gt;backlightPower(0);
+138			tft-&gt;backlightOn(false);
+139		}
+140		else
 </Source>
       </BreakPoint>
-      <BreakPoint Index="3" Name="UIElement.h, line 54" Id="6f95282c-5fe6-4950-9647-32e9bdfc1372" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uielement.h" FileLine="54" FileColumn="1" FunctionName="class UIElement::UIElement(DriverBase &amp;tft, Rectangle location, std::string elementName, eElementType elementType)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='6f95282c-5fe6-4950-9647-32e9bdfc1372'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>47	
-48	class UIElement
-49	{
-50	public:
-51		UIElement(DriverBase &amp;tft, Rectangle location, std::string elementName, eElementType elementType) :
-52			tft(tft)
-53		{
---&gt;54			this-&gt;elementID = micros();
-55			if (elementName == "")
-56				this-&gt;elementName = this-&gt;elementID;
-57			else
-58				this-&gt;elementName = elementName;
-59			this-&gt;location = location;
-60			this-&gt;elementType = elementType;
-61	#ifdef DEBUG
-62			Logger::Trace("UIElement(TFT,(%d,%d,%d,%d), %s, %s)",
-63				location.x1, location.y1, location.x2, location.y2,
+      <BreakPoint Index="3" Name="WindowMananger.cpp, line 136" Id="622a3996-63f4-4341-87b3-0dbc110fbca4" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\windowmananger.cpp" FileLine="136" FileColumn="1" FunctionName="processTouch()" FunctionLineOffset="9" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='622a3996-63f4-4341-87b3-0dbc110fbca4'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>129		// Check power state triggers
+130		uint32_t now = millis();
+131		if (now &gt; screenOffTrigger &amp;&amp; powerState!=ScreenOff)
+132		{
+133	#ifdef DEBUG
+134			Logger::Trace("Switching TFT to Off State");
+135	#endif
+--&gt;136			powerState = ePowerState::ScreenOff;
+137			tft-&gt;backlightPower(0);
+138			tft-&gt;backlightOn(false);
+139		}
+140		else
+141		{
+142			if (now &gt; lowPowerTrigger &amp;&amp; powerState != LowPower)
+143			{
+144	#ifdef DEBUG
+145				Logger::Trace("Switching TFT to Low Power State");
 </Source>
       </BreakPoint>
-      <BreakPoint Index="4" Name="RA8875Driver.cpp, line 406" Id="aa821fa5-8814-4f74-8cbd-eb2c04012e51" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\driver\ra8875driver.cpp" FileLine="406" FileColumn="1" FunctionName="touched()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='aa821fa5-8814-4f74-8cbd-eb2c04012e51'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>399		if (!checkInit())
-400			return;
-401		tft-&gt;touchEnable(value);
-402	}
-403	
-404	bool RA8875Driver::touched()
-405	{
---&gt;406		if (!checkInit())
-407			return(false);
-408		return tft-&gt;touched();
-409	}
-410	
-411	bool RA8875Driver::touchRead(uint16_t *x, uint16_t *y)
-412	{
-413		if (!checkInit())
-414			return(false);
-415		return(tft-&gt;touchRead(x, y));
+      <BreakPoint Index="4" Name="WindowMananger.cpp, line 147" Id="63bab5b3-f41c-46c5-8a48-8b641a04363e" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\windowmanager\windowmananger.cpp" FileLine="147" FileColumn="1" FunctionName="processTouch()" FunctionLineOffset="20" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='63bab5b3-f41c-46c5-8a48-8b641a04363e'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>140		else
+141		{
+142			if (now &gt; lowPowerTrigger &amp;&amp; powerState != LowPower)
+143			{
+144	#ifdef DEBUG
+145				Logger::Trace("Switching TFT to Low Power State");
+146	#endif
+--&gt;147				powerState = ePowerState::LowPower;
+148				tft-&gt;backlightPower(64);
+149			}
+150		}
+151		
+152		if (!tft-&gt;touched())
+153		{
+154			return;
+155		}
+156		if (powerState != Normal)
 </Source>
       </BreakPoint>
-      <BreakPoint Index="5" Name="RA8875Driver.cpp, line 408" Id="ff7deba2-9d3b-4265-acfd-82a32b8786d8" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\driver\ra8875driver.cpp" FileLine="408" FileColumn="1" FunctionName="touched()" FunctionLineOffset="4" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ff7deba2-9d3b-4265-acfd-82a32b8786d8'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>401		tft-&gt;touchEnable(value);
-402	}
-403	
-404	bool RA8875Driver::touched()
-405	{
-406		if (!checkInit())
-407			return(false);
---&gt;408		return tft-&gt;touched();
-409	}
-410	
-411	bool RA8875Driver::touchRead(uint16_t *x, uint16_t *y)
-412	{
-413		if (!checkInit())
-414			return(false);
-415		return(tft-&gt;touchRead(x, y));
-416	}
-417	
+      <BreakPoint Index="5" Name="UIButton.cpp, line 59" Id="04a78d90-8c13-4ad2-a0aa-598b44784df9" Enabled="1" Message="{location.x1}{location.y1}{location.width}{location.height}" MessageTextType="2" PreProcessedMessage="{0}{1}{2}{3}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uibutton.cpp" FileLine="59" FileColumn="1" FunctionName="Update()" FunctionLineOffset="10" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='04a78d90-8c13-4ad2-a0aa-598b44784df9'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>52		{
+53	#ifdef DEBUG
+54			Logger::Trace("No update for UIButton pending");
+55	#endif
+56			return;
+57		}
+58	
+--&gt;59		if (is3D)
+60		{
+61			Button::Draw(tft, !raised, location.x1, location.y1, location.width, location.height,
+62				textColor, buttonBGColor, font, buttonText, true, cornerRadius, alpha, vertAlign);
+63		}
+64		else
+65		{
+66			Button::Draw(tft, !raised, location.x1, location.y1, location.width, location.height,
+67				textColor, buttonBGColor, font, buttonText, false, cornerRadius, alpha, vertAlign);
+68		}
 </Source>
+        <MessageVariables>
+          <MessageVariable Name="location.x1" Index="1" />
+          <MessageVariable Name="location.y1" Index="2" />
+          <MessageVariable Name="location.width" Index="3" />
+          <MessageVariable Name="location.height" Index="4" />
+        </MessageVariables>
       </BreakPoint>
-      <BreakPoint Index="6" Name="Adafruit_RA8875.cpp, line 1151" Id="ff126c80-fdbe-4a10-976b-d9ff13f55296" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\external\adafruit_ra8875\adafruit_ra8875.cpp" FileLine="1151" FileColumn="1" FunctionName="touched(void)" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='ff126c80-fdbe-4a10-976b-d9ff13f55296'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>1144	      
-1145	      @returns  True is a touch event has occured (reading it via
-1146	                touchRead() will clear the interrupt in memory)
-1147	*/
-1148	/**************************************************************************/
-1149	boolean Adafruit_RA8875::touched(void) 
-1150	{
---&gt;1151	  if (readReg(RA8875_INTC2) &amp; RA8875_INTC2_TP) return true;
-1152	  return false;
-1153	}
-1154	
-1155	/**************************************************************************/
-1156	/*!
-1157	      Reads the last touch event
-1158	      
-1159	      @args x[out]  Pointer to the uint16_t field to assign the raw X value
-1160	      @args y[out]  Pointer to the uint16_t field to assign the raw Y value
+      <BreakPoint Index="6" Name="NumericEntryFT8XX.cpp, line 176" Id="f6afb2f3-6337-4b4d-9698-50afd4d508e3" Enabled="1" Message="{controlBGColor}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\controldisplay\numericentryft8xx.cpp" FileLine="176" FileColumn="1" FunctionName="UpdateInput(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t controlBGColor,&#xD;&#xA;	uint16_t textColor, eUITextFont font, std::string inputValue, bool is3D)" FunctionLineOffset="13" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='f6afb2f3-6337-4b4d-9698-50afd4d508e3'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>169			else
+170				x = 115;		// (Width/2 == 240) -(ControlWidth/2 == 125) = 115
+171		}
+172		if (y == 0)
+173		{
+174			if (tft.isLandscape())
+175			{
+--&gt;176				y = 9;
+177			}
+178			else
+179			{
+180				y = 169;
+181			}
+182		}
+183	
+184	
+185		// Input widget is 5 down from the top and left, and the width - 10 
 </Source>
+        <MessageVariables>
+          <MessageVariable Name="controlBGColor" Index="1" />
+        </MessageVariables>
       </BreakPoint>
-      <BreakPoint Index="7" Name="UIPrimitives.cpp, line 105" Id="41d3cb8c-9a78-4d7b-baf3-46eddc91efae" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\ra8875\uiprimitives.cpp" FileLine="105" FileColumn="1" FunctionName="RaisedPanel(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,&#xD;&#xA;	uint8_t cornerRadius, uint32_t color, uint8_t alpha)" FunctionLineOffset="13" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='41d3cb8c-9a78-4d7b-baf3-46eddc91efae'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>98		uint8_t shadowOffset = height / 5;
-99		if (height &gt; width)
-100			shadowOffset = width / 5;
-101		if (shadowOffset &gt; 4)
-102			shadowOffset = 4;
-103		if (shadowOffset &lt; 1)
-104			shadowOffset = 1;
---&gt;105		if (cornerRadius &gt; 0)
-106		{		
-107			tft.fillRect(x + shadowOffset, y + shadowOffset, width, height, Color::Black);		
-108		}
-109		else
-110			tft.fillRect(x+shadowOffset,y+shadowOffset,width,height,  Color::Black);
-111		if (cornerRadius&gt;0)
-112			tft.fillRoundRect(x,y, width,height, cornerRadius,
-113				color);
-114		else
+      <BreakPoint Index="7" Name="NumericEntryFT8XX.cpp, line 201" Id="efc9411a-5a3b-49a9-b949-b0b7bf3635cf" Enabled="1" Message="{ptr}" MessageTextType="2" PreProcessedMessage="{0}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\controldisplay\numericentryft8xx.cpp" FileLine="201" FileColumn="1" FunctionName="UpdateInput(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t controlBGColor,&#xD;&#xA;	uint16_t textColor, eUITextFont font, std::string inputValue, bool is3D)" FunctionLineOffset="38" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='efc9411a-5a3b-49a9-b949-b0b7bf3635cf'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="0">
+        <Source>194		uint16_t textHeight = rect.height;
+195		if (rect.width &gt; 235)
+196		{
+197			// We cant show all the items, so we show the most we can
+198			int ptr = 1;
+199			while (FontHelper::GetTextRect(tft, inputValue.substr(inputValue.size() - ptr), font, Point(0, 0)).width &lt; 235)
+200			{
+--&gt;201				ptr++;
+202			}
+203			ptr=ptr-1;
+204			inputValue = inputValue.substr(ptr);
+205			textWidth = FontHelper::GetTextRect(tft, inputValue, font, Point(0, 0)).width;
+206		}
+207		UIPrimitives::Text(tft, textColor, 255, x + 5+textWidth/2, y + textHeight/2-5, font, is3D, inputValue);
+208	}
+209	
+210	/// &lt;summary&gt;
 </Source>
+        <MessageVariables>
+          <MessageVariable Name="ptr" Index="1" />
+        </MessageVariables>
       </BreakPoint>
-      <BreakPoint Index="8" Name="UIPrimitives.cpp, line 117" Id="00c46d52-c357-4fa9-9e64-c229b77d6701" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\ra8875\uiprimitives.cpp" FileLine="117" FileColumn="1" FunctionName="RaisedPanel(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,&#xD;&#xA;	uint8_t cornerRadius, uint32_t color, uint8_t alpha)" FunctionLineOffset="25" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='00c46d52-c357-4fa9-9e64-c229b77d6701'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>110			tft.fillRect(x+shadowOffset,y+shadowOffset,width,height,  Color::Black);
-111		if (cornerRadius&gt;0)
-112			tft.fillRoundRect(x,y, width,height, cornerRadius,
-113				color);
-114		else
-115			tft.fillRect(x,y,width,height,
-116				color);	
---&gt;117		Rectangle r = Rectangle(x, y, x + width+shadowOffset, y + height+shadowOffset);
-118		return (r);
-119	}
-120	
-121	Rectangle UIPrimitives::FlatPanel(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,
-122		uint8_t cornerRadius, uint32_t color, uint8_t alpha)
-123	{
-124		if (cornerRadius &gt; 0)
-125			tft.fillRoundRect(x, y, width, height, cornerRadius, color);
-126		else
+      <BreakPoint Index="8" Name="NumericEntryFT8XX.cpp, line 207" Id="75f2e320-2438-454d-8de4-2f2e1203cc36" Enabled="1" Message="{x}{textWidth}" MessageTextType="2" PreProcessedMessage="{0}{1}" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\controldisplay\numericentryft8xx.cpp" FileLine="207" FileColumn="1" FunctionName="UpdateInput(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t controlBGColor,&#xD;&#xA;	uint16_t textColor, eUITextFont font, std::string inputValue, bool is3D)" FunctionLineOffset="44" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='75f2e320-2438-454d-8de4-2f2e1203cc36'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
+        <Source>200			{
+201				ptr++;
+202			}
+203			ptr=ptr-1;
+204			inputValue = inputValue.substr(ptr);
+205			textWidth = FontHelper::GetTextRect(tft, inputValue, font, Point(0, 0)).width;
+206		}
+--&gt;207		UIPrimitives::Text(tft, textColor, 255, x + 5+textWidth/2, y + textHeight/2-5, font, is3D, inputValue);
+208	}
+209	
+210	/// &lt;summary&gt;
+211	/// Processes the touch point
+212	/// &lt;/summary&gt;
+213	/// &lt;param name="pt"&gt;The pt.&lt;/param&gt;
+214	/// &lt;returns&gt;value each time, complete=true if it is complete&lt;/returns&gt;
+215	std::string NumericEntry::ProcessTouch(DriverBase &amp;tft, std::string value, uint16_t x, uint16_t y, Point pt, bool &amp;complete,
+216		bool singleDecimal)
 </Source>
-      </BreakPoint>
-      <BreakPoint Index="9" Name="Window.cpp, line 24" Id="d227a1d0-edb4-468d-adec-ccce96986d8f" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\controldisplay\window.cpp" FileLine="24" FileColumn="1" FunctionName="Draw(DriverBase &amp;tft, uint16_t x, uint16_t y, uint16_t width, uint16_t height,&#xD;&#xA;		uint32_t titleBarBGColor, uint16_t titleBarTextColor, uint32_t controlColor, uint32_t borderColor,&#xD;&#xA;		uint32_t windowBGColor,&#xD;&#xA;		std::string titleText, eUITextFont font, bool hasChrome, bool hasTitleBar, bool hasCloseIcon,&#xD;&#xA;		bool is3D = true, uint8_t cornerRadius = 4, uint8_t alpha = 255)" FunctionLineOffset="8" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='d227a1d0-edb4-468d-adec-ccce96986d8f'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>17	{
-18		Rectangle r;
-19		if (is3D)
-20			r = UIPrimitives::RaisedPanel(tft, x, y, width, height, cornerRadius, windowBGColor, alpha);
-21		else
-22			r = UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, windowBGColor, alpha);
-23	
---&gt;24		if (hasChrome)
-25		{
-26			if (hasTitleBar)
-27			{
-28				Rectangle txtRect = FontHelper::GetTextRect(tft, titleText, font, Point(0, 0));
-29				uint8_t fontHeight = txtRect.height;
-30				uint8_t fontWidth = txtRect.width;
-31				Rectangle titleBarRect = UIPrimitives::FlatPanel(tft, x + 1, y + 1, width - 2, fontHeight*3, cornerRadius,
-32					titleBarBGColor, alpha);
-33				// Now center the text in that
-</Source>
-      </BreakPoint>
-      <BreakPoint Index="10" Name="PicoWindows.ino, line 99" Id="f3cc3a83-e400-4129-8872-7d0e08e64514" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\picowindows.ino" FileLine="99" FileColumn="1" FunctionName="loop()" FunctionLineOffset="10" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='f3cc3a83-e400-4129-8872-7d0e08e64514'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>92	
-93		if(!wm)
-94			wm = WindowManager::instance(10, 9, 11, 13, 12, eLCDSizes::lcd800x480);
-95		if (!win)
-96		{
-97			win = new UIWindow(*wm-&gt;GetDriver(), Rectangle(100, 40, 600, 400), eUITextFont::AileronRegular12, "Test Window",
-98				true, true, true, false, true);
---&gt;99			wm-&gt;RegisterElement(win);
-100		}
-101		wm-&gt;Update();
-102	}
-103	
-104	/*
-105	
-106	// Library only supports hardware SPI at this time
-107	// Connect SCLK to UNO Digital #13 (Hardware SPI clock)
-108	// Connect MISO to UNO Digital #12 (Hardware SPI MISO)
-</Source>
-      </BreakPoint>
-      <BreakPoint Index="11" Name="UIWindow.cpp, line 94" Id="62a8be3f-e82d-413d-882d-8af15abc8b42" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\rohme\source\repos\pimower\arduino\windowlibrary\uielements\uiwindow.cpp" FileLine="94" FileColumn="1" FunctionName="AddChildElement(UIElement *element)" FunctionLineOffset="10" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C++" LocationType="3" Tag="&lt;vmbp Id='62a8be3f-e82d-413d-882d-8af15abc8b42'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>87		elementLocation.x1 += location.x1;
-88		elementLocation.x2 += location.x2;
-89		elementLocation.y1 += location.y1;
-90		elementLocation.y2 += location.y2;
-91		elementLocation.update();
-92		element-&gt;SetLocation(elementLocation);
-93		childElements.push_back(element);
---&gt;94		element-&gt;SetParent(this);
-95	}
-96	
-97	
-98	sTouchResponse UIWindow::ProcessTouch(Point touchPoint)
-99	{
-100		if (!location.contains(touchPoint))
-101		{
-102	#ifdef DEBUG
-103			Logger::Trace("Touch point(%d,%d) not in this control", touchPoint.x, touchPoint.y);
-</Source>
+        <MessageVariables>
+          <MessageVariable Name="x" Index="1" />
+          <MessageVariable Name="textWidth" Index="2" />
+        </MessageVariables>
       </BreakPoint>
     </BreakPoints>
   </Program>

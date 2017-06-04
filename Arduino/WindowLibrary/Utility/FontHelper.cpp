@@ -603,624 +603,682 @@ Rectangle FontHelper::GetTextRect(DriverBase &tft, std::string text, eUITextFont
 #ifdef FT8XX
 Rectangle FontHelper::GetTextRect(DriverBase &lcd, std::string text, eUITextFont font, Point textLoc)
 {
-	Point *charRect;
+	Point charRect;
 	switch (font)
 	{
 #if defined(useAileronBlack9) || defined(useAllFonts)
 	case(AileronBlack9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronBlack12) || defined(useAllFonts)
 	case(AileronBlack12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronBlack18) || defined(useAllFonts)
 	case(AileronBlack18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronBlack24) || defined(useAllFonts)
 	case(AileronBlack24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronBlack36) || defined(useAllFonts)
 	case(AileronBlack36):
-		charRect = new Point(38, 43);
+		charRect = Point(38, 43);
 		break;
 #endif
 #if defined(useAileronBlackItalic9) || defined(useAllFonts)
 	case(AileronBlackItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronBlackItalic12) || defined(useAllFonts)
 	case(AileronBlackItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronBlackItalic18) || defined(useAllFonts)
 	case(AileronBlackItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronBlackItalic24) || defined(useAllFonts)
 	case(AileronBlackItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronBlackItalic36) || defined(useAllFonts)
 	case(AileronBlackItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronBoldItalic9) || defined(useAllFonts)
 	case(AileronBoldItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronBoldItalic12) || defined(useAllFonts)
 	case(AileronBoldItalic12):
-		charRect = new Point(12, 14);
+		charRect = Point(12, 14);
 		break;
 #endif
 #if defined(useAileronBoldItalic18) || defined(useAllFonts)
 	case(AileronBoldItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronBoldItalic24) || defined(useAllFonts)
 	case(AileronBoldItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronBoldItalic36) || defined(useAllFonts)
 	case(AileronBoldItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronHeavy9) || defined(useAllFonts)
 	case(AileronHeavy9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronHeavy12) || defined(useAllFonts)
 	case(AileronHeavy12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronHeavy18) || defined(useAllFonts)
 	case(AileronHeavy18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronHeavy24) || defined(useAllFonts)
 	case(AileronHeavy24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronHeavy36) || defined(useAllFonts)
 	case(AileronHeavy36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronHeavyItalic9) || defined(useAllFonts)
 	case(AileronHeavyItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronHeavyItalic12) || defined(useAllFonts)
 	case(AileronHeavyItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronHeavyItalic18) || defined(useAllFonts)
 	case(AileronHeavyItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronHeavyItalic24) || defined(useAllFonts)
 	case(AileronHeavyItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronHeavyItalic36) || defined(useAllFonts)
 	case(AileronHeavyItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronLight9) || defined(useAllFonts)
 	case(AileronLight9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronLight12) || defined(useAllFonts)
 	case(AileronLight12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronLight18) || defined(useAllFonts)
 	case(AileronLight18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronLight24) || defined(useAllFonts)
 	case(AileronLight24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronLight36) || defined(useAllFonts)
 	case(AileronLight36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronRegular9) || defined(useAllFonts)
 	case(AileronRegular9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronRegular12) || defined(useAllFonts)
 	case(AileronRegular12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronRegular18) || defined(useAllFonts)
 	case(AileronRegular18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronRegular24) || defined(useAllFonts)
 	case(AileronRegular24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronRegular36) || defined(useAllFonts)
 	case(AileronRegular36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronSemiBold9) || defined(useAllFonts)
 	case(AileronSemiBold9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronSemiBold12) || defined(useAllFonts)
 	case(AileronSemiBold12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronSemiBold18) || defined(useAllFonts)
 	case(AileronSemiBold18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 #if defined(useAileronSemiBold24) || defined(useAllFonts)
 	case(AileronSemiBold24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronSemiBold36) || defined(useAllFonts)
 	case(AileronSemiBold36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronSemiBoldItalic9) || defined(useAllFonts)
 	case(AileronSemiBoldItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronSemiBoldItalic12) || defined(useAllFonts)
 	case(AileronSemiBoldItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronSemiBoldItalic18) || defined(useAllFonts)
 	case(AileronSemiBoldItalic18)):
-	charRect = new Point(19, 22);
+	charRect = Point(19, 22);
 	break;
 #endif
 #if defined(useAileronSemiBoldItalic24) || defined(useAllFonts)
 	case(AileronSemiBoldItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 #if defined(useAileronSemiBoldItalic36) || defined(useAllFonts)
 	case(AileronSemiBoldItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 #if defined(useAileronThin9) || defined(useAllFonts)
 	case(AileronThin9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 #if defined(useAileronThin12) || defined(useAllFonts)
 	case(AileronThin12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 #if defined(useAileronThin18) || defined(useAllFonts)
 	case(AileronThin18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useAileronThin24) || defined(useAllFonts)
 	case(AileronThin24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useAileronThin36) || defined(useAllFonts)
 	case(AileronThin36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useAileronThinItalic9) || defined(useAllFonts)
 	case(AileronThinItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useAileronThinItalic12) || defined(useAllFonts)
 	case(AileronThinItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useAileronThinItalic18) || defined(useAllFonts)
 	case(AileronThinItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useAileronThinItalic24) || defined(useAllFonts)
 	case(AileronThinItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useAileronThinItalic36) || defined(useAllFonts)
 	case(AileronThinItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useAileronUltraLight9) || defined(useAllFonts)
 	case(AileronUltraLight9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useAileronUltraLight12) || defined(useAllFonts)
 	case(AileronUltraLight12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useAileronUltraLight18) || defined(useAllFonts)
 	case(AileronUltraLight18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useAileronUltraLight24) || defined(useAllFonts)
 	case(AileronUltraLight24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useAileronUltraLight36) || defined(useAllFonts)
 	case(AileronUltraLight36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useAileronUltraLightItalic9) || defined(useAllFonts)
 	case(AileronUltraLightItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useAileronUltraLightItalic12) || defined(useAllFonts)
 	case(AileronUltraLightItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useAileronUltraLightItalic18) || defined(useAllFonts)
 	case(AileronUltraLightItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useAileronUltraLightItalic24) || defined(useAllFonts)
 	case(AileronUltraLightItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useAileronUltraLightItalic36) || defined(useAllFonts)
 	case(AileronUltraLightItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCourierPrime9) || defined(useAllFonts)
 	case(CourierPrime9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCourierPrime12) || defined(useAllFonts)
 	case(CourierPrime12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCourierPrime18) || defined(useAllFonts)
 	case(CourierPrime18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCourierPrime24) || defined(useAllFonts)
 	case(CourierPrime24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCourierPrime36) || defined(useAllFonts)
 	case(CourierPrime36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCourierPrimeBold9) || defined(useAllFonts)
 	case(CourierPrimeBold9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCourierPrimeBold12) || defined(useAllFonts)
 	case(CourierPrimeBold12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCourierPrimeBold18) || defined(useAllFonts)
 	case(CourierPrimeBold18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCourierPrimeBold24) || defined(useAllFonts)
 	case(CourierPrimeBold24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCourierPrimeBold36) || defined(useAllFonts)
 	case(CourierPrimeBold36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCourierPrimeBoldItalic9) || defined(useAllFonts)
 	case(CourierPrimeBoldItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCourierPrimeBoldItalic12) || defined(useAllFonts)
 	case(CourierPrimeBoldItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCourierPrimeBoldItalic18) || defined(useAllFonts)
 	case(CourierPrimeBoldItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCourierPrimeBoldItalic24) || defined(useAllFonts)
 	case(CourierPrimeBoldItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCourierPrimeBoldItalic36) || defined(useAllFonts)
 	case(CourierPrimeBoldItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCourierPrimeItalic9) || defined(useAllFonts)
 	case(CourierPrimeItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCourierPrimeItalic12) || defined(useAllFonts)
 	case(CourierPrimeItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCourierPrimeItalic18) || defined(useAllFonts)
 	case(CourierPrimeItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCourierPrimeItalic24) || defined(useAllFonts)
 	case(CourierPrimeItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCourierPrimeItalic36) || defined(useAllFonts)
 	case(CourierPrimeItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCrimsonBold9) || defined(useAllFonts)
 	case(CrimsonBold9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCrimsonBold12) || defined(useAllFonts)
 	case(CrimsonBold12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCrimsonBold18) || defined(useAllFonts)
 	case(CrimsonBold18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCrimsonBold24) || defined(useAllFonts)
 	case(CrimsonBold24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCrimsonBold36) || defined(useAllFonts)
 	case(CrimsonBold36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCrimsonBoldItalic9) || defined(useAllFonts)
 	case(CrimsonBoldItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCrimsonBoldItalic12) || defined(useAllFonts)
 	case(CrimsonBoldItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCrimsonBoldItalic18) || defined(useAllFonts)
 	case(CrimsonBoldItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCrimsonBoldItalic24) || defined(useAllFonts)
 	case(CrimsonBoldItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCrimsonBoldItalic36) || defined(useAllFonts)
 	case(CrimsonBoldItalic36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCrimsonRoman9) || defined(useAllFonts)
 	case(CrimsonRoman9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCrimsonRoman12) || defined(useAllFonts)
 	case(CrimsonRoman12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCrimsonRoman18) || defined(useAllFonts)
 	case(CrimsonRoman18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCrimsonRoman24) || defined(useAllFonts)
 	case(CrimsonRoman24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCrimsonRoman36) || defined(useAllFonts)
 	case(CrimsonRoman36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBold9) || defined(useAllFonts)
 	case(CrimsonSemiBold9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBold12) || defined(useAllFonts)
 	case(CrimsonSemiBold12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBold18) || defined(useAllFonts)
 	case(CrimsonSemiBold18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBold24) || defined(useAllFonts)
 	case(CrimsonSemiBold24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBold36) || defined(useAllFonts)
 	case(CrimsonSemiBold36):
-		charRect = new Point(37, 43);
+		charRect = Point(37, 43);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBoldItalic9) || defined(useAllFonts)
 	case(CrimsonSemiBoldItalic9):
-		charRect = new Point(10, 11);
+		charRect = Point(10, 11);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBoldItalic12) || defined(useAllFonts)
 	case(CrimsonSemiBoldItalic12):
-		charRect = new Point(13, 14);
+		charRect = Point(13, 14);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBoldItalic18) || defined(useAllFonts)
 	case(CrimsonSemiBoldItalic18):
-		charRect = new Point(19, 22);
+		charRect = Point(19, 22);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBoldItalic24) || defined(useAllFonts)
 	case(CrimsonSemiBoldItalic24):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
 
 #if defined(useCrimsonSemiBoldItalic36) || defined(useAllFonts)
 	case(CrimsonSemiBoldItalic36):
-		charRect = new Point(25, 29);
+		charRect = Point(25, 29);
 		break;
 #endif
+	case(BitmapFont16):
+		charRect = Point(8, 8);
+		break;
+	case(BitmapFont17):
+		charRect = Point(8, 8);
+		break;
+	case(BitmapFont18):
+		charRect = Point(8, 16);
+		break;
+	case(BitmapFont19):
+		charRect = Point(8, 16);
+		break;
+	case(BitmapFont20):
+		charRect = Point(11, 13);
+		break;
+	case(BitmapFont21):
+		charRect = Point(13, 17);
+		break;
+	case(BitmapFont22):
+		charRect = Point(17, 20);
+		break;
+	case(BitmapFont23):
+		charRect = Point(18, 22);
+		break;
+	case(BitmapFont24):
+		charRect = Point(25, 29);
+		break;
+	case(BitmapFont25):
+		charRect = Point(34, 38);
+		break;
+	case(AntiAliasFont26):
+		charRect = Point(13,16);
+		break;
+	case(AntiAliasFont27):
+		charRect = Point(15,19);
+		break;
+	case(AntiAliasFont28):
+		charRect = Point(19,25);
+		break;
+	case(AntiAliasFont29):
+		charRect = Point(21,28);
+		break;
+	case(AntiAliasFont30):
+		charRect = Point(28,36);
+		break;
+	case(AntiAliasFont31):
+		charRect = Point(37,49);
+		break;
+	case(AntiAliasFont32):
+		charRect = Point(49, 63);
+		break;
+	case(AntiAliasFont33):
+		charRect = Point(63,83);
+		break;
+	case(AntiAliasFont34):
+		charRect = Point(82,108);
+		break;
+
 	}
 	return(
-		Rectangle(textLoc.x, textLoc.y, textLoc.x + (text.length()*charRect->x), textLoc.y + charRect->y)
+		Rectangle(textLoc.x, textLoc.y, textLoc.x + (text.length()*charRect.x), textLoc.y + charRect.y)
 		);
 }
 #endif

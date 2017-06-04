@@ -1,5 +1,6 @@
 #include "RA8875Driver.h"
 
+#ifdef RA8875
 RA8875Driver::RA8875Driver() :
 	DriverBase(800,480,eDriverType::DriverRA8875)
 {	
@@ -567,3 +568,5 @@ void RA8875Driver::_line_addressing(int16_t x0, int16_t y0, int16_t x1, int16_t 
 	writeReg(RA8875_DLVER0, y1 & 0xFF);
 	writeReg(RA8875_DLVER0 + 1, y1 >> 8);
 }
+
+#endif

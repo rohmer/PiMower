@@ -1,13 +1,10 @@
 #include "UIWindow.h"
 
 UIWindow::UIWindow(DriverBase &tft, Rectangle location, eUITextFont titleBarFont,
-	std::string titleText = "", bool hasTitleBar = false, bool hasCloseIcon = false,
-	bool hasChrome = false, bool isModal = false, bool is3D = true,
-	tColor  titleBarColor = Color::GetColor(Color::Blue),
-	tColor  titleTextColor = Color::GetColor(Color::White),
-	tColor  chromeColor = Color::GetColor(Color::White),
-	tColor  windowColor = Color::GetColor(Color::Black), uint8_t cornerRadius = 5,
-	std::string elementName = "")
+	std::string titleText = "", bool hasTitleBar, bool hasCloseIcon,
+	bool hasChrome, bool isModal, bool is3D, tColor  titleBarColor ,	
+	tColor  titleTextColor,	tColor  chromeColor, tColor  windowColor, 
+	uint8_t cornerRadius, std::string elementName)
 	: UIElement(tft, location, elementName, eElementType::Window)
 {
 	this->titleText = titleText;
@@ -63,16 +60,18 @@ void UIWindow::SetModal(bool isModal)
 
 void UIWindow::Update()
 {
-	if (!updatePending)
 	{
 #ifdef DEBUG
 		Logger::Trace("Update not pending");
 #endif		
+		UIElement::UpdateChildren();
 		return;
 	}
 	Window::Draw(tft, location.x1, location.y1, location.width, location.height, titleBarColor,
 		titleTextColor, chromeColor, chromeColor, windowColor, titleText, titleBarFont, hasChrome,
 		hasTitleBar, hasCloseIcon, true, 4, 255);	
+
+
 	this->updatePending = false;
 }
 
@@ -85,9 +84,9 @@ void UIWindow::AddChildElement(UIElement *element)
 {
 	Rectangle elementLocation=element->GetLocation();
 	elementLocation.x1 += location.x1;
-	elementLocation.x2 += location.x2;
+	elementLocation.x2 += location.x1;
 	elementLocation.y1 += location.y1;
-	elementLocation.y2 += location.y2;
+	elementLocation.y2 += location.y1;
 	elementLocation.update();
 	element->SetLocation(elementLocation);
 	childElements.push_back(element);

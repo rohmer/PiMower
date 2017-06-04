@@ -20,34 +20,42 @@ Rectangle DropDownList::Draw(DriverBase &tft, uint16_t x, uint16_t y, uint16_t w
 	{
 		rect = UIPrimitives::FlatPanel(tft, x, y, width, height, cornerRadius, controlBGColor, alpha);
 	}
+		
+	// Now we need to draw the text for the selected item, then we are done :)
+#ifdef FT8XX
+	UIPrimitives::Text(tft, textColor, alpha, x + cornerRadius, rect.center().y-r.height/2,
+		font, is3D, items[selectedIndex], UIPrimitives::eTextHJustify::Left);
+#else
+	UIPrimitives::Text(tft, textColor, alpha, x+cornerRadius, y+r.height+2, 
+		font, is3D, items[selectedIndex], UIPrimitives::eTextHJustify::Left);
+#endif
 
-	// Now draw the arrow
-	std::vector <Point> pts;
-	Point pt;
-	pt.x = rect.x2 - height - 8;
-	pt.y = rect.y1 + 6;
-	pts.push_back(pt);
-	pt.x = rect.x2 - 8;
-	pt.y = rect.y1 + 6;
-	pts.push_back(pt);
-	pt.x = rect.x2 - 8 - height / 2;
-	pt.y = rect.y2 - 10;
-	pts.push_back(pt);
 	if (!dropDownPressed)
 	{
-		UIPrimitives::Polygon(tft, pts, textColor, alpha);
-		tft.drawRect(pts[0].x - 3, pts[0].y - 3, (abs(pts[1].x - pts[0].x) + 3) + 1, (abs(pts[2].y - pts[0].y) + 7), textColor);
-		tft.drawRect(pts[0].x - 2, pts[0].y - 2, (abs(pts[1].x - pts[0].x) + 4), (abs(pts[2].y - pts[0].y) + 5), textColor);
+		GD.Begin(LINE_STRIP);
+		GD.ColorRGB(textColor);
+		GD.Vertex2ii(rect.x2 - height/2 - 8, rect.y1 + 6);
+		GD.Vertex2ii(rect.x2 - 8, rect.y1 + 6);
+		GD.Vertex2ii(rect.x2 - 8 - height / 4, rect.y2 - 10);
+		GD.Vertex2ii(rect.x2 - height / 2 - 8, rect.y1 + 6);
+		GD.End();
+		
 	}
 	else
 	{
-		tft.fillRect(pts[0].x - 3, pts[0].y - 3, (abs(pts[1].x - pts[0].x) + 3) + 1, (abs(pts[2].y - pts[0].y) + 7), textColor);
-		UIPrimitives::Polygon(tft, pts, controlBGColor, alpha);
+		GD.ColorRGB(textColor);
+		GD.Begin(RECTS);
+		GD.Vertex2ii(rect.x2 - height / 2 - 8, rect.y1 + 3);
+		GD.Vertex2ii(rect.x2 - height / 2 - 8+height, rect.y1 + 3+height);
+		GD.End();
+		GD.ColorRGB(controlBGColor);
+		GD.Begin(LINE_STRIP);
+		GD.Vertex2ii(rect.x2 - height / 2 - 8, rect.y1 + 6);
+		GD.Vertex2ii(rect.x2 - 8, rect.y1 + 6);
+		GD.Vertex2ii(rect.x2 - 8 - height / 4, rect.y2 - 10);
+		GD.Vertex2ii(rect.x2 - height / 2 - 8, rect.y1 + 6);
+		GD.End();
 	}
-	// Now we need to draw the text for the selected item, then we are done :)
-	UIPrimitives::Text(tft, textColor, alpha, x+cornerRadius, y+r.height+2, 
-		font, is3D, items[selectedIndex], UIPrimitives::eTextHJustify::Left);
-
 	return (rect);
 }
 
@@ -85,12 +93,12 @@ Rectangle DropDownList::DrawExpanded(DriverBase &tft, uint16_t x, uint16_t y, ui
 		{
 			UIPrimitives::FlatPanel(tft, dropDownRect.x1 + 2, textY - 2-textHeight/2, dropDownRect.width - 8, textHeight-2, 0, textColor);
 			UIPrimitives::Text(tft, controlBGColor, alpha, dropDownRect.x1 + 3,
-				textY, font, is3D, items[i], UIPrimitives::eTextHJustify::Left);
+				textY-textHeight/2, font, is3D, items[i], UIPrimitives::eTextHJustify::Left);
 		}
 		else
 		{
 			UIPrimitives::Text(tft, textColor, alpha, dropDownRect.x1 + 3,
-				textY, font, is3D, items[i], UIPrimitives::eTextHJustify::Left);
+				textY-textHeight/2, font, is3D, items[i], UIPrimitives::eTextHJustify::Left);
 		}
 	}
 	// Combine the rects height, r is higher

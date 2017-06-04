@@ -188,6 +188,9 @@
     <ClInclude Include="Images\Battery85pct.h" />
     <ClInclude Include="Images\Image.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="UIElements\ControlDisplay\IconButton.h" />
+    <ClInclude Include="UIElements\ControlDisplay\NumericEntryFT8XX.h" />
+    <ClInclude Include="UIElements\ControlDisplay\TextEntryFT8XX.h" />
     <ClInclude Include="UIElements\ControlDisplay\Window.h" />
     <ClInclude Include="UIElements\UIActiveButton.h" />
     <ClInclude Include="UIElements\ControlDisplay\Button.h" />
@@ -452,6 +455,10 @@
     <ClInclude Include="UIElements\UICheckBox.h" />
     <ClInclude Include="UIElements\UIElement.h" />
     <ClInclude Include="UIElements\UIElements.h" />
+    <ClInclude Include="UIElements\UIPages\HomeScreen.h" />
+    <ClInclude Include="UIElements\UIPages\Icons.h" />
+    <ClInclude Include="UIElements\UIPages\ScreenSaver.h" />
+    <ClInclude Include="UIElements\UIPages\SettingsButton.h" />
     <ClInclude Include="UIElements\UIRadioButton.h" />
     <ClInclude Include="UIElements\UIRadioGroup.h" />
     <ClInclude Include="UIElements\UIWindow.h" />
@@ -490,6 +497,9 @@
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSAM3X.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiSTM32F1.cpp" />
     <ClCompile Include="External\SDFat\SpiDriver\SdSpiTeensy3.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\IconButton.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\NumericEntryFT8XX.cpp" />
+    <ClCompile Include="UIElements\ControlDisplay\TextEntryFT8XX.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Window.cpp" />
     <ClCompile Include="UIElements\UIActiveButton.cpp" />
     <ClCompile Include="UIElements\ControlDisplay\Button.cpp" />
@@ -505,6 +515,9 @@
     <ClCompile Include="UIElements\RA8875\UIPrimitives.cpp" />
     <ClCompile Include="UIElements\UIButton.cpp" />
     <ClCompile Include="UIElements\UICheckBox.cpp" />
+    <ClCompile Include="UIElements\UIPages\HomeScreen.cpp" />
+    <ClCompile Include="UIElements\UIPages\ScreenSaver.cpp" />
+    <ClCompile Include="UIElements\UIPages\SettingsButton.cpp" />
     <ClCompile Include="UIElements\UIRadioButton.cpp" />
     <ClCompile Include="UIElements\UIRadioGroup.cpp" />
     <ClCompile Include="UIElements\UIWindow.cpp" />

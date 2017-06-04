@@ -4,16 +4,18 @@
 
 UIButton::UIButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
 	tColor textColor, uint8_t textScale, tColor buttonBGColor, uint8_t cornerRadius = 4,
-	bool is3D = true, bool raised = true, std::string elementName = "") :
+	bool is3D = true, bool raised = true, std::string elementName = "", uint8_t alpha,
+	eVertAlign textVertAlign = eVertAlign::Middle) :	
 	UIElement(tft, location,elementName, eElementType::Button)
 {
 	this->buttonText = buttonText;
 	this->font = font;
 	this->textColor = textColor;
 	this->buttonBGColor = buttonBGColor;
-	this->cornerRadius;
+	this->cornerRadius = cornerRadius;
 	this->is3D = is3D;
 	this->raised = raised;
+	this->vertAlign = textVertAlign;
 #ifdef RA8875
 	this->textScale = textScale;
 #endif
@@ -57,14 +59,14 @@ void UIButton::Update()
 	if (is3D)
 	{
 		Button::Draw(tft, !raised, location.x1, location.y1, location.width, location.height,
-			textColor, buttonBGColor, font, buttonText, true, cornerRadius, alpha);
+			textColor, buttonBGColor, font, buttonText, true, cornerRadius, alpha, vertAlign);
 	}
 	else
 	{
 		Button::Draw(tft, !raised, location.x1, location.y1, location.width, location.height,
-			textColor, buttonBGColor, font, buttonText, false, cornerRadius, alpha);
+			textColor, buttonBGColor, font, buttonText, false, cornerRadius, alpha, vertAlign);
 	}
 
-	UIElement::Update();
+	UIElement::UpdateChildren();
 }
 #endif

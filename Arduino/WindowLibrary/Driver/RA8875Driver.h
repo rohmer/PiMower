@@ -1,5 +1,9 @@
 #pragma once
 #include "DriverBase.h"
+#include "../Options.h"
+
+#ifdef RA8875
+
 #include "../Utility/Logger.h"
 #include "../External/Adafruit_RA8875/Adafruit_RA8875.h"
 #include "../Utility/FontHelper.h"
@@ -113,3 +117,5 @@ private:
 	
 	bool checkInit();
 };
+
+#endif

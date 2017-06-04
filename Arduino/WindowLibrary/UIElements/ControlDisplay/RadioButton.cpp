@@ -32,24 +32,27 @@ Rectangle RadioButton::Draw(DriverBase &tft, bool sunken, bool isChecked, uint16
 	}
 	
 	int16_t textX;
+	Rectangle fontRect = FontHelper::GetTextRect(tft, text, font, Point(0, 0));
+
 	if (textRight)
 	{
-		textX = circleR.x2 + (radius);
+		textX = circleR.x2 + (radius)+fontRect.center().x / 2;
 	}
 	else
 	{
-		textX = circleR.x1 - (radius / 2) - r.width;
+		uint16_t textWidth = fontRect.width;
+		textX = circleR.x2 - textWidth / 2;
 	}
-
-	Rectangle retVal=UIPrimitives::Text(tft, textColor, 255, textX, y, font, is3D, text);
+		
+	Rectangle retVal = UIPrimitives::Text(tft, textColor, 255, textX, y-fontRect.height/2, font, is3D, text);
+	return;
 	if (textRight)
 	{
-		retVal.x1 = circleR.x1;		
+		retVal.x1 = circleR.x1;
 	}
 	else
 	{
 		retVal.x2 = circleR.x2;
 	}
-
 	return retVal;
 }

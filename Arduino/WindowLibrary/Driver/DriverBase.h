@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdint>
 #include "../Options.h"
+#include "../Utility/Color.h"
 #ifdef RA8875
 #include "../UIElements/RA8875/Fonts.h"
 #endif
@@ -123,7 +124,7 @@ public:
 	virtual void    writeCommand(uint8_t d) = 0;
 	virtual uint8_t readStatus() = 0;
 	virtual bool waitPoll(uint8_t r, uint8_t f) = 0;
-	virtual void fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t color, bool triangled = true)=0;
+	virtual void fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, tColor color, bool triangled = true)=0;
 	uint16_t width()
 	{
 		return tftWidth;
@@ -192,6 +193,12 @@ public:
 	{
 		return backgroundColor;
 	}
+#endif
+
+#ifdef FT8XX
+	virtual void swapDisplay();
+	virtual void colorA(uint8_t alpha);
+	virtual void clearScreen(uint32_t clearToColor = Color::Black);
 #endif
 
 protected:

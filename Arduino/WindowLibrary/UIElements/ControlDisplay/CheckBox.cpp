@@ -20,23 +20,29 @@ Rectangle CheckBox::Draw(DriverBase &tft, bool sunken, bool isChecked, uint16_t 
 	{		
 		boxR = UIPrimitives::FlatPanel(tft, x, y, radius, radius, cornerRadius, uncheckedColor, 255);
 	}
-
+	boxR.update();
 	if (isChecked)
-	{
-		UIPrimitives::FlatPanel(tft, x+2, y+2, radius-4 , radius - 4, 0, checkColor, 255);
+	{		
+		uint16_t boxDelta = boxR.width / 5;
+		if (boxDelta < 1)
+			boxDelta = 1;
+
+		UIPrimitives::FlatPanel(tft, boxR.x1+boxDelta, boxR.y1+boxDelta, boxR.width-boxDelta*2, boxR.height-boxDelta*2,
+			cornerRadius, checkColor, 255);
 	}
 
 	int16_t textX;
 	if (textRight)
 	{
-		textX = boxR.x2 + (radius);
+		textX = boxR.x2 + (radius)+FontHelper::GetTextRect(tft,text,font,Point(0,0)).center().x/2;
 	}
 	else
 	{
-		textX = boxR.x1 - (radius) - r.width;
+		uint16_t textWidth = FontHelper::GetTextRect(tft, text, font, Point(0, 0)).width;
+		textX = boxR.x1 - textWidth / 2;
 	}
+	Rectangle retVal = UIPrimitives::Text(tft, textColor, 255, textX, y, font, is3D, text);
 
-	Rectangle retVal = UIPrimitives::Text(tft, textColor, 255, textX, y+boxR.height/2, font, is3D, text);
 	if (textRight)
 	{
 		retVal.x1 = boxR.x1;

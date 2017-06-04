@@ -5,9 +5,11 @@
 #include "DriverBase.h"
 #include "../Utility/Logger.h"
 #include "../External/GD3/GD3.h"
+#include "../Utility/Color.h"
 
 class FT8XXDriver : public DriverBase
 {
+public:
 	FT8XXDriver();
 	FT8XXDriver(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9);
 	void Init(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9) override;
@@ -51,7 +53,7 @@ class FT8XXDriver : public DriverBase
 		int16_t shortAxis, uint8_t curvePart, uint32_t color) override;
 	void fillCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
 		int16_t shortAxis, uint8_t curvePart, uint32_t color) override;
-
+	
 	// Power type functions
 	void softReset() override;
 	void displayPower(bool powerMode) override;
@@ -78,8 +80,27 @@ class FT8XXDriver : public DriverBase
 	void textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t textColor,
 		uint16_t justification, std::string text) override;
 
+	void textMode() override
+	{
+		//NOOP
+	}
+	void setTextCursor(uint16_t x, uint16_t y) override {};
+	void textTransparent(uint32_t foreColor) override {};
+	void textWrite(std::string text) override {};
+	void textWriteLn(std::string text) override {};
+	void graphicsMode() override {};
+	void setXY(uint16_t x, uint16_t y) override {};
+	void pushPixels(uint32_t num, uint32_t color) override {};
+
+	void fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, 
+		int16_t x3, int16_t y3, tColor color, bool triangled = true) override;
+
 	// FT8XX Driver specific functions
 	void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint32_t color, uint8_t lineWidth);
+	void swapDisplay() override;
+	void colorA(uint8_t alpha) override;
+
+	void clearScreen(uint32_t clearToColor = Color::Black) override;
 	~FT8XXDriver();
 private:
 	uint8_t currentFont = 31;

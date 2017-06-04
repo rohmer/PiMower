@@ -17,6 +17,12 @@ enum eLCDSizes
 	lcd480x272
 };
 
+enum ePowerState
+{
+	Normal = 0,
+	LowPower = 1,
+	ScreenOff =2
+};
 /// <summary>
 /// This is the base class of the UI Library
 //		* Controls all window functions
@@ -31,7 +37,7 @@ public:
 		return s_instance;
 	}
 
-	static WindowManager *instance(const uint8_t cs=10, const uint8_t rst = 9,
+	static WindowManager *instance(const uint8_t cs, const uint8_t rst = 9,
 		const uint8_t mosi = 11, const uint8_t sclk = 13, const uint8_t miso = 12,
 		eLCDSizes lcdSize = eLCDSizes::lcd800x480)
 	{
@@ -48,7 +54,15 @@ public:
 	void RegisterElement(UIElement *element);
 
 	void Update();
-	
+	void SetLowPowerTime(uint16_t secondsToLow)
+	{
+		lowPowerTime = secondsToLow;
+	}
+	void SetScreenOffTime(uint16_t secondsToOff)
+	{
+		screenOffTime = secondsToOff;
+	}
+
 #ifdef RA8875
 	RA8875Driver *GetDriver()
 	{
@@ -70,13 +84,15 @@ private:
 	WindowManager(const uint8_t cs, const uint8_t rst = 255, const uint8_t mosi = 11,
 		const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480);
 
+	
 	~WindowManager();
 	void processTouch();
+	void updatePowerTriggerTime();
 
 #ifdef RA8875
 	RA8875Driver *tft;
 #endif
-#ifdef FT8875
+#ifdef FT8XX
 	FT8XXDriver *tft;
 #endif
 	
@@ -84,6 +100,9 @@ private:
 	
 	std::map<unsigned long, UIElement *> elementMap;
 	std::vector<unsigned long> elementOrder;
-	
+	ePowerState powerState = ePowerState::Normal;
+	uint16_t lowPowerTime = 30;
+	uint16_t screenOffTime = 300;
+	uint32_t lowPowerTrigger, screenOffTrigger;
 	sTouchResponse lastTouchEvent;
 };

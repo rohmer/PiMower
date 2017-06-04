@@ -447,6 +447,29 @@
 
 enum eUITextFont
 {
+	None,
+#ifdef FT8XX
+	BitmapFont16 =		16,
+	BitmapFont17 =		17,
+	BitmapFont18 =		18,
+	BitmapFont19 =		19,
+	BitmapFont20 =		20,
+	BitmapFont21 =		21,
+	BitmapFont22 =		22,
+	BitmapFont23 =		23,
+	BitmapFont24 =		24,
+	BitmapFont25 =		25,
+	AntiAliasFont26	=	26,
+	AntiAliasFont27	=	27,
+	AntiAliasFont28 =	28,
+	AntiAliasFont29 =	29,
+	AntiAliasFont30 =	30,
+	AntiAliasFont31 =	31,
+	AntiAliasFont32 = 32,
+	AntiAliasFont33 = 33,
+	AntiAliasFont34 = 34,
+#endif
+
 #if defined(useAileronBlack9) || defined(useAllFonts)
 	AileronBlack9,
 #endif

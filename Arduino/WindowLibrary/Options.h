@@ -8,15 +8,18 @@
 
 #define useButton
 #define useActiveButton
+#define useIconButton
+#define useNumericEntry
+#define useTextEntry
 
 // Define which controller you are going to use.  Uncomment one of these
 //#define FT_800
 //#define FT_801
 //#define FT_810
 //#define FT_811
-//#define FT_812
+#define FT_812
 //#define FT_813
-#define RA8875
+//#define RA8875
 
 #ifdef FT_800
 #define FT_800_ENABLE		1

@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <memory>
+
 #include "../Utility/Rectangle.h"
 #include "../Utility/Logger.h"
 #include "../Driver/DriverBase.h"
@@ -27,7 +29,16 @@ enum eElementType
 	RadioButton,
 	RadioGroup,
 	Window,
-	ActiveButton
+	ActiveButton,
+	Page,
+	Slider
+};
+
+enum eVertAlign
+{
+	Top,
+	Middle,
+	Bottom
 };
 
 struct sTouchResponse
@@ -51,6 +62,7 @@ public:
 	UIElement(DriverBase &tft, Rectangle location, std::string elementName, eElementType elementType) :
 		tft(tft)
 	{
+		this->childElements.reserve(10);
 		this->elementID = micros();
 		if (elementName == "")
 			this->elementName = this->elementID;
@@ -65,6 +77,14 @@ public:
 #endif
 	}
 
+	UIElement(const UIElement &other) :
+		tft(tft)
+	{
+		location.x1 = other.location.x1;
+		location.y1 = other.location.y1;
+		location.x2 = other.location.x2;
+		location.y2 = other.location.y2;
+	}
 	// All inherited UI classes should call this update after they draw 
 	// This puts children on top of parents
 	virtual void Update()=0;
@@ -95,7 +115,10 @@ public:
 		updatePending = true;
 		// Invalidate all children
 		for (int i = 0; i < childElements.size(); i++)
-			childElements[i]->Invalidate();
+		{
+			UIElement &uie = *childElements[i];
+			uie.Invalidate();
+		}			
 	}
 	Rectangle GetLocation()
 	{
@@ -119,11 +142,12 @@ public:
 	/// <param name="element">The element.</param>
 	virtual void AddChildElement(UIElement *element)
 	{
-		childElements.push_back(element);
 		element->parentElement = this;
 
 		// Add the size to this
 		this->location = this->location.add(element->location);
+		childElements.push_back(element);
+
 	}
 
 	void SetParent(UIElement *element)
@@ -138,6 +162,19 @@ public:
 		return this->elementName;
 	}
 	
+	void UpdateChildren()
+	{
+		for (int i = 0; i < childElements.size(); i++)
+		{
+			UIElement &uie = *childElements[i];			
+			uie.Update();
+		}
+	}
+
+	~UIElement()
+	{
+	}
+
 private:
 	std::vector<UIElement *> getChildElements()
 	{
@@ -153,5 +190,6 @@ protected:
 	uint32_t elementID;
 	DriverBase &tft;
 	eElementType elementType;
+	
 	std::vector<UIElement *> childElements;
 };

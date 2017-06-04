@@ -3,37 +3,41 @@
 WindowManager *WindowManager::s_instance;
 
 WindowManager::WindowManager(const uint8_t cs, const uint8_t rst, const uint8_t mosi = 11,
-	const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480) 
+	const uint8_t sclk = 13, const uint8_t miso = 12, eLCDSizes lcdSize = eLCDSizes::lcd800x480)
 {
 #ifdef RA8875
 	if (lcdSize == eLCDSizes::lcd800x480)
-		tft=new RA8875Driver(800, 480, cs, rst);
+		tft = new RA8875Driver(800, 480, cs, rst);
 	else
 		tft = new RA8875Driver(480, 282, cs, rst);
 #endif
 
 #ifdef FT8XX
 	if (lcdSize == eLCDSizes::lcd800x480)
-		tft = new FT8XXDriver(800, 480, cs, rst);
-	else
-		tft = new FT8XXDriver(480, 282, cs, rst);
-#endif
-
- 
 	{
-		wmCanvas = new UIWindow(*tft, Rectangle(0, 0, tft->width(), tft->height()), eUITextFont::None, "", false, false, false, false, false,
-			0, 0, 0, 0, 0);		
+		tft = new FT8XXDriver(800, 480, cs, rst);
+		tft->Init(800, 480, cs, rst);
 	}
+	else
+	{
+		tft = new FT8XXDriver(480, 282, cs, rst);
+		tft->Init(480, 282);
+	}
+#endif	
+	tft->backlightOn(true);
+	tft->backlightPower(128);
+	wmCanvas = new UIWindow(*tft, Rectangle(0, 0, tft->width(), tft->height()), eUITextFont::None, "", false, false, false, false, false,
+		0, 0, 0, 0, 0);
 #ifdef DEBUG
 	Logger::Trace("WindowManager Initialized, wmCanvas: %d", wmCanvas->getElementID());
 #endif
 }
 
 void WindowManager::Update()
-{
-	Logger::Trace("WindowManager::Update()");
+{	
 	processTouch();
-	wmCanvas->Update();
+	wmCanvas->Update();	
+	tft->swapDisplay();
 }
 
 void WindowManager::RegisterElement(UIElement *element)
@@ -122,12 +126,44 @@ void WindowManager::MoveControlToFront(unsigned long controlID)
 
 void WindowManager::processTouch()
 {
+	// Check power state triggers
+	uint32_t now = millis();
+	if (now > screenOffTrigger && powerState!=ScreenOff)
+	{
+#ifdef DEBUG
+		Logger::Trace("Switching TFT to Off State");
+#endif
+		powerState = ePowerState::ScreenOff;
+		tft->backlightPower(0);
+		tft->backlightOn(false);
+	}
+	else
+	{
+		if (now > lowPowerTrigger && powerState != LowPower)
+		{
+#ifdef DEBUG
+			Logger::Trace("Switching TFT to Low Power State");
+#endif
+			powerState = ePowerState::LowPower;
+			tft->backlightPower(64);
+		}
+	}
+	
 	if (!tft->touched())
 	{
-		Logger::Trace("TFT not touched");
 		return;
 	}
+	if (powerState != Normal)
+	{
+#ifdef DEBUG
+		Logger::Trace("Switching TFT to Normal Power State");
+#endif
 
+		tft->backlightOn(true);
+		tft->backlightPower(128);
+		powerState = ePowerState::Normal;
+	}
+	updatePowerTriggerTime();
 	uint16_t x, y;
 	tft->touchRead(&x, &y);
 #ifdef DEBUG
@@ -153,6 +189,15 @@ void WindowManager::processTouch()
 			}
 	}
 	lastTouchEvent = sTouchResponse(wmCanvas->getElementID(),NoOp);
+}
+
+/// <summary>
+/// Updates when the power states will be triggered from this instant in time
+/// </summary>
+void WindowManager::updatePowerTriggerTime()
+{
+	lowPowerTrigger = millis() + lowPowerTime * 1000;
+	screenOffTrigger = millis() + screenOffTime * 1000;
 }
 
 WindowManager::~WindowManager()

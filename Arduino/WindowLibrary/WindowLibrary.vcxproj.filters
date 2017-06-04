@@ -106,6 +106,15 @@
     <Filter Include="Source Files\UIElements\ControlDisplay">
       <UniqueIdentifier>{59d3dd1a-4375-4852-a8fa-bee6105218fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UIPages">
+      <UniqueIdentifier>{be794c32-b2c9-4b16-9822-a4749a4bb1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UIPages">
+      <UniqueIdentifier>{d33763fa-8349-4af2-9772-1c45805b61cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UIPages\ActiveButtons">
+      <UniqueIdentifier>{b68864c2-97f4-4754-8154-9e68a074f5b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.WindowLibrary.vsarduino.h">
@@ -1266,6 +1275,27 @@
     <ClInclude Include="UIElements\UIRadioGroup.h">
       <Filter>Header Files\UIElements</Filter>
     </ClInclude>
+    <ClInclude Include="UIElements\UIPages\ScreenSaver.h">
+      <Filter>Header Files\UIPages</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIPages\SettingsButton.h">
+      <Filter>Header Files\UIPages\ActiveButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIPages\HomeScreen.h">
+      <Filter>Header Files\UIPages</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\UIPages\Icons.h">
+      <Filter>Header Files\UIPages\ActiveButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\IconButton.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\NumericEntryFT8XX.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElements\ControlDisplay\TextEntryFT8XX.h">
+      <Filter>Header Files\UIElements\ControlDisplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\Adafruit_GFX_Library\Adafruit_GFX.cpp">
@@ -1414,6 +1444,24 @@
     </ClCompile>
     <ClCompile Include="UIElements\UIRadioGroup.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIPages\ScreenSaver.cpp">
+      <Filter>Source Files\UIPages</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIPages\SettingsButton.cpp">
+      <Filter>Source Files\UIPages</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\UIPages\HomeScreen.cpp">
+      <Filter>Source Files\UIPages</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\IconButton.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\TextEntryFT8XX.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElements\ControlDisplay\NumericEntryFT8XX.cpp">
+      <Filter>Source Files\UIElements\ControlDisplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

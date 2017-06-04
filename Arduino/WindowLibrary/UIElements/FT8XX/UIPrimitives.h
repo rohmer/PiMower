@@ -34,7 +34,7 @@ public:
 	static Rectangle Text(DriverBase &tft, uint32_t color, uint8_t alpha, uint16_t x, uint16_t y, uint8_t font,
 		bool dropShadow, std::string text, eTextHJustify justify=eTextHJustify::Center);
 
-	static Rectangle Polygon(DriverBase &tft, std::vector<Point> points, uint16_t color, uint8_t alpha);
+	static Rectangle Polygon(DriverBase &tft, std::vector<Point> points, tColor color, uint8_t alpha);
 };
 
 #endif

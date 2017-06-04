@@ -4,7 +4,7 @@
 
 UIActiveButton::UIActiveButton(DriverBase &tft, Rectangle location, std::string buttonText, eUITextFont font,
 	tColor textColor, uint8_t textScale, tColor buttonBGColor, uint8_t cornerRadius,
-	bool is3D, bool raised, uint16_t updateInMillis, std::string elementName = "") :
+	bool is3D, bool raised, uint16_t updateInMillis, std::string elementName = "", uint8_t alpha) :
 	UIElement(tft, location, elementName, eElementType::ActiveButton)
 {
 	this->buttonText = buttonText;
@@ -19,9 +19,7 @@ UIActiveButton::UIActiveButton(DriverBase &tft, Rectangle location, std::string 
 #ifdef RA8875
 	this->textScale = textScale;
 #endif
-#ifdef FT8XX
 	this->alpha = alpha;
-#endif
 #ifdef DEBUG
 	Logger::Trace("UIButton(TFT, (%d,%d,%d,%d), %s, %d, %d, %d, %d, %d) initialized",
 		location.x1, location.y1, location.x2, location.y2, buttonText.c_str(),

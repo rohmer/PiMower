@@ -6,15 +6,23 @@ FT8XXDriver::FT8XXDriver(uint16_t width, uint16_t height, uint8_t cs = 10, uint8
 {
 	GD.begin();
 #ifdef DEBUG
-	Logger::Trace("FT8XXDriver(%d,%d,%d,%d) initalized", width, height, cs, rst);
+	Logger::Trace("FT8XXDriver(%d,%d,%d,%d) initialized", width, height, cs, rst);
 #endif
+}
+
+FT8XXDriver::FT8XXDriver() :
+	DriverBase(800, 480, eDriverType::DriverFT8XX)
+{
+	Logger::Trace("FT8XXDriver(%d,%d) initialized", this->tftWidth, this->tftHeight);
+	GD.begin();
 }
 
 void FT8XXDriver::Init(uint16_t width, uint16_t height, uint8_t cs = 10, uint8_t rst = 9)
 {
-	this->width = width; 
-	this->height = height;	
+	this->tftWidth = width; 
+	this->tftHeight = height;	
 	GD.begin();
+	clearScreen();
 }
 
 FT8XXDriver::~FT8XXDriver()
@@ -32,9 +40,10 @@ void FT8XXDriver::drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint3
 {
 	GD.ColorRGB(color);
 	GD.LineWidth(16);
-	GD.Vertex2f(x0, y0);
-	GD.Vertex2f(x1, y1);
-	GD.swap();
+	GD.Begin(LINES);
+	GD.Vertex2f(x0*16, y0 * 16);
+	GD.Vertex2f(x1 * 16, y1 * 16);
+	GD.End();
 }
 
 void FT8XXDriver::drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, 
@@ -42,9 +51,9 @@ void FT8XXDriver::drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
 {
 	GD.ColorRGB(color);
 	GD.LineWidth(16*lineWidth);
-	GD.Vertex2f(x0, y0);
-	GD.Vertex2f(x1, y1);
-	GD.swap();
+	GD.Begin(LINES);
+	GD.Vertex2f(x0*16, y0 * 16);
+	GD.Vertex2f(x1 * 16, y1 * 16);
 }
 
 void FT8XXDriver::setRotation(eDisplayRotation rotation)
@@ -76,8 +85,7 @@ void FT8XXDriver::setRotation(eDisplayRotation rotation)
 	case(eDisplayRotation::PortraitMirroredInveted):
 		GD.cmd_setrotate(7);
 		break;
-	}
-	GD.swap();
+	}	
 }
 
 void FT8XXDriver::invertDisplay()
@@ -116,15 +124,14 @@ void FT8XXDriver::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t 
 	GD.ColorRGB(color);
 	GD.Begin(RECTS);
 	GD.Vertex2ii(x, y);
-	GD.Vertex2ii(x + w, y + h);
-	GD.swap();
+	GD.Vertex2ii(x + w, y + h);	
+	GD.End();
 }
 
 void FT8XXDriver::fillScreen(uint32_t color)
 {
 	GD.ClearColorRGB(color);
-	GD.Clear();
-	GD.swap();
+	GD.Clear();	
 	backgroundColor = color;
 }
 
@@ -137,8 +144,7 @@ void FT8XXDriver::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t 
 	GD.Vertex2ii(x + w, y);
 	GD.Vertex2ii(x + w, y + h);
 	GD.Vertex2ii(x, y + h);
-	GD.Vertex2ii(x, y);
-	GD.swap();
+	GD.Vertex2ii(x, y);	
 }
 
 void FT8XXDriver::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t color, uint8_t lineWidth)
@@ -150,8 +156,7 @@ void FT8XXDriver::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t 
 	GD.Vertex2ii(x + w, y);
 	GD.Vertex2ii(x + w, y + h);
 	GD.Vertex2ii(x, y + h);
-	GD.Vertex2ii(x, y);
-	GD.swap();
+	GD.Vertex2ii(x, y);	
 }
 
 void FT8XXDriver::fillCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
@@ -159,8 +164,7 @@ void FT8XXDriver::fillCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
 	GD.Begin(POINTS);
 	GD.ColorRGB(color);
 	GD.PointSize(16 * r);
-	GD.Vertex2ii(x0, y0);
-	GD.swap();
+	GD.Vertex2ii(x0, y0);	
 }
 
 void FT8XXDriver::drawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color)
@@ -184,8 +188,7 @@ void FT8XXDriver::drawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color, 
 	GD.ColorRGB(0x808080);
 	GD.Begin(RECTS); // Visit every pixel on the screen
 	GD.Vertex2ii(0, 0);
-	GD.Vertex2ii(tftWidth, tftHeight);
-	GD.swap();
+	GD.Vertex2ii(tftWidth, tftHeight);	
 }
 
 void FT8XXDriver::drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
@@ -202,8 +205,7 @@ void FT8XXDriver::drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
 	GD.LineWidth(16 * lineWidth);
 	GD.Vertex2ii(x0, y0);
 	GD.Vertex2ii(x1, y1);
-	GD.Vertex2ii(x2, y2);
-	GD.swap();
+	GD.Vertex2ii(x2, y2);	
 }
 
 void FT8XXDriver::fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
@@ -215,8 +217,7 @@ void FT8XXDriver::fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
 	poly.v(16 * x0, 16 * y0);
 	poly.v(16 * x1, 16 * y1);
 	poly.v(16 * x2, 16 * y2);
-	poly.draw();
-	GD.swap();
+	poly.draw();	
 }
 
 void FT8XXDriver::drawRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
@@ -229,25 +230,10 @@ void FT8XXDriver::drawRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
 	int16_t radius, uint32_t color, uint8_t lineWidth)
 {
 	GD.ColorRGB(color);
-	GD.ColorMask(0, 0, 0, 1);
-	GD.BlendFunc(ONE, ONE_MINUS_SRC_ALPHA);
 	GD.Begin(RECTS);
-
-	GD.LineWidth(radius * 16);
+	GD.LineWidth(16 * radius);	
 	GD.Vertex2ii(x0, y0);
-	GD.Vertex2ii(x0+w, y0+h);
-	
-	GD.BlendFunc(ZERO, ONE_MINUS_SRC_ALPHA);
-	GD.Vertex2f(x0 + lineWidth*16, y0 + lineWidth*16);
-	GD.Vertex2f(x0 + w - (lineWidth * 16) * 2, y0 + w - (lineWidth * 16) * 2);
-	
-	GD.ColorMask(1, 1, 1, 0);
-	GD.BlendFunc(DST_ALPHA, ONE);
-	GD.ColorRGB(0x808080);
-	GD.Begin(RECTS);
-	GD.Vertex2ii(0, 0);
-	GD.Vertex2ii(tftWidth, tftHeight);
-	GD.swap();
+	GD.Vertex2ii(x0 + w, y0 + h);	
 }
 
 void FT8XXDriver::fillRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
@@ -257,8 +243,7 @@ void FT8XXDriver::fillRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
 	GD.LineWidth(radius * 16);
 	GD.Begin(RECTS);
 	GD.Vertex2ii(x0, y0);
-	GD.Vertex2ii(x0+w, y0+h);
-	GD.swap();
+	GD.Vertex2ii(x0+w, y0+h);	
 }
 
 void FT8XXDriver::drawChar(int16_t x, int16_t y, unsigned char c, uint32_t color,
@@ -266,7 +251,6 @@ void FT8XXDriver::drawChar(int16_t x, int16_t y, unsigned char c, uint32_t color
 {
 	GD.ColorRGB(color);
 	GD.cmd_text(x, y, currentFont, OPT_CENTER, (char *)&c);
-	GD.swap();
 }
 
 void FT8XXDriver::setCursor(int16_t x, int16_t y)
@@ -429,8 +413,34 @@ void FT8XXDriver::textWrite(uint16_t x, uint16_t y, eUITextFont font, uint32_t t
 	uint16_t justification, std::string text)
 {
 	GD.ColorRGB(textColor);
-	GD.cmd_text(x, y, font, justification, text.c_str());
+	GD.cmd_text(x, y, font, justification, text.c_str());	
+}
+
+void FT8XXDriver::fillQuad(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint32_t color, bool triangled = true)
+{
+	GD.ColorRGB(color);
+	Poly po;
+	po.begin();
+	po.v(16 * x0,16*y0);
+	po.v(16 * x1, 16 * y1);
+	po.v(16 * x2, 16 * y2);
+	po.v(16 * x3, 16 * y3);
+	po.draw();	
+}
+
+void FT8XXDriver::swapDisplay()
+{
 	GD.swap();
 }
 
+void FT8XXDriver::clearScreen(uint32_t clearToColor = Color::Black)
+{
+	GD.ClearColorRGB(clearToColor);
+	GD.Clear();
+}
+
+void FT8XXDriver::colorA(uint8_t alpha)
+{
+	GD.ColorA(alpha);
+}
 #endif
