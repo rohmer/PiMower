@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Driver">
+      <UniqueIdentifier>{b39fb1c6-d04f-4a86-8e35-908115a6551c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Adafruit_GFX_Library">
+      <UniqueIdentifier>{31eded60-8919-4ad4-ba37-d5d1af1f0169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{db594143-2f99-4b32-8b27-d943035449eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Adafruit_RA8875">
+      <UniqueIdentifier>{bcd7b297-65e2-46c0-a715-5bc6a9910126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\GD3">
+      <UniqueIdentifier>{1c7073c3-8b3a-425a-87c9-dbef7acfcbb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\SDFat\FatLib">
+      <UniqueIdentifier>{92bd0a19-a6a7-4538-8c41-0e8400af076e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\SDFat">
+      <UniqueIdentifier>{767c6026-47df-4239-851f-7288987cfe71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\SDFat\SdCard">
+      <UniqueIdentifier>{66fdde31-206f-43b5-8081-0fc4a15d014b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\SDFat\SpiDriver">
+      <UniqueIdentifier>{9a104607-a41c-4c09-95b0-3e6f195de8fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements\ControlDisplay">
+      <UniqueIdentifier>{991f15fa-4abc-4fec-9009-ad37ce13a97d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements">
+      <UniqueIdentifier>{445fa210-8ca3-4304-9101-a2bc7aeecbd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements\FT8XX">
+      <UniqueIdentifier>{156e81c4-e881-429f-9f48-109bea383fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements\RA8875">
+      <UniqueIdentifier>{63166c37-56ba-4903-8ea3-a04a9c0a5ec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements\UIPages">
+      <UniqueIdentifier>{fb1a04b2-c197-407d-8358-410ab712b36f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{2cce2165-c7f3-4af9-a2b6-bc53caee8a0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowManager">
+      <UniqueIdentifier>{159902d4-9aa1-4710-83a3-db793483030e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Adafruit_GFX_Library\Fonts">
+      <UniqueIdentifier>{c421ac5b-a347-497a-9aa5-27ca5dd0f549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\GD3\transports">
+      <UniqueIdentifier>{606fd2a6-c00c-4412-a4c7-399112ba4b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\SDFat\SpiDriver\boards">
+      <UniqueIdentifier>{23feda10-0a7d-4779-905f-9c68c34d8ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images">
+      <UniqueIdentifier>{b46f1ce0-4a12-4e8f-b464-3f125d784f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements\FT8XX\Fonts">
+      <UniqueIdentifier>{e3b0b60f-326d-403c-a9f3-332ed4947d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements\RA8875\Fonts">
+      <UniqueIdentifier>{c184059e-6921-4e6b-8fc4-f100e0ac9ce1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Driver\FT8XXDriver.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Driver\RA8875Driver.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Adafruit_GFX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\glcdfont.c" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\Adafruit_RA8875\Adafruit_RA8875.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\GD3\GD3.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatFile.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatFileLFN.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatFilePrint.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatFileSFN.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatVolume.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FmtNumber.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\fstream.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\istream.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\ostream.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\StdioStream.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\MinimumSerial.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdioCardEX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdioTeensy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdSpiCard.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdSpiCardEX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SdSpiESP8266.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SdSpiSAM3X.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SdSpiSTM32F1.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SdSpiTeensy3.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Button.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\CheckBox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Compass.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\DropDownList.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\IconButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\NumericEntryFT8XX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\NumericEntryRA8875.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\ProgressBar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\RadioButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\RingMeter.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Slider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\TextEntryFT8XX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\TextEntryRA8875.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Window.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\UIPrimitives.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\RA8875\UIPrimitives.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIActiveButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UICheckBox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIElementGraph.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIPages\HomeScreen.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIPages\ScreenSaver.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIRadioButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIRadioGroup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIElements\UIWindow.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility\CircularMinMaxBuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility\Color.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility\FontHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility\ImageHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility\Logger.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility\Rectangle.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WindowManager\WindowMananger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Driver\DriverBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Driver\FT8XXDriver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Driver\RA8875Driver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Adafruit_GFX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMono12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMono18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMono24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMono9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBold12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBold18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBold24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBold9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoBoldOblique9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoOblique12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoOblique18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoOblique24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeMonoOblique9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSans12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSans18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSans24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSans9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBold12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBold18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBold24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBold9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansBoldOblique9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansOblique12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansOblique18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansOblique24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSansOblique9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerif12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerif18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerif24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerif9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBold12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBold18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBold24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBold9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifBoldItalic9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifItalic12pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifItalic18pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifItalic24pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\FreeSerifItalic9pt7b.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\Org_01.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\Picopixel.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\Fonts\TomThumb.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_GFX_Library\gfxfont.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\Adafruit_RA8875\Adafruit_RA8875.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\GD3\GD3.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\GD3\transports\dump.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\GD3\transports\serial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\GD3\transports\spidev.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\GD3\transports\wiring.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\BlockDriver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\ArduinoFiles.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\ArduinoStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\BaseBlockDriver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\bufstream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatApiConstants.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatFile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatFileSystem.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatLib.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatLibConfig.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatStructs.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FatVolume.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\FmtNumber.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\fstream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\ios.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\iostream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\istream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\ostream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FatLib\StdioStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\FreeStack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\MinimumSerial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdInfo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdioCard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SdCard\SdSpiCard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SdFat.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SdFatConfig.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\AvrDevelopersGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\BobuinoGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\GpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\LeonardoGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\MegaGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\SleepingBeautyGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\Standard1284GpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\Teensy2GpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\Teensy2ppGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\boards\UnoGpioPinMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\DigitalPin.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SdSpiBaseDriver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SdSpiDriver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SpiDriver\SoftSPI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)External\SDFat\SysCall.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Battery100pct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Battery15Pct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Battery30pct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Battery45pct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Battery60pct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Battery85pct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Images\Image.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Options.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Button.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\CheckBox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Compass.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\DropDownList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\IconButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\NumericEntryFT8XX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\NumericEntryRA8875.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\ProgressBar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\RadioButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\RingMeter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Slider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\TextEntryFT8XX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\TextEntryRA8875.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\ControlDisplay\Window.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlack12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlack18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlack24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlack36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlack9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlackItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlackItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlackItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlackItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBlackItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavy12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavy18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavy24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavy36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavy9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavyItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavyItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavyItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavyItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronHeavyItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLight12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLight18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLight24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLight36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLight9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLightItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLightItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLightItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLightItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronLightItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronRegular12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronRegular18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronRegular24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronRegular36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronRegular9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronSemiBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThin12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThin18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThin24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThin36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThin9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThinItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThinItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThinItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThinItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronThinItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLight12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLight18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLight24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLight36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLight9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLightItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLightItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLightItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLightItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\aileronUltraLightItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrime12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrime18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrime24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrime36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrime9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CourierPrimeItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Bold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Bold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Bold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Bold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Bold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-BoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-BoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-BoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-BoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-BoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Italic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Italic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Italic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Italic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-Italic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText-SemiBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\Fonts\CrimsonText9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\FT8XX\UIPrimitives.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlack12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlack18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlack24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlack36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlack9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlackItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlackItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlackItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlackItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBlackItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavy12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavy18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavy24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavy36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavy9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavyItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavyItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavyItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavyItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronHeavyItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronLight12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronLight18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronLight24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronLight36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronLight9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronRegular12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronRegular18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronRegular24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronRegular36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronRegular9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronSemiBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThin12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThin18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThin24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThin36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThin9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThinItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThinItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThinItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThinItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronThinItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLight12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLight18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLight24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLight36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLight9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLightItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLightItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLightItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLightItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\AileronUltraLightItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrime12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrime18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrime24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrime36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrime9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CourierPrimeItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonRoman12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonRoman18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonRoman24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonRoman36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonRoman9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBold12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBold18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBold24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBold36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBold9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBoldItalic12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBoldItalic18.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBoldItalic24.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBoldItalic36.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\Fonts\CrimsonSemiBoldItalic9.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\RA8875\UIPrimitives.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIActiveButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UICheckBox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIElement.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIElementGraph.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIElements.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIPages\HomeScreen.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIPages\ScreenSaver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIRadioButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIRadioGroup.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIElements\UIWindow.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\CircularMinMaxBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\Color.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\FontHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\ImageHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\Logger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\Point.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility\Rectangle.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WindowManager\WindowManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
+  </ItemGroup>
+</Project>
