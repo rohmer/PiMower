@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{77CF6F8E-3764-4F1C-A4DA-74ACAF24EE19}</ProjectGuid>
+    <RootNamespace>ArduinoEngine</RootNamespace>
+    <ProjectName>ArduinoEngine</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>
+    </PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>
+    </PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+    <Import Project="..\..\..\uWindows\uWindows.vcxitems" Label="Shared" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\ArduinoEngine;$(ProjectDir)..\..\..\..\..\Documents\Arduino\libraries\StandardCplusplus-master;$(ProjectDir)..\..\..\..\..\..\..\Program Files (x86)\Arduino\libraries;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\libraries;$(ProjectDir)..\..\..\..\..\Documents\Arduino\libraries;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores\arduino;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores\arduino\avr;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\cores\arduino\USB;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\variants\arduino_due_x;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\CMSIS\Include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1\arm-none-eabi\include\c++\4.8.3;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1\arm-none-eabi\include\c++\4.8.3\arm-none-eabi\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1\arm-none-eabi\include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1\lib\gcc\arm-none-eabi\4.8.3\include;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam\include;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\CMSIS\Include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\CMSIS\Include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\CMSIS\Include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam\include;$(ProjectDir)..\..\..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\g++_arm_none_eabi\arm-none-eabi\include;$(ProjectDir)..\..\..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\g++_arm_none_eabi\arm_none_eabi\include\;$(ProjectDir)..\..\..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\g++_arm_none_eabi\lib\gcc\arm-none-eabi\4.4.1\include;$(ProjectDir)..\..\..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\g++_arm_none_eabi\lib\gcc\arm-none-eabi\4.4.1\include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL\sam3xa\include\pio;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam\include;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\CMSIS\CMSIS\Include\;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL\sam3xa\include;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\libsam;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL;$(ProjectDir)..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.11\system\CMSIS\Device\ATMEL\sam3xa\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.ArduinoEngine.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>_VMDEBUG=1;printf=iprintf;F_CPU=84000000L;ARDUINO=10804;ARDUINO_SAM_DUE;ARDUINO_ARCH_SAM;__SAM3X8E__;USB_VID=0x2341;USB_PID=0x003e;USBCON;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="VisualMicro" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="ArduinoEngine.ino">
+      <FileType>CppCode</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3rdParty\ArduinoJson\ArduinoJson.h" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson.h" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Configuration.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\Encoding.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonBufferAllocated.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonFloat.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonInteger.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonVariantAs.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonVariantContent.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonVariantDefault.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\JsonVariantType.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\List.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\ListConstIterator.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\ListIterator.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\ListNode.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\NonCopyable.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\ReferenceType.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Data\ValueSetter.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Deserialization\Comments.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Deserialization\JsonParser.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Deserialization\JsonParserImpl.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Deserialization\StringWriter.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\DynamicJsonBuffer.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonArray.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonArrayImpl.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonArraySubscript.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonBuffer.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonBufferBase.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonBufferImpl.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonObject.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonObjectImpl.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonObjectSubscript.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonPair.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonVariant.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonVariantBase.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonVariantCasts.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonVariantComparisons.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonVariantImpl.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\JsonVariantSubscripts.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\attributes.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\ctype.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\isFloat.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\isInteger.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\math.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\parseFloat.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Polyfills\parseInteger.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\RawJson.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\DummyPrint.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\DynamicStringBuilder.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\FloatParts.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\IndentedPrint.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\JsonPrintable.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\JsonSerializer.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\JsonSerializerImpl.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\JsonWriter.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\Prettyfier.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\StaticStringBuilder.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\Serialization\StreamPrintAdapter.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StaticJsonBuffer.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StringTraits\ArduinoStream.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StringTraits\CharPointer.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StringTraits\FlashString.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StringTraits\StdStream.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StringTraits\StdString.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\StringTraits\StringTraits.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\EnableIf.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\FloatTraits.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsArray.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsBaseOf.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsChar.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsConst.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsFloatingPoint.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsIntegral.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsSame.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsSignedIntegral.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsUnsignedIntegral.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\IsVariant.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\RemoveConst.hpp" />
+    <ClInclude Include="3rdParty\ArduinoJson\src\ArduinoJson\TypeTraits\RemoveReference.hpp" />
+    <ClInclude Include="MowerIcon.h" />
+    <ClInclude Include="MainPage.h" />
+    <ClInclude Include="MowerStats.h" />
+    <ClInclude Include="PageBase.h" />
+    <ClInclude Include="UIBattery.h" />
+    <ClInclude Include="UICompass.h" />
+    <ClInclude Include="UIData.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIMower.h" />
+    <ClInclude Include="UIStopButton.h" />
+    <ClInclude Include="__vm\.ArduinoEngine.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MowerIcon.cpp" />
+    <ClCompile Include="MainPage.cpp" />
+    <ClCompile Include="MowerStats.cpp" />
+    <ClCompile Include="PageBase.cpp" />
+    <ClCompile Include="UIMower.cpp" />
+    <ClCompile Include="UIBattery.cpp" />
+    <ClCompile Include="UICompass.cpp" />
+    <ClCompile Include="UIData.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIStopButton.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties VM_ADDITIONAL_COMPILER_CPP_FLAGS="-fpermissive" arduino.upload.port="COM5" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -156,6 +156,9 @@
       <UniqueIdentifier>{ffc28cee-7486-4746-9052-6008f3d6f04b}</UniqueIdentifier>
       <Extensions>*.mak</Extensions>
     </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{830a6891-6b32-4d86-b58d-c51df0372d6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SensorBase.cpp">
@@ -251,6 +254,12 @@
     <ClCompile Include="RA8875\Adafruit_RA8875.cpp">
       <Filter>Source files\RA8875\Adafruit_GFX</Filter>
     </ClCompile>
+    <None Include="CMakeLists.txt">
+      <Filter>Source files</Filter>
+    </None>
+    <None Include="toolchain-Debug.cmake">
+      <Filter>CMake files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SensorLib.h">

@@ -21,11 +21,17 @@
       <UniqueIdentifier>{25514a53-dea3-4f0b-8fe8-839d44560b7a}</UniqueIdentifier>
       <Extensions>*.mak</Extensions>
     </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{70d7313c-803e-4eb9-b927-a11cec6351e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RobotDaemon.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <None Include="toolchain-Debug.cmake">
+      <Filter>CMake files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotDaemon-Debug.vgdbsettings">
@@ -43,5 +49,10 @@
     <ClInclude Include="RobotDaemon.h">
       <Filter>Header files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>Source files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

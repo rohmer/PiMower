@@ -33,6 +33,9 @@
     <Filter Include="Source files\RobotLib">
       <UniqueIdentifier>{7c283e1f-7bf0-4c27-95b8-dbf6a30a3639}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{59482ae4-f53d-46dc-9f6f-11bcc47acb95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestSuite.cpp">
@@ -47,6 +50,12 @@
     <ClCompile Include="ConfigTests.cpp">
       <Filter>Source files\RobotLib</Filter>
     </ClCompile>
+    <None Include="CMakeLists.txt">
+      <Filter>Source files</Filter>
+    </None>
+    <None Include="toolchain-Debug.cmake">
+      <Filter>CMake files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestSuite-Debug.vgdbsettings">

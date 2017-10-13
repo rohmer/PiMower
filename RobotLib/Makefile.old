@@ -35,7 +35,7 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := Behavior.cpp BehaviorManager.cpp Charging.cpp Config.cpp Database.cpp DeviceEntry.cpp DeviceManager.cpp DeviceRegistry.cpp FusedMotionSensor.cpp GPSManager.cpp guid.cpp i2cscanner.cpp Idle.cpp IdlePage.cpp LawnMap.cpp MainMenu.cpp MapNode.cpp MotionController.cpp MotorController.cpp ObjectProximityDetection.cpp PageManager.cpp PositionalMath.cpp Rectangle.cpp RobotLib.cpp Scheduler.cpp ScreenManager.cpp SensorEvents.cpp UIButton.cpp UIElement.cpp UIFont.cpp UIGraphic.cpp UIInput.cpp UILabel.cpp UIMenu.cpp UIRadioGroup.cpp UIToggle.cpp UITouchArea.cpp Undocking.cpp
+SOURCEFILES := Behavior.cpp BehaviorManager.cpp Charging.cpp Config.cpp Database.cpp DeviceEntry.cpp DeviceManager.cpp DeviceRegistry.cpp FusedMotionSensor.cpp GPSManager.cpp guid.cpp i2cscanner.cpp Idle.cpp IdlePage.cpp LawnMap.cpp MainMenu.cpp MapNode.cpp MotionController.cpp MotorController.cpp ObjectProximityDetection.cpp PageManager.cpp PositionalMath.cpp Rectangle.cpp RobotEvents.cpp RobotLib.cpp Scheduler.cpp ScreenManager.cpp SensorEvents.cpp UIButton.cpp UIElement.cpp UIFont.cpp UIGraphic.cpp UIInput.cpp UILabel.cpp UIMenu.cpp UIRadioGroup.cpp UIToggle.cpp UITouchArea.cpp Undocking.cpp
 EXTERNAL_LIBS := 
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 

@@ -21,6 +21,9 @@
       <UniqueIdentifier>{4951b822-3bae-419c-89da-2312f872033a}</UniqueIdentifier>
       <Extensions>*.mak</Extensions>
     </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{fe204205-1231-4cf9-a7da-dfb3dbacf782}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="wiringPi-Debug.vgdbsettings">
@@ -32,6 +35,12 @@
     <None Include="Makefile" />
     <None Include="debug.mak">
       <Filter>Make files</Filter>
+    </None>
+    <None Include="CMakeLists.txt">
+      <Filter>Source files</Filter>
+    </None>
+    <None Include="toolchain-Debug.cmake">
+      <Filter>CMake files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

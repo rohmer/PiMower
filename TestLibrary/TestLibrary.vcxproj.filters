@@ -7,6 +7,12 @@
     <None Include="debug.mak">
       <Filter>Make files</Filter>
     </None>
+    <None Include="CMakeLists.txt">
+      <Filter>Source files</Filter>
+    </None>
+    <None Include="toolchain-Debug.cmake">
+      <Filter>CMake files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source files">
@@ -18,6 +24,9 @@
     <Filter Include="Make files">
       <UniqueIdentifier>{ab033e63-8b39-457c-b6dc-b6f7fb093660}</UniqueIdentifier>
       <Extensions>*.mak</Extensions>
+    </Filter>
+    <Filter Include="CMake files">
+      <UniqueIdentifier>{ffdd9cfc-3d26-4c1d-9301-728d41545f50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

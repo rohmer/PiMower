@@ -2,7 +2,7 @@
 #include "MowerState.h"
 #include "LawnMap.h"
 
-class MowerState
+class RobotStatus
 {
 	private:
 		int bladeRPM;
